@@ -46,78 +46,103 @@ export function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center bg-hero-gradient overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-start bg-hero-gradient overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(255,255,255,0.1)_1px,_transparent_1px)] bg-[length:24px_24px]" />
         </div>
 
-        <div className="container-wide relative z-10 py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl"
-          >
-            {/* Tagline */}
-            <p className="text-coral-400 font-medium mb-4">
-              Senior Instructional Designer & AI-Learning Specialist
-            </p>
+        <div className="container-wide relative z-10 pt-[12vh] md:pt-[15vh] pb-20">
+          <div className="grid lg:grid-cols-[1fr,45%] gap-8 lg:gap-12 items-center">
+            {/* Left Column - Content */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="max-w-[600px]"
+            >
+              {/* Tagline - Fixed contrast with lighter coral + text shadow */}
+              <p className="text-coral-300 font-semibold tracking-widest text-sm mb-4 uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
+                Learning Design + AI
+              </p>
 
-            {/* Main Headline */}
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Instructional Design Mastery{' '}
-              <span className="text-coral-400">Meets</span>{' '}
-              AI Innovation
-            </h1>
+              {/* Main Headline - All white, no accent */}
+              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                Instructional Design Mastery
+                <br />
+                Meets AI Innovation
+              </h1>
 
-            {/* Subheadline */}
-            <p className="text-xl md:text-2xl text-neutral-300 mb-8 max-w-2xl">
-              {stats.yearsExperience} years of instructional design excellence meets MIT-certified AI expertise.
-              Building learning experiences that engage minds, drive results, and scale impact.
-            </p>
+              {/* Subheadline - Updated copy */}
+              <p className="text-lg md:text-xl text-neutral-300 mb-8 leading-relaxed">
+                {stats.yearsExperience} years building learning that works—now enhanced with AI expertise
+                from MIT and Berkeley Haas. Experiences that engage, perform, and scale.
+              </p>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-4">
-              <Link to="/work" className="btn-secondary btn-lg">
-                Explore Portfolio
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link to="/contact" className="btn-outline btn-lg border-white text-white hover:bg-white/10">
-                Let's Talk
-              </Link>
-            </div>
-
-            {/* Credentials */}
-            <div className="flex flex-wrap items-center gap-6 mt-12 text-sm text-neutral-400">
-              <div className="flex items-center gap-2">
-                <GraduationCap className="w-4 h-4 text-coral-400" />
-                <span>MIT AI/ML Certificate</span>
+              {/* CTAs */}
+              <div className="flex flex-wrap gap-4">
+                <Link to="/work" className="btn-secondary btn-lg">
+                  Explore Portfolio
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+                <Link to="/contact" className="btn btn-lg border-2 border-white text-white hover:bg-white/10">
+                  Let's Talk
+                </Link>
               </div>
-              <div className="flex items-center gap-2">
-                <TrendingUp className="w-4 h-4 text-coral-400" />
-                <span>Berkeley Haas Analytics</span>
+
+              {/* Trust Badges - Strengthened: larger, lighter color, consistent icons */}
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-10">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
+                  <GraduationCap className="w-4 h-4 text-white/70" strokeWidth={1.5} />
+                  <span className="text-sm text-gray-200 font-medium">MIT AI & Machine Learning</span>
+                </div>
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
+                  <TrendingUp className="w-4 h-4 text-white/70" strokeWidth={1.5} />
+                  <span className="text-sm text-gray-200 font-medium">UC Berkeley Haas</span>
+                </div>
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
+                  <Lightbulb className="w-4 h-4 text-white/70" strokeWidth={1.5} />
+                  <span className="text-sm text-gray-200 font-medium">Manati.ai Advisor</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <Lightbulb className="w-4 h-4 text-coral-400" />
-                <span>Manati.ai Advisor</span>
+            </motion.div>
+
+            {/* Right Column - Headshot Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="hidden lg:block relative"
+            >
+              <div className="relative">
+                {/* Image with gradient mask to blend with background */}
+                <div className="hero-image-mask">
+                  <img
+                    src="/images/dean_headshot.jpg"
+                    alt="Dean Ahlgren - Instructional Designer & AI Specialist"
+                    className="w-full h-auto rounded-2xl shadow-2xl"
+                  />
+                </div>
+                {/* Subtle gradient overlay for color harmony */}
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-ocean-600/20 rounded-2xl pointer-events-none" />
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Scroll Indicator - Larger with pulse animation */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          className="absolute bottom-8 left-1/2 animate-scroll-pulse flex flex-col items-center gap-2"
         >
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
+          <span className="text-xs text-white/60 font-medium tracking-wide uppercase">See my work</span>
+          <div className="w-8 h-14 border-2 border-white/40 rounded-full flex justify-center pt-3">
             <motion.div
-              animate={{ y: [0, 8, 0] }}
+              animate={{ y: [0, 10, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1 h-2 bg-white/50 rounded-full"
+              className="w-1.5 h-3 bg-white/60 rounded-full"
             />
           </div>
         </motion.div>
