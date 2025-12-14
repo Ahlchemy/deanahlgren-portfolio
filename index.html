@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>Dean Ahlgren | Instructional Design Mastery Meets AI Innovation</title>
+    <meta name="title" content="Dean Ahlgren | Instructional Design Mastery Meets AI Innovation" />
+    <meta name="description" content="25 years of instructional design excellence meets MIT-certified AI expertise. Building learning experiences that engage minds, drive results, and scale impact." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://deanahlgren.com/" />
+    <meta property="og:title" content="Dean Ahlgren | Instructional Design Mastery Meets AI Innovation" />
+    <meta property="og:description" content="25 years of instructional design excellence meets MIT-certified AI expertise. Building learning experiences that engage minds, drive results, and scale impact." />
+    <meta property="og:image" content="/og-image.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://deanahlgren.com/" />
+    <meta property="twitter:title" content="Dean Ahlgren | Instructional Design Mastery Meets AI Innovation" />
+    <meta property="twitter:description" content="25 years of instructional design excellence meets MIT-certified AI expertise. Building learning experiences that engage minds, drive results, and scale impact." />
+    <meta property="twitter:image" content="/og-image.png" />
+
+    <!-- Fonts - Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Fonts - Load -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Theme Script - Prevent flash -->
+    <script>
+      (function() {
+        const theme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (theme === 'dark' || (!theme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
