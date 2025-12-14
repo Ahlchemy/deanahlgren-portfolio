@@ -10,7 +10,7 @@ import {
   ArrowRight,
   Share2,
 } from 'lucide-react'
-import { getArticleBySlug, articles, getArticlesByCategory } from '@/data/articles'
+import { getArticleBySlug, getArticlesByCategory } from '@/data/articles'
 
 const categoryColors: Record<string, string> = {
   research: 'bg-ocean-100 text-ocean-800 dark:bg-ocean-900/30 dark:text-ocean-300',

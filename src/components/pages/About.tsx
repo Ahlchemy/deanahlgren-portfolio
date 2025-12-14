@@ -1,10 +1,8 @@
 import { motion } from 'framer-motion'
 import { MapPin, Calendar, Award, GraduationCap, ExternalLink } from 'lucide-react'
-import { timeline, credentials, stats, getRoles, getCertifications, getEducation } from '@/data/timeline'
+import { timeline, credentials, stats, getEducation } from '@/data/timeline'
 
 export function About() {
-  const roles = getRoles()
-  const certifications = getCertifications()
   const education = getEducation()
 
   return (

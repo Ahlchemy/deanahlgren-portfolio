@@ -219,7 +219,7 @@ export function ProjectDetail() {
                     Screenshots
                   </h3>
                   <div className="grid md:grid-cols-2 gap-6">
-                    {project.images.screenshots.map((screenshot, i) => (
+                    {project.images.screenshots.map((_, i) => (
                       <div
                         key={i}
                         className="aspect-video bg-neutral-100 dark:bg-neutral-800 rounded-lg flex items-center justify-center"
