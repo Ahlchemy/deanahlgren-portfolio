@@ -52,14 +52,14 @@ export function Home() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(255,255,255,0.1)_1px,_transparent_1px)] bg-[length:24px_24px]" />
         </div>
 
-        <div className="container-wide relative z-10 pt-[12vh] md:pt-[15vh] pb-20">
-          <div className="grid lg:grid-cols-[1fr,45%] gap-8 lg:gap-12 items-center">
+        <div className="container-wide relative z-10 pt-[8vh] md:pt-[10vh] pb-20">
+          <div className="grid lg:grid-cols-[1fr,32%] gap-8 lg:gap-16 items-center">
             {/* Left Column - Content */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="max-w-[600px]"
+              className="max-w-[620px]"
             >
               {/* Tagline - Fixed contrast with lighter coral + text shadow */}
               <p className="text-coral-300 font-semibold tracking-widest text-sm mb-4 uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
@@ -112,19 +112,25 @@ export function Home() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="hidden lg:block relative"
+              className="hidden lg:flex justify-center items-center pr-4 xl:pr-8"
             >
               <div className="relative">
-                {/* Image with gradient mask to blend with background */}
-                <div className="hero-image-mask">
+                {/* Offset grounding shape - muted teal behind photo */}
+                <div
+                  className="absolute top-5 left-5 w-full h-full rounded-3xl bg-ocean-700/40"
+                  aria-hidden="true"
+                />
+
+                {/* Photo container - square aspect ratio with rounded corners */}
+                <div className="relative aspect-square w-full max-w-[320px] overflow-hidden rounded-3xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)]">
                   <img
                     src="/images/dean_headshot.jpg"
                     alt="Dean Ahlgren - Instructional Designer & AI Specialist"
-                    className="w-full h-auto rounded-2xl shadow-2xl"
+                    className="w-full h-full object-cover object-top"
                   />
+                  {/* Subtle inner border for definition */}
+                  <div className="absolute inset-0 rounded-3xl ring-1 ring-white/10 pointer-events-none" />
                 </div>
-                {/* Subtle gradient overlay for color harmony */}
-                <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-ocean-600/20 rounded-2xl pointer-events-none" />
               </div>
             </motion.div>
           </div>
