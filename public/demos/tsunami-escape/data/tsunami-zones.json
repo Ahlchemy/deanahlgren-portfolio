@@ -1,0 +1,128 @@
+{
+  "meta": {
+    "source": "NOAA Tsunami Warning Centers",
+    "updated": "2024-01-01T00:00:00Z",
+    "version": "1.0.0",
+    "description": "Tsunami risk zones for Hawaii and US West Coast"
+  },
+  "zones": [
+    {
+      "id": "hawaii-oahu-south",
+      "name": "Oahu South Shore",
+      "state": "Hawaii",
+      "county": "Honolulu",
+      "riskLevel": "high",
+      "bounds": {
+        "north": 21.35,
+        "south": 21.25,
+        "west": -158.15,
+        "east": -157.65
+      },
+      "elevationThreshold": 30,
+      "description": "High tsunami risk due to proximity to Pacific Ocean and low elevation",
+      "evacuationZones": ["HI-HON-01", "HI-HON-02"]
+    },
+    {
+      "id": "california-sf-bay",
+      "name": "San Francisco Bay Area Coast",
+      "state": "California", 
+      "county": "San Francisco",
+      "riskLevel": "moderate",
+      "bounds": {
+        "north": 37.85,
+        "south": 37.70,
+        "west": -122.55,
+        "east": -122.35
+      },
+      "elevationThreshold": 50,
+      "description": "Moderate tsunami risk with natural bay protection",
+      "evacuationZones": ["CA-SF-01", "CA-SF-02", "CA-SF-03"]
+    },
+    {
+      "id": "california-la-coast",
+      "name": "Los Angeles Coastal Areas",
+      "state": "California",
+      "county": "Los Angeles", 
+      "riskLevel": "high",
+      "bounds": {
+        "north": 34.05,
+        "south": 33.70,
+        "west": -118.50,
+        "east": -118.15
+      },
+      "elevationThreshold": 35,
+      "description": "High tsunami risk for coastal communities",
+      "evacuationZones": ["CA-LA-01", "CA-LA-02", "CA-LA-03", "CA-LA-04"]
+    },
+    {
+      "id": "oregon-portland-coast",
+      "name": "Oregon Coast",
+      "state": "Oregon",
+      "county": "Clatsop",
+      "riskLevel": "extreme",
+      "bounds": {
+        "north": 46.20,
+        "south": 45.95,
+        "west": -124.10,
+        "east": -123.80
+      },
+      "elevationThreshold": 15,
+      "description": "Extreme tsunami risk - Cascadia Subduction Zone",
+      "evacuationZones": ["OR-CLA-01", "OR-CLA-02"]
+    },
+    {
+      "id": "washington-seattle-coast",
+      "name": "Washington Coast",
+      "state": "Washington",
+      "county": "Pacific",
+      "riskLevel": "extreme",
+      "bounds": {
+        "north": 47.20,
+        "south": 46.80,
+        "west": -124.20,
+        "east": -123.90
+      },
+      "elevationThreshold": 20,
+      "description": "Extreme tsunami risk - Cascadia Subduction Zone",
+      "evacuationZones": ["WA-PAC-01", "WA-PAC-02"]
+    }
+  ],
+  "safeZones": [
+    {
+      "id": "safe-inland-general",
+      "name": "Inland Areas Above 100ft",
+      "description": "Generally safe from tsunami at elevations above 100 feet and 2+ miles inland",
+      "criteria": {
+        "minElevation": 100,
+        "minDistanceFromCoast": 3200
+      }
+    }
+  ],
+  "riskLevels": {
+    "safe": {
+      "color": "#10b981",
+      "description": "Minimal tsunami risk",
+      "evacuationRequired": false
+    },
+    "low": {
+      "color": "#34d399", 
+      "description": "Low tsunami risk - monitor alerts",
+      "evacuationRequired": false
+    },
+    "moderate": {
+      "color": "#f59e0b",
+      "description": "Moderate tsunami risk - be prepared to evacuate",
+      "evacuationRequired": false
+    },
+    "high": {
+      "color": "#ef4444",
+      "description": "High tsunami risk - evacuate when warned",
+      "evacuationRequired": true
+    },
+    "extreme": {
+      "color": "#dc2626",
+      "description": "Extreme tsunami risk - immediate evacuation when warned",
+      "evacuationRequired": true
+    }
+  }
+}

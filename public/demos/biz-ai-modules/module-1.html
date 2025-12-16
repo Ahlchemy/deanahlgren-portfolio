@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 1: Introduction to AI in Business | Ahlgren Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body data-module="1">
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="course-title">Business AI Application</h1>
+                <div class="nav-container">
+                    <div class="nav-buttons">
+                        <a href="module-1.html" class="nav-button active module-btn" data-module="1" data-title="Introduction to AI in Business">1</a>
+                        <a href="module-2.html" class="nav-button module-btn" data-module="2" data-title="Machine Learning Basics">2</a>
+                        <a href="module-3.html" class="nav-button module-btn" data-module="3" data-title="Neural Networks">3</a>
+                        <a href="module-4.html" class="nav-button module-btn" data-module="4" data-title="Computer Vision & Natural Language">4</a>
+                        <a href="module-5.html" class="nav-button module-btn" data-module="5" data-title="Robotics & Automation">5</a>
+                        <a href="module-6.html" class="nav-button module-btn" data-module="6" data-title="AI Strategy & Implementation">6</a>
+                        <a href="module-7.html" class="nav-button module-btn" data-module="7" data-title="Change Management & AI Adoption">7</a>
+                        <a href="module-8.html" class="nav-button module-btn" data-module="8" data-title="Responsible AI & Ethics">8</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="module-header">
+            <h1 class="module-title">Module 1: Introduction to AI in Business</h1>
+            <p class="module-description">Understand the fundamentals of artificial intelligence and its transformative potential for business operations and strategy.</p>
+        </div>
+        
+        <div class="learning-path">
+            <div class="learning-path-progress">
+                <div class="progress-bar">
+                    <div class="progress-indicator" style="width: 12.5%;"></div>
+                </div>
+                <div class="module-progress">
+                    <span class="current-module">Module 1/8</span>
+                    <span class="estimated-time"><i class="far fa-clock"></i> Est. time: 45 minutes</span>
+                </div>
+            </div>
+            <div class="skills-gained">
+                <h4>Skills You'll Gain</h4>
+                <div class="skills-list">
+                    <span class="skill-tag">AI Fundamentals</span>
+                    <span class="skill-tag">Business Application</span>
+                    <span class="skill-tag">Strategic Thinking</span>
+                </div>
+            </div>
+        </div>
+
+        <section class="exec-summary fade-in">
+            <h3>Executive Summary</h3>
+            <ul>
+                <li>AI is a general-purpose technology comparable to electricity, enabling predictive analytics, automation, and content generation.</li>
+                <li>The primary value is augmentation—not replacement—of human teams, freeing them for strategic, creative work.</li>
+                <li>Successful adoption hinges on high-quality data, clear business goals, aligned strategy, and early attention to ethics.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Key Concepts</h3>
+            <p>Artificial Intelligence (AI) is often referred to as a general-purpose technology, like electricity in the early 20th century. In the business world, AI means using machines to mimic aspects of human cognition — learning, decision-making, pattern recognition. It manifests in areas like predictive analytics, automation, and content generation. Think of AI as an ultra-efficient analyst who never tires, or a strategic advisor spotting patterns in your data that your team might miss.</p>
+            
+            <p>The key principle: augmentation, not replacement. AI handles narrow tasks at scale, freeing your human teams to focus on strategy, relationships, and innovation. But it requires strong data, clear goals, and aligned strategy. It's not magic — it's a turbocharger for well-planned initiatives.</p>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Interactive Charts</h3>
+            <div class="interactive-chart">
+                <canvas id="adoption-chart"></canvas>
+            </div>
+            <div class="chart-controls">
+                <button id="chart-toggle" class="cta-button" data-view="adoption">View Boardroom Presence</button>
+            </div>
+            <p class="chart-description">This chart shows adoption of AI across business functions like Marketing, Product Development, and Operations. Hover over bars to see detailed insights.</p>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Real-World Examples</h3>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <h4 class="example-title">UPS Route Optimization</h4>
+                    <p>UPS uses AI-powered route optimization to save millions annually in fuel and time.</p>
+                </div>
+                <div class="example-card">
+                    <h4 class="example-title">Netflix Recommendations</h4>
+                    <p>Netflix deploys machine learning to refine user recommendations and reduce churn, estimated to save over $1B per year.</p>
+                </div>
+                <div class="example-card">
+                    <h4 class="example-title">Small Business Chatbots</h4>
+                    <p>Small businesses use AI chatbots to improve customer service 24/7 without expanding headcount.</p>
+                </div>
+            </div>
+            <p class="strategic-insight"><strong>Strategic Insight:</strong> AI isn't just for tech giants. Scalable tools are now accessible to midsize firms aiming to automate and personalize operations.</p>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Discussion Prompts</h3>
+            <ul class="prompts-list">
+                <li class="prompt-item">
+                    <p>What is one routine task in your team that AI could take over, allowing your staff to focus on higher-value work?</p>
+                </li>
+                <li class="prompt-item">
+                    <p>What are the potential business risks of deploying AI in your sector?</p>
+                </li>
+                <li class="prompt-item">
+                    <p>How would you explain AI's value to a skeptical stakeholder using one of the examples above?</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Knowledge Check: True or False</h3>
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    <p><strong>Question 1:</strong> Artificial Intelligence requires massive amounts of data to be effective in all business applications.</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q1" value="true"> True</label>
+                        <label class="quiz-option"><input type="radio" name="q1" value="false"> False</label>
+                    </div>
+                    <div class="quiz-answer" style="display: none;">
+                        <p><strong>Answer:</strong> False. While many AI applications benefit from large datasets, some AI tools can be effective with limited data through techniques like transfer learning or rule-based systems.</p>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <p><strong>Question 2:</strong> Machine learning and artificial intelligence are interchangeable terms referring to the same technology.</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q2" value="true"> True</label>
+                        <label class="quiz-option"><input type="radio" name="q2" value="false"> False</label>
+                    </div>
+                    <div class="quiz-answer" style="display: none;">
+                        <p><strong>Answer:</strong> False. Machine learning is a subset of artificial intelligence. AI is the broader concept of machines being able to carry out tasks in a way that we would consider "smart," while machine learning is a current application of AI based on the idea that machines should be able to learn from data.</p>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <p><strong>Question 3:</strong> The primary goal of implementing AI in business is to replace human workers.</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q3" value="true"> True</label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="false"> False</label>
+                    </div>
+                    <div class="quiz-answer" style="display: none;">
+                        <p><strong>Answer:</strong> False. The primary goal of AI implementation in business is to augment human capabilities, automate routine tasks, improve efficiency, and enable humans to focus on more creative, strategic, and complex work that requires uniquely human skills.</p>
+                    </div>
+                </div>
+                
+                <button id="checkAnswers" class="quiz-button">Check Answers</button>
+            </div>
+        </section>
+
+        <div class="key-takeaways">
+            <h3><i class="fas fa-lightbulb"></i> Key Takeaways</h3>
+            <div class="takeaways-list">
+                <div class="takeaway-item">
+                    <div class="takeaway-icon"><i class="fas fa-check-circle"></i></div>
+                    <div>AI is transforming business across all industries through automation, insights, and innovation</div>
+                </div>
+                <div class="takeaway-item">
+                    <div class="takeaway-icon"><i class="fas fa-check-circle"></i></div>
+                    <div>Understanding the differences between AI, ML, and deep learning is crucial for effective implementation</div>
+                </div>
+                <div class="takeaway-item">
+                    <div class="takeaway-icon"><i class="fas fa-check-circle"></i></div>
+                    <div>Successful AI adoption requires both technical understanding and strategic vision</div>
+                </div>
+                <div class="takeaway-item">
+                    <div class="takeaway-icon"><i class="fas fa-check-circle"></i></div>
+                    <div>Ethical considerations should be integrated into AI strategy from the beginning</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-container">
+            <h3 class="cta-title">Call to Action</h3>
+            <p class="cta-text">Identify one promising AI use case and one concern about AI implementation in your business. These will guide your exploration in future modules.</p>
+            <a href="module-2.html" class="cta-button">Continue to Module 2: Machine Learning Basics</a>
+        </div>
+        
+        <div class="module-navigation">
+            <span></span> <!-- Empty span for flex alignment since there's no previous module -->
+            <a href="module-2.html" class="module-nav-btn next">Next Module: Machine Learning Basics</a>
+        </div>
+    </main>
+    
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="footer-title">Business AI Application</h3>
+                    <p>Empowering business leaders with AI knowledge and practical skills for the future of work.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">Course Overview</a>
+                        <a href="#" class="footer-link">Resources</a>
+                        <a href="#" class="footer-link">FAQ</a>
+                        <a href="#" class="footer-link">Support</a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Legal</h3>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">Privacy Policy</a>
+                        <a href="#" class="footer-link">Terms of Service</a>
+                        <a href="#" class="footer-link">Cookie Policy</a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Subscribe</h3>
+                    <p>Get updates on new modules and AI resources.</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your email">
+                        <button type="submit" class="newsletter-button">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Business AI Application. All rights reserved. Developed by Dean Ahlgren.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Quiz functionality
+        const checkAnswersButton = document.getElementById('checkAnswers');
+        const quizQuestions = document.querySelectorAll('.quiz-question');
+        
+        // Correct answers
+        const correctAnswers = {
+            q1: 'false',
+            q2: 'false',
+            q3: 'false'
+        };
+        
+        checkAnswersButton.addEventListener('click', () => {
+            let score = 0;
+            
+            quizQuestions.forEach((question, index) => {
+                const questionNumber = index + 1;
+                const selectedOption = document.querySelector(`input[name="q${questionNumber}"]:checked`);
+                const answerDiv = question.querySelector('.quiz-answer');
+                
+                // Show the answer explanation
+                answerDiv.style.display = 'block';
+                
+                if (selectedOption) {
+                    const userAnswer = selectedOption.value;
+                    const correctAnswer = correctAnswers[`q${questionNumber}`];
+                    
+                    if (userAnswer === correctAnswer) {
+                        answerDiv.classList.add('correct');
+                        answerDiv.classList.remove('incorrect');
+                        score++;
+                    } else {
+                        answerDiv.classList.add('incorrect');
+                        answerDiv.classList.remove('correct');
+                    }
+                } else {
+                    answerDiv.classList.remove('correct', 'incorrect');
+                }
+            });
+            
+            // Update button text with score
+            checkAnswersButton.textContent = `Score: ${score}/3`;
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Data for the charts
+            const adoptionData = {
+                labels: ['Marketing', 'Product Development', 'Operations', 'Customer Service', 'Finance', 'HR'],
+                datasets: [{
+                    label: 'AI Adoption Rate (%)',
+                    data: [68, 52, 45, 60, 32, 25],
+                    backgroundColor: [
+                        'rgba(30, 64, 175, 0.7)',
+                        'rgba(30, 64, 175, 0.7)',
+                        'rgba(30, 64, 175, 0.7)',
+                        'rgba(30, 64, 175, 0.7)',
+                        'rgba(30, 64, 175, 0.7)',
+                        'rgba(30, 64, 175, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(30, 64, 175, 1)',
+                        'rgba(30, 64, 175, 1)',
+                        'rgba(30, 64, 175, 1)',
+                        'rgba(30, 64, 175, 1)',
+                        'rgba(30, 64, 175, 1)',
+                        'rgba(30, 64, 175, 1)'
+                    ],
+                    borderWidth: 1,
+                    hoverBackgroundColor: 'rgba(59, 130, 246, 0.8)'
+                }]
+            };
+
+            const boardroomData = {
+                labels: ['Marketing', 'Product Development', 'Operations', 'Customer Service', 'Finance', 'HR'],
+                datasets: [{
+                    label: 'Boardroom Presence (%)',
+                    data: [75, 82, 55, 40, 65, 30],
+                    backgroundColor: [
+                        'rgba(46, 125, 50, 0.7)',
+                        'rgba(46, 125, 50, 0.7)',
+                        'rgba(46, 125, 50, 0.7)',
+                        'rgba(46, 125, 50, 0.7)',
+                        'rgba(46, 125, 50, 0.7)',
+                        'rgba(46, 125, 50, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(46, 125, 50, 1)',
+                        'rgba(46, 125, 50, 1)',
+                        'rgba(46, 125, 50, 1)',
+                        'rgba(46, 125, 50, 1)',
+                        'rgba(46, 125, 50, 1)',
+                        'rgba(46, 125, 50, 1)'
+                    ],
+                    borderWidth: 1,
+                    hoverBackgroundColor: 'rgba(74, 222, 128, 0.8)'
+                }]
+            };
+
+            // Chart configuration
+            const chartConfig = {
+                type: 'bar',
+                data: adoptionData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Percentage'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Business Function'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let insights = [
+                                        context.dataset.label + ': ' + context.parsed.y + '%'
+                                    ];
+                                    
+                                    // Add custom insights based on the data point
+                                    if (context.dataIndex === 0) { // Marketing
+                                        insights.push('60% of companies using AI have implemented it in Marketing');
+                                    } else if (context.dataIndex === 1) { // Product Development
+                                        insights.push('AI in product development reduces time-to-market by 35%');
+                                    } else if (context.dataIndex === 2) { // Operations
+                                        insights.push('Operations teams see 28% efficiency gains with AI');
+                                    } else if (context.dataIndex === 3) { // Customer Service
+                                        insights.push('AI chatbots handle 40% of customer inquiries');
+                                    } else if (context.dataIndex === 4) { // Finance
+                                        insights.push('AI reduces financial forecasting errors by 21%');
+                                    } else if (context.dataIndex === 5) { // HR
+                                        insights.push('AI screening tools reduce hiring time by 30%');
+                                    }
+                                    
+                                    return insights;
+                                }
+                            }
+                        },
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        title: {
+                            display: true,
+                            text: 'AI Adoption Across Business Functions',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 1000,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            };
+
+            // Initialize the chart
+            const ctx = document.getElementById('adoption-chart').getContext('2d');
+            const aiChart = new Chart(ctx, chartConfig);
+
+            // Toggle between adoption rate and boardroom presence
+            const chartToggle = document.getElementById('chart-toggle');
+            chartToggle.addEventListener('click', function() {
+                const currentView = this.getAttribute('data-view');
+                const newView = currentView === 'adoption' ? 'boardroom' : 'adoption';
+                
+                this.setAttribute('data-view', newView);
+                this.textContent = newView === 'adoption' ? 'View Boardroom Presence' : 'View Adoption Rate';
+                
+                // Update chart data and title
+                aiChart.data = newView === 'adoption' ? adoptionData : boardroomData;
+                aiChart.options.plugins.title.text = newView === 'adoption' ? 
+                    'AI Adoption Across Business Functions' : 
+                    'AI Boardroom Presence Across Business Functions';
+                
+                aiChart.update();
+            });
+        });
+    </script>
+</body>
+</html>

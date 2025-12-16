@@ -28,6 +28,7 @@ const getAllWork = () => {
     type: 'project' as const,
     featured: p.featured,
     icon: Code2,
+    thumbnail: p.images?.thumbnail,
   }))
 
   const courseItems = courses.map((c) => ({
@@ -40,6 +41,7 @@ const getAllWork = () => {
     type: 'course' as const,
     featured: c.featured,
     icon: BookOpen,
+    thumbnail: c.images?.thumbnail,
   }))
 
   const articleItems = articles.slice(0, 6).map((a) => ({
@@ -52,6 +54,7 @@ const getAllWork = () => {
     type: 'article' as const,
     featured: a.featured,
     icon: FileText,
+    thumbnail: undefined,
   }))
 
   return [...projectItems, ...courseItems, ...articleItems]
@@ -218,23 +221,33 @@ export function Work() {
                     transition={{ delay: Math.min(index * 0.05, 0.3) }}
                     className="card card-hover overflow-hidden group"
                   >
-                    {/* Image Placeholder with type-specific colors */}
-                    <div className={`aspect-video flex items-center justify-center ${
-                      item.type === 'project'
-                        ? 'bg-gradient-to-br from-ocean-100 to-ocean-200 dark:from-ocean-900 dark:to-ocean-800'
-                        : item.type === 'course'
-                        ? 'bg-gradient-to-br from-coral-100 to-coral-200 dark:from-coral-900/50 dark:to-coral-800/50'
-                        : 'bg-gradient-to-br from-dawn-100 to-dawn-200 dark:from-dawn-900/50 dark:to-dawn-800/50'
-                    }`}>
-                      <Icon className={`w-12 h-12 ${
+                    {/* Thumbnail - Clickable */}
+                    <Link
+                      to={getItemHref(item)}
+                      className={`block aspect-video flex items-center justify-center overflow-hidden ${
                         item.type === 'project'
-                          ? 'text-ocean-400'
+                          ? 'bg-gradient-to-br from-ocean-100 to-ocean-200 dark:from-ocean-900 dark:to-ocean-800'
                           : item.type === 'course'
-                          ? 'text-coral-400'
-                          : 'text-dawn-500'
-                      }`} />
-                      {/* ASSET NEEDED: Project screenshots */}
-                    </div>
+                          ? 'bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900/50 dark:to-amber-800/50'
+                          : 'bg-gradient-to-br from-dawn-100 to-dawn-200 dark:from-dawn-900/50 dark:to-dawn-800/50'
+                      }`}
+                    >
+                      {item.thumbnail ? (
+                        <img
+                          src={item.thumbnail}
+                          alt={item.title}
+                          className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                        />
+                      ) : (
+                        <Icon className={`w-12 h-12 ${
+                          item.type === 'project'
+                            ? 'text-ocean-400'
+                            : item.type === 'course'
+                            ? 'text-amber-400'
+                            : 'text-dawn-500'
+                        }`} />
+                      )}
+                    </Link>
 
                     <div className="p-6">
                       <div className="flex flex-wrap gap-2 mb-3">

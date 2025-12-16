@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Linear Transformations</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7fafc;
+            margin: 0;
+            padding: 20px;
+            color: #1a365d;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        h1 {
+            color: #1a365d;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .controls-section {
+            background: #edf2f7;
+            padding: 25px;
+            border-radius: 8px;
+        }
+        
+        .visualization-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .control-group {
+            margin-bottom: 20px;
+        }
+        
+        .control-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        
+        label {
+            font-weight: 600;
+            color: #4a5568;
+            min-width: 80px;
+        }
+        
+        input[type="range"] {
+            flex: 1;
+            height: 6px;
+            border-radius: 3px;
+            background: #e2e8f0;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #4299e1;
+            cursor: pointer;
+        }
+        
+        .value-display {
+            font-weight: bold;
+            color: #4299e1;
+            min-width: 50px;
+            text-align: right;
+        }
+        
+        .matrix-display {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 2px solid #4299e1;
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            text-align: center;
+            margin: 15px 0;
+        }
+        
+        .preset-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        
+        .preset-btn {
+            background: #3182ce;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+        
+        .preset-btn:hover {
+            background: #2c5aa0;
+        }
+        
+        .grid-line {
+            stroke: #e2e8f0;
+            stroke-width: 1;
+        }
+        
+        .axis {
+            stroke: #4a5568;
+            stroke-width: 2;
+        }
+        
+        .original-vector {
+            stroke: #38a169;
+            stroke-width: 3;
+            fill: none;
+            marker-end: url(#arrowhead-green);
+        }
+        
+        .transformed-vector {
+            stroke: #ed8936;
+            stroke-width: 3;
+            fill: none;
+            marker-end: url(#arrowhead-orange);
+        }
+        
+        .unit-vector {
+            stroke: #805ad5;
+            stroke-width: 2;
+            fill: none;
+            marker-end: url(#arrowhead-purple);
+            opacity: 0.7;
+        }
+        
+        .vector-label {
+            font-size: 14px;
+            font-weight: bold;
+            text-anchor: middle;
+        }
+        
+        .explanation {
+            background: #edf2f7;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #4299e1;
+            margin-top: 20px;
+        }
+        
+        .business-example {
+            background: #f0fff4;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #38a169;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Interactive Linear Transformations</h1>
+        
+        <div class="main-content">
+            <div class="controls-section">
+                <h3>Transformation Matrix</h3>
+                
+                <div class="control-group">
+                    <div class="control-row">
+                        <label>a (1,1):</label>
+                        <input type="range" id="a" min="-2" max="2" step="0.1" value="1">
+                        <span class="value-display" id="aValue">1.0</span>
+                    </div>
+                    <div class="control-row">
+                        <label>b (1,2):</label>
+                        <input type="range" id="b" min="-2" max="2" step="0.1" value="0">
+                        <span class="value-display" id="bValue">0.0</span>
+                    </div>
+                    <div class="control-row">
+                        <label>c (2,1):</label>
+                        <input type="range" id="c" min="-2" max="2" step="0.1" value="0">
+                        <span class="value-display" id="cValue">0.0</span>
+                    </div>
+                    <div class="control-row">
+                        <label>d (2,2):</label>
+                        <input type="range" id="d" min="-2" max="2" step="0.1" value="1">
+                        <span class="value-display" id="dValue">1.0</span>
+                    </div>
+                </div>
+                
+                <div class="matrix-display" id="matrixDisplay">
+                    [1.0  0.0]<br>
+                    [0.0  1.0]
+                </div>
+                
+                <h4>Preset Transformations:</h4>
+                <div class="preset-buttons">
+                    <button class="preset-btn" onclick="setTransformation(1, 0, 0, 1)">Identity</button>
+                    <button class="preset-btn" onclick="setTransformation(2, 0, 0, 2)">Scale 2x</button>
+                    <button class="preset-btn" onclick="setTransformation(0, -1, 1, 0)">Rotate 90°</button>
+                    <button class="preset-btn" onclick="setTransformation(-1, 0, 0, 1)">Reflect X</button>
+                    <button class="preset-btn" onclick="setTransformation(1, 0.5, 0, 1)">Shear</button>
+                    <button class="preset-btn" onclick="setTransformation(1.5, 0.5, 0.5, 1.5)">Complex</button>
+                </div>
+                
+                <div style="margin-top: 20px;">
+                    <h4>Vector Information:</h4>
+                    <div style="color: #38a169; font-weight: bold;">● Original Vector: (2, 1)</div>
+                    <div style="color: #ed8936; font-weight: bold;">● Transformed Vector: <span id="transformedCoords">(2.0, 1.0)</span></div>
+                    <div style="color: #805ad5; font-weight: bold;">● Unit Vectors (i, j)</div>
+                </div>
+            </div>
+            
+            <div class="visualization-section">
+                <svg width="500" height="500" id="transformationChart">
+                    <!-- Define arrowheads -->
+                    <defs>
+                        <marker id="arrowhead-green" markerWidth="10" markerHeight="7" 
+                                refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#38a169" />
+                        </marker>
+                        <marker id="arrowhead-orange" markerWidth="10" markerHeight="7" 
+                                refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#ed8936" />
+                        </marker>
+                        <marker id="arrowhead-purple" markerWidth="10" markerHeight="7" 
+                                refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#805ad5" />
+                        </marker>
+                    </defs>
+                    
+                    <!-- Grid lines -->
+                    <g id="gridLines"></g>
+                    
+                    <!-- Axes -->
+                    <line class="axis" x1="250" y1="50" x2="250" y2="450"></line>
+                    <line class="axis" x1="50" y1="250" x2="450" y2="250"></line>
+                    
+                    <!-- Unit vectors (transformed) -->
+                    <line class="unit-vector" id="unitVectorI" x1="250" y1="250"></line>
+                    <line class="unit-vector" id="unitVectorJ" x1="250" y1="250"></line>
+                    
+                    <!-- Original vector -->
+                    <line class="original-vector" id="originalVector" x1="250" y1="250" x2="350" y2="200"></line>
+                    
+                    <!-- Transformed vector -->
+                    <line class="transformed-vector" id="transformedVector" x1="250" y1="250"></line>
+                    
+                    <!-- Labels -->
+                    <text class="vector-label" x="300" y="190" fill="#38a169">Original</text>
+                    <text class="vector-label" id="transformedLabel" x="350" y="190" fill="#ed8936">Transformed</text>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="explanation">
+            <h3>Understanding Linear Transformations</h3>
+            <p>A linear transformation is a function that maps vectors to vectors while preserving vector addition and scalar multiplication. In 2D, any linear transformation can be represented by a 2×2 matrix:</p>
+            <p><strong>T(x) = Ax</strong>, where A is the transformation matrix and x is the input vector.</p>
+            <ul>
+                <li><strong>Green vector:</strong> Original vector (2, 1)</li>
+                <li><strong>Orange vector:</strong> Result after applying the transformation</li>
+                <li><strong>Purple vectors:</strong> Transformed unit vectors showing how the coordinate system changes</li>
+            </ul>
+            <p>Try the preset transformations to see common operations like scaling, rotation, reflection, and shearing!</p>
+        </div>
+        
+        <div class="business-example">
+            <h3>Business Application: Data Transformation in ML</h3>
+            <p><strong>Scenario:</strong> In machine learning, we often need to transform our data before feeding it to algorithms. Linear transformations are used for:</p>
+            <ul>
+                <li><strong>Feature Scaling:</strong> Scaling transformation (diagonal matrix) to normalize features</li>
+                <li><strong>Principal Component Analysis:</strong> Rotation transformation to find the most important directions in data</li>
+                <li><strong>Data Augmentation:</strong> Various transformations to create more training examples</li>
+                <li><strong>Dimensionality Reduction:</strong> Projection transformations to reduce data complexity</li>
+            </ul>
+            <p>Understanding these transformations helps you preprocess data effectively and interpret ML model behavior!</p>
+        </div>
+    </div>
+
+    <script>
+        // Chart dimensions and scaling
+        const centerX = 250;
+        const centerY = 250;
+        const scale = 50; // pixels per unit
+        
+        function toScreenX(x) {
+            return centerX + x * scale;
+        }
+        
+        function toScreenY(y) {
+            return centerY - y * scale; // Flip Y axis
+        }
+        
+        function updateVisualization() {
+            const a = parseFloat(document.getElementById('a').value);
+            const b = parseFloat(document.getElementById('b').value);
+            const c = parseFloat(document.getElementById('c').value);
+            const d = parseFloat(document.getElementById('d').value);
+            
+            // Update value displays
+            document.getElementById('aValue').textContent = a.toFixed(1);
+            document.getElementById('bValue').textContent = b.toFixed(1);
+            document.getElementById('cValue').textContent = c.toFixed(1);
+            document.getElementById('dValue').textContent = d.toFixed(1);
+            
+            // Update matrix display
+            document.getElementById('matrixDisplay').innerHTML = 
+                `[${a.toFixed(1)}  ${b.toFixed(1)}]<br>[${c.toFixed(1)}  ${d.toFixed(1)}]`;
+            
+            // Original vector
+            const origX = 2;
+            const origY = 1;
+            
+            // Apply transformation: [a b; c d] * [origX; origY]
+            const transX = a * origX + b * origY;
+            const transY = c * origX + d * origY;
+            
+            // Update transformed coordinates display
+            document.getElementById('transformedCoords').textContent = 
+                `(${transX.toFixed(1)}, ${transY.toFixed(1)})`;
+            
+            // Update transformed vector
+            const transformedVector = document.getElementById('transformedVector');
+            transformedVector.setAttribute('x2', toScreenX(transX));
+            transformedVector.setAttribute('y2', toScreenY(transY));
+            
+            // Update unit vectors (show how basis vectors transform)
+            const unitI = document.getElementById('unitVectorI');
+            unitI.setAttribute('x2', toScreenX(a));
+            unitI.setAttribute('y2', toScreenY(c));
+            
+            const unitJ = document.getElementById('unitVectorJ');
+            unitJ.setAttribute('x2', toScreenX(b));
+            unitJ.setAttribute('y2', toScreenY(d));
+            
+            // Update transformed label position
+            const labelX = toScreenX(transX) + 20;
+            const labelY = toScreenY(transY) - 10;
+            document.getElementById('transformedLabel').setAttribute('x', labelX);
+            document.getElementById('transformedLabel').setAttribute('y', labelY);
+            
+            updateGrid();
+        }
+        
+        function updateGrid() {
+            const gridContainer = document.getElementById('gridLines');
+            gridContainer.innerHTML = '';
+            
+            // Create grid lines
+            for (let i = -4; i <= 4; i++) {
+                if (i !== 0) {
+                    // Vertical lines
+                    const vLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    vLine.setAttribute('class', 'grid-line');
+                    vLine.setAttribute('x1', toScreenX(i));
+                    vLine.setAttribute('x2', toScreenX(i));
+                    vLine.setAttribute('y1', 50);
+                    vLine.setAttribute('y2', 450);
+                    gridContainer.appendChild(vLine);
+                    
+                    // Horizontal lines
+                    const hLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    hLine.setAttribute('class', 'grid-line');
+                    hLine.setAttribute('x1', 50);
+                    hLine.setAttribute('x2', 450);
+                    hLine.setAttribute('y1', toScreenY(i));
+                    hLine.setAttribute('y2', toScreenY(i));
+                    gridContainer.appendChild(hLine);
+                }
+            }
+        }
+        
+        function setTransformation(a, b, c, d) {
+            document.getElementById('a').value = a;
+            document.getElementById('b').value = b;
+            document.getElementById('c').value = c;
+            document.getElementById('d').value = d;
+            updateVisualization();
+        }
+        
+        // Event listeners
+        document.getElementById('a').addEventListener('input', updateVisualization);
+        document.getElementById('b').addEventListener('input', updateVisualization);
+        document.getElementById('c').addEventListener('input', updateVisualization);
+        document.getElementById('d').addEventListener('input', updateVisualization);
+        
+        // Initial render
+        updateVisualization();
+    </script>
+</body>
+</html>
+

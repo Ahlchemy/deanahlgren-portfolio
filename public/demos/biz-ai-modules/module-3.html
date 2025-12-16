@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 3: Neural Networks & Deep Learning | Ahlgren Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body data-module="3">
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="course-title">Business AI Application</h1>
+                <div class="nav-container">
+                    <div class="nav-buttons">
+                        <a href="module-1.html" class="nav-button" data-module="1" data-title="Intro to AI">1</a>
+                        <a href="module-2.html" class="nav-button" data-module="2" data-title="ML Basics">2</a>
+                        <a href="module-3.html" class="nav-button active" data-module="3" data-title="Neural Networks">3</a>
+                        <a href="module-4.html" class="nav-button" data-module="4" data-title="Vision & Language">4</a>
+                        <a href="module-5.html" class="nav-button" data-module="5" data-title="Robotics">5</a>
+                        <a href="module-6.html" class="nav-button" data-module="6" data-title="AI Strategy">6</a>
+                        <a href="module-7.html" class="nav-button" data-module="7" data-title="Change Management">7</a>
+                        <a href="module-8.html" class="nav-button" data-module="8" data-title="Responsible AI">8</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="module-header">
+            <h2 class="module-title">Module 3: Neural Networks & Deep Learning</h2>
+            <p class="module-subtitle">Understanding the advanced AI systems powering today's most sophisticated applications</p>
+        </div>
+
+        <section class="exec-summary fade-in">
+            <h3>Executive Summary</h3>
+            <ul>
+                <li>Neural networks mimic interconnected neurons; deep learning stacks many layers for complex pattern recognition.</li>
+                <li>Strengths include image, speech, and language tasks when large datasets and compute are available.</li>
+                <li>Transfer learning lets firms leverage pre-trained models, reducing time and resource barriers.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Key Concepts</h3>
+            <p>Neural networks are layered systems designed to mimic the brain's structure in a simplified way. Deep Learning refers to neural networks with many layers, capable of learning complex abstractions.</p>
+            
+            <p>Use cases include image recognition, speech-to-text, and natural language understanding. Deep learning excels in scenarios with large volumes of data and complex relationships.</p>
+            
+            <p>While traditional machine learning might require manual feature engineering, deep learning can automatically discover the representations needed for feature detection or classification from raw data.</p>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Interactive Charts</h3>
+            <div class="interactive-chart">
+                <canvas id="neural-network-viz"></canvas>
+            </div>
+            <div class="chart-controls">
+                <button id="train-network" class="cta-button">Train Network</button>
+                <button id="toggle-neurons" class="cta-button">Toggle Neurons</button>
+            </div>
+            <p class="chart-description">This visualization shows a neural network with inputs flowing through hidden layers to outputs. Use the controls to see how training affects the network.</p>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Real-World Examples</h3>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <h4 class="example-title">GPT Models</h4>
+                    <p>Text generation and understanding from deep neural networks, powering tools like ChatGPT and business applications.</p>
+                </div>
+                <div class="example-card">
+                    <h4 class="example-title">Image Classification</h4>
+                    <p>Facial recognition for security, medical imaging diagnostics for disease detection, and product quality control.</p>
+                </div>
+                <div class="example-card">
+                    <h4 class="example-title">Speech Recognition</h4>
+                    <p>Virtual assistants understanding spoken commands, transcription services, and voice-controlled systems.</p>
+                </div>
+                <div class="example-card">
+                    <h4 class="example-title">AlphaGo</h4>
+                    <p>Strategic gaming with deep learning reinforcement, demonstrating AI's ability to master complex decision-making.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Discussion Prompts</h3>
+            <ul class="prompts-list">
+                <li class="prompt-item">
+                    <p>Where in your organization could deep learning replace or enhance current systems?</p>
+                </li>
+                <li class="prompt-item">
+                    <p>What would you need to support deep learning projects (data, compute, talent)?</p>
+                </li>
+                <li class="prompt-item">
+                    <p>When is deep learning overkill? Where might simpler machine learning approaches be more appropriate?</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Knowledge Check: True or False</h3>
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    <p><strong>Question 1:</strong> Neural networks can only be used for image recognition tasks.</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q1" value="true"> True</label>
+                        <label class="quiz-option"><input type="radio" name="q1" value="false"> False</label>
+                    </div>
+                    <div class="quiz-answer" style="display: none;">
+                        <p><strong>Answer:</strong> False. Neural networks are versatile and can be applied to many different types of problems, including natural language processing, time series forecasting, recommendation systems, and game playing, not just image recognition.</p>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <p><strong>Question 2:</strong> Deep learning is a subset of neural networks that uses multiple layers to progressively extract higher-level features from raw input.</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q2" value="true"> True</label>
+                        <label class="quiz-option"><input type="radio" name="q2" value="false"> False</label>
+                    </div>
+                    <div class="quiz-answer" style="display: none;">
+                        <p><strong>Answer:</strong> True. Deep learning refers to neural networks with multiple hidden layers that can learn hierarchical representations of data. Each layer transforms the data to extract increasingly abstract features.</p>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <p><strong>Question 3:</strong> Transfer learning allows you to use a pre-trained neural network for a new task without having to train from scratch.</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q3" value="true"> True</label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="false"> False</label>
+                    </div>
+                    <div class="quiz-answer" style="display: none;">
+                        <p><strong>Answer:</strong> True. Transfer learning is a technique where a model developed for one task is reused as the starting point for a model on a second task. This approach can save significant time and computational resources.</p>
+                    </div>
+                </div>
+                
+                <button id="checkAnswers" class="quiz-button">Check Answers</button>
+            </div>
+        </section>
+
+        <div class="cta-container">
+            <h3 class="cta-title">Call to Action</h3>
+            <p class="cta-text">Engage with your data/analytics team to understand where (if at all) deep learning is in use. If not, suggest a pilot project.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <a href="module-2.html" class="cta-button">Previous Module</a>
+                <a href="module-4.html" class="cta-button">Continue to Module 4: Vision & Language AI</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Business AI Application. All rights reserved. Developed by Dean Ahlgren.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Neural Network Visualization
+            const nnCtx = document.getElementById('neural-network-viz').getContext('2d');
+            
+            // Define network architecture
+            const networkArchitecture = {
+                inputNodes: 4,
+                hiddenLayers: [
+                    { nodes: 6, activation: 'ReLU' },
+                    { nodes: 5, activation: 'ReLU' }
+                ],
+                outputNodes: 3,
+                outputActivation: 'Softmax'
+            };
+            
+            // Generate node positions for visualization
+            const generateNetworkLayout = (architecture) => {
+                const nodes = [];
+                const edges = [];
+                
+                // Calculate total layers
+                const totalLayers = 2 + architecture.hiddenLayers.length; // input + hidden + output
+                
+                // Input layer
+                for (let i = 0; i < architecture.inputNodes; i++) {
+                    nodes.push({
+                        id: `input-${i}`,
+                        x: 0.1, // x position (0-1 scale)
+                        y: (i + 1) / (architecture.inputNodes + 1), // y position (0-1 scale)
+                        layer: 0,
+                        type: 'input',
+                        value: Math.random(), // Random initial value
+                        label: `Input ${i+1}`
+                    });
+                }
+                
+                // Hidden layers
+                let layerIndex = 1;
+                for (const hiddenLayer of architecture.hiddenLayers) {
+                    for (let i = 0; i < hiddenLayer.nodes; i++) {
+                        nodes.push({
+                            id: `hidden-${layerIndex}-${i}`,
+                            x: layerIndex / (totalLayers - 1),
+                            y: (i + 1) / (hiddenLayer.nodes + 1),
+                            layer: layerIndex,
+                            type: 'hidden',
+                            value: Math.random() * 0.5, // Random initial value
+                            activation: hiddenLayer.activation,
+                            label: `H${layerIndex}-${i+1}`
+                        });
+                    }
+                    layerIndex++;
+                }
+                
+                // Output layer
+                for (let i = 0; i < architecture.outputNodes; i++) {
+                    nodes.push({
+                        id: `output-${i}`,
+                        x: 0.9,
+                        y: (i + 1) / (architecture.outputNodes + 1),
+                        layer: totalLayers - 1,
+                        type: 'output',
+                        value: Math.random() * 0.3, // Random initial value
+                        activation: architecture.outputActivation,
+                        label: `Output ${i+1}`
+                    });
+                }
+                
+                // Create edges between layers
+                for (let l = 0; l < totalLayers - 1; l++) {
+                    const sourceNodes = nodes.filter(n => n.layer === l);
+                    const targetNodes = nodes.filter(n => n.layer === l + 1);
+                    
+                    for (const source of sourceNodes) {
+                        for (const target of targetNodes) {
+                            edges.push({
+                                source: source.id,
+                                target: target.id,
+                                weight: Math.random() * 2 - 1 // Random weight between -1 and 1
+                            });
+                        }
+                    }
+                }
+                
+                return { nodes, edges };
+            };
+            
+            const network = generateNetworkLayout(networkArchitecture);
+            
+            // Custom plugin to draw the neural network
+            const neuralNetworkPlugin = {
+                id: 'neuralNetwork',
+                beforeDraw: (chart) => {
+                    const ctx = chart.ctx;
+                    const chartArea = chart.chartArea;
+                    const width = chartArea.right - chartArea.left;
+                    const height = chartArea.bottom - chartArea.top;
+                    
+                    // Clear the canvas
+                    ctx.save();
+                    ctx.clearRect(0, 0, chart.width, chart.height);
+                    
+                    // Draw edges first (so they're behind nodes)
+                    for (const edge of network.edges) {
+                        if (chart.getDatasetMeta(0).hidden) continue; // Skip if hidden
+                        
+                        const source = network.nodes.find(n => n.id === edge.source);
+                        const target = network.nodes.find(n => n.id === edge.target);
+                        
+                        const x1 = chartArea.left + source.x * width;
+                        const y1 = chartArea.top + source.y * height;
+                        const x2 = chartArea.left + target.x * width;
+                        const y2 = chartArea.top + target.y * height;
+                        
+                        // Edge weight determines line width and color
+                        const lineWidth = Math.abs(edge.weight) * 3;
+                        const alpha = Math.abs(edge.weight) * 0.8 + 0.2;
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(x1, y1);
+                        ctx.lineTo(x2, y2);
+                        ctx.lineWidth = lineWidth;
+                        
+                        if (edge.weight >= 0) {
+                            ctx.strokeStyle = `rgba(59, 130, 246, ${alpha})`; // Positive weight (blue)
+                        } else {
+                            ctx.strokeStyle = `rgba(239, 68, 68, ${alpha})`; // Negative weight (red)
+                        }
+                        
+                        ctx.stroke();
+                    }
+                    
+                    // Draw nodes
+                    for (const node of network.nodes) {
+                        const x = chartArea.left + node.x * width;
+                        const y = chartArea.top + node.y * height;
+                        const radius = node.type === 'hidden' ? 15 : 20;
+                        
+                        // Node color based on type
+                        let fillColor;
+                        if (node.type === 'input') {
+                            fillColor = `rgba(16, 185, 129, ${0.6 + node.value * 0.4})`; // Green
+                        } else if (node.type === 'hidden') {
+                            fillColor = `rgba(59, 130, 246, ${0.4 + node.value * 0.6})`; // Blue
+                        } else {
+                            fillColor = `rgba(245, 158, 11, ${0.3 + node.value * 0.7})`; // Orange
+                        }
+                        
+                        // Draw node circle
+                        ctx.beginPath();
+                        ctx.arc(x, y, radius, 0, Math.PI * 2);
+                        ctx.fillStyle = fillColor;
+                        ctx.fill();
+                        ctx.lineWidth = 2;
+                        ctx.strokeStyle = '#1e3a8a';
+                        ctx.stroke();
+                        
+                        // Draw node label
+                        ctx.font = '12px Arial';
+                        ctx.fillStyle = '#ffffff';
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText(node.label, x, y);
+                        
+                        // Draw node value
+                        if (node.value !== undefined) {
+                            ctx.font = '10px Arial';
+                            ctx.fillStyle = '#1e293b';
+                            ctx.fillText(node.value.toFixed(2), x, y + radius + 12);
+                        }
+                        
+                        // Draw activation function for hidden and output nodes
+                        if (node.activation) {
+                            ctx.font = '10px Arial';
+                            ctx.fillStyle = '#1e293b';
+                            ctx.fillText(node.activation, x, y - radius - 8);
+                        }
+                    }
+                    
+                    // Draw layer labels
+                    ctx.font = 'bold 14px Arial';
+                    ctx.fillStyle = '#1e293b';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'top';
+                    
+                    // Input layer
+                    ctx.fillText('Input Layer', chartArea.left + 0.1 * width, chartArea.top - 30);
+                    
+                    // Hidden layers
+                    for (let i = 0; i < networkArchitecture.hiddenLayers.length; i++) {
+                        const x = chartArea.left + ((i + 1) / (2 + networkArchitecture.hiddenLayers.length)) * width;
+                        ctx.fillText(`Hidden Layer ${i+1}`, x, chartArea.top - 30);
+                    }
+                    
+                    // Output layer
+                    ctx.fillText('Output Layer', chartArea.left + 0.9 * width, chartArea.top - 30);
+                    
+                    ctx.restore();
+                }
+            };
+            
+            // Create a dummy chart to use our custom plugin
+            const nnChart = new Chart(nnCtx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        data: [{ x: 0, y: 0 }], // Dummy data point (not visible)
+                        pointRadius: 0,
+                        showLine: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            display: false,
+                            min: -0.1,
+                            max: 1.1
+                        },
+                        y: {
+                            display: false,
+                            min: -0.1,
+                            max: 1.1
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Neural Network Architecture',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                },
+                plugins: [neuralNetworkPlugin]
+            });
+            
+            // Train network button - simulate training by updating weights and values
+            document.getElementById('train-network').addEventListener('click', function() {
+                // Update node values (activation levels)
+                for (const node of network.nodes) {
+                    if (node.type === 'input') {
+                        // Input nodes get random values
+                        node.value = Math.random();
+                    } else {
+                        // Hidden and output nodes get calculated values
+                        node.value = Math.random() * 0.8 + 0.1; // Simulated activation
+                    }
+                }
+                
+                // Update edge weights
+                for (const edge of network.edges) {
+                    // Adjust weights slightly to simulate learning
+                    edge.weight = edge.weight + (Math.random() * 0.4 - 0.2);
+                    // Clamp weights between -1 and 1
+                    edge.weight = Math.max(-1, Math.min(1, edge.weight));
+                }
+                
+                // Update the chart
+                nnChart.update();
+            });
+            
+            // Toggle neurons button - hide/show the network
+            document.getElementById('toggle-neurons').addEventListener('click', function() {
+                nnChart.getDatasetMeta(0).hidden = !nnChart.getDatasetMeta(0).hidden;
+                this.textContent = nnChart.getDatasetMeta(0).hidden ? 'Show Neurons' : 'Hide Neurons';
+                nnChart.update();
+            });
+        });
+    </script>
+</body>
+</html>

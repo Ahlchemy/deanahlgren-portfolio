@@ -14,7 +14,7 @@ import { getArticleBySlug, getArticlesByCategory } from '@/data/articles'
 
 const categoryColors: Record<string, string> = {
   research: 'bg-ocean-100 text-ocean-800 dark:bg-ocean-900/30 dark:text-ocean-300',
-  whitepaper: 'bg-coral-100 text-coral-800 dark:bg-coral-900/30 dark:text-coral-300',
+  whitepaper: 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300',
   analysis: 'bg-dawn-100 text-dawn-800 dark:bg-dawn-900/30 dark:text-dawn-700',
   'thought-leadership': 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300',
 }
@@ -28,7 +28,7 @@ const categoryLabels: Record<string, string> = {
 
 const categoryGradients: Record<string, string> = {
   research: 'from-ocean-500 to-ocean-600 dark:from-ocean-600 dark:to-ocean-700',
-  whitepaper: 'from-coral-500 to-coral-600 dark:from-coral-600 dark:to-coral-700',
+  whitepaper: 'from-amber-500 to-amber-600 dark:from-amber-600 dark:to-amber-700',
   analysis: 'from-dawn-500 to-dawn-600 dark:from-dawn-600 dark:to-dawn-700',
   'thought-leadership': 'from-green-500 to-green-600 dark:from-green-600 dark:to-green-700',
 }
@@ -190,14 +190,14 @@ export function ArticleDetail() {
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Article Content */}
             <div className="lg:col-span-2">
-              <article className="prose prose-lg dark:prose-invert max-w-none">
+              <article className="prose-content">
                 {/* Placeholder for actual article content */}
-                <div className="bg-neutral-50 dark:bg-neutral-800/50 rounded-lg p-8 text-center">
+                <div className="bg-neutral-50 dark:bg-neutral-800/50 rounded-lg p-8 text-center mb-8">
                   <FileText className="w-16 h-16 mx-auto text-neutral-300 dark:text-neutral-600 mb-4" />
                   <h3 className="text-lg font-semibold text-neutral-700 dark:text-neutral-300 mb-2">
                     Full Article Content
                   </h3>
-                  <p className="text-neutral-500 dark:text-neutral-400 mb-6">
+                  <p className="text-neutral-500 dark:text-neutral-400 mb-6 max-w-md mx-auto">
                     The full article content would be rendered here from MDX or a CMS.
                   </p>
                   {article.downloadUrl && (
@@ -216,7 +216,7 @@ export function ArticleDetail() {
                   <h2 className="font-display text-2xl font-bold text-neutral-900 dark:text-white mb-4">
                     Summary
                   </h2>
-                  <p className="text-neutral-600 dark:text-neutral-400">
+                  <p>
                     {article.excerpt}
                   </p>
                 </div>
@@ -226,11 +226,11 @@ export function ArticleDetail() {
                   <h2 className="font-display text-2xl font-bold text-neutral-900 dark:text-white mb-4">
                     Key Topics
                   </h2>
-                  <ul className="space-y-2">
+                  <ul className="space-y-3">
                     {article.tags.map((tag) => (
-                      <li key={tag} className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
-                        <span className="w-2 h-2 rounded-full bg-ocean-500" />
-                        {tag}
+                      <li key={tag} className="flex items-center gap-3">
+                        <span className="w-2 h-2 rounded-full bg-ocean-500 flex-shrink-0" />
+                        <span>{tag}</span>
                       </li>
                     ))}
                   </ul>

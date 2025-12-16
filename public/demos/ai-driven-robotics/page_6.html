@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Real-World Challenges in Robotic RL</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+        body, html {width: 1280px; height: 832px; margin: 0;
+            padding: 0;}
+        .slide {
+            width: 1280px;
+            min-height: 832px;
+            position: relative;
+            
+        }
+        .circuit-line {
+            position: absolute;
+            background: rgba(192, 192, 192, 0.1);
+            z-index: 1;
+        }
+        .challenge-card {
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        .challenge-card:hover {
+            transform: translateX(5px);
+        }
+        .challenge-1:hover { border-left-color: #EF4444; }
+        .challenge-2:hover { border-left-color: #F59E0B; }
+        .challenge-3:hover { border-left-color: #10B981; }
+        .challenge-4:hover { border-left-color: #3B82F6; }
+        .challenge-5:hover { border-left-color: #8B5CF6; }
+        
+        .icon-container {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="slide bg-gradient-to-br from-gray-900 to-blue-900 p-12 relative">
+<!-- Background circuit elements -->
+<div class="circuit-line w-full h-0.5 top-1/4 left-0"></div>
+<div class="circuit-line w-0.5 h-full top-0 left-1/4"></div>
+<div class="circuit-line w-full h-0.5 top-2/4 left-0"></div>
+<div class="circuit-line w-0.5 h-full top-0 right-1/4"></div>
+<!-- Header -->
+<div class="relative z-10 mb-8">
+<h1 class="text-4xl font-bold text-white mb-4 flex items-center">
+<i class="fas fa-exclamation-triangle text-yellow-500 mr-4 text-3xl"></i>
+                Real-World Challenges in Robotic RL
+            </h1>
+<div class="w-32 h-1 bg-orange-500 rounded"></div>
+</div>
+<!-- Main Content -->
+<div class="relative z-10 flex flex-wrap">
+<!-- Left side challenges list -->
+<div class="w-3/5 pr-6">
+<!-- Challenge 1: Sample Efficiency -->
+<div class="challenge-card challenge-1 bg-gray-800 bg-opacity-70 rounded-lg p-4 mb-4 flex">
+<div class="icon-container bg-red-600 mr-4 flex-shrink-0">
+<i class="fas fa-tachometer-alt text-white text-xl"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white mb-1">Sample Efficiency</h3>
+<p class="text-blue-200 text-sm mb-2">Real-world interactions with robots are costly and time-consuming</p>
+<p class="text-gray-300 text-xs italic">
+<i class="fas fa-lightbulb text-yellow-400 mr-1"></i>
+                            Solution: Learning from as few samples as possible through model-based approaches
+                        </p>
+</div>
+</div>
+<!-- Challenge 2: Sim-to-Real Transfer -->
+<div class="challenge-card challenge-2 bg-gray-800 bg-opacity-70 rounded-lg p-4 mb-4 flex">
+<div class="icon-container bg-yellow-600 mr-4 flex-shrink-0">
+<i class="fas fa-exchange-alt text-white text-xl"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white mb-1">Sim-to-Real Transfer</h3>
+<p class="text-blue-200 text-sm mb-2">Policies learned in simulation often perform poorly when transferred to real robots</p>
+<p class="text-gray-300 text-xs italic">
+<i class="fas fa-lightbulb text-yellow-400 mr-1"></i>
+                            Solution: Domain randomization to create more robust policies
+                        </p>
+</div>
+</div>
+<!-- Challenge 3: Continuous Action Spaces -->
+<div class="challenge-card challenge-3 bg-gray-800 bg-opacity-70 rounded-lg p-4 mb-4 flex">
+<div class="icon-container bg-green-600 mr-4 flex-shrink-0">
+<i class="fas fa-project-diagram text-white text-xl"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white mb-1">Continuous &amp; High-Dimensional Action Spaces</h3>
+<p class="text-blue-200 text-sm mb-2">Many robotic tasks involve continuous control of multiple joints, creating complex action spaces</p>
+<p class="text-gray-300 text-xs italic">
+<i class="fas fa-lightbulb text-yellow-400 mr-1"></i>
+                            Solution: Hierarchical RL for handling complex tasks
+                        </p>
+</div>
+</div>
+<!-- Challenge 4: Partial Observability -->
+<div class="challenge-card challenge-4 bg-gray-800 bg-opacity-70 rounded-lg p-4 mb-4 flex">
+<div class="icon-container bg-blue-600 mr-4 flex-shrink-0">
+<i class="fas fa-eye-slash text-white text-xl"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white mb-1">Partial Observability</h3>
+<p class="text-blue-200 text-sm mb-2">Robots often have incomplete information about their environment, making state determination difficult</p>
+<p class="text-gray-300 text-xs italic">
+<i class="fas fa-lightbulb text-yellow-400 mr-1"></i>
+                            Solution: Memory-based policies and belief state estimation
+                        </p>
+</div>
+</div>
+<!-- Challenge 5: Safety Constraints -->
+<div class="challenge-card challenge-5 bg-gray-800 bg-opacity-70 rounded-lg p-4 flex">
+<div class="icon-container bg-purple-600 mr-4 flex-shrink-0">
+<i class="fas fa-shield-alt text-white text-xl"></i>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white mb-1">Safety Constraints</h3>
+<p class="text-blue-200 text-sm mb-2">Ensuring safe exploration and operation of robots during the learning process</p>
+<p class="text-gray-300 text-xs italic">
+<i class="fas fa-lightbulb text-yellow-400 mr-1"></i>
+                            Solution: Safe RL methods to ensure constraint satisfaction during learning
+                        </p>
+</div>
+</div>
+</div>
+<!-- Right side image and summary -->
+<div class="w-2/5 pl-6 flex flex-col">
+<!-- Sim-to-real image -->
+<div class="mb-6 rounded-lg overflow-hidden border-2 border-blue-700">
+<img alt="Sim-to-real transfer in robotics" class="w-full h-auto" src="https://picture-search.skywork.ai/aippt/image/sheet/6652e949ac9503e279f57de739095682.jpg"/>
+</div>
+<!-- Summary box -->
+<div class="bg-blue-900 bg-opacity-50 rounded-lg p-5 border border-blue-700">
+<h4 class="text-lg font-bold text-white mb-3 flex items-center">
+<i class="fas fa-cog text-blue-400 mr-2"></i>
+                        Addressing These Challenges
+                    </h4>
+<ul class="text-blue-200 text-sm space-y-2">
+<li class="flex items-start">
+<i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+<span>Domain randomization for sim-to-real transfer</span>
+</li>
+<li class="flex items-start">
+<i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+<span>Hierarchical RL for complex tasks</span>
+</li>
+<li class="flex items-start">
+<i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+<span>Safe RL methods for constraint satisfaction</span>
+</li>
+<li class="flex items-start">
+<i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+<span>Improved sample efficiency techniques</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Page indicator -->
+<div class="absolute bottom-6 right-6 text-blue-300 text-sm">
+            Page 6 of 15
+        </div>
+</div>
+
+</body></html>

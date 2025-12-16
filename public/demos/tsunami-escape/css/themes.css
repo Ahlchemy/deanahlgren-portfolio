@@ -1,0 +1,335 @@
+/* Tsunami Zone Color Themes */
+
+/* Tsunami Risk Zone Classes */
+.zone-unknown {
+  border-color: var(--color-text-light);
+}
+
+.zone-unknown .zone-level {
+  background-color: var(--color-text-light);
+  color: white;
+}
+
+/* Safe Zone - Green Theme */
+.zone-safe {
+  border-color: var(--color-safe);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(16, 185, 129, 0.02) 100%);
+}
+
+.zone-safe .zone-level {
+  background-color: var(--color-safe);
+  color: white;
+}
+
+.zone-safe .zone-description {
+  color: var(--color-safe-dark);
+}
+
+/* Low Risk Zone - Light Green */
+.zone-low {
+  border-color: var(--color-safe-light);
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.05) 0%, rgba(52, 211, 153, 0.02) 100%);
+}
+
+.zone-low .zone-level {
+  background-color: var(--color-safe-light);
+  color: white;
+}
+
+.zone-low .zone-description {
+  color: var(--color-safe-dark);
+}
+
+/* Moderate Risk Zone - Yellow Theme */
+.zone-moderate {
+  border-color: var(--color-warning);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(245, 158, 11, 0.02) 100%);
+}
+
+.zone-moderate .zone-level {
+  background-color: var(--color-warning);
+  color: white;
+}
+
+.zone-moderate .zone-description {
+  color: var(--color-warning-dark);
+}
+
+/* High Risk Zone - Orange Theme */
+.zone-high {
+  border-color: var(--color-warning-dark);
+  background: linear-gradient(135deg, rgba(217, 119, 6, 0.05) 0%, rgba(217, 119, 6, 0.02) 100%);
+}
+
+.zone-high .zone-level {
+  background-color: var(--color-warning-dark);
+  color: white;
+}
+
+.zone-high .zone-description {
+  color: var(--color-warning-dark);
+}
+
+/* Extreme Risk Zone - Red Theme */
+.zone-extreme {
+  border-color: var(--color-danger);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(239, 68, 68, 0.02) 100%);
+}
+
+.zone-extreme .zone-level {
+  background-color: var(--color-danger);
+  color: white;
+  animation: pulse-danger 2s infinite;
+}
+
+.zone-extreme .zone-description {
+  color: var(--color-danger-dark);
+  font-weight: 600;
+}
+
+/* Evacuation Zone - Critical Red Theme */
+.zone-evacuation {
+  border-color: var(--color-danger-dark);
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.08) 0%, rgba(220, 38, 38, 0.03) 100%);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+}
+
+.zone-evacuation .zone-level {
+  background-color: var(--color-danger-dark);
+  color: white;
+  animation: pulse-critical 1.5s infinite;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.zone-evacuation .zone-description {
+  color: var(--color-danger-dark);
+  font-weight: 700;
+}
+
+/* Status Indicator Themes */
+.status-safe {
+  color: var(--color-safe-dark);
+}
+
+.status-safe .status-dot {
+  background-color: var(--color-safe);
+}
+
+.status-warning {
+  color: var(--color-warning-dark);
+}
+
+.status-warning .status-dot {
+  background-color: var(--color-warning);
+  animation: pulse-warning 2s infinite;
+}
+
+.status-danger {
+  color: var(--color-danger-dark);
+  font-weight: 600;
+}
+
+.status-danger .status-dot {
+  background-color: var(--color-danger);
+  animation: pulse-danger 1.5s infinite;
+}
+
+/* Button Theme Variations */
+.btn-safe {
+  background-color: var(--color-safe);
+  color: white;
+}
+
+.btn-safe:hover,
+.btn-safe:focus {
+  background-color: var(--color-safe-dark);
+}
+
+.btn-warning {
+  background-color: var(--color-warning);
+  color: white;
+}
+
+.btn-warning:hover,
+.btn-warning:focus {
+  background-color: var(--color-warning-dark);
+}
+
+.btn-danger {
+  background-color: var(--color-danger);
+  color: white;
+  font-weight: 600;
+}
+
+.btn-danger:hover,
+.btn-danger:focus {
+  background-color: var(--color-danger-dark);
+}
+
+/* Alert Theme Variations */
+.alert-success {
+  background-color: rgba(16, 185, 129, 0.1);
+  border-color: var(--color-safe-light);
+  color: var(--color-safe-dark);
+}
+
+.alert-warning {
+  background-color: rgba(245, 158, 11, 0.1);
+  border-color: var(--color-warning-light);
+  color: var(--color-warning-dark);
+}
+
+.alert-info {
+  background-color: rgba(30, 64, 175, 0.1);
+  border-color: var(--color-primary-light);
+  color: var(--color-primary-dark);
+}
+
+/* Pulse Animations for Critical States */
+@keyframes pulse-warning {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes pulse-danger {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.02);
+    box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
+  }
+}
+
+@keyframes pulse-critical {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.6);
+  }
+  25% {
+    opacity: 0.9;
+    transform: scale(1.03);
+    box-shadow: 0 0 0 6px rgba(220, 38, 38, 0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+    box-shadow: 0 0 0 12px rgba(220, 38, 38, 0);
+  }
+  75% {
+    opacity: 0.9;
+    transform: scale(1.03);
+    box-shadow: 0 0 0 6px rgba(220, 38, 38, 0.3);
+  }
+}
+
+/* Wave Pattern Background for Tsunami Theme */
+.wave-pattern {
+  position: relative;
+  overflow: hidden;
+}
+
+.wave-pattern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e0f2fe' fill-opacity='0.3'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+  opacity: 0.1;
+  z-index: -1;
+  animation: wave-movement 20s linear infinite;
+}
+
+@keyframes wave-movement {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+/* Emergency Action Card Themes */
+.action-card.emergency {
+  border-color: var(--color-danger);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(239, 68, 68, 0.02) 100%);
+}
+
+.action-card.emergency:hover,
+.action-card.emergency:focus {
+  border-color: var(--color-danger-dark);
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.2);
+}
+
+.action-card.practice {
+  border-color: var(--color-safe);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(16, 185, 129, 0.02) 100%);
+}
+
+.action-card.practice:hover,
+.action-card.practice:focus {
+  border-color: var(--color-safe-dark);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.2);
+}
+
+.action-card.info {
+  border-color: var(--color-primary);
+  background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(30, 64, 175, 0.02) 100%);
+}
+
+.action-card.info:hover,
+.action-card.info:focus {
+  border-color: var(--color-primary-dark);
+  box-shadow: 0 10px 25px rgba(30, 64, 175, 0.2);
+}
+
+/* Dark Theme Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #0f172a;
+    --color-surface: #1e293b;
+    --color-text: #f1f5f9;
+    --color-text-secondary: #cbd5e1;
+    --color-text-light: #64748b;
+    --color-border: #334155;
+    --color-alert-bg: #450a0a;
+    --color-alert-border: #7f1d1d;
+    --color-alert-text: #fca5a5;
+  }
+  
+  .wave-pattern::before {
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23334155' fill-opacity='0.3'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+  }
+}
+
+/* Print Styles for Emergency Information */
+@media print {
+  .zone-extreme,
+  .zone-evacuation {
+    border: 3px solid #000 !important;
+    background: #fff !important;
+  }
+  
+  .zone-extreme .zone-level,
+  .zone-evacuation .zone-level {
+    background: #000 !important;
+    color: #fff !important;
+  }
+  
+  .alert-danger {
+    border: 2px solid #000 !important;
+    background: #fff !important;
+  }
+}

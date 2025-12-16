@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 4: Vision & Language AI | Ahlgren Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body data-module="4">
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="course-title">Business AI Application</h1>
+                <div class="nav-container">
+                    <div class="nav-buttons">
+                        <a href="module-1.html" class="nav-button" data-module="1" data-title="Intro to AI">1</a>
+                        <a href="module-2.html" class="nav-button" data-module="2" data-title="ML Basics">2</a>
+                        <a href="module-3.html" class="nav-button" data-module="3" data-title="Neural Networks">3</a>
+                        <a href="module-4.html" class="nav-button active" data-module="4" data-title="Vision & Language">4</a>
+                        <a href="module-5.html" class="nav-button" data-module="5" data-title="Robotics">5</a>
+                        <a href="module-6.html" class="nav-button" data-module="6" data-title="AI Strategy">6</a>
+                        <a href="module-7.html" class="nav-button" data-module="7" data-title="Change Management">7</a>
+                        <a href="module-8.html" class="nav-button" data-module="8" data-title="Responsible AI">8</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="module-header">
+            <h2 class="module-title">Module 4: Vision & Language AI</h2>
+            <p class="module-subtitle">Understanding Computer Vision & Natural Language Processing</p>
+        </div>
+
+        <section class="exec-summary fade-in">
+            <h3>Executive Summary</h3>
+            <ul>
+                <li>Computer Vision (CV) enables machines to interpret visual data; Natural Language Processing (NLP) allows understanding and generating human language.</li>
+                <li>Combined, CV and NLP power applications from automated quality inspection to chatbots and sentiment analysis.</li>
+                <li>Ethical use requires addressing privacy, bias, and false-positive risks inherent in perception systems.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Key Concepts</h3>
+            <p>Computer Vision (CV) lets machines interpret visual data; Natural Language Processing (NLP) allows understanding and generation of human language. These technologies power tools from automated image tagging to sentiment analysis and chatbots.</p>
+            
+            <p>Computer Vision enables machines to:</p>
+            <ul>
+                <li>Detect and classify objects in images and videos</li>
+                <li>Recognize faces and expressions</li>
+                <li>Interpret medical imaging</li>
+                <li>Enable autonomous navigation</li>
+            </ul>
+            
+            <p>Natural Language Processing allows systems to:</p>
+            <ul>
+                <li>Understand and generate human language</li>
+                <li>Analyze sentiment and intent</li>
+                <li>Extract key information from documents</li>
+                <li>Translate between languages</li>
+                <li>Generate coherent and contextually relevant text</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Interactive Charts</h3>
+            <div class="interactive-chart">
+                <div id="computer-vision-demo" style="position: relative; width: 100%; height: 100%;">
+                    <img id="cv-image" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=500" style="width: 100%; height: auto; max-height: 350px; object-fit: contain;">
+                    <div id="bounding-boxes"></div>
+                </div>
+                <div style="margin-top: 1rem; text-align: center;">
+                    <button id="detect-objects" class="cta-button">Detect Objects</button>
+                    <button id="clear-detection" class="cta-button">Clear Detection</button>
+                </div>
+            </div>
+            <p class="chart-description">This demo shows computer vision object detection. Click the button to detect objects in the image.</p>
+            
+            <div class="interactive-chart">
+                <canvas id="nlp-demo"></canvas>
+                <div style="margin-top: 1rem; text-align: center;">
+                    <select id="sentiment-text" style="width: 80%; padding: 0.5rem; border-radius: 0.25rem; border: 1px solid #ccc;">
+                        <option value="positive">"I'm extremely satisfied with the new AI features in our product."</option>
+                        <option value="negative">"The system crashed again and we lost all our work."</option>
+                        <option value="neutral">"The quarterly report contains information about our AI investments."</option>
+                        <option value="mixed">"While the interface is intuitive, the AI recommendations need improvement."</option>
+                    </select>
+                    <button id="analyze-sentiment" class="cta-button" style="margin-top: 0.5rem;">Analyze Sentiment</button>
+                </div>
+            </div>
+            <p class="chart-description">Select a sample text and analyze its sentiment to see how NLP models evaluate language.</p>
+            
+            <div class="interactive-chart">
+                <canvas id="attention-heatmap"></canvas>
+            </div>
+            <p class="chart-description">This heatmap shows how AI attention mechanisms focus on different parts of text or images.</p>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Real-World Examples</h3>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <h4 class="example-title">Computer Vision Applications</h4>
+                    <ul>
+                        <li>Medical scan analysis for early disease detection</li>
+                        <li>Self-checkout systems in retail</li>
+                        <li>Security and surveillance systems</li>
+                        <li>Quality control in manufacturing</li>
+                    </ul>
+                </div>
+                <div class="example-card">
+                    <h4 class="example-title">NLP Applications</h4>
+                    <ul>
+                        <li>Customer support chatbots</li>
+                        <li>Automated contract review and analysis</li>
+                        <li>Content summarization tools</li>
+                        <li>Email categorization and prioritization</li>
+                    </ul>
+                </div>
+                <div class="example-card">
+                    <h4 class="example-title">Combined Applications</h4>
+                    <ul>
+                        <li>Content moderation (images + captions)</li>
+                        <li>Visual search with natural language queries</li>
+                        <li>Accessibility tools for visually impaired</li>
+                        <li>Augmented reality with voice commands</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Discussion Prompts</h3>
+            <ul class="prompts-list">
+                <li class="prompt-item">
+                    <p>What tasks in your organization involve heavy visual or text review that could be automated?</p>
+                </li>
+                <li class="prompt-item">
+                    <p>Where could human-AI collaboration enhance speed or accuracy in document processing or visual inspection?</p>
+                </li>
+                <li class="prompt-item">
+                    <p>How do you manage ethical concerns like bias and false positives in vision and language systems?</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Prompts for Real-World Use</h3>
+            <ul class="prompts-list">
+                <li class="prompt-item">
+                    <p><strong>Image Recognition Test:</strong> Try image recognition with a mobile app or API demo to understand capabilities.</p>
+                </li>
+                <li class="prompt-item">
+                    <p><strong>Text Summarization:</strong> Use ChatGPT to summarize a lengthy report and evaluate the quality of the summary.</p>
+                </li>
+                <li class="prompt-item">
+                    <p><strong>Translation Exercise:</strong> Translate business materials to/from a second language and test clarity with native speakers.</p>
+                </li>
+            </ul>
+        </section>
+
+        <div class="cta-container">
+            <h3 class="cta-title">Call to Action</h3>
+            <p class="cta-text">Identify one internal process using visual or textual data. Meet with relevant stakeholders and assess whether AI tools could enhance speed or accuracy.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <a href="module-3.html" class="cta-button">Previous Module</a>
+                <a href="module-5.html" class="cta-button">Continue to Module 5: Robotics</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Business AI Application. All rights reserved. Developed by Dean Ahlgren.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Computer Vision Demo
+            const detectObjectsBtn = document.getElementById('detect-objects');
+            const clearDetectionBtn = document.getElementById('clear-detection');
+            const boundingBoxesContainer = document.getElementById('bounding-boxes');
+            
+            // Simulated object detection results
+            const detectionResults = [
+                { label: 'Person', confidence: 0.98, box: { x: 15, y: 60, width: 25, height: 60 } },
+                { label: 'Person', confidence: 0.96, box: { x: 42, y: 50, width: 25, height: 70 } },
+                { label: 'Person', confidence: 0.94, box: { x: 70, y: 55, width: 22, height: 65 } },
+                { label: 'Laptop', confidence: 0.92, box: { x: 30, y: 75, width: 15, height: 10 } },
+                { label: 'Table', confidence: 0.89, box: { x: 40, y: 85, width: 50, height: 15 } }
+            ];
+            
+            // Function to create and display bounding boxes
+            function displayBoundingBoxes() {
+                // Clear previous boxes
+                boundingBoxesContainer.innerHTML = '';
+                
+                const imgElement = document.getElementById('cv-image');
+                const imgRect = imgElement.getBoundingClientRect();
+                
+                // Create bounding boxes with labels
+                detectionResults.forEach(result => {
+                    const box = document.createElement('div');
+                    box.className = 'bounding-box';
+                    box.style.position = 'absolute';
+                    box.style.left = `${result.box.x}%`;
+                    box.style.top = `${result.box.y}%`;
+                    box.style.width = `${result.box.width}%`;
+                    box.style.height = `${result.box.height}%`;
+                    box.style.border = '3px solid #3b82f6';
+                    box.style.boxSizing = 'border-box';
+                    
+                    // Add label with confidence score
+                    const label = document.createElement('div');
+                    label.className = 'detection-label';
+                    label.style.position = 'absolute';
+                    label.style.top = '-25px';
+                    label.style.left = '0';
+                    label.style.backgroundColor = '#3b82f6';
+                    label.style.color = 'white';
+                    label.style.padding = '2px 6px';
+                    label.style.borderRadius = '4px';
+                    label.style.fontSize = '12px';
+                    label.style.fontWeight = 'bold';
+                    label.textContent = `${result.label}: ${(result.confidence * 100).toFixed(0)}%`;
+                    
+                    box.appendChild(label);
+                    boundingBoxesContainer.appendChild(box);
+                });
+            }
+            
+            // Event listeners for computer vision demo
+            detectObjectsBtn.addEventListener('click', displayBoundingBoxes);
+            clearDetectionBtn.addEventListener('click', () => {
+                boundingBoxesContainer.innerHTML = '';
+            });
+            
+            // NLP Sentiment Analysis Demo
+            const nlpCtx = document.getElementById('nlp-demo').getContext('2d');
+            const sentimentSelect = document.getElementById('sentiment-text');
+            const analyzeSentimentBtn = document.getElementById('analyze-sentiment');
+            
+            // Sentiment analysis chart
+            const sentimentChart = new Chart(nlpCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Positive', 'Neutral', 'Negative'],
+                    datasets: [{
+                        label: 'Sentiment Score',
+                        data: [0.1, 0.1, 0.1], // Initial placeholder data
+                        backgroundColor: [
+                            'rgba(16, 185, 129, 0.7)', // Positive (green)
+                            'rgba(59, 130, 246, 0.7)', // Neutral (blue)
+                            'rgba(239, 68, 68, 0.7)'   // Negative (red)
+                        ],
+                        borderColor: [
+                            'rgba(16, 185, 129, 1)',
+                            'rgba(59, 130, 246, 1)',
+                            'rgba(239, 68, 68, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 1,
+                            title: {
+                                display: true,
+                                text: 'Confidence Score'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Sentiment Analysis Results',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Function to update sentiment analysis based on selected text
+            function analyzeSentiment() {
+                const selectedOption = sentimentSelect.value;
+                let sentimentScores;
+                
+                // Simulated sentiment analysis results
+                switch (selectedOption) {
+                    case 'positive':
+                        sentimentScores = [0.85, 0.12, 0.03];
+                        break;
+                    case 'negative':
+                        sentimentScores = [0.05, 0.15, 0.80];
+                        break;
+                    case 'neutral':
+                        sentimentScores = [0.25, 0.65, 0.10];
+                        break;
+                    case 'mixed':
+                        sentimentScores = [0.45, 0.15, 0.40];
+                        break;
+                    default:
+                        sentimentScores = [0.33, 0.33, 0.34];
+                }
+                
+                // Update chart with new data
+                sentimentChart.data.datasets[0].data = sentimentScores;
+                sentimentChart.options.plugins.title.text = `Sentiment Analysis: ${sentimentSelect.options[sentimentSelect.selectedIndex].text}`;
+                sentimentChart.update();
+            }
+            
+            // Event listener for sentiment analysis
+            analyzeSentimentBtn.addEventListener('click', analyzeSentiment);
+            
+            // Attention Heatmap Visualization
+            const heatmapCtx = document.getElementById('attention-heatmap').getContext('2d');
+            
+            // Sample text for attention visualization
+            const sampleText = "The neural network processes the input and generates predictions based on learned patterns.";
+            const words = sampleText.split(' ');
+            
+            // Simulated attention weights for each word
+            const attentionWeights = [
+                0.02, 0.15, 0.05, 0.25, 0.08, 0.35, 0.05, 0.02, 0.03, 0.45, 0.02, 0.08
+            ];
+            
+            // Create attention heatmap
+            const heatmapChart = new Chart(heatmapCtx, {
+                type: 'bar',
+                data: {
+                    labels: words,
+                    datasets: [{
+                        label: 'Attention Weight',
+                        data: attentionWeights,
+                        backgroundColor: attentionWeights.map(weight => {
+                            // Color gradient based on attention weight
+                            const r = Math.floor(255 * weight);
+                            const g = Math.floor(100 * (1 - weight));
+                            const b = Math.floor(200 * (1 - weight));
+                            return `rgba(${r}, ${g}, ${b}, 0.7)`;
+                        }),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y', // Horizontal bars
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 0.5,
+                            title: {
+                                display: true,
+                                text: 'Attention Weight'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'AI Attention: Word Importance in Text',
+                            font: {
+                                size: 16
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `Attention: ${(context.raw * 100).toFixed(1)}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

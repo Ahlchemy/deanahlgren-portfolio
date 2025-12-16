@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Data Exploration Dashboard</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7fafc;
+            margin: 0;
+            padding: 20px;
+            color: #1a365d;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        h1 {
+            color: #1a365d;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .chart-container {
+            background: #edf2f7;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3182ce;
+        }
+        
+        .chart-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #1a365d;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        label {
+            font-weight: 600;
+            color: #4a5568;
+        }
+        
+        select {
+            padding: 8px 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            background: white;
+            color: #1a365d;
+            font-size: 14px;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: #3182ce;
+        }
+        
+        .stats-panel {
+            background: #f0fff4;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #38a169;
+            margin-bottom: 30px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #38a169;
+        }
+        
+        .stat-label {
+            color: #4a5568;
+            font-weight: 600;
+        }
+        
+        .axis {
+            font-size: 12px;
+        }
+        
+        .axis-label {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .bar {
+            fill: #3182ce;
+            transition: fill 0.3s;
+        }
+        
+        .bar:hover {
+            fill: #2c5aa0;
+        }
+        
+        .scatter-point {
+            fill: #ed8936;
+            stroke: white;
+            stroke-width: 1;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        
+        .scatter-point:hover {
+            opacity: 1;
+            stroke-width: 2;
+        }
+        
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .explanation {
+            background: #edf2f7;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3182ce;
+            margin-top: 20px;
+        }
+        
+        .business-example {
+            background: #f0fff4;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #38a169;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CardioGood Fitness: Interactive Data Exploration</h1>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label for="productFilter">Product Filter:</label>
+                <select id="productFilter">
+                    <option value="all">All Products</option>
+                    <option value="TM195">TM195</option>
+                    <option value="TM498">TM498</option>
+                    <option value="TM798">TM798</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="genderFilter">Gender Filter:</label>
+                <select id="genderFilter">
+                    <option value="all">All Genders</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="scatterX">Scatter Plot X-Axis:</label>
+                <select id="scatterX">
+                    <option value="Age">Age</option>
+                    <option value="Income">Income</option>
+                    <option value="Education">Education</option>
+                    <option value="Usage">Usage</option>
+                    <option value="Fitness">Fitness</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="scatterY">Scatter Plot Y-Axis:</label>
+                <select id="scatterY">
+                    <option value="Miles">Miles</option>
+                    <option value="Income">Income</option>
+                    <option value="Age">Age</option>
+                    <option value="Usage">Usage</option>
+                    <option value="Fitness">Fitness</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="stats-panel">
+            <h3>Dataset Summary Statistics</h3>
+            <div class="stats-grid" id="statsGrid">
+                <!-- Stats will be populated by JavaScript -->
+            </div>
+        </div>
+        
+        <div class="dashboard-grid">
+            <div class="chart-container">
+                <div class="chart-title">Age Distribution</div>
+                <svg id="ageHistogram" width="500" height="300"></svg>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-title">Income vs Miles Relationship</div>
+                <svg id="scatterPlot" width="500" height="300"></svg>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-title">Product Usage Patterns</div>
+                <svg id="usageChart" width="500" height="300"></svg>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-title">Fitness Level Distribution</div>
+                <svg id="fitnessChart" width="500" height="300"></svg>
+            </div>
+        </div>
+        
+        <div class="explanation">
+            <h3>Understanding Exploratory Data Analysis (EDA)</h3>
+            <p>Exploratory Data Analysis is the critical first step in any data science project. Through interactive visualizations, we can:</p>
+            <ul>
+                <li><strong>Identify patterns:</strong> See relationships between variables (e.g., income vs. miles)</li>
+                <li><strong>Spot outliers:</strong> Find unusual data points that might need special attention</li>
+                <li><strong>Understand distributions:</strong> See how data is spread across different values</li>
+                <li><strong>Guide feature engineering:</strong> Decide which variables to use in machine learning models</li>
+            </ul>
+            <p>Use the filters above to explore different segments of the data and see how patterns change!</p>
+        </div>
+        
+        <div class="business-example">
+            <h3>Business Application: Customer Segmentation</h3>
+            <p><strong>Scenario:</strong> CardioGood Fitness wants to understand their customer base to improve marketing and product development:</p>
+            <ul>
+                <li><strong>Age Distribution:</strong> Helps plan age-targeted marketing campaigns</li>
+                <li><strong>Income vs Usage:</strong> Identifies high-value customer segments</li>
+                <li><strong>Product Preferences:</strong> Guides inventory and product development decisions</li>
+                <li><strong>Fitness Levels:</strong> Informs product positioning and feature development</li>
+            </ul>
+            <p>This type of analysis directly informs business strategy and helps companies make data-driven decisions!</p>
+        </div>
+    </div>
+    
+    <div class="tooltip" id="tooltip"></div>
+
+    <script>
+        // Sample data (in real application, this would be loaded from the CSV)
+        const sampleData = [
+            {Product: "TM195", Age: 18, Gender: "Male", Education: 14, MaritalStatus: "Single", Usage: 3, Fitness: 4, Income: 29562, Miles: 112},
+            {Product: "TM195", Age: 19, Gender: "Male", Education: 15, MaritalStatus: "Single", Usage: 2, Fitness: 3, Income: 31836, Miles: 75},
+            {Product: "TM195", Age: 19, Gender: "Female", Education: 14, MaritalStatus: "Partnered", Usage: 4, Fitness: 3, Income: 30699, Miles: 66},
+            {Product: "TM498", Age: 25, Gender: "Female", Education: 16, MaritalStatus: "Single", Usage: 4, Fitness: 4, Income: 45000, Miles: 150},
+            {Product: "TM498", Age: 28, Gender: "Male", Education: 18, MaritalStatus: "Married", Usage: 5, Fitness: 5, Income: 55000, Miles: 200},
+            {Product: "TM798", Age: 35, Gender: "Male", Education: 20, MaritalStatus: "Married", Usage: 6, Fitness: 5, Income: 75000, Miles: 300},
+            {Product: "TM798", Age: 40, Gender: "Female", Education: 18, MaritalStatus: "Married", Usage: 5, Fitness: 4, Income: 68000, Miles: 250},
+            // Add more sample data to make visualizations meaningful
+            {Product: "TM195", Age: 22, Gender: "Female", Education: 14, MaritalStatus: "Single", Usage: 3, Fitness: 3, Income: 35000, Miles: 85},
+            {Product: "TM195", Age: 24, Gender: "Male", Education: 16, MaritalStatus: "Single", Usage: 4, Fitness: 4, Income: 38000, Miles: 120},
+            {Product: "TM498", Age: 30, Gender: "Female", Education: 17, MaritalStatus: "Married", Usage: 5, Fitness: 4, Income: 52000, Miles: 180},
+            {Product: "TM498", Age: 32, Gender: "Male", Education: 19, MaritalStatus: "Married", Usage: 6, Fitness: 5, Income: 58000, Miles: 220},
+            {Product: "TM798", Age: 38, Gender: "Female", Education: 20, MaritalStatus: "Married", Usage: 6, Fitness: 5, Income: 72000, Miles: 280},
+            {Product: "TM798", Age: 42, Gender: "Male", Education: 22, MaritalStatus: "Married", Usage: 7, Fitness: 5, Income: 85000, Miles: 350}
+        ];
+        
+        let filteredData = [...sampleData];
+        
+        // Initialize visualizations
+        function initializeCharts() {
+            updateStats();
+            createAgeHistogram();
+            createScatterPlot();
+            createUsageChart();
+            createFitnessChart();
+        }
+        
+        function filterData() {
+            const productFilter = document.getElementById('productFilter').value;
+            const genderFilter = document.getElementById('genderFilter').value;
+            
+            filteredData = sampleData.filter(d => {
+                return (productFilter === 'all' || d.Product === productFilter) &&
+                       (genderFilter === 'all' || d.Gender === genderFilter);
+            });
+            
+            updateStats();
+            createAgeHistogram();
+            createScatterPlot();
+            createUsageChart();
+            createFitnessChart();
+        }
+        
+        function updateStats() {
+            const statsGrid = document.getElementById('statsGrid');
+            
+            const totalRecords = filteredData.length;
+            const avgAge = d3.mean(filteredData, d => d.Age).toFixed(1);
+            const avgIncome = d3.mean(filteredData, d => d.Income).toFixed(0);
+            const avgMiles = d3.mean(filteredData, d => d.Miles).toFixed(1);
+            const maleCount = filteredData.filter(d => d.Gender === 'Male').length;
+            const femaleCount = filteredData.filter(d => d.Gender === 'Female').length;
+            
+            statsGrid.innerHTML = `
+                <div class="stat-item">
+                    <div class="stat-value">${totalRecords}</div>
+                    <div class="stat-label">Total Records</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">${avgAge}</div>
+                    <div class="stat-label">Avg Age</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">$${parseInt(avgIncome).toLocaleString()}</div>
+                    <div class="stat-label">Avg Income</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">${avgMiles}</div>
+                    <div class="stat-label">Avg Miles</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">${maleCount}/${femaleCount}</div>
+                    <div class="stat-label">Male/Female</div>
+                </div>
+            `;
+        }
+        
+        function createAgeHistogram() {
+            const svg = d3.select("#ageHistogram");
+            svg.selectAll("*").remove();
+            
+            const margin = {top: 20, right: 30, bottom: 40, left: 40};
+            const width = 500 - margin.left - margin.right;
+            const height = 300 - margin.top - margin.bottom;
+            
+            const g = svg.append("g")
+                .attr("transform", `translate(${margin.left},${margin.top})`);
+            
+            const ages = filteredData.map(d => d.Age);
+            const bins = d3.histogram()
+                .domain(d3.extent(ages))
+                .thresholds(10)(ages);
+            
+            const x = d3.scaleLinear()
+                .domain(d3.extent(ages))
+                .range([0, width]);
+            
+            const y = d3.scaleLinear()
+                .domain([0, d3.max(bins, d => d.length)])
+                .range([height, 0]);
+            
+            g.selectAll(".bar")
+                .data(bins)
+                .enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", d => x(d.x0))
+                .attr("y", d => y(d.length))
+                .attr("width", d => x(d.x1) - x(d.x0) - 1)
+                .attr("height", d => height - y(d.length));
+            
+            g.append("g")
+                .attr("class", "axis")
+                .attr("transform", `translate(0,${height})`)
+                .call(d3.axisBottom(x));
+            
+            g.append("g")
+                .attr("class", "axis")
+                .call(d3.axisLeft(y));
+            
+            g.append("text")
+                .attr("class", "axis-label")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 0 - margin.left)
+                .attr("x", 0 - (height / 2))
+                .attr("dy", "1em")
+                .style("text-anchor", "middle")
+                .text("Frequency");
+            
+            g.append("text")
+                .attr("class", "axis-label")
+                .attr("transform", `translate(${width / 2}, ${height + margin.bottom})`)
+                .style("text-anchor", "middle")
+                .text("Age");
+        }
+        
+        function createScatterPlot() {
+            const svg = d3.select("#scatterPlot");
+            svg.selectAll("*").remove();
+            
+            const margin = {top: 20, right: 30, bottom: 40, left: 60};
+            const width = 500 - margin.left - margin.right;
+            const height = 300 - margin.top - margin.bottom;
+            
+            const g = svg.append("g")
+                .attr("transform", `translate(${margin.left},${margin.top})`);
+            
+            const xVar = document.getElementById('scatterX').value;
+            const yVar = document.getElementById('scatterY').value;
+            
+            const x = d3.scaleLinear()
+                .domain(d3.extent(filteredData, d => d[xVar]))
+                .range([0, width]);
+            
+            const y = d3.scaleLinear()
+                .domain(d3.extent(filteredData, d => d[yVar]))
+                .range([height, 0]);
+            
+            const tooltip = d3.select("#tooltip");
+            
+            g.selectAll(".scatter-point")
+                .data(filteredData)
+                .enter().append("circle")
+                .attr("class", "scatter-point")
+                .attr("cx", d => x(d[xVar]))
+                .attr("cy", d => y(d[yVar]))
+                .attr("r", 5)
+                .on("mouseover", function(event, d) {
+                    tooltip.style("opacity", 1)
+                        .html(`${xVar}: ${d[xVar]}<br>${yVar}: ${d[yVar]}<br>Product: ${d.Product}`)
+                        .style("left", (event.pageX + 10) + "px")
+                        .style("top", (event.pageY - 10) + "px");
+                })
+                .on("mouseout", function() {
+                    tooltip.style("opacity", 0);
+                });
+            
+            g.append("g")
+                .attr("class", "axis")
+                .attr("transform", `translate(0,${height})`)
+                .call(d3.axisBottom(x));
+            
+            g.append("g")
+                .attr("class", "axis")
+                .call(d3.axisLeft(y));
+            
+            g.append("text")
+                .attr("class", "axis-label")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 0 - margin.left)
+                .attr("x", 0 - (height / 2))
+                .attr("dy", "1em")
+                .style("text-anchor", "middle")
+                .text(yVar);
+            
+            g.append("text")
+                .attr("class", "axis-label")
+                .attr("transform", `translate(${width / 2}, ${height + margin.bottom})`)
+                .style("text-anchor", "middle")
+                .text(xVar);
+        }
+        
+        function createUsageChart() {
+            const svg = d3.select("#usageChart");
+            svg.selectAll("*").remove();
+            
+            const margin = {top: 20, right: 30, bottom: 40, left: 40};
+            const width = 500 - margin.left - margin.right;
+            const height = 300 - margin.top - margin.bottom;
+            
+            const g = svg.append("g")
+                .attr("transform", `translate(${margin.left},${margin.top})`);
+            
+            const usageData = d3.rollup(filteredData, v => v.length, d => d.Usage);
+            const usageArray = Array.from(usageData, ([key, value]) => ({usage: key, count: value}));
+            
+            const x = d3.scaleBand()
+                .domain(usageArray.map(d => d.usage))
+                .range([0, width])
+                .padding(0.1);
+            
+            const y = d3.scaleLinear()
+                .domain([0, d3.max(usageArray, d => d.count)])
+                .range([height, 0]);
+            
+            g.selectAll(".bar")
+                .data(usageArray)
+                .enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", d => x(d.usage))
+                .attr("y", d => y(d.count))
+                .attr("width", x.bandwidth())
+                .attr("height", d => height - y(d.count));
+            
+            g.append("g")
+                .attr("class", "axis")
+                .attr("transform", `translate(0,${height})`)
+                .call(d3.axisBottom(x));
+            
+            g.append("g")
+                .attr("class", "axis")
+                .call(d3.axisLeft(y));
+            
+            g.append("text")
+                .attr("class", "axis-label")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 0 - margin.left)
+                .attr("x", 0 - (height / 2))
+                .attr("dy", "1em")
+                .style("text-anchor", "middle")
+                .text("Count");
+            
+            g.append("text")
+                .attr("class", "axis-label")
+                .attr("transform", `translate(${width / 2}, ${height + margin.bottom})`)
+                .style("text-anchor", "middle")
+                .text("Usage Level");
+        }
+        
+        function createFitnessChart() {
+            const svg = d3.select("#fitnessChart");
+            svg.selectAll("*").remove();
+            
+            const margin = {top: 20, right: 30, bottom: 40, left: 40};
+            const width = 500 - margin.left - margin.right;
+            const height = 300 - margin.top - margin.bottom;
+            
+            const g = svg.append("g")
+                .attr("transform", `translate(${margin.left},${margin.top})`);
+            
+            const fitnessData = d3.rollup(filteredData, v => v.length, d => d.Fitness);
+            const fitnessArray = Array.from(fitnessData, ([key, value]) => ({fitness: key, count: value}));
+            
+            const x = d3.scaleBand()
+                .domain(fitnessArray.map(d => d.fitness))
+                .range([0, width])
+                .padding(0.1);
+            
+            const y = d3.scaleLinear()
+                .domain([0, d3.max(fitnessArray, d => d.count)])
+                .range([height, 0]);
+            
+            g.selectAll(".bar")
+                .data(fitnessArray)
+                .enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", d => x(d.fitness))
+                .attr("y", d => y(d.count))
+                .attr("width", x.bandwidth())
+                .attr("height", d => height - y(d.count));
+            
+            g.append("g")
+                .attr("class", "axis")
+                .attr("transform", `translate(0,${height})`)
+                .call(d3.axisBottom(x));
+            
+            g.append("g")
+                .attr("class", "axis")
+                .call(d3.axisLeft(y));
+            
+            g.append("text")
+                .attr("class", "axis-label")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 0 - margin.left)
+                .attr("x", 0 - (height / 2))
+                .attr("dy", "1em")
+                .style("text-anchor", "middle")
+                .text("Count");
+            
+            g.append("text")
+                .attr("class", "axis-label")
+                .attr("transform", `translate(${width / 2}, ${height + margin.bottom})`)
+                .style("text-anchor", "middle")
+                .text("Fitness Level");
+        }
+        
+        // Event listeners
+        document.getElementById('productFilter').addEventListener('change', filterData);
+        document.getElementById('genderFilter').addEventListener('change', filterData);
+        document.getElementById('scatterX').addEventListener('change', createScatterPlot);
+        document.getElementById('scatterY').addEventListener('change', createScatterPlot);
+        
+        // Initialize
+        initializeCharts();
+    </script>
+</body>
+</html>
+

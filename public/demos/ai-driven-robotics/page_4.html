@@ -1,0 +1,169 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Core RL Algorithms in Robotics</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+        body, html {width: 1280px; height: 720px; margin: 0;
+            padding: 0;}
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            position: relative;
+            
+        }
+        .circuit-line {
+            position: absolute;
+            background: rgba(192, 192, 192, 0.1);
+            z-index: 1;
+        }
+        .algorithm-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .algorithm-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.3);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #FFFFFF, #0066CC);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+    </style>
+</head>
+<body>
+<div class="slide bg-gradient-to-br from-gray-900 to-blue-900 p-10 relative">
+<!-- Background circuit elements -->
+<div class="circuit-line w-full h-0.5 top-1/3 left-0"></div>
+<div class="circuit-line w-0.5 h-full top-0 left-1/3"></div>
+<div class="circuit-line w-full h-0.5 top-2/3 left-0"></div>
+<div class="circuit-line w-0.5 h-full top-0 left-2/3"></div>
+<!-- Header -->
+<div class="relative z-10 mb-8">
+<h1 class="text-4xl font-bold text-white mb-3 flex items-center">
+<i class="fas fa-code-branch text-blue-400 mr-4 text-3xl"></i>
+                Core RL Algorithms in Robotics
+            </h1>
+<div class="w-24 h-1 bg-orange-500 rounded"></div>
+</div>
+<!-- Main Content -->
+<div class="relative z-10 grid grid-cols-3 gap-6">
+<!-- Value-based Methods -->
+<div class="bg-gray-900 bg-opacity-80 rounded-xl p-6 border border-blue-800 algorithm-card">
+<div class="flex items-center mb-4">
+<div class="w-14 h-14 bg-blue-700 rounded-lg flex items-center justify-center mr-4 shadow-lg">
+<i class="fas fa-table-cells text-white text-2xl"></i>
+</div>
+<h3 class="text-2xl font-bold gradient-text">Value-based Methods</h3>
+</div>
+<p class="text-blue-200 text-base mb-4">
+                    Estimate the value of being in a particular state or taking a specific action
+                </p>
+<div class="bg-gray-800 rounded-lg p-4 mb-4">
+<h4 class="text-white font-semibold mb-2">Key Algorithms:</h4>
+<ul class="text-blue-100 text-sm space-y-1">
+<li class="flex items-start">
+<i class="fas fa-angle-right text-orange-500 mt-1 mr-2"></i>
+<span>Q-learning</span>
+</li>
+<li class="flex items-start">
+<i class="fas fa-angle-right text-orange-500 mt-1 mr-2"></i>
+<span>Deep Q-Networks (DQN)</span>
+</li>
+</ul>
+</div>
+<div class="bg-blue-900 bg-opacity-40 rounded-lg p-3 border-l-4 border-blue-500">
+<h4 class="text-white text-sm font-semibold mb-1">Application Example:</h4>
+<p class="text-gray-300 text-sm">
+<i class="fas fa-robot text-blue-400 mr-2"></i>
+                        Used in robotic navigation tasks and learning optimal grasp points
+                    </p>
+</div>
+</div>
+<!-- Policy-based Methods -->
+<div class="bg-gray-900 bg-opacity-80 rounded-xl p-6 border border-green-800 algorithm-card">
+<div class="flex items-center mb-4">
+<div class="w-14 h-14 bg-green-700 rounded-lg flex items-center justify-center mr-4 shadow-lg">
+<i class="fas fa-arrow-trend-up text-white text-2xl"></i>
+</div>
+<h3 class="text-2xl font-bold gradient-text">Policy-based Methods</h3>
+</div>
+<p class="text-blue-200 text-base mb-4">
+                    Directly optimize the policy without using a value function
+                </p>
+<div class="bg-gray-800 rounded-lg p-4 mb-4">
+<h4 class="text-white font-semibold mb-2">Key Algorithms:</h4>
+<ul class="text-blue-100 text-sm space-y-1">
+<li class="flex items-start">
+<i class="fas fa-angle-right text-orange-500 mt-1 mr-2"></i>
+<span>Policy Gradient methods</span>
+</li>
+<li class="flex items-start">
+<i class="fas fa-angle-right text-orange-500 mt-1 mr-2"></i>
+<span>REINFORCE algorithm</span>
+</li>
+</ul>
+</div>
+<div class="bg-green-900 bg-opacity-40 rounded-lg p-3 border-l-4 border-green-500">
+<h4 class="text-white text-sm font-semibold mb-1">Application Example:</h4>
+<p class="text-gray-300 text-sm">
+<i class="fas fa-hand-paper text-green-400 mr-2"></i>
+                        Used in continuous control tasks like robotic manipulation
+                    </p>
+</div>
+</div>
+<!-- Actor-Critic Methods -->
+<div class="bg-gray-900 bg-opacity-80 rounded-xl p-6 border border-purple-800 algorithm-card">
+<div class="flex items-center mb-4">
+<div class="w-14 h-14 bg-purple-700 rounded-lg flex items-center justify-center mr-4 shadow-lg">
+<i class="fas fa-people-arrows text-white text-2xl"></i>
+</div>
+<h3 class="text-2xl font-bold gradient-text">Actor-Critic Methods</h3>
+</div>
+<p class="text-blue-200 text-base mb-4">
+                    Combine value-based and policy-based approaches for better stability
+                </p>
+<div class="bg-gray-800 rounded-lg p-4 mb-4">
+<h4 class="text-white font-semibold mb-2">Key Algorithms:</h4>
+<ul class="text-blue-100 text-sm space-y-1">
+<li class="flex items-start">
+<i class="fas fa-angle-right text-orange-500 mt-1 mr-2"></i>
+<span>A3C (Asynchronous Advantage Actor-Critic)</span>
+</li>
+<li class="flex items-start">
+<i class="fas fa-angle-right text-orange-500 mt-1 mr-2"></i>
+<span>DDPG (Deep Deterministic Policy Gradient)</span>
+</li>
+</ul>
+</div>
+<div class="bg-purple-900 bg-opacity-40 rounded-lg p-3 border-l-4 border-purple-500">
+<h4 class="text-white text-sm font-semibold mb-1">Application Example:</h4>
+<p class="text-gray-300 text-sm">
+<i class="fas fa-cogs text-purple-400 mr-2"></i>
+                        Widely used in complex robotic tasks due to stability and sample efficiency
+                    </p>
+</div>
+</div>
+</div>
+<!-- Bottom Example -->
+<div class="relative z-10 mt-8">
+<div class="bg-gray-800 bg-opacity-90 rounded-lg p-4 border border-blue-400">
+<div class="flex items-center mb-2">
+<i class="fas fa-lightbulb text-yellow-400 mr-3 text-xl"></i>
+<h4 class="text-lg font-semibold text-white">Real-World Implementation:</h4>
+</div>
+<p class="text-blue-200">
+                    In a robotic grasping task, <span class="text-white font-medium">DQN</span> (value-based) might be used to learn optimal grasp points, 
+                    while a <span class="text-white font-medium">Policy Gradient method</span> could be employed to learn continuous control of joint angles.
+                </p>
+</div>
+</div>
+<!-- Page indicator -->
+<div class="absolute bottom-6 right-6 text-blue-300 text-sm">
+            Page 4 of 15
+        </div>
+</div>
+
+</body></html>

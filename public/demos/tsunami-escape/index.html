@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Life-saving tsunami evacuation app for Hawaii and US West Coast. Find evacuation routes and safe zones offline during emergencies.">
+    <meta name="theme-color" content="#1e40af">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Tsunami Escape">
+    
+    <title>Tsunami Escape - Emergency Evacuation App</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/themes.css">
+    
+    <!-- iOS icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/icon-192x192.png">
+</head>
+<body>
+    <!-- Skip navigation for screen readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- PWA install banner -->
+    <div id="install-banner" class="install-banner" hidden>
+        <div class="install-content">
+            <span class="install-text">Install Tsunami Escape for offline emergency access</span>
+            <button id="install-button" class="btn btn-install" aria-label="Install app">Install</button>
+            <button id="dismiss-install" class="btn-close" aria-label="Dismiss install prompt">&times;</button>
+        </div>
+    </div>
+
+    <!-- Main application header -->
+    <header class="app-header" role="banner">
+        <div class="header-content">
+            <h1 class="app-title">
+                <span class="wave-icon" role="img" aria-label="Tsunami wave">🌊</span>
+                Tsunami Escape
+            </h1>
+            <div class="header-status">
+                <span id="connection-status" class="status-indicator" aria-live="polite">
+                    <span class="status-dot" id="status-dot"></span>
+                    <span id="status-text">Checking connection...</span>
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content area -->
+    <main id="main-content" class="main-content" role="main">
+        
+        <!-- Emergency alert section -->
+        <section id="alert-section" class="alert-section" hidden aria-live="assertive">
+            <div class="alert-banner alert-danger">
+                <div class="alert-content">
+                    <h2 class="alert-title">TSUNAMI WARNING ACTIVE</h2>
+                    <p class="alert-message" id="alert-message">Check your evacuation zone immediately</p>
+                    <button class="btn btn-alert" id="view-evacuation">View Evacuation Routes</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location section -->
+        <section class="location-section">
+            <h2 class="section-title">Your Location</h2>
+            
+            <div class="location-card">
+                <div id="location-status" class="location-status">
+                    <p class="status-message">Getting your location...</p>
+                    <div class="loading-spinner" id="location-spinner" aria-hidden="true"></div>
+                </div>
+                
+                <div id="location-display" class="location-display" hidden>
+                    <div class="location-info">
+                        <h3 id="location-address" class="location-address">Current Location</h3>
+                        <p id="location-coords" class="location-coords">Coordinates will appear here</p>
+                    </div>
+                    <button class="btn btn-secondary" id="update-location">Update Location</button>
+                </div>
+                
+                <div id="location-manual" class="location-manual" hidden>
+                    <label for="address-input" class="form-label">Enter your address:</label>
+                    <div class="input-group">
+                        <input type="text" 
+                               id="address-input" 
+                               class="form-input"
+                               placeholder="Enter address or landmark"
+                               aria-describedby="address-help">
+                        <button class="btn btn-primary" id="find-address">Find</button>
+                    </div>
+                    <p id="address-help" class="help-text">
+                        Example: 1234 Main St, Honolulu HI or Pearl Harbor
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tsunami zone section -->
+        <section class="zone-section">
+            <h2 class="section-title">Tsunami Risk Zone</h2>
+            
+            <div id="zone-card" class="zone-card zone-unknown">
+                <div class="zone-display">
+                    <div class="zone-indicator">
+                        <span class="zone-level" id="zone-level">UNKNOWN</span>
+                        <span class="zone-description" id="zone-description">
+                            Location needed to determine risk level
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="zone-actions" id="zone-actions" hidden>
+                    <button class="btn btn-evacuation" id="find-evacuation">
+                        Find Evacuation Route
+                    </button>
+                    <button class="btn btn-secondary" id="download-maps">
+                        Download Offline Maps
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick actions section -->
+        <section class="actions-section">
+            <h2 class="section-title">Quick Actions</h2>
+            
+            <div class="actions-grid">
+                <button class="action-card" id="practice-mode">
+                    <div class="action-icon" role="img" aria-label="Practice">🏃</div>
+                    <h3 class="action-title">Practice Evacuation</h3>
+                    <p class="action-description">Practice your evacuation route</p>
+                </button>
+                
+                <button class="action-card" id="emergency-contacts">
+                    <div class="action-icon" role="img" aria-label="Emergency contacts">📞</div>
+                    <h3 class="action-title">Emergency Contacts</h3>
+                    <p class="action-description">Important phone numbers</p>
+                </button>
+                
+                <button class="action-card" id="offline-maps">
+                    <div class="action-icon" role="img" aria-label="Offline maps">🗺️</div>
+                    <h3 class="action-title">Offline Maps</h3>
+                    <p class="action-description">Download maps for your area</p>
+                </button>
+                
+                <button class="action-card" id="settings">
+                    <div class="action-icon" role="img" aria-label="Settings">⚙️</div>
+                    <h3 class="action-title">Settings</h3>
+                    <p class="action-description">Language and preferences</p>
+                </button>
+            </div>
+        </section>
+
+        <!-- Information section -->
+        <section class="info-section">
+            <h2 class="section-title">Tsunami Safety Information</h2>
+            
+            <div class="info-cards">
+                <div class="info-card">
+                    <h3 class="info-title">Natural Warning Signs</h3>
+                    <ul class="info-list">
+                        <li>Strong earthquake lasting 20+ seconds</li>
+                        <li>Ocean water rapidly receding</li>
+                        <li>Loud ocean roar approaching</li>
+                        <li>Ground shaking near the coast</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h3 class="info-title">Evacuation Guidelines</h3>
+                    <ul class="info-list">
+                        <li>Move to higher ground immediately</li>
+                        <li>Go inland at least 2 miles if possible</li>
+                        <li>Stay away from coastal areas</li>
+                        <li>Listen for official emergency alerts</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer" role="contentinfo">
+        <div class="footer-content">
+            <p class="footer-text">
+                Emergency data from NOAA • Always follow official evacuation orders
+            </p>
+            <p class="footer-version">v1.0.0 • Offline Ready</p>
+        </div>
+    </footer>
+
+    <!-- Loading overlay -->
+    <div id="loading-overlay" class="loading-overlay" hidden>
+        <div class="loading-content">
+            <div class="loading-spinner large" aria-hidden="true"></div>
+            <p class="loading-text" id="loading-text">Loading...</p>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/location.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

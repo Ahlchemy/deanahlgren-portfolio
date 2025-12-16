@@ -8,18 +8,19 @@
 
 @layer base {
   :root {
-    /* Colors */
-    --color-ocean: #0A4C6A;
-    --color-coral: #FF6B6B;
-    --color-dawn: #F4A460;
+    /* Colors - Refined Palette */
+    --color-ocean: #0B5570;
+    --color-accent: #C87A1A;
+    --color-dawn: #D4915A;
+    --color-amber: #C87A1A;
     --color-neutral: #2D3748;
 
     /* Spacing */
     --space-unit: 4px;
 
     /* Typography */
-    --font-display: 'Space Grotesk', system-ui, sans-serif;
-    --font-body: 'Inter', system-ui, sans-serif;
+    --font-display: 'Raleway', system-ui, sans-serif;
+    --font-body: 'Roboto', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 
     /* Transitions */
@@ -63,8 +64,19 @@
   }
 
   body {
-    @apply font-body text-neutral-900 bg-white antialiased;
+    @apply font-body font-normal text-neutral-900 bg-white antialiased;
     @apply dark:bg-neutral-950 dark:text-neutral-50;
+    @apply text-base leading-relaxed;
+  }
+
+  /* Improved paragraph readability */
+  p {
+    @apply leading-[1.75] mb-4;
+  }
+
+  /* Ensure proper spacing for consecutive paragraphs */
+  p + p {
+    @apply mt-4;
   }
 
   /* Focus styles for accessibility */
@@ -88,25 +100,58 @@
 @layer components {
   /* Container */
   .container-narrow {
-    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
   .container-wide {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
-  /* Section spacing */
+  /* Section spacing - tightened for density */
   .section {
-    @apply py-16 md:py-24;
+    @apply py-12 md:py-16;
   }
 
   .section-lg {
-    @apply py-24 md:py-32;
+    @apply py-16 md:py-24;
   }
 
   /* Typography */
   .text-gradient {
     @apply bg-clip-text text-transparent bg-accent-gradient;
+  }
+
+  /* Prose - Long-form content styling */
+  .prose-content {
+    @apply text-neutral-700 dark:text-neutral-300;
+  }
+
+  .prose-content p {
+    @apply text-[1.0625rem] leading-[1.8] mb-5 max-w-prose;
+  }
+
+  .prose-content h2 {
+    @apply font-display text-2xl font-bold text-neutral-900 dark:text-white mt-10 mb-4;
+  }
+
+  .prose-content h3 {
+    @apply font-display text-xl font-semibold text-neutral-900 dark:text-white mt-8 mb-3;
+  }
+
+  .prose-content ul, .prose-content ol {
+    @apply my-4 ml-6 space-y-2;
+  }
+
+  .prose-content li {
+    @apply text-[1.0625rem] leading-[1.75];
+  }
+
+  .prose-content ul li {
+    @apply list-disc;
+  }
+
+  .prose-content ol li {
+    @apply list-decimal;
   }
 
   /* Cards */
@@ -135,9 +180,9 @@
   }
 
   .btn-secondary {
-    @apply btn bg-coral-500 text-white
-           hover:bg-coral-600 active:bg-coral-700
-           focus-visible:ring-coral-500;
+    @apply btn bg-amber-500 text-white
+           hover:bg-amber-600 active:bg-amber-700
+           focus-visible:ring-amber-500;
   }
 
   .btn-outline {
@@ -178,6 +223,15 @@
   .animate-delay-300 { animation-delay: 300ms; }
   .animate-delay-400 { animation-delay: 400ms; }
   .animate-delay-500 { animation-delay: 500ms; }
+
+  /* Custom project card gradient with adjusted color stops */
+  .bg-gradient-project-card {
+    background: linear-gradient(135deg, #d1e5ef 41%, #a3cbdf 100%);
+  }
+
+  .dark .bg-gradient-project-card {
+    background: linear-gradient(135deg, #031530 0%, #052540 100%);
+  }
 }
 
 /* Scroll indicator pulse animation */

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 8: Responsible AI and Ethical Considerations | Ahlgren Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body data-module="8">
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="course-title">Business AI Application</h1>
+                <div class="nav-container">
+                    <div class="nav-buttons">
+                        <a href="module-1.html" class="nav-button" data-module="1" data-title="Intro to AI">1</a>
+                        <a href="module-2.html" class="nav-button" data-module="2" data-title="ML Basics">2</a>
+                        <a href="module-3.html" class="nav-button" data-module="3" data-title="Neural Networks">3</a>
+                        <a href="module-4.html" class="nav-button" data-module="4" data-title="Vision & Language">4</a>
+                        <a href="module-5.html" class="nav-button" data-module="5" data-title="Robotics">5</a>
+                        <a href="module-6.html" class="nav-button" data-module="6" data-title="AI Strategy">6</a>
+                        <a href="module-7.html" class="nav-button" data-module="7" data-title="Change Management">7</a>
+                        <a href="module-8.html" class="nav-button active" data-module="8" data-title="Responsible AI">8</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="module-header">
+            <h2 class="module-title">Module 8: Responsible AI and Ethical Considerations</h2>
+            <p class="module-subtitle">Ensuring AI systems align with organizational values and ethical standards</p>
+        </div>
+
+        <section class="exec-summary fade-in">
+            <h3>Executive Summary</h3>
+            <ul>
+                <li>Responsible AI safeguards fairness, transparency, accountability, privacy, and security in all AI initiatives.</li>
+                <li>Ignoring ethical considerations risks legal penalties, reputational damage, and erosion of stakeholder trust.</li>
+                <li>Implement governance frameworks, bias audits, and incident response plans to embed ethics across the AI lifecycle.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Key Concepts</h3>
+            <p>Responsible AI is about designing and deploying AI systems that are fair, transparent, and aligned with your organization's values. Key focus areas include:</p>
+            
+            <ul>
+                <li><strong>Bias and fairness:</strong> Prevent AI from perpetuating discrimination or unfair treatment</li>
+                <li><strong>Transparency:</strong> Ensure AI decisions can be explained and understood</li>
+                <li><strong>Accountability:</strong> Define who owns AI outputs and is responsible for consequences</li>
+                <li><strong>Privacy and consent:</strong> Use data ethically and in compliance with regulations</li>
+                <li><strong>Security:</strong> Protect AI systems from tampering, misuse, and adversarial attacks</li>
+            </ul>
+            
+            <p>Failing to address these concerns can lead to reputational damage, legal issues, customer mistrust, and reinforcement of societal inequities.</p>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Interactive Charts</h3>
+            <div class="interactive-chart">
+                <canvas id="ethics-heatmap"></canvas>
+            </div>
+            <p class="chart-description">This heatmap shows potential ethical risks across different AI applications and domains.</p>
+            
+            <div class="interactive-chart">
+                <canvas id="transparency-scale"></canvas>
+                <div style="margin-top: 1rem; text-align: center;">
+                    <select id="ai-system-selector" style="width: 80%; padding: 0.5rem; border-radius: 0.25rem; border: 1px solid #ccc;">
+                        <option value="all">All AI Systems</option>
+                        <option value="chatbot">Customer Service Chatbot</option>
+                        <option value="hiring">Hiring Algorithm</option>
+                        <option value="credit">Credit Scoring System</option>
+                        <option value="medical">Medical Diagnosis AI</option>
+                        <option value="recommendation">Content Recommendation Engine</option>
+                    </select>
+                </div>
+            </div>
+            <p class="chart-description">This chart shows transparency levels for different AI systems. Select a system to see detailed transparency metrics.</p>
+            
+            <div class="interactive-chart">
+                <canvas id="bias-simulator"></canvas>
+                <div style="margin-top: 1rem; text-align: center;">
+                    <button id="run-simulation" class="cta-button">Run Bias Simulation</button>
+                    <button id="reset-simulation" class="cta-button">Reset Simulation</button>
+                </div>
+            </div>
+            <p class="chart-description">This simulation demonstrates how bias can emerge in AI systems and how it can be detected and mitigated.</p>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Real-World Examples</h3>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <h4 class="example-title">Biased Hiring Algorithm</h4>
+                    <p>A resume-screening algorithm that learned gender bias from historical hiring data and was scrapped after it systematically downgraded female candidates.</p>
+                </div>
+                <div class="example-card">
+                    <h4 class="example-title">Privacy Breach</h4>
+                    <p>A smart speaker system accidentally recording private conversations and sending them to random contacts, highlighting consent and privacy concerns.</p>
+                </div>
+                <div class="example-card">
+                    <h4 class="example-title">Surveillance Overreach</h4>
+                    <p>A facial recognition system used for surveillance with questionable oversight, raising concerns about civil liberties and proportionality.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Discussion Prompts</h3>
+            <ul class="prompts-list">
+                <li class="prompt-item">
+                    <p>Where might bias creep into your own AI workflows and decision processes?</p>
+                </li>
+                <li class="prompt-item">
+                    <p>What are the legal and reputational risks of deploying black-box AI systems in your industry?</p>
+                </li>
+                <li class="prompt-item">
+                    <p>How would your organization handle a high-profile AI ethics failure? Do you have a response plan?</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Prompts for Real-World Use</h3>
+            <ul class="prompts-list">
+                <li class="prompt-item">
+                    <p><strong>Model Audit:</strong> Run a model audit checklist on one active AI tool in your organization.</p>
+                </li>
+                <li class="prompt-item">
+                    <p><strong>Ethics Playbook:</strong> Create an internal AI ethics playbook or add a policy section to existing tech governance documents.</p>
+                </li>
+                <li class="prompt-item">
+                    <p><strong>Risk Assessment:</strong> Map an existing AI use case against a values-based risk framework to identify potential issues.</p>
+                </li>
+            </ul>
+        </section>
+
+        <div class="cta-container">
+            <h3 class="cta-title">Call to Action</h3>
+            <p class="cta-text">Nominate or form a cross-functional group to monitor AI ethics in your organization. Their first mission: recommend principles and guardrails for your business.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <a href="module-7.html" class="cta-button">Previous Module</a>
+                <a href="conclusion.html" class="cta-button">Finish Course</a>
+                <a href="module-1.html" class="cta-button">Return to Module 1</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Business AI Application. All rights reserved. Developed by Dean Ahlgren.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ethics Heatmap Chart
+            const heatmapCtx = document.getElementById('ethics-heatmap').getContext('2d');
+            
+            // Ethics risk data for heatmap
+            const ethicsRiskData = {
+                labels: ['Healthcare', 'Finance', 'HR & Recruiting', 'Law Enforcement', 'Customer Service', 'Marketing'],
+                datasets: [
+                    {
+                        label: 'Privacy Risk',
+                        data: [80, 85, 75, 90, 60, 70],
+                        backgroundColor: 'rgba(239, 68, 68, 0.7)',
+                        borderColor: 'rgba(239, 68, 68, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Bias Risk',
+                        data: [65, 70, 85, 80, 50, 75],
+                        backgroundColor: 'rgba(245, 158, 11, 0.7)',
+                        borderColor: 'rgba(245, 158, 11, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Transparency Risk',
+                        data: [70, 75, 65, 85, 55, 60],
+                        backgroundColor: 'rgba(16, 185, 129, 0.7)',
+                        borderColor: 'rgba(16, 185, 129, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Accountability Risk',
+                        data: [75, 80, 70, 95, 60, 65],
+                        backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
+            
+            const heatmapChart = new Chart(heatmapCtx, {
+                type: 'bar',
+                data: ethicsRiskData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Risk Level (%)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Industry Sector'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                afterLabel: function(context) {
+                                    const mitigationStrategies = {
+                                        'Privacy Risk': {
+                                            'Healthcare': 'Implement robust de-identification and consent protocols',
+                                            'Finance': 'Use privacy-preserving computation techniques',
+                                            'HR & Recruiting': 'Limit collection to essential data only',
+                                            'Law Enforcement': 'Establish strict data access controls and oversight',
+                                            'Customer Service': 'Implement data minimization practices',
+                                            'Marketing': 'Ensure transparent opt-in/opt-out mechanisms'
+                                        },
+                                        'Bias Risk': {
+                                            'Healthcare': 'Ensure diverse training data across demographics',
+                                            'Finance': 'Regularly audit for disparate impact across groups',
+                                            'HR & Recruiting': 'Use bias detection tools and blind evaluation',
+                                            'Law Enforcement': 'Implement fairness constraints and oversight',
+                                            'Customer Service': 'Test across diverse user groups',
+                                            'Marketing': 'Monitor for stereotyping in targeting'
+                                        },
+                                        'Transparency Risk': {
+                                            'Healthcare': 'Provide explanations for diagnostic recommendations',
+                                            'Finance': 'Offer clear reason codes for decisions',
+                                            'HR & Recruiting': 'Disclose AI use and decision criteria',
+                                            'Law Enforcement': 'Maintain audit trails and public reporting',
+                                            'Customer Service': 'Clearly identify AI interactions',
+                                            'Marketing': 'Disclose personalization factors'
+                                        },
+                                        'Accountability Risk': {
+                                            'Healthcare': 'Establish clear liability frameworks',
+                                            'Finance': 'Implement human oversight for high-stakes decisions',
+                                            'HR & Recruiting': 'Create appeals process for AI decisions',
+                                            'Law Enforcement': 'Require judicial review and due process',
+                                            'Customer Service': 'Provide escalation paths to human agents',
+                                            'Marketing': 'Monitor for unintended consequences'
+                                        }
+                                    };
+                                    
+                                    const riskType = context.dataset.label;
+                                    const sector = context.chart.data.labels[context.dataIndex];
+                                    return `Mitigation: ${mitigationStrategies[riskType][sector]}`;
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'AI Ethics Risk Assessment by Industry',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Transparency Scale Chart
+            const transparencyCtx = document.getElementById('transparency-scale').getContext('2d');
+            
+            // Transparency data by AI system type
+            const transparencyData = {
+                'all': {
+                    label: 'All AI Systems',
+                    data: [65, 70, 55, 60, 75, 50],
+                    labels: ['Algorithm Disclosure', 'Data Source Transparency', 'Decision Explanation', 'Impact Assessment', 'Human Oversight', 'User Control']
+                },
+                'chatbot': {
+                    label: 'Customer Service Chatbot',
+                    data: [80, 65, 70, 55, 85, 75],
+                    labels: ['AI Identification', 'Conversation Scope', 'Handoff Criteria', 'Data Usage', 'Monitoring Practices', 'User Feedback']
+                },
+                'hiring': {
+                    label: 'Hiring Algorithm',
+                    data: [60, 55, 75, 80, 70, 65],
+                    labels: ['Selection Criteria', 'Data Sources', 'Bias Mitigation', 'Human Review', 'Candidate Disclosure', 'Appeals Process']
+                },
+                'credit': {
+                    label: 'Credit Scoring System',
+                    data: [70, 75, 85, 65, 80, 60],
+                    labels: ['Factor Disclosure', 'Adverse Action Notices', 'Model Validation', 'Regulatory Compliance', 'Alternative Data Use', 'Dispute Resolution']
+                },
+                'medical': {
+                    label: 'Medical Diagnosis AI',
+                    data: [75, 85, 80, 90, 95, 70],
+                    labels: ['Evidence Base', 'Confidence Levels', 'Limitations Disclosure', 'Doctor Oversight', 'Patient Consent', 'Outcome Tracking']
+                },
+                'recommendation': {
+                    label: 'Content Recommendation Engine',
+                    data: [55, 50, 45, 60, 40, 80],
+                    labels: ['Algorithm Disclosure', 'Data Collection', 'Personalization Factors', 'Filter Bubbles', 'Content Moderation', 'User Controls']
+                }
+            };
+            
+            // Initial transparency data (all systems)
+            const transparencyScaleData = {
+                labels: transparencyData['all'].labels,
+                datasets: [{
+                    label: transparencyData['all'].label,
+                    data: transparencyData['all'].data,
+                    backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    borderWidth: 1
+                }]
+            };
+            
+            const transparencyChart = new Chart(transparencyCtx, {
+                type: 'radar',
+                data: transparencyScaleData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                stepSize: 20
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `Transparency: ${context.raw}%`;
+                                },
+                                afterLabel: function(context) {
+                                    const recommendations = {
+                                        'Algorithm Disclosure': 'Publish high-level description of how the AI works',
+                                        'Data Source Transparency': 'Disclose types and sources of training data',
+                                        'Decision Explanation': 'Provide explanations for how decisions are made',
+                                        'Impact Assessment': 'Conduct and publish ethical impact assessments',
+                                        'Human Oversight': 'Implement human review for high-stakes decisions',
+                                        'User Control': 'Give users control over AI interactions and data',
+                                        'AI Identification': 'Clearly identify when users are interacting with AI',
+                                        'Conversation Scope': 'Disclose capabilities and limitations of the chatbot',
+                                        'Handoff Criteria': 'Explain when and why conversations escalate to humans',
+                                        'Data Usage': 'Disclose how conversation data is used and stored',
+                                        'Monitoring Practices': 'Explain how conversations are monitored',
+                                        'User Feedback': 'Provide mechanisms for users to report issues',
+                                        'Selection Criteria': 'Disclose factors used in candidate evaluation',
+                                        'Data Sources': 'Explain what candidate data is collected and used',
+                                        'Bias Mitigation': 'Describe measures to prevent discriminatory outcomes',
+                                        'Human Review': 'Ensure human oversight in final hiring decisions',
+                                        'Candidate Disclosure': 'Inform candidates about AI use in hiring',
+                                        'Appeals Process': 'Provide mechanism to contest automated decisions',
+                                        'Factor Disclosure': 'Clearly explain factors affecting credit decisions',
+                                        'Adverse Action Notices': 'Provide detailed explanations for rejections',
+                                        'Model Validation': 'Regularly test for fairness and accuracy',
+                                        'Regulatory Compliance': 'Ensure compliance with relevant regulations',
+                                        'Alternative Data Use': 'Disclose non-traditional data sources used',
+                                        'Dispute Resolution': 'Establish clear process for contesting decisions',
+                                        'Evidence Base': 'Disclose clinical evidence supporting AI recommendations',
+                                        'Confidence Levels': 'Show confidence levels for diagnostic suggestions',
+                                        'Limitations Disclosure': 'Clearly state what the AI cannot diagnose',
+                                        'Doctor Oversight': 'Maintain physician review of all AI recommendations',
+                                        'Patient Consent': 'Obtain informed consent for AI diagnostic use',
+                                        'Outcome Tracking': 'Monitor and report on diagnostic accuracy',
+                                        'Personalization Factors': 'Disclose factors used in content selection',
+                                        'Filter Bubbles': 'Implement measures to prevent echo chambers',
+                                        'Content Moderation': 'Explain how AI moderates harmful content',
+                                        'User Controls': 'Provide options to adjust recommendation algorithms'
+                                    };
+                                    
+                                    const label = context.chart.data.labels[context.dataIndex];
+                                    return `Recommendation: ${recommendations[label]}`;
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'AI Transparency Scale',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // AI system selector event listener
+            document.getElementById('ai-system-selector').addEventListener('change', function() {
+                const selectedSystem = this.value;
+                const systemData = transparencyData[selectedSystem];
+                
+                // Update chart data
+                transparencyChart.data.labels = systemData.labels;
+                transparencyChart.data.datasets[0].data = systemData.data;
+                transparencyChart.data.datasets[0].label = systemData.label;
+                
+                // Update chart title
+                transparencyChart.options.plugins.title.text = `AI Transparency Scale: ${systemData.label}`;
+                
+                transparencyChart.update();
+            });
+            
+            // Bias Simulator Chart
+            const biasCtx = document.getElementById('bias-simulator').getContext('2d');
+            
+            // Initial bias simulation data (before simulation)
+            const initialBiasData = {
+                labels: ['Group A', 'Group B', 'Group C', 'Group D'],
+                datasets: [{
+                    label: 'Initial Outcomes',
+                    data: [65, 62, 64, 63],
+                    backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    borderWidth: 1
+                }]
+            };
+            
+            // Bias simulation results (after running simulation)
+            const biasSimulationResults = {
+                labels: ['Group A', 'Group B', 'Group C', 'Group D'],
+                datasets: [
+                    {
+                        label: 'Initial Outcomes',
+                        data: [65, 62, 64, 63],
+                        backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'After 100 Iterations',
+                        data: [72, 48, 70, 52],
+                        backgroundColor: 'rgba(239, 68, 68, 0.7)',
+                        borderColor: 'rgba(239, 68, 68, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'With Bias Mitigation',
+                        data: [68, 66, 67, 65],
+                        backgroundColor: 'rgba(16, 185, 129, 0.7)',
+                        borderColor: 'rgba(16, 185, 129, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
+            
+            const biasChart = new Chart(biasCtx, {
+                type: 'bar',
+                data: initialBiasData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Positive Outcome Rate (%)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Demographic Groups'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                afterLabel: function(context) {
+                                    if (context.dataset.label === 'After 100 Iterations') {
+                                        return 'Bias has amplified through feedback loops';
+                                    } else if (context.dataset.label === 'With Bias Mitigation') {
+                                        return 'Fairness constraints applied to reduce disparity';
+                                    } else {
+                                        return 'Starting point with minimal disparity';
+                                    }
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'AI Bias Simulation',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Run Simulation button
+            document.getElementById('run-simulation').addEventListener('click', function() {
+                // Update chart with simulation results
+                biasChart.data = biasSimulationResults;
+                biasChart.update();
+                
+                // Change button text
+                this.textContent = 'Simulation Complete';
+                this.disabled = true;
+            });
+            
+            // Reset Simulation button
+            document.getElementById('reset-simulation').addEventListener('click', function() {
+                // Reset chart to initial state
+                biasChart.data = initialBiasData;
+                biasChart.update();
+                
+                // Reset run simulation button
+                const simulateButton = document.getElementById('run-simulation');
+                simulateButton.textContent = 'Run Bias Simulation';
+                simulateButton.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,418 @@
+{
+  "project": {
+    "name": "tsunami-escape-app",
+    "description": "Life-saving Progressive Web App for tsunami evacuation in Hawaii and US West Coast",
+    "version": "1.0.0",
+    "type": "pwa",
+    "target_platforms": ["web", "mobile", "future_app_stores"],
+    "priority": "critical_safety_application"
+  },
+  
+  "technical_stack": {
+    "frontend": {
+      "html": "HTML5 with semantic elements",
+      "css": "CSS3 with custom properties, mobile-first responsive design",
+      "javascript": "Vanilla ES6+, no frameworks for simplicity and reliability",
+      "pwa": "Service Workers + Web Manifest"
+    },
+    "mapping": {
+      "base_maps": "OpenStreetMap",
+      "library": "Leaflet.js",
+      "offline_storage": "IndexedDB for map tiles",
+      "tile_server": "OpenMapTiles or similar free service"
+    },
+    "data_storage": {
+      "offline": "IndexedDB",
+      "cache": "Service Worker Cache API",
+      "user_preferences": "localStorage (non-critical data only)"
+    },
+    "deployment": {
+      "development": "Local development server",
+      "staging": "GitHub Pages (branch)",
+      "production": "GitHub Pages (main)",
+      "future": "CDN + App Stores"
+    }
+  },
+
+  "core_features": {
+    "authentication": {
+      "priority": "high",
+      "description": "Simple signup/login with minimal data collection",
+      "requirements": [
+        "Email/phone based registration",
+        "Privacy-focused (no tracking)",
+        "Guest mode for emergencies",
+        "Quick access bypass for emergencies"
+      ]
+    },
+    
+    "location_services": {
+      "priority": "critical",
+      "description": "GPS detection or manual address entry",
+      "requirements": [
+        "HTML5 Geolocation API",
+        "Fallback to manual address input",
+        "Address geocoding using free service",
+        "Location accuracy validation",
+        "Privacy controls for location sharing"
+      ]
+    },
+
+    "tsunami_zone_assessment": {
+      "priority": "critical",
+      "description": "Display current tsunami risk level for user location",
+      "requirements": [
+        "Integration with official NOAA/local emergency data",
+        "Real-time risk level display",
+        "Color-coded risk zones (Red/Yellow/Green)",
+        "Clear visual indicators",
+        "Historical tsunami data context"
+      ]
+    },
+
+    "evacuation_routing": {
+      "priority": "critical", 
+      "description": "Show evacuation routes to safety zones",
+      "requirements": [
+        "Integration with official evacuation routes",
+        "Multiple route options when available",
+        "Turn-by-turn directions",
+        "Estimated time and distance",
+        "Offline route calculation",
+        "Safe zone locations (schools, designated areas)"
+      ]
+    },
+
+    "offline_functionality": {
+      "priority": "critical",
+      "description": "Works without internet during emergencies",
+      "requirements": [
+        "Pre-download map tiles for selected areas",
+        "Offline route calculation",
+        "Cached evacuation zone data",
+        "Service worker implementation",
+        "Progressive downloading of map data",
+        "Storage management (limit size, prioritize critical areas)"
+      ]
+    },
+
+    "emergency_alerts": {
+      "priority": "high",
+      "description": "Integration with official tsunami warning systems",
+      "requirements": [
+        "NOAA tsunami warning feeds",
+        "Push notifications when available",
+        "Emergency Alert System compatibility",
+        "Local siren/warning integration",
+        "Alert history and logging"
+      ]
+    },
+
+    "practice_mode": {
+      "priority": "medium",
+      "description": "Safe evacuation route practice and drills",
+      "requirements": [
+        "Simulated evacuation scenarios",
+        "Timer-based practice sessions",
+        "Route familiarity scoring",
+        "Progress tracking",
+        "Family/group practice coordination"
+      ]
+    },
+
+    "multi_language": {
+      "priority": "high",
+      "description": "Support for primary languages in target regions",
+      "languages": {
+        "english": {
+          "code": "en",
+          "priority": 1,
+          "status": "default",
+          "coverage": "complete"
+        },
+        "spanish": {
+          "code": "es",
+          "priority": 2,
+          "status": "required",
+          "coverage": "complete",
+          "notes": "Largest minority language in US"
+        },
+        "chinese_simplified": {
+          "code": "zh-CN",
+          "priority": 3,
+          "status": "high_priority",
+          "coverage": "complete",
+          "notes": "Significant West Coast population"
+        },
+        "chinese_traditional": {
+          "code": "zh-TW",
+          "priority": 4,
+          "status": "high_priority", 
+          "coverage": "complete",
+          "notes": "Hawaii and California communities"
+        },
+        "vietnamese": {
+          "code": "vi",
+          "priority": 5,
+          "status": "medium_priority",
+          "coverage": "essential_only",
+          "notes": "Large communities in California"
+        },
+        "tagalog": {
+          "code": "tl",
+          "priority": 6,
+          "status": "medium_priority",
+          "coverage": "essential_only",
+          "notes": "Large Filipino communities in Hawaii/California"
+        },
+        "korean": {
+          "code": "ko",
+          "priority": 7,
+          "status": "future",
+          "coverage": "basic",
+          "notes": "Consider for Phase 2"
+        },
+        "japanese": {
+          "code": "ja",
+          "priority": 8,
+          "status": "future",
+          "coverage": "basic",
+          "notes": "Hawaii tourism and residents"
+        }
+      }
+    }
+  },
+
+  "user_interface": {
+    "design_principles": {
+      "simplicity": "Extreme simplicity for emergency use",
+      "accessibility": "Usable by elderly and children under stress",
+      "one_handed": "Operable with one hand while moving",
+      "high_contrast": "Readable in bright sunlight",
+      "large_targets": "Minimum 44px touch targets"
+    },
+    
+    "color_scheme": {
+      "base": {
+        "primary": "#1e40af",
+        "description": "Calm blue for trust and professionalism"
+      },
+      "safety": {
+        "safe": "#10b981", 
+        "description": "Green for safe zones and positive actions"
+      },
+      "warning": {
+        "caution": "#f59e0b",
+        "description": "Yellow for moderate risk/caution"
+      },
+      "danger": {
+        "urgent": "#ef4444",
+        "description": "Red for immediate danger (use sparingly)"
+      },
+      "neutral": {
+        "background": "#f8fafc",
+        "text": "#1f2937",
+        "description": "High contrast for readability"
+      }
+    },
+
+    "visual_elements": {
+      "wave_motif": "Subtle wave patterns in backgrounds",
+      "iconography": "Clear, universally recognizable symbols",
+      "typography": "Large, readable fonts (minimum 16px body text)",
+      "spacing": "Generous spacing for touch targets",
+      "animation": "Minimal, purposeful animations only"
+    }
+  },
+
+  "data_sources": {
+    "tsunami_zones": {
+      "primary": "NOAA Tsunami Warning Centers",
+      "secondary": "Hawaii Emergency Management Agency",
+      "format": "GeoJSON",
+      "update_frequency": "As needed, cached locally"
+    },
+    "evacuation_routes": {
+      "source": "Local emergency management agencies",
+      "format": "GeoJSON routing data",
+      "includes": "Official evacuation routes, safe zones"
+    },
+    "real_time_alerts": {
+      "source": "NOAA RSS/API feeds",
+      "backup": "Emergency Alert System",
+      "format": "JSON/XML",
+      "polling_interval": "Every 30 seconds during active warnings"
+    },
+    "map_tiles": {
+      "source": "OpenStreetMap",
+      "tile_server": "Free tier service (respect usage limits)",
+      "zoom_levels": "1-16 (prioritize 10-16 for detail)",
+      "storage_strategy": "Progressive download based on user areas"
+    }
+  },
+
+  "file_structure": {
+    "root_files": [
+      "index.html",
+      "manifest.json", 
+      "sw.js",
+      "README.md",
+      ".gitignore"
+    ],
+    "directories": {
+      "css": ["styles.css", "themes.css", "responsive.css"],
+      "js": [
+        "app.js",
+        "maps.js", 
+        "location.js",
+        "offline.js",
+        "languages.js",
+        "alerts.js",
+        "utils.js"
+      ],
+      "data": [
+        "tsunami-zones.json",
+        "safe-locations.json",
+        "evacuation-routes.json",
+        "languages/"
+      ],
+      "assets": {
+        "icons": "PWA icons, tsunami-themed graphics",
+        "audio": "Alert sounds, voice guidance",
+        "images": "UI graphics, instructional diagrams"
+      }
+    }
+  },
+
+  "development_phases": {
+    "phase_1_mvp": {
+      "timeline": "Weeks 1-4",
+      "goal": "Core life-safety functionality",
+      "features": [
+        "Basic PWA setup",
+        "Location detection",
+        "Static tsunami zone display", 
+        "Simple evacuation routes",
+        "Offline map for one test area",
+        "English language only"
+      ],
+      "deliverables": [
+        "Working PWA deployed to GitHub Pages",
+        "Basic offline functionality",
+        "One complete evacuation scenario"
+      ]
+    },
+    
+    "phase_2_enhanced": {
+      "timeline": "Weeks 5-8",
+      "goal": "Enhanced usability and coverage",
+      "features": [
+        "Real-time alert integration",
+        "Practice mode",
+        "Multi-language support (English, Spanish, Chinese)",
+        "Expanded coverage areas",
+        "Improved UI/UX"
+      ]
+    },
+
+    "phase_3_advanced": {
+      "timeline": "Weeks 9-12",
+      "goal": "Advanced features and app store preparation",
+      "features": [
+        "All planned languages",
+        "Community features",
+        "Voice guidance",
+        "Advanced route optimization",
+        "App store submission preparation"
+      ]
+    }
+  },
+
+  "testing_requirements": {
+    "functional_testing": [
+      "Cross-browser compatibility",
+      "Mobile device testing",
+      "Offline mode validation",
+      "GPS accuracy testing",
+      "Emergency scenario simulation"
+    ],
+    "accessibility_testing": [
+      "Screen reader compatibility",
+      "High contrast mode",
+      "Large text scaling",
+      "Voice navigation",
+      "Color blindness considerations"
+    ],
+    "performance_testing": [
+      "Load time optimization",
+      "Offline cache efficiency", 
+      "Battery usage optimization",
+      "Memory usage monitoring",
+      "Network connectivity edge cases"
+    ]
+  },
+
+  "deployment_config": {
+    "github_pages": {
+      "repository": "tsunami-escape-app",
+      "branch": "main",
+      "custom_domain": "Future consideration",
+      "https_required": true
+    },
+    "pwa_requirements": {
+      "manifest": "Complete manifest.json",
+      "service_worker": "Offline functionality",
+      "https": "Required for PWA features",
+      "responsive": "All screen sizes"
+    }
+  },
+
+  "compliance_requirements": {
+    "accessibility": "WCAG 2.1 AA compliance",
+    "emergency_standards": "Compatible with Emergency Alert System",
+    "privacy": "CCPA compliance, minimal data collection",
+    "performance": "Works on low-end devices and slow networks"
+  },
+
+  "success_metrics": {
+    "adoption": "Install rate in target coastal regions",
+    "usage": "Active users during tsunami warnings",
+    "effectiveness": "Reduced evacuation times in drills",
+    "accessibility": "Multi-language usage statistics",
+    "reliability": "Offline functionality success rate"
+  },
+
+  "claude_code_instructions": {
+    "initialization": [
+      "Use '/init' to create CLAUDE.md with this specification",
+      "Set up basic PWA structure with all required files",
+      "Implement service worker for offline functionality",
+      "Create responsive CSS foundation with color scheme",
+      "Set up basic routing and location detection"
+    ],
+    
+    "development_approach": [
+      "Follow test-driven development for critical functions",
+      "Prioritize offline functionality in all features",
+      "Use progressive enhancement approach",
+      "Test thoroughly on mobile devices",
+      "Simulate emergency conditions regularly"
+    ],
+
+    "code_style": [
+      "Use semantic HTML5 elements",
+      "Vanilla JavaScript (ES6+) for reliability",
+      "CSS custom properties for theming",
+      "Async/await for asynchronous operations",
+      "Clear, documented code for emergency app reliability"
+    ],
+
+    "testing_focus": [
+      "Emergency scenario testing",
+      "Offline functionality validation",
+      "Cross-device compatibility",
+      "Accessibility with assistive technologies",
+      "Performance under stress conditions"
+    ]
+  }
+}

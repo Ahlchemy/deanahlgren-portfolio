@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Learning Companion - Master AI/ML for Technical Professionals</title>
+
+    <!-- External Libraries -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@9.1.6/marked.min.js"></script>
+
+    <style>
+        /* CSS Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Articulate-inspired Color Palette */
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-sidebar: #1e293b;
+            --bg-sidebar-hover: #334155;
+            --bg-sidebar-active: #0891b2;
+            --accent-primary: #0891b2;
+            --accent-secondary: #06b6d4;
+            --accent-light: #e0f7fa;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --text-sidebar: #cbd5e1;
+            --text-sidebar-active: #ffffff;
+            --success: #10b981;
+            --success-light: #d1fae5;
+            --warning: #f59e0b;
+            --border: #e2e8f0;
+            --border-dark: #cbd5e1;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --shadow-lg: rgba(0, 0, 0, 0.15);
+
+            /* Typography */
+            --font-sans: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-mono: 'Consolas', 'Monaco', 'Courier New', monospace;
+
+            /* Sidebar Width */
+            --sidebar-width: 320px;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow: hidden;
+        }
+
+        /* Main Layout */
+        .app-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--bg-sidebar);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar-logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-sidebar-active);
+            margin-bottom: 0.25rem;
+        }
+
+        .sidebar-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-sidebar);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Progress in Sidebar */
+        .sidebar-progress {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-label {
+            font-size: 0.75rem;
+            color: var(--text-sidebar);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .progress-percentage {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--accent-secondary);
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        /* Module List */
+        .module-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem 0;
+        }
+
+        .module-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .module-list::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .module-list::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2);
+            border-radius: 3px;
+        }
+
+        .module-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.875rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .module-item:hover {
+            background: var(--bg-sidebar-hover);
+        }
+
+        .module-item.active {
+            background: var(--bg-sidebar-hover);
+            border-left-color: var(--accent-secondary);
+        }
+
+        .module-item.completed .module-number {
+            background: var(--success);
+        }
+
+        .module-number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--bg-sidebar-hover);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-sidebar);
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .module-item.active .module-number {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .module-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .module-name {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-sidebar);
+            line-height: 1.3;
+            margin-bottom: 0.125rem;
+        }
+
+        .module-item.active .module-name {
+            color: var(--text-sidebar-active);
+        }
+
+        .module-type {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        /* Labs Section in Sidebar */
+        .sidebar-section-title {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 1rem 1.5rem 0.5rem;
+            margin-top: 0.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .lab-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .lab-item:hover {
+            background: var(--bg-sidebar-hover);
+        }
+
+        .lab-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: rgba(6, 182, 212, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+        }
+
+        .lab-name {
+            font-size: 0.875rem;
+            color: var(--text-sidebar);
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: var(--bg-primary);
+        }
+
+        /* Top Header Bar */
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb-separator {
+            color: var(--border-dark);
+        }
+
+        .breadcrumb-current {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .complete-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .complete-checkbox input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--success);
+            cursor: pointer;
+        }
+
+        .complete-checkbox.checked {
+            color: var(--success);
+            font-weight: 500;
+        }
+
+        /* Content Scroll Area */
+        .content-scroll {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .content-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .content-scroll::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        .content-scroll::-webkit-scrollbar-thumb {
+            background: var(--border-dark);
+            border-radius: 4px;
+        }
+
+        .content-scroll::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        /* Content Card (Articulate-style slide) */
+        .content-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px var(--shadow);
+            overflow: hidden;
+        }
+
+        .content-card-header {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            padding: 2rem 2.5rem;
+            color: white;
+        }
+
+        .content-card-header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .content-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        .meta-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .content-card-body {
+            padding: 2.5rem;
+        }
+
+        /* Markdown Content Styling */
+        .markdown-content {
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .markdown-content h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem 0;
+            color: var(--text-primary);
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .markdown-content h1:first-child {
+            display: none;
+        }
+
+        .markdown-content h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem 0;
+            color: var(--accent-primary);
+        }
+
+        .markdown-content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem 0;
+            color: var(--text-primary);
+        }
+
+        .markdown-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1.25rem 0 0.5rem 0;
+            color: var(--text-secondary);
+        }
+
+        .markdown-content p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .markdown-content ul,
+        .markdown-content ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .markdown-content li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .markdown-content li::marker {
+            color: var(--accent-primary);
+        }
+
+        .markdown-content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .markdown-content code {
+            background: var(--accent-light);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.875em;
+            color: var(--accent-primary);
+        }
+
+        .markdown-content pre {
+            background: var(--bg-sidebar);
+            border-radius: 8px;
+            padding: 1.25rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        .markdown-content pre code {
+            background: transparent;
+            padding: 0;
+            color: var(--text-sidebar);
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .markdown-content blockquote {
+            border-left: 4px solid var(--accent-primary);
+            background: var(--accent-light);
+            padding: 1rem 1.25rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .markdown-content blockquote p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .markdown-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .markdown-content th,
+        .markdown-content td {
+            padding: 0.875rem 1rem;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+
+        .markdown-content th {
+            background: var(--accent-light);
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        .markdown-content td {
+            color: var(--text-secondary);
+        }
+
+        .markdown-content tr:hover td {
+            background: var(--bg-primary);
+        }
+
+        .markdown-content a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .markdown-content a:hover {
+            text-decoration: underline;
+        }
+
+        .markdown-content hr {
+            border: none;
+            border-top: 2px solid var(--border);
+            margin: 2rem 0;
+        }
+
+        /* Navigation Footer */
+        .nav-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .nav-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .nav-button.prev {
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .nav-button.prev:hover:not(:disabled) {
+            background: var(--border);
+            color: var(--text-primary);
+        }
+
+        .nav-button.next {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .nav-button.next:hover:not(:disabled) {
+            background: var(--accent-secondary);
+            transform: translateX(2px);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .nav-button svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .nav-progress {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .nav-progress-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-dot.active {
+            background: var(--accent-primary);
+            transform: scale(1.2);
+        }
+
+        .nav-dot.completed {
+            background: var(--success);
+        }
+
+        .nav-dot:hover {
+            transform: scale(1.3);
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .welcome-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 30px rgba(8, 145, 178, 0.3);
+        }
+
+        .welcome-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .welcome-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .welcome-stats {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .welcome-stat {
+            text-align: center;
+        }
+
+        .welcome-stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+        }
+
+        .welcome-stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .welcome-cta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(8, 145, 178, 0.3);
+        }
+
+        .welcome-cta:hover {
+            background: var(--accent-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(8, 145, 178, 0.4);
+        }
+
+        .welcome-cta svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 280px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                max-height: 40vh;
+            }
+
+            .module-list {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding: 0.5rem;
+            }
+
+            .module-item {
+                flex-shrink: 0;
+                padding: 0.5rem 1rem;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+            }
+
+            .module-item.active {
+                border-left-color: transparent;
+                border-bottom-color: var(--accent-secondary);
+            }
+
+            .content-card-body {
+                padding: 1.5rem;
+            }
+
+            .nav-footer {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .nav-progress {
+                order: -1;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div x-data="courseApp()" x-init="init()" class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">AI Learning Companion</div>
+                <div class="sidebar-subtitle">Professional Development</div>
+            </div>
+
+            <!-- Progress -->
+            <div class="sidebar-progress">
+                <div class="progress-info">
+                    <span class="progress-label">Course Progress</span>
+                    <span class="progress-percentage" x-text="Math.round((completedModules.length / modules.length) * 100) + '%'"></span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" :style="`width: ${(completedModules.length / modules.length) * 100}%`"></div>
+                </div>
+            </div>
+
+            <!-- Module List -->
+            <nav class="module-list">
+                <template x-for="(module, index) in modules" :key="module.id">
+                    <div
+                        class="module-item"
+                        :class="{
+                            'active': currentModuleIndex === index,
+                            'completed': completedModules.includes(module.id)
+                        }"
+                        @click="goToModule(index)">
+                        <div class="module-number" x-text="completedModules.includes(module.id) ? '✓' : (index + 1)"></div>
+                        <div class="module-info">
+                            <div class="module-name" x-text="module.title"></div>
+                            <div class="module-type" x-text="module.type"></div>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Labs Section -->
+                <div class="sidebar-section-title">Interactive Labs</div>
+                <template x-for="lab in labs" :key="lab.id">
+                    <a :href="lab.file" target="_blank" class="lab-item">
+                        <div class="lab-icon" x-text="lab.icon"></div>
+                        <div class="lab-name" x-text="lab.title"></div>
+                    </a>
+                </template>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Welcome Screen -->
+            <template x-if="currentModuleIndex === null">
+                <div class="content-scroll">
+                    <div class="welcome-screen fade-in">
+                        <div class="welcome-icon">🎓</div>
+                        <h1 class="welcome-title">Master AI & Machine Learning</h1>
+                        <p class="welcome-subtitle">
+                            A comprehensive curriculum designed for technical professionals transitioning
+                            into Artificial Intelligence and Machine Learning. Build foundational knowledge,
+                            explore real-world applications, and develop practical skills.
+                        </p>
+                        <div class="welcome-stats">
+                            <div class="welcome-stat">
+                                <div class="welcome-stat-number">8</div>
+                                <div class="welcome-stat-label">Modules</div>
+                            </div>
+                            <div class="welcome-stat">
+                                <div class="welcome-stat-number">4</div>
+                                <div class="welcome-stat-label">Labs</div>
+                            </div>
+                            <div class="welcome-stat">
+                                <div class="welcome-stat-number" x-text="completedModules.length"></div>
+                                <div class="welcome-stat-label">Completed</div>
+                            </div>
+                        </div>
+                        <button class="welcome-cta" @click="goToModule(0)">
+                            <span>Begin Course</span>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Module Content -->
+            <template x-if="currentModuleIndex !== null">
+                <div class="main-content" style="display: flex; flex-direction: column; height: 100%;">
+                    <!-- Header -->
+                    <header class="content-header">
+                        <div class="breadcrumb">
+                            <span @click="currentModuleIndex = null" style="cursor: pointer;">Home</span>
+                            <span class="breadcrumb-separator">/</span>
+                            <span class="breadcrumb-current" x-text="modules[currentModuleIndex]?.title"></span>
+                        </div>
+                        <div class="header-actions">
+                            <label class="complete-checkbox" :class="{ 'checked': completedModules.includes(modules[currentModuleIndex]?.id) }">
+                                <input
+                                    type="checkbox"
+                                    :checked="completedModules.includes(modules[currentModuleIndex]?.id)"
+                                    @change="toggleComplete(modules[currentModuleIndex]?.id)">
+                                <span x-text="completedModules.includes(modules[currentModuleIndex]?.id) ? 'Completed' : 'Mark Complete'"></span>
+                            </label>
+                        </div>
+                    </header>
+
+                    <!-- Scrollable Content -->
+                    <div class="content-scroll">
+                        <div class="content-card fade-in">
+                            <div class="content-card-header">
+                                <h1 x-text="modules[currentModuleIndex]?.title"></h1>
+                                <div class="content-card-meta">
+                                    <span class="meta-badge" x-text="modules[currentModuleIndex]?.type"></span>
+                                    <span x-text="'Module ' + (currentModuleIndex + 1) + ' of ' + modules.length"></span>
+                                </div>
+                            </div>
+                            <div class="content-card-body">
+                                <div class="markdown-content" x-html="moduleContent"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Footer -->
+                    <footer class="nav-footer">
+                        <button
+                            class="nav-button prev"
+                            @click="prevModule()"
+                            :disabled="currentModuleIndex === 0">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                            <span>Previous</span>
+                        </button>
+
+                        <div class="nav-progress">
+                            <div class="nav-progress-dots">
+                                <template x-for="(module, index) in modules" :key="module.id">
+                                    <div
+                                        class="nav-dot"
+                                        :class="{
+                                            'active': currentModuleIndex === index,
+                                            'completed': completedModules.includes(module.id) && currentModuleIndex !== index
+                                        }"
+                                        @click="goToModule(index)"
+                                        :title="module.title">
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+
+                        <button
+                            class="nav-button next"
+                            @click="nextModule()"
+                            :disabled="currentModuleIndex === modules.length - 1">
+                            <span x-text="currentModuleIndex === modules.length - 1 ? 'Complete' : 'Next'"></span>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </footer>
+                </div>
+            </template>
+        </main>
+    </div>
+
+    <script>
+        // Embedded markdown content
+        const moduleContent = {
+            'ml-companion': `# Instructional Design: AI/ML Learning Companion
+
+## 1. Learning Outcomes
+
+Upon successful completion of this learning program, the learner will be able to:
+
+- **Articulate the fundamental concepts of Artificial Intelligence and Machine Learning**, including their historical evolution, key terminology, and the distinctions between different subfields such as supervised, unsupervised, and reinforcement learning.
+- **Translate complex business problems into well-defined data science problems**, identifying the appropriate AI/ML methodologies and tools to address them effectively.
+- **Apply foundational mathematical and statistical principles** to understand the inner workings of common machine learning algorithms, including linear regression, logistic regression, and decision trees.
+- **Utilize no-code AI/ML platforms (e.g., KNIME, RapidMiner) to build, evaluate, and deploy machine learning models**, demonstrating proficiency in data preparation, feature engineering, model training, and performance evaluation.
+- **Critically analyze and interpret the outputs of machine learning models**, extracting actionable insights and communicating them effectively to both technical and non-technical stakeholders.
+- **Design and develop ethical and responsible AI solutions**, considering potential biases, fairness, and the societal impact of AI applications.
+
+## 2. Competency Mapping: L&D Veteran to AI Practitioner
+
+This section maps the existing competencies of a 20-year Learning & Development veteran to the new skills required for an AI practitioner.
+
+| Existing L&D Competency | Transferable Skill to AI | New AI/ML Competency to Develop |
+| :--- | :--- | :--- |
+| **Instructional Design** | Structuring learning paths, creating engaging content | Applying AI-powered personalization, designing data-driven learning experiences |
+| **Needs Analysis** | Identifying performance gaps and business needs | Translating business problems into data science problems, identifying AI opportunities |
+| **Content Development** | Creating clear, concise, and effective learning materials | Developing interactive AI simulations, creating content for AI-powered tutors |
+| **Evaluation & Assessment** | Measuring learning effectiveness and ROI | Evaluating model performance, understanding statistical significance, A/B testing |
+| **Project Management** | Managing complex learning projects, stakeholder communication | Managing AI/ML project lifecycles, communicating with data scientists and engineers |
+
+## 3. Pedagogical Approach: A Modern, Human-Centered Framework
+
+The pedagogical approach for this learning companion is grounded in a human-centered framework that prioritizes engagement, deep understanding, and practical application.
+
+### 3.1 Constructivist Learning: Building Knowledge Through Experience
+
+At its core, this program embraces a constructivist philosophy, where learners actively construct their own understanding through their experiences and interactions with the content.
+
+### 3.2 Experiential Learning: The Power of Doing
+
+We leverage Kolb's experiential learning cycle to create a continuous loop of learning and application:
+
+1. **Concrete Experience:** Introduction to new concepts through real-world case studies
+2. **Reflective Observation:** Prompted reflection on experiences
+3. **Abstract Conceptualization:** Forming abstract concepts based on reflections
+4. **Active Experimentation:** Applying new understanding to solve problems
+
+### 3.3 Microlearning and Spaced Repetition
+
+To combat the forgetting curve and ensure long-term retention, we employ microlearning and spaced repetition techniques. Key concepts are broken into bite-sized learning nuggets reinforced over time.`,
+
+            'data-science': `# Data Science Fundamentals: From Raw Data to Actionable Insights
+
+## 1. What is Data Science? And Why Does It Matter?
+
+In the age of big data, we are drowning in information but starving for wisdom. Data science is the discipline that helps us bridge this gap. It's an interdisciplinary field that combines statistics, computer science, and domain expertise to extract knowledge and insights from data.
+
+### 1.1 The Data Science Venn Diagram
+
+The three overlapping circles represent the core competencies:
+
+- **Math and Statistics:** The foundation providing tools to quantify uncertainty and build models
+- **Computer Science:** The practical toolkit with programming languages (Python, R) and databases
+- **Domain Expertise:** Deep understanding of the industry and the specific problem being solved
+
+### 1.2 The Data Science Lifecycle
+
+1. **Business Understanding:** Define the problem and business objectives
+2. **Data Acquisition:** Gather data from databases, APIs, and other sources
+3. **Data Preparation:** Clean and transform raw data into usable format
+4. **Exploratory Data Analysis (EDA):** Explore patterns and formulate hypotheses
+5. **Modeling:** Build predictive models using machine learning algorithms
+6. **Evaluation:** Assess accuracy, fairness, and robustness
+7. **Deployment:** Put models into production
+
+## 2. Real-World Applications
+
+### Uber's Surge Pricing Algorithm
+
+Uber processes 15 million trips daily across 900+ cities, using real-time data to balance supply and demand through dynamic pricing.
+
+**Data Sources:**
+- GPS coordinates and timestamps
+- Driver availability and status
+- Weather and traffic APIs
+- Event data and public transit information
+
+### Starbucks Store Location Strategy
+
+Using demographic, economic, and competitive data to identify optimal locations generating $1.2M+ annual revenue per store.
+
+**Key Findings:**
+- Income is the strongest predictor of store success (r = 0.82)
+- Education level strongly correlates with coffee consumption
+- Dense urban areas significantly outperform suburban locations
+
+### Netflix Content Investment
+
+Statistical modeling to optimize the $15 billion annual content investment across genres, regions, and demographics.`,
+
+            'math-modern': `# Mathematical Foundations of AI: A Modern and Intuitive Approach
+
+## 1. Reimagining Algebra: The Language of Machine Learning
+
+Think of algebra not as a set of rigid rules, but as a powerful language that allows us to describe relationships, model patterns, and make predictions. It's the scaffolding upon which we build AI.
+
+### 1.1 From Abstract Equations to Real-World Scenarios
+
+**Example: Marketing Analytics**
+
+You want to understand the relationship between advertising spend and sales revenue:
+
+\`\`\`
+Sales Revenue = (m × Advertising Spend) + b
+\`\`\`
+
+Where "m" is the slope (impact per dollar) and "b" is the base revenue.
+
+### 1.2 Linear Algebra: Vectors and Matrices
+
+- **Vectors:** Lists of numbers representing data points
+- **Matrices:** Grids of numbers for batch operations
+
+## 2. Probability and Statistics in AI
+
+### 2.1 Probability: The Science of Chance
+
+**Conditional Probability:** P(A|B) = P(A and B) / P(B)
+
+**Bayes' Theorem:** P(A|B) = [P(B|A) × P(A)] / P(B)
+
+This powers spam filters, medical diagnostics, and recommendation engines.
+
+### 2.2 Descriptive vs. Inferential Statistics
+
+- **Descriptive:** Mean, median, mode, variance, standard deviation
+- **Inferential:** Hypothesis testing, confidence intervals, predictions
+
+## 3. Calculus: The Engine of Optimization
+
+### 3.1 Gradient Descent
+
+The most common optimization algorithm in machine learning:
+
+1. Compute the gradient (slope) at current position
+2. Take a step in the opposite direction (downhill)
+3. Repeat until reaching the minimum
+
+The **learning rate** controls step size: too small = slow; too large = overshoot.`,
+
+            'math-practical': `# Mathematical Foundations for AI: A Practical Approach
+
+## Module Overview
+
+**Learning Time:** 4 weeks (3-4 hours per week)
+
+**Prerequisites:** High school algebra, basic business analytics experience
+
+---
+
+## Week 1: Linear Algebra - The Language of AI
+
+### Why Linear Algebra Matters
+
+Netflix's recommendation system, powered by linear algebra, drives 80% of viewer engagement and saves $1 billion annually in customer retention.
+
+### Core Concept: Vectors and Matrices
+
+**Think of vectors as shopping lists with quantities:**
+\`\`\`
+Customer A's preferences: [Comedy: 8, Drama: 3, Action: 1]
+Customer B's preferences: [Comedy: 2, Drama: 9, Action: 7]
+\`\`\`
+
+### Business Application: Costco Shopping Optimization
+
+\`\`\`
+Spending = [Time, Aisles, Frequency, Membership] × [Weights]
+
+For Customer Sarah:
+[45 min, 8 aisles, 12 visits/year, Premium] × [8.75, 12.50, 3.20, 25.00]
+= $557.90 predicted spending
+\`\`\`
+
+---
+
+## Week 2: Probability - Managing Uncertainty
+
+### Business Application: Coffee Shop Queue Management
+
+Using Poisson distribution to optimize staffing:
+- Average: 15 customers per hour
+- Each customer takes 2 minutes to serve
+- Goal: Less than 5-minute wait for 90% of customers
+
+**Result:** Optimal staffing reduces wait times by 40% while saving $2,400 monthly.
+
+---
+
+## Week 3: Statistics - Turning Data into Decisions
+
+### Business Application: Ride-Share Traffic Analysis
+
+Testing if a new route algorithm reduces trip times:
+- Before: 18.5 min average, 4.2 min std dev
+- After: 17.8 min average, 3.9 min std dev
+
+**Statistical Result:** 99.98% confident the improvement is real, saving 35,000 hours monthly.
+
+---
+
+## Week 4: Calculus - Finding Optimal Solutions
+
+### Business Application: Netflix Recommendation
+
+Finding the optimal relevance score to maximize viewing time using derivatives to locate the maximum point of the engagement function.`,
+
+            'ml-algorithms': `# An Introduction to Machine Learning Algorithms: The Three Core Paradigms
+
+## 1. Supervised Learning: Learning from Labeled Data
+
+Supervised learning is the most common type. We act as a teacher, providing the model with labeled data. The model learns to recognize patterns and make predictions on new data.
+
+### 1.1 Classification: Predicting a Category
+
+Common algorithms:
+- **Logistic Regression:** Predict binary outcomes (yes/no)
+- **Decision Trees:** If-then-else rules
+- **Support Vector Machines (SVMs):** Find optimal boundaries between classes
+- **Random Forests:** Ensemble of decision trees
+
+### 1.2 Regression: Predicting a Continuous Value
+
+Common algorithms:
+- **Linear Regression:** Model linear relationships
+- **Polynomial Regression:** Model non-linear relationships
+- **Ridge/Lasso Regression:** Regularization to prevent overfitting
+
+## 2. Unsupervised Learning: Finding Hidden Patterns
+
+No labeled data—the model discovers patterns on its own.
+
+### 2.1 Clustering: Grouping Similar Data
+
+- **K-Means:** Partition into pre-defined number of clusters
+- **Hierarchical Clustering:** Create tree-like hierarchy
+- **DBSCAN:** Density-based clustering for arbitrary shapes
+
+### 2.2 Dimensionality Reduction
+
+- **PCA:** Find principal components
+- **t-SNE:** Visualize high-dimensional data in 2D/3D
+
+## 3. Reinforcement Learning: Learning Through Trial and Error
+
+An agent learns by interacting with an environment, receiving rewards or punishments.
+
+**Notable Applications:**
+- **AlphaGo:** Beat professional Go players
+- **Self-Driving Cars:** Training control systems
+- **Robotics:** Complex task learning`,
+
+            'deep-learning': `# Deep Learning and Neural Networks: The Brains of Modern AI
+
+## 1. The Power of Deep Learning
+
+Deep learning is the technology behind self-driving cars, voice assistants, and image recognition. It uses artificial neural networks with many layers to learn complex patterns from large amounts of data.
+
+## 2. Artificial Neural Networks
+
+Inspired by the human brain, neural networks consist of:
+
+- **Input Layer:** Receives raw data (pixels, words, etc.)
+- **Hidden Layers:** Where the learning happens—each layer recognizes different features
+- **Output Layer:** Produces the final result
+
+## 3. The "Deep" in Deep Learning
+
+The term "deep" refers to the number of hidden layers. Each layer learns increasingly complex features:
+
+1. First layer: Simple features (edges, corners)
+2. Second layer: Combined features (eyes, noses)
+3. Third layer: Complex features (faces)
+
+This hierarchical approach mirrors how humans learn.
+
+## 4. Applications of Deep Learning
+
+- **Image Recognition:** Near-human accuracy in object detection
+- **Natural Language Processing:** Translation, sentiment analysis, summarization
+- **Speech Recognition:** Power behind Siri, Alexa, and voice assistants
+- **Drug Discovery:** Analyzing molecular structures, predicting drug effectiveness
+
+As we generate more data and develop more powerful hardware, the possibilities for deep learning are endless.`,
+
+            'ethics-ai': `# Ethics and Responsible AI: Navigating the Moral Landscape
+
+## 1. The Double-Edged Sword
+
+AI is a powerful technology that can solve pressing problems—but it can also cause harm, perpetuate inequality, and undermine human rights. We must develop and deploy AI responsibly.
+
+## 2. Ethical Challenges of AI
+
+### 2.1 Bias and Fairness
+
+AI systems learn from data. Biased data leads to biased systems, causing unfair outcomes in hiring, lending, and criminal justice.
+
+### 2.2 Transparency and Explainability
+
+Many AI systems are "black boxes"—we can't understand their decisions. This makes accountability difficult.
+
+### 2.3 Privacy and Surveillance
+
+AI enables collection and analysis of vast personal data, raising concerns about privacy and surveillance.
+
+### 2.4 Accountability and Liability
+
+When AI causes harm, who is responsible? The developer? The deployer? The AI itself?
+
+### 2.5 The Future of Work
+
+AI automation may displace many jobs, requiring careful consideration of economic impacts.
+
+## 3. Principles of Responsible AI
+
+- **Fairness:** No discrimination against individuals or groups
+- **Transparency:** Explainable decisions
+- **Accountability:** Clear lines of responsibility
+- **Privacy:** Respect for personal data
+- **Safety:** Reliable systems that don't cause harm
+- **Human-Centered Design:** Augment humans, not replace them
+
+## 4. The Role of L&D Professionals
+
+You can help raise awareness, develop training programs, and create a culture of ethical AI development in your organization.`,
+
+            'generative-ai': `# Generative AI: The Creative Frontier
+
+## 1. Beyond Prediction: The Rise of Generative Models
+
+Generative AI creates new, original content—text, images, music, and code. Instead of just analyzing data, these models learn underlying patterns and generate new content similar to training data.
+
+## 2. How Generative AI Works
+
+Models are trained on massive datasets (books, images, music). They learn statistical patterns—relationships between words, visual styles, musical structures.
+
+Given a prompt, the model uses its learned patterns to generate new content consistent with that prompt.
+
+## 3. Two Main Types of Generative Models
+
+### 3.1 Generative Adversarial Networks (GANs)
+
+Two neural networks compete:
+- **Generator:** Creates realistic content
+- **Discriminator:** Distinguishes real from fake
+
+Over time, the generator creates content indistinguishable from reality.
+
+### 3.2 Transformers
+
+Neural network architecture for sequential data (text). Powers large language models like GPT and BERT, enabling coherent, human-like text generation.
+
+## 4. Applications of Generative AI
+
+- **Content Creation:** Marketing copy, articles, scripts
+- **Art and Design:** New art forms, product design, realistic images
+- **Software Development:** Code writing, debugging, automation
+- **Drug Discovery:** Designing molecules, predicting properties
+
+We're in the early days of the generative AI revolution, but its transformative potential is clear.`
+        };
+
+        function courseApp() {
+            return {
+                currentModuleIndex: null,
+                moduleContent: '',
+                completedModules: [],
+
+                modules: [
+                    { id: 'ml-companion', title: 'ML Learning Companion Framework', type: 'Foundation', icon: '📋' },
+                    { id: 'data-science', title: 'Data Science Fundamentals', type: 'Core', icon: '📊' },
+                    { id: 'math-modern', title: 'Mathematical Foundations (Modern)', type: 'Core', icon: '📐' },
+                    { id: 'math-practical', title: 'Mathematical Foundations (Practical)', type: 'Applied', icon: '🧮' },
+                    { id: 'ml-algorithms', title: 'Machine Learning Algorithms', type: 'Core', icon: '🤖' },
+                    { id: 'deep-learning', title: 'Deep Learning & Neural Networks', type: 'Advanced', icon: '🧠' },
+                    { id: 'ethics-ai', title: 'Ethics & Responsible AI', type: 'Essential', icon: '⚖️' },
+                    { id: 'generative-ai', title: 'Generative AI & Creative Frontier', type: 'Cutting Edge', icon: '✨' }
+                ],
+
+                labs: [
+                    { id: 'linear-algebra', title: 'Linear Algebra', file: 'linear-algebra-visualization.html', icon: '📐' },
+                    { id: 'probability', title: 'Probability', file: 'probability-visualization.html', icon: '🎲' },
+                    { id: 'gradient-descent', title: 'Gradient Descent', file: 'gradient-descent-visualization.html', icon: '📉' },
+                    { id: 'data-exploration', title: 'Data Explorer', file: 'data-exploration-dashboard.html', icon: '📊' }
+                ],
+
+                init() {
+                    const saved = localStorage.getItem('completedModules');
+                    if (saved) {
+                        this.completedModules = JSON.parse(saved);
+                    }
+                    marked.setOptions({ breaks: true, gfm: true });
+                },
+
+                goToModule(index) {
+                    this.currentModuleIndex = index;
+                    const module = this.modules[index];
+                    const content = moduleContent[module.id];
+                    this.moduleContent = content ? marked.parse(content) : '<p>Content not found.</p>';
+
+                    // Scroll to top of content
+                    this.$nextTick(() => {
+                        const scrollArea = document.querySelector('.content-scroll');
+                        if (scrollArea) scrollArea.scrollTop = 0;
+                    });
+                },
+
+                nextModule() {
+                    if (this.currentModuleIndex < this.modules.length - 1) {
+                        this.goToModule(this.currentModuleIndex + 1);
+                    }
+                },
+
+                prevModule() {
+                    if (this.currentModuleIndex > 0) {
+                        this.goToModule(this.currentModuleIndex - 1);
+                    }
+                },
+
+                toggleComplete(moduleId) {
+                    const index = this.completedModules.indexOf(moduleId);
+                    if (index === -1) {
+                        this.completedModules.push(moduleId);
+                    } else {
+                        this.completedModules.splice(index, 1);
+                    }
+                    localStorage.setItem('completedModules', JSON.stringify(this.completedModules));
+                }
+            }
+        }
+    </script>
+</body>
+</html>

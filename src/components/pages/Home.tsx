@@ -26,6 +26,7 @@ const getFeaturedWork = () => {
                p.category === 'data-science' ? 'Data Science' : 'Project',
       href: `/work/${p.slug}`,
       type: 'project' as const,
+      thumbnail: p.images?.thumbnail,
     })),
     ...courses.map((c) => ({
       id: c.id,
@@ -34,6 +35,7 @@ const getFeaturedWork = () => {
       category: 'Interactive Course',
       href: `/work/${c.slug}`,
       type: 'course' as const,
+      thumbnail: c.images?.thumbnail,
     })),
   ]
 
@@ -45,36 +47,50 @@ export function Home() {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-start bg-hero-gradient overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
+      {/* Hero Section - Refined layout with integrated metrics */}
+      <section className="relative min-h-[90vh] flex flex-col bg-hero-gradient overflow-hidden">
+        {/* Low-poly geometric background - positioned on left */}
+        <div
+          className="absolute inset-0 opacity-30"
+          style={{
+            backgroundImage: 'url(/images/background_02.png)',
+            backgroundPosition: 'left center',
+            backgroundSize: 'auto 100%',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
+        {/* Gradient overlay to ensure text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-ocean-600/60 via-ocean-700/80 to-ocean-800/95" />
+
+        {/* Subtle dot pattern */}
+        <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(255,255,255,0.1)_1px,_transparent_1px)] bg-[length:24px_24px]" />
         </div>
 
-        <div className="container-wide relative z-10 pt-[8vh] md:pt-[10vh] pb-20">
-          <div className="grid lg:grid-cols-[1fr,32%] gap-8 lg:gap-16 items-center">
+        {/* Main Hero Content - Positioned higher */}
+        <div className="container-wide relative z-10 flex-1 flex items-center pt-16 md:pt-20 pb-4">
+          <div className="grid lg:grid-cols-[1fr,28%] gap-12 lg:gap-24 items-center w-full -mt-[10vh]">
             {/* Left Column - Content */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="max-w-[620px]"
+              className="max-w-[640px]"
             >
-              {/* Tagline - Fixed contrast with lighter coral + text shadow */}
-              <p className="text-coral-300 font-semibold tracking-widest text-sm mb-4 uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
+              {/* Tagline - Orange/gold accent with text shadow */}
+              <p className="text-amber-400 font-medium tracking-widest text-sm mb-5 uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
                 Learning Design + AI
               </p>
 
-              {/* Main Headline - All white, no accent */}
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              {/* Main Headline */}
+              <h1 className="font-display text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-white mb-6 leading-[1.15] tracking-tight">
                 Instructional Design Mastery
                 <br />
-                Meets AI Innovation
+                <span className="text-white/90">Meets AI Innovation</span>
               </h1>
 
-              {/* Subheadline - Updated copy */}
-              <p className="text-lg md:text-xl text-neutral-300 mb-8 leading-relaxed">
+              {/* Subheadline */}
+              <p className="text-lg md:text-xl text-neutral-300 mb-8 leading-relaxed max-w-[540px]">
                 {stats.yearsExperience} years building learning that works—now enhanced with AI expertise
                 from MIT and Berkeley Haas. Experiences that engage, perform, and scale.
               </p>
@@ -90,19 +106,19 @@ export function Home() {
                 </Link>
               </div>
 
-              {/* Trust Badges - Strengthened: larger, lighter color, consistent icons */}
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-10">
+              {/* Trust Badges */}
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-3 mt-10">
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
                   <GraduationCap className="w-4 h-4 text-white/70" strokeWidth={1.5} />
-                  <span className="text-sm text-gray-200 font-medium">MIT AI & Machine Learning</span>
+                  <span className="text-sm text-gray-200">MIT AI & Machine Learning</span>
                 </div>
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
                   <TrendingUp className="w-4 h-4 text-white/70" strokeWidth={1.5} />
-                  <span className="text-sm text-gray-200 font-medium">UC Berkeley Haas</span>
+                  <span className="text-sm text-gray-200">UC Berkeley Haas</span>
                 </div>
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
                   <Lightbulb className="w-4 h-4 text-white/70" strokeWidth={1.5} />
-                  <span className="text-sm text-gray-200 font-medium">Manati.ai Advisor</span>
+                  <span className="text-sm text-gray-200">Manati.ai Advisor</span>
                 </div>
               </div>
             </motion.div>
@@ -112,75 +128,57 @@ export function Home() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="hidden lg:flex justify-center items-center pr-4 xl:pr-8"
+              className="hidden lg:flex justify-center items-center"
             >
               <div className="relative">
-                {/* Offset grounding shape - muted teal behind photo */}
+                {/* Offset orange band - subtle left edge accent */}
                 <div
-                  className="absolute top-5 left-5 w-full h-full rounded-3xl bg-ocean-700/40"
+                  className="absolute top-0 -left-[5px] w-full h-full rounded-2xl bg-amber-500"
                   aria-hidden="true"
                 />
 
-                {/* Photo container - square aspect ratio with rounded corners */}
-                <div className="relative aspect-square w-full max-w-[320px] overflow-hidden rounded-3xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)]">
+                {/* Photo container */}
+                <div className="relative aspect-square w-full max-w-[280px] overflow-hidden rounded-2xl shadow-[0_4px_16px_-2px_rgba(0,0,0,0.2)]">
                   <img
                     src="/images/dean_headshot.jpg"
                     alt="Dean Ahlgren - Instructional Designer & AI Specialist"
                     className="w-full h-full object-cover object-top"
                   />
                   {/* Subtle inner border for definition */}
-                  <div className="absolute inset-0 rounded-3xl ring-1 ring-white/10 pointer-events-none" />
+                  <div className="absolute inset-0 rounded-2xl ring-1 ring-white/10 pointer-events-none" />
                 </div>
               </div>
             </motion.div>
           </div>
         </div>
 
-        {/* Scroll Indicator - Larger with pulse animation */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.5 }}
-          className="absolute bottom-8 left-1/2 animate-scroll-pulse flex flex-col items-center gap-2"
-        >
-          <span className="text-xs text-white/60 font-medium tracking-wide uppercase">See my work</span>
-          <div className="w-8 h-14 border-2 border-white/40 rounded-full flex justify-center pt-3">
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1.5 h-3 bg-white/60 rounded-full"
-            />
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-16 bg-white dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800">
-        <div className="container-wide">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {statsDisplay.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="text-center"
-              >
-                <div className="text-4xl md:text-5xl font-display font-bold text-ocean-500">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-neutral-600 dark:text-neutral-400 mt-2">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
+        {/* Metrics Band - Positioned at bottom of hero */}
+        <div className="relative z-10 mt-auto bg-ocean-800/90 backdrop-blur-sm border-t border-white/5">
+          <div className="container-wide py-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+              {statsDisplay.map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 + index * 0.1 }}
+                  className="text-center"
+                >
+                  <div className="text-3xl md:text-4xl font-display font-bold text-amber-400">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-neutral-400 mt-1">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Work Section */}
-      <section className="section bg-neutral-50 dark:bg-neutral-900">
+      {/* Featured Work Section - Warm off-white background */}
+      <section className="section bg-warm-50 dark:bg-neutral-900">
         <div className="container-wide">
           <div className="flex items-end justify-between mb-12">
             <div>
@@ -210,11 +208,18 @@ export function Home() {
                 transition={{ delay: index * 0.1 }}
                 className="card card-hover overflow-hidden group"
               >
-                {/* Image Placeholder */}
-                <div className="aspect-video bg-gradient-to-br from-ocean-100 to-ocean-200 dark:from-ocean-900 dark:to-ocean-800 flex items-center justify-center">
-                  <Code2 className="w-12 h-12 text-ocean-400" />
-                  {/* ASSET NEEDED: Replace with actual project screenshot */}
-                </div>
+                {/* Project Thumbnail - Clickable */}
+                <Link to={item.href} className="block aspect-video bg-gradient-project-card flex items-center justify-center overflow-hidden">
+                  {item.thumbnail ? (
+                    <img
+                      src={item.thumbnail}
+                      alt={item.title}
+                      className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                    />
+                  ) : (
+                    <Code2 className="w-12 h-12 text-ocean-400" />
+                  )}
+                </Link>
 
                 <div className="p-6">
                   <span className="tag">{item.category}</span>
@@ -245,14 +250,14 @@ export function Home() {
         </div>
       </section>
 
-      {/* Expertise Section */}
-      <section className="section">
+      {/* Expertise Section - Dark background for visual rhythm */}
+      <section className="section bg-ocean-700 dark:bg-ocean-900">
         <div className="container-wide">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white">
               Areas of Expertise
             </h2>
-            <p className="mt-4 text-neutral-600 dark:text-neutral-400">
+            <p className="mt-4 text-neutral-300">
               {stats.yearsExperience} years of learning design evolution, from traditional instructional design
               to AI-powered adaptive experiences
             </p>
@@ -287,13 +292,13 @@ export function Home() {
                 transition={{ delay: index * 0.1 }}
                 className="text-center p-8"
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-ocean-100 dark:bg-ocean-900/30 text-ocean-600 dark:text-ocean-400 mb-6">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/10 text-amber-400 mb-6">
                   <item.icon className="w-8 h-8" />
                 </div>
-                <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-3">
+                <h3 className="text-xl font-semibold text-white mb-3">
                   {item.title}
                 </h3>
-                <p className="text-neutral-600 dark:text-neutral-400">
+                <p className="text-neutral-300">
                   {item.description}
                 </p>
               </motion.div>
@@ -302,18 +307,22 @@ export function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="section bg-ocean-500 dark:bg-ocean-600">
-        <div className="container-narrow text-center">
+      {/* CTA Section - Warm orange/gold accent */}
+      <section className="section bg-gradient-to-br from-amber-500 to-amber-600 relative overflow-hidden">
+        {/* Subtle geometric overlay */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,_rgba(255,255,255,0.2)_0%,_transparent_50%)]" />
+        </div>
+        <div className="container-narrow text-center relative z-10">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to Transform Your Learning Experience?
           </h2>
-          <p className="text-xl text-ocean-100 mb-8 max-w-xl mx-auto">
+          <p className="text-xl text-amber-100 mb-8 max-w-xl mx-auto">
             Whether you're hiring or need consulting, let's discuss how I can help
             bring AI-powered learning to your organization.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link to="/consulting" className="btn bg-white text-ocean-600 hover:bg-neutral-100 btn-lg">
+            <Link to="/consulting" className="btn bg-white text-amber-600 hover:bg-neutral-100 btn-lg">
               Consulting Services
             </Link>
             <Link to="/contact" className="btn border-2 border-white text-white hover:bg-white/10 btn-lg">

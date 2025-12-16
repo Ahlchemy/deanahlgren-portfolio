@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Thai: Interactive Course for Beginners</title>
+    <style>
+        /* Thai-inspired color palette */
+        :root {
+            --thai-red: #c32f1d;
+            --thai-bright-red: #cf331d;
+            --thai-sand: #d5c194;
+            --thai-gold: #e9991c;
+            --thai-brown: #a94e21;
+            --thai-green: #4a7c59;
+            --thai-blue: #5b8e9d;
+            --thai-white: #f9f6f0;
+            --thai-black: #2d2d2d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--thai-black);
+            background-color: var(--thai-white);
+        }
+
+        /* Header and Navigation */
+        header {
+            background: linear-gradient(to right, var(--thai-red), var(--thai-bright-red));
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('resources/header-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        nav {
+            background-color: var(--thai-gold);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 0 1rem;
+        }
+
+        nav a {
+            color: var(--thai-black);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: var(--thai-brown);
+            color: white;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(to right, var(--thai-red), var(--thai-gold));
+            border-radius: 10px 10px 0 0;
+        }
+
+        h2 {
+            color: var(--thai-red);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--thai-sand);
+            font-size: 2rem;
+        }
+
+        h3 {
+            color: var(--thai-brown);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        /* Thai Alphabet Section */
+        .alphabet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .thai-char {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            background-color: var(--thai-sand);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .thai-char:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .thai-char .character {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .thai-char .romanization {
+            font-size: 0.9rem;
+            color: var(--thai-brown);
+        }
+
+        /* Phrases Section */
+        .phrase-card {
+            background-color: var(--thai-white);
+            border-left: 5px solid var(--thai-gold);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0 5px 5px 0;
+            transition: transform 0.3s ease;
+        }
+
+        .phrase-card:hover {
+            transform: translateX(5px);
+        }
+
+        .phrase-thai {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            font-weight: bold;
+        }
+
+        .phrase-romanization {
+            color: var(--thai-brown);
+            font-style: italic;
+            margin-bottom: 0.3rem;
+        }
+
+        .phrase-english {
+            color: var(--thai-black);
+        }
+
+        .play-audio {
+            background-color: var(--thai-gold);
+            border: none;
+            color: white;
+            padding: 0.3rem 0.7rem;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-left: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .play-audio:hover {
+            background-color: var(--thai-brown);
+        }
+
+        /* Mini Tests */
+        .mini-test {
+            background-color: var(--thai-blue);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .mini-test h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .question {
+            margin-bottom: 1.5rem;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .option {
+            background-color: white;
+            color: var(--thai-black);
+            padding: 0.8rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        .option:hover {
+            background-color: var(--thai-sand);
+        }
+
+        .option.correct {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .option.incorrect {
+            background-color: #F44336;
+            color: white;
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .feedback.correct {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #2E7D32;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background-color: rgba(244, 67, 54, 0.2);
+            color: #C62828;
+            display: block;
+        }
+
+        /* Cultural Notes */
+        .culture-note {
+            background-color: rgba(74, 124, 89, 0.1);
+            border-left: 5px solid var(--thai-green);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .culture-note h4 {
+            color: var(--thai-green);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Images and Media */
+        .image-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-caption {
+            margin-top: 0.5rem;
+            font-style: italic;
+            color: var(--thai-brown);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem 0;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav li {
+                margin: 0.5rem 0;
+            }
+
+            main {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            .alphabet-grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            }
+
+            .options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--thai-black);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .attribution {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Decorative Elements */
+        .thai-decoration {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-image: url('resources/thai-decoration.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .decoration-1 {
+            top: 20px;
+            right: 20px;
+            transform: rotate(45deg);
+        }
+
+        .decoration-2 {
+            bottom: 20px;
+            left: 20px;
+            transform: rotate(-45deg);
+        }
+
+        /* Progress Indicator */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 5px;
+            background: transparent;
+            z-index: 101;
+        }
+
+        .progress-bar {
+            height: 5px;
+            background: var(--thai-gold);
+            width: 0%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <h1>Learn Thai: Interactive Course for Beginners</h1>
+            <p class="subtitle">Master the basics of Thai language for your travels</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#alphabet">Thai Alphabet</a></li>
+            <li><a href="#pronunciation">Pronunciation</a></li>
+            <li><a href="#greetings">Greetings</a></li>
+            <li><a href="#travel">Travel Phrases</a></li>
+            <li><a href="#food">Food & Dining</a></li>
+            <li><a href="#culture">Cultural Notes</a></li>
+            <li><a href="#resources">Resources</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Introduction Section -->
+        <section id="introduction">
+            <h2>Introduction to Thai Language</h2>
+            <p>Welcome to our interactive Thai language course designed specifically for beginners and travelers! Thai (ภาษาไทย, pronounced "paa-saa-tai") is the official language of Thailand and is spoken by about 60 million people.</p>
+            
+            <p>Thailand is known for its beautiful beaches, delicious cuisine, rich culture, and friendly people. Learning even a few basic Thai phrases can greatly enhance your travel experience and show respect for the local culture.</p>
+            
+            <div class="culture-note">
+                <h4>Cultural Insight</h4>
+                <p>Thai people greatly appreciate foreigners who make an effort to speak their language. Even simple greetings can bring smiles and open doors to more authentic experiences during your travels.</p>
+            </div>
+            
+            <h3>How to Use This Course</h3>
+            <p>This course is designed as a single-page interactive experience. Simply scroll through the sections or use the navigation menu to jump to specific topics. Each section includes:</p>
+            <ul style="margin-left: 2rem;">
+                <li>Clear explanations with examples</li>
+                <li>Audio pronunciations (click the sound icons)</li>
+                <li>Visual aids to help with learning</li>
+                <li>Mini-tests to reinforce your learning</li>
+            </ul>
+            
+            <div class="mini-test">
+                <h4>Mini-Test: Ready to Begin?</h4>
+                <div class="question">What is the official language of Thailand called in Thai?</div>
+                <div class="options">
+                    <div class="option" data-correct="true">ภาษาไทย (paa-saa-tai)</div>
+                    <div class="option">ประเทศไทย (pra-tet-tai)</div>
+                    <div class="option">สวัสดี (sa-wat-dee)</div>
+                    <div class="option">ขอบคุณ (kop-kun)</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+        </section>
+
+        <!-- Thai Alphabet Section -->
+        <section id="alphabet">
+            <h2>Thai Alphabet Basics</h2>
+            <p>The Thai alphabet consists of 44 consonants and 15 vowel symbols that combine to create 28 vowel forms. Unlike English, Thai is written without spaces between words, and the script flows from left to right.</p>
+            
+            <div class="image-container">
+                <img src="resources/thai-alphabet-chart.jpg" alt="Thai Alphabet Chart">
+                <p class="image-caption">The Thai alphabet with consonants and vowels</p>
+            </div>
+            
+            <h3>Consonants (พยัญชนะ)</h3>
+            <p>Here are some of the most common Thai consonants you'll encounter:</p>
+            
+            <div class="alphabet-grid">
+                <div class="thai-char" data-audio="k.mp3">
+                    <div class="character">ก</div>
+                    <div class="romanization">k</div>
+                </div>
+                <div class="thai-char" data-audio="kh.mp3">
+                    <div class="character">ข</div>
+                    <div class="romanization">kh</div>
+                </div>
+                <div class="thai-char" data-audio="ng.mp3">
+                    <div class="character">ง</div>
+                    <div class="romanization">ng</div>
+                </div>
+                <div class="thai-char" data-audio="j.mp3">
+                    <div class="character">จ</div>
+                    <div class="romanization">j</div>
+                </div>
+                <div class="thai-char" data-audio="t.mp3">
+                    <div class="character">ต</div>
+                    <div class="romanization">t</div>
+                </div>
+                <div class="thai-char" data-audio="th.mp3">
+                    <div class="character">ท</div>
+                    <div class="romanization">th</div>
+                </div>
+                <div class="thai-char" data-audio="n.mp3">
+                    <div class="character">น</div>
+                    <div class="romanization">n</div>
+                </div>
+                <div class="thai-char" data-audio="p.mp3">
+                    <div class="character">ป</div>
+                    <div class="romanization">p</div>
+                </div>
+                <div class="thai-char" data-audio="m.mp3">
+                    <div class="character">ม</div>
+                    <div class="romanization">m</div>
+                </div>
+                <div class="thai-char" data-audio="r.mp3">
+                    <div class="character">ร</div>
+                    <div class="romanization">r</div>
+                </div>
+                <div class="thai-char" data-audio="l.mp3">
+                    <div class="character">ล</div>
+                    <div class="romanization">l</div>
+                </div>
+                <div class="thai-char" data-audio="w.mp3">
+                    <div class="character">ว</div>
+                    <div class="romanization">w</div>
+                </div>
+                <div class="thai-char" data-audio="s.mp3">
+                    <div class="character">ส</div>
+                    <div class="romanization">s</div>
+                </div>
+                <div class="thai-char" data-audio="h.mp3">
+                    <div class="character">ห</div>
+                    <div class="romanization">h</div>
+                </div>
+                <div class="thai-char" data-audio="o.mp3">
+                    <div class="character">อ</div>
+                    <div class="romanization">o</div>
+                </div>
+            </div>
+            
+            <h3>Vowels (สระ)</h3>
+            <p>Thai vowels can appear before, after, above, or below consonants. Here are some common vowels:</p>
+            
+            <div class="alphabet-grid">
+                <div class="thai-char" data-audio="a.mp3">
+                    <div class="character">-ะ</div>
+                    <div class="romanization">a (short)</div>
+                </div>
+                <div class="thai-char" data-audio="aa.mp3">
+                    <div class="character">-า</div>
+                    <div class="romanization">aa (long)</div>
+                </div>
+                <div class="thai-char" data-audio="i.mp3">
+                    <div class="character">-ิ</div>
+                    <div class="romanization">i (short)</div>
+                </div>
+                <div class="thai-char" data-audio="ii.mp3">
+                    <div class="character">-ี</div>
+                    <div class="romanization">ii (long)</div>
+                </div>
+                <div class="thai-char" data-audio="u.mp3">
+                    <div class="character">-ุ</div>
+                    <div class="romanization">u (short)</div>
+                </div>
+                <div class="thai-char" data-audio="uu.mp3">
+                    <div class="character">-ู</div>
+                    <div class="romanization">uu (long)</div>
+                </div>
+                <div class="thai-char" data-audio="e.mp3">
+                    <div class="character">เ-ะ</div>
+                    <div class="romanization">e (short)</div>
+                </div>
+                <div class="thai-char" data-audio="ee.mp3">
+                    <div class="character">เ-</div>
+                    <div class="romanization">ee (long)</div>
+                </div>
+                <div class="thai-char" data-audio="o.mp3">
+                    <div class="character">โ-ะ</div>
+                    <div class="romanization">o (short)</div>
+                </div>
+                <div class="thai-char" data-audio="oo.mp3">
+                    <div class="character">โ-</div>
+                    <div class="romanization">oo (long)</div>
+                </div>
+            </div>
+            
+            <h3>Thai Numbers</h3>
+            <p>Here are the Thai numerals from 0 to 9:</p>
+            
+            <div class="alphabet-grid">
+                <div class="thai-char" data-audio="0.mp3">
+                    <div class="character">๐</div>
+                    <div class="romanization">0</div>
+                </div>
+                <div class="thai-char" data-audio="1.mp3">
+                    <div class="character">๑</div>
+                    <div class="romanization">1</div>
+                </div>
+                <div class="thai-char" data-audio="2.mp3">
+                    <div class="character">๒</div>
+                    <div class="romanization">2</div>
+                </div>
+                <div class="thai-char" data-audio="3.mp3">
+                    <div class="character">๓</div>
+                    <div class="romanization">3</div>
+                </div>
+                <div class="thai-char" data-audio="4.mp3">
+                    <div class="character">๔</div>
+                    <div class="romanization">4</div>
+                </div>
+                <div class="thai-char" data-audio="5.mp3">
+                    <div class="character">๕</div>
+                    <div class="romanization">5</div>
+                </div>
+                <div class="thai-char" data-audio="6.mp3">
+                    <div class="character">๖</div>
+                    <div class="romanization">6</div>
+                </div>
+                <div class="thai-char" data-audio="7.mp3">
+                    <div class="character">๗</div>
+                    <div class="romanization">7</div>
+                </div>
+                <div class="thai-char" data-audio="8.mp3">
+                    <div class="character">๘</div>
+                    <div class="romanization">8</div>
+                </div>
+                <div class="thai-char" data-audio="9.mp3">
+                    <div class="character">๙</div>
+                    <div class="romanization">9</div>
+                </div>
+            </div>
+            
+            <div class="mini-test">
+                <h4>Mini-Test: Thai Characters</h4>
+                <div class="question">Which Thai character represents the "ng" sound?</div>
+                <div class="options">
+                    <div class="option">ก</div>
+                    <div class="option" data-correct="true">ง</div>
+                    <div class="option">ข</div>
+                    <div class="option">จ</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+        </section>
+
+        <!-- Pronunciation Section -->
+        <section id="pronunciation">
+            <h2>Essential Thai Pronunciation</h2>
+            <p>Thai is a tonal language with five distinct tones. The same word pronounced with different tones can have completely different meanings.</p>
+            
+            <h3>The Five Tones of Thai</h3>
+            <div class="phrase-card">
+                <div class="phrase-thai">มา (mid tone)</div>
+                <div class="phrase-romanization">ma</div>
+                <div class="phrase-english">to come</div>
+                <button class="play-audio" data-audio="ma-mid.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">ม่า (low tone)</div>
+                <div class="phrase-romanization">mà</div>
+                <div class="phrase-english">horse</div>
+                <button class="play-audio" data-audio="ma-low.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">ม้า (falling tone)</div>
+                <div class="phrase-romanization">mâ</div>
+                <div class="phrase-english">horse</div>
+                <button class="play-audio" data-audio="ma-falling.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">ม๊า (high tone)</div>
+                <div class="phrase-romanization">má</div>
+                <div class="phrase-english">mother (Chinese)</div>
+                <button class="play-audio" data-audio="ma-high.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">ม๋า (rising tone)</div>
+                <div class="phrase-romanization">mǎ</div>
+                <div class="phrase-english">dog (in some dialects)</div>
+                <button class="play-audio" data-audio="ma-rising.mp3">▶</button>
+            </div>
+            
+            <h3>Pronunciation Tips</h3>
+            <ul style="margin-left: 2rem;">
+                <li>Pay close attention to tones - they change the meaning of words</li>
+                <li>Thai vowels can be short or long - the length affects meaning</li>
+                <li>Some Thai consonants have no direct equivalent in English</li>
+                <li>Final consonants often sound different than when they appear at the beginning of a word</li>
+                <li>Practice listening to native speakers to improve your pronunciation</li>
+            </ul>
+            
+            <div class="mini-test">
+                <h4>Mini-Test: Thai Tones</h4>
+                <div class="question">How many tones does the Thai language have?</div>
+                <div class="options">
+                    <div class="option">3</div>
+                    <div class="option">4</div>
+                    <div class="option" data-correct="true">5</div>
+                    <div class="option">6</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+        </section>
+
+        <!-- Greetings Section -->
+        <section id="greetings">
+            <h2>Greetings & Basic Expressions</h2>
+            <p>Learning how to greet people properly is essential in Thai culture. The traditional Thai greeting is the "wai" - a gesture where you press your palms together at chest or face level and slightly bow your head.</p>
+            
+            <div class="image-container">
+                <img src="resources/thai-wai.jpg" alt="Thai Wai Greeting">
+                <p class="image-caption">The traditional Thai wai greeting</p>
+            </div>
+            
+            <h3>Common Greetings</h3>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">สวัสดี</div>
+                <div class="phrase-romanization">sà-wàt-dee</div>
+                <div class="phrase-english">Hello</div>
+                <button class="play-audio" data-audio="sawatdee.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">สวัสดีครับ</div>
+                <div class="phrase-romanization">sà-wàt-dee kráp</div>
+                <div class="phrase-english">Hello (male speaker)</div>
+                <button class="play-audio" data-audio="sawatdee-krap.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">สวัสดีค่ะ</div>
+                <div class="phrase-romanization">sà-wàt-dee kâ</div>
+                <div class="phrase-english">Hello (female speaker)</div>
+                <button class="play-audio" data-audio="sawatdee-ka.mp3">▶</button>
+            </div>
+            
+            <div class="culture-note">
+                <h4>Cultural Insight</h4>
+                <p>In Thai, men end sentences with "ครับ" (kráp) and women with "ค่ะ" (kâ) to be polite. These particles don't have a specific meaning but show respect and politeness.</p>
+            </div>
+            
+            <h3>Basic Questions and Responses</h3>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">สบายดีไหม</div>
+                <div class="phrase-romanization">sà-baai-dee mǎi</div>
+                <div class="phrase-english">How are you?</div>
+                <button class="play-audio" data-audio="sabaideemai.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">สบายดีครับ/ค่ะ</div>
+                <div class="phrase-romanization">sà-baai-dee kráp/kâ</div>
+                <div class="phrase-english">I'm fine</div>
+                <button class="play-audio" data-audio="sabaidee.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">ขอบคุณ</div>
+                <div class="phrase-romanization">kòp-kun</div>
+                <div class="phrase-english">Thank you</div>
+                <button class="play-audio" data-audio="kopkun.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">ไม่เป็นไร</div>
+                <div class="phrase-romanization">mâi pen rai</div>
+                <div class="phrase-english">You're welcome/No problem</div>
+                <button class="play-audio" data-audio="maipenrai.mp3">▶</button>
+            </div>
+            
+            <div class="mini-test">
+                <h4>Mini-Test: Greetings</h4>
+                <div class="question">How do you say "Thank you" in Thai?</div>
+                <div class="options">
+                    <div class="option">สวัสดี (sà-wàt-dee)</div>
+                    <div class="option" data-correct="true">ขอบคุณ (kòp-kun)</div>
+                    <div class="option">ไม่เป็นไร (mâi pen rai)</div>
+                    <div class="option">สบายดี (sà-baai-dee)</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+        </section>
+
+        <!-- Travel Phrases Section -->
+        <section id="travel">
+            <h2>Essential Travel Phrases</h2>
+            <p>These phrases will help you navigate through Thailand with ease. Learning these key expressions can make your travel experience much smoother.</p>
+            
+            <h3>Getting Around</h3>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">ไปที่นี่ได้อย่างไร</div>
+                <div class="phrase-romanization">pai têe nêe dâi yàang-rai</div>
+                <div class="phrase-english">How do I get here?</div>
+                <button class="play-audio" data-audio="how-to-get-here.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">ที่ไหน</div>
+                <div class="phrase-romanization">têe nǎi</div>
+                <div class="phrase-english">Where?</div>
+                <button class="play-audio" data-audio="where.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">ไกลไหม</div>
+                <div class="phrase-romanization">glai mǎi</div>
+                <div class="phrase-english">Is it far?</div>
+                <button class="play-audio" data-audio="is-it-far.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">เท่าไหร่</div>
+                <div class="phrase-romanization">tâo-rài</div>
+                <div class="phrase-english">How much?</div>
+                <button class="play-audio" data-audio="how-much.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">ตรงไป</div>
+                <div class="phrase-romanization">trong pai</div>
+                <div class="phrase-english">Go straight</div>
+                <button class="play-audio" data-audio="go-straight.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">เลี้ยวซ้าย</div>
+                <div class="phrase-romanization">líeow sáai</div>
+                <div class="phrase-english">Turn left</div>
+                <button class="play-audio" data-audio="turn-left.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">เลี้ยวขวา</div>
+                <div class="phrase-romanization">líeow kwǎa</div>
+                <div class="phrase-english">Turn right</div>
+                <button class="play-audio" data-audio="turn-right.mp3">▶</button>
+            </div>
+            
+            <h3>Transportation</h3>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">รถแท็กซี่</div>
+                <div class="phrase-romanization">rót tɛ́k-sêe</div>
+                <div class="phrase-english">Taxi</div>
+                <button class="play-audio" data-audio="taxi.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">รถเมล์</div>
+                <div class="phrase-romanization">rót-may</div>
+                <div class="phrase-english">Bus</div>
+                <button class="play-audio" data-audio="bus.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">รถไฟฟ้า</div>
+                <div class="phrase-romanization">rót-fai-fáa</div>
+                <div class="phrase-english">Sky train/Subway</div>
+                <button class="play-audio" data-audio="skytrain.mp3">▶</button>
+            </div>
+            
+            <div class="mini-test">
+                <h4>Mini-Test: Getting Around</h4>
+                <div class="question">How do you ask "How much?" in Thai?</div>
+                <div class="options">
+                    <div class="option">ที่ไหน (têe nǎi)</div>
+                    <div class="option">ไกลไหม (glai mǎi)</div>
+                    <div class="option" data-correct="true">เท่าไหร่ (tâo-rài)</div>
+                    <div class="option">ตรงไป (trong pai)</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+        </section>
+
+        <!-- Food & Dining Section -->
+        <section id="food">
+            <h2>Food & Dining Phrases</h2>
+            <p>Thailand is famous for its delicious cuisine. These phrases will help you order food and enjoy the local culinary delights.</p>
+            
+            <div class="image-container">
+                <img src="resources/thai-food.jpg" alt="Thai Food">
+                <p class="image-caption">Traditional Thai dishes</p>
+            </div>
+            
+            <h3>Ordering Food</h3>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">เมนู</div>
+                <div class="phrase-romanization">me-noo</div>
+                <div class="phrase-english">Menu</div>
+                <button class="play-audio" data-audio="menu.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">น้ำ</div>
+                <div class="phrase-romanization">náam</div>
+                <div class="phrase-english">Water</div>
+                <button class="play-audio" data-audio="water.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">ข้าว</div>
+                <div class="phrase-romanization">kâao</div>
+                <div class="phrase-english">Rice</div>
+                <button class="play-audio" data-audio="rice.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">เผ็ด</div>
+                <div class="phrase-romanization">pèt</div>
+                <div class="phrase-english">Spicy</div>
+                <button class="play-audio" data-audio="spicy.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">ไม่เผ็ด</div>
+                <div class="phrase-romanization">mâi pèt</div>
+                <div class="phrase-english">Not spicy</div>
+                <button class="play-audio" data-audio="not-spicy.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">อร่อย</div>
+                <div class="phrase-romanization">à-ròi</div>
+                <div class="phrase-english">Delicious</div>
+                <button class="play-audio" data-audio="delicious.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">เก็บเงิน</div>
+                <div class="phrase-romanization">gèp ngern</div>
+                <div class="phrase-english">Bill, please</div>
+                <button class="play-audio" data-audio="bill.mp3">▶</button>
+            </div>
+            
+            <h3>Common Thai Dishes</h3>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">ผัดไทย</div>
+                <div class="phrase-romanization">pàt tai</div>
+                <div class="phrase-english">Pad Thai (stir-fried noodles)</div>
+                <button class="play-audio" data-audio="pad-thai.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">ต้มยำกุ้ง</div>
+                <div class="phrase-romanization">tom yam goong</div>
+                <div class="phrase-english">Tom Yum Soup with Shrimp</div>
+                <button class="play-audio" data-audio="tom-yum.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">ส้มตำ</div>
+                <div class="phrase-romanization">som tam</div>
+                <div class="phrase-english">Papaya Salad</div>
+                <button class="play-audio" data-audio="som-tam.mp3">▶</button>
+            </div>
+            
+            <div class="phrase-card">
+                <div class="phrase-thai">ข้าวผัด</div>
+                <div class="phrase-romanization">kâao pàt</div>
+                <div class="phrase-english">Fried Rice</div>
+                <button class="play-audio" data-audio="fried-rice.mp3">▶</button>
+            </div>
+            
+            <div class="mini-test">
+                <h4>Mini-Test: Food & Dining</h4>
+                <div class="question">Which phrase means "Not spicy" in Thai?</div>
+                <div class="options">
+                    <div class="option">เผ็ด (pèt)</div>
+                    <div class="option" data-correct="true">ไม่เผ็ด (mâi pèt)</div>
+                    <div class="option">อร่อย (à-ròi)</div>
+                    <div class="option">เก็บเงิน (gèp ngern)</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+        </section>
+
+        <!-- Cultural Notes Section -->
+        <section id="culture">
+            <h2>Cultural Notes</h2>
+            <p>Understanding Thai culture will enhance your travel experience and help you avoid unintentional cultural faux pas.</p>
+            
+            <h3>Important Cultural Customs</h3>
+            
+            <div class="culture-note">
+                <h4>The Royal Family</h4>
+                <p>The Thai royal family is deeply respected. It's illegal to speak disrespectfully about the monarchy. Always stand when the national anthem is played (at 8 am and 6 pm in public places).</p>
+            </div>
+            
+            <div class="culture-note">
+                <h4>The Wai Greeting</h4>
+                <p>The traditional Thai greeting is the "wai" - pressing your palms together at chest or face level with a slight bow. The higher the hands, the more respect is shown. Wait for older or higher-status people to initiate or return a wai.</p>
+            </div>
+            
+            <div class="culture-note">
+                <h4>Head and Feet</h4>
+                <p>The head is considered sacred in Thai culture, so avoid touching someone's head (even children). Feet are considered the lowest part of the body - don't point your feet at people or religious objects, and remove shoes before entering homes and temples.</p>
+            </div>
+            
+            <div class="culture-note">
+                <h4>Temple Etiquette</h4>
+                <p>Dress modestly when visiting temples (cover shoulders and knees). Remove shoes before entering temple buildings. Women should never touch or hand items directly to monks.</p>
+            </div>
+            
+            <div class="culture-note">
+                <h4>Thai Smile</h4>
+                <p>Thailand is known as the "Land of Smiles." Thai people smile in many situations - when happy, embarrassed, apologizing, or even when upset. Don't always interpret a smile as happiness or agreement.</p>
+            </div>
+            
+            <div class="mini-test">
+                <h4>Mini-Test: Cultural Awareness</h4>
+                <div class="question">When visiting a Thai temple, what should you do?</div>
+                <div class="options">
+                    <div class="option">Keep your shoes on at all times</div>
+                    <div class="option">Touch Buddha statues for good luck</div>
+                    <div class="option" data-correct="true">Dress modestly and remove shoes before entering buildings</div>
+                    <div class="option">Point your feet toward the Buddha image to show respect</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources">
+            <h2>Resources for Further Learning</h2>
+            <p>Continue your Thai language journey with these helpful resources:</p>
+            
+            <h3>Online Resources</h3>
+            <ul style="margin-left: 2rem;">
+                <li><a href="https://www.thai-language.com" target="_blank">Thai-Language.com</a> - Comprehensive Thai language learning site</li>
+                <li><a href="https://www.omniglot.com/writing/thai.htm" target="_blank">Omniglot Thai</a> - Information about the Thai writing system</li>
+                <li><a href="https://www.youtube.com/user/thailanguagehut" target="_blank">Thai Language Hut</a> - YouTube channel with Thai lessons</li>
+                <li><a href="https://www.youtube.com/c/ThaiwithMod" target="_blank">Thai with Mod</a> - YouTube channel for Thai pronunciation</li>
+            </ul>
+            
+            <h3>Mobile Apps</h3>
+            <ul style="margin-left: 2rem;">
+                <li>Ling - Specialized in Asian languages including Thai</li>
+                <li>Drops - Visual vocabulary learning with Thai support</li>
+                <li>Memrise - Spaced repetition vocabulary learning</li>
+                <li>ThaiPod101 - Audio and video lessons</li>
+            </ul>
+            
+            <h3>Practice Opportunities</h3>
+            <p>The best way to improve your Thai is to practice with native speakers. Consider:</p>
+            <ul style="margin-left: 2rem;">
+                <li>Language exchange apps like Tandem or HelloTalk</li>
+                <li>Online tutoring through italki or Preply</li>
+                <li>Local Thai cultural events or restaurants</li>
+                <li>Thai temples or cultural centers in your area</li>
+            </ul>
+            
+            <div class="mini-test">
+                <h4>Mini-Test: Learning Resources</h4>
+                <div class="question">Which of these is a good way to practice Thai with native speakers?</div>
+                <div class="options">
+                    <div class="option">Only watching Thai movies</div>
+                    <div class="option">Memorizing a Thai dictionary</div>
+                    <div class="option" data-correct="true">Using language exchange apps like Tandem or HelloTalk</div>
+                    <div class="option">Reading Thai grammar books</div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Learn Thai: Interactive Course for Beginners</p>
+        <p class="attribution">
+            Resources used in this course are from open-source materials including Omniglot, BBC Languages, Thai with Mod, and other public domain sources.
+            <br>
+            Created for educational purposes only.
+        </p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Progress Bar
+            window.onscroll = function() {
+                let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                let scrolled = (winScroll / height) * 100;
+                document.getElementById("progressBar").style.width = scrolled + "%";
+            };
+            
+            // Mini-Tests
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => {
+                option.addEventListener('click', function() {
+                    const parent = this.parentElement;
+                    const feedback = parent.nextElementSibling;
+                    const allOptions = parent.querySelectorAll('.option');
+                    
+                    // Reset all options
+                    allOptions.forEach(opt => {
+                        opt.classList.remove('correct', 'incorrect');
+                    });
+                    
+                    // Check if correct
+                    if (this.hasAttribute('data-correct')) {
+                        this.classList.add('correct');
+                        feedback.textContent = "Correct! Well done!";
+                        feedback.className = "feedback correct";
+                    } else {
+                        this.classList.add('incorrect');
+                        const correctOption = parent.querySelector('[data-correct="true"]');
+                        correctOption.classList.add('correct');
+                        feedback.textContent = "Not quite. The correct answer is highlighted.";
+                        feedback.className = "feedback incorrect";
+                    }
+                });
+            });
+            
+            // Audio Playback
+            const audioButtons = document.querySelectorAll('.play-audio');
+            audioButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const audioFile = this.getAttribute('data-audio');
+                    // In a real implementation, this would play the audio file
+                    console.log(`Playing audio: ${audioFile}`);
+                    alert(`This would play the audio file: ${audioFile}\n\nIn a complete implementation, this button would trigger the pronunciation audio.`);
+                });
+            });
+            
+            // Thai Character Pronunciation
+            const thaiChars = document.querySelectorAll('.thai-char');
+            thaiChars.forEach(char => {
+                char.addEventListener('click', function() {
+                    const audioFile = this.getAttribute('data-audio');
+                    // In a real implementation, this would play the audio file
+                    console.log(`Playing audio: ${audioFile}`);
+                    alert(`This would play the audio file: ${audioFile}\n\nIn a complete implementation, this would play the pronunciation of this Thai character.`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Probability Distribution</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7fafc;
+            margin: 0;
+            padding: 20px;
+            color: #1a365d;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        h1 {
+            color: #1a365d;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        label {
+            font-weight: 600;
+            color: #4a5568;
+        }
+        
+        input[type="range"] {
+            width: 150px;
+            height: 6px;
+            border-radius: 3px;
+            background: #e2e8f0;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #3182ce;
+            cursor: pointer;
+        }
+        
+        .value-display {
+            font-weight: bold;
+            color: #3182ce;
+            font-size: 1.1em;
+        }
+        
+        .visualization-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .explanation {
+            background: #edf2f7;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3182ce;
+        }
+        
+        .business-example {
+            background: #f0fff4;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #38a169;
+            margin-top: 20px;
+        }
+        
+        .curve {
+            fill: none;
+            stroke: #3182ce;
+            stroke-width: 3;
+        }
+        
+        .area {
+            fill: rgba(49, 130, 206, 0.3);
+        }
+        
+        .axis {
+            stroke: #4a5568;
+            stroke-width: 2;
+        }
+        
+        .grid-line {
+            stroke: #e2e8f0;
+            stroke-width: 1;
+        }
+        
+        .axis-label {
+            font-size: 14px;
+            fill: #4a5568;
+            text-anchor: middle;
+        }
+        
+        .probability-text {
+            font-size: 16px;
+            font-weight: bold;
+            fill: #1a365d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Interactive Normal Distribution</h1>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label for="mean">Mean (μ)</label>
+                <input type="range" id="mean" min="-3" max="3" step="0.1" value="0">
+                <span class="value-display" id="meanValue">0</span>
+            </div>
+            
+            <div class="control-group">
+                <label for="stddev">Standard Deviation (σ)</label>
+                <input type="range" id="stddev" min="0.5" max="2" step="0.1" value="1">
+                <span class="value-display" id="stddevValue">1</span>
+            </div>
+            
+            <div class="control-group">
+                <label for="threshold">Threshold Value</label>
+                <input type="range" id="threshold" min="-3" max="3" step="0.1" value="1">
+                <span class="value-display" id="thresholdValue">1</span>
+            </div>
+        </div>
+        
+        <div class="visualization-container">
+            <svg width="800" height="400" id="distributionChart">
+                <!-- Grid lines -->
+                <g id="gridLines"></g>
+                
+                <!-- Axes -->
+                <line class="axis" x1="50" y1="350" x2="750" y2="350"></line>
+                <line class="axis" x1="50" y1="50" x2="50" y2="350"></line>
+                
+                <!-- Distribution curve -->
+                <path class="curve" id="distributionCurve"></path>
+                
+                <!-- Shaded area -->
+                <path class="area" id="shadedArea"></path>
+                
+                <!-- Threshold line -->
+                <line id="thresholdLine" stroke="#ed8936" stroke-width="2" stroke-dasharray="5,5"></line>
+                
+                <!-- Labels -->
+                <text class="axis-label" x="400" y="390">Value</text>
+                <text class="axis-label" x="25" y="200" transform="rotate(-90, 25, 200)">Probability Density</text>
+                
+                <!-- Probability text -->
+                <text class="probability-text" id="probabilityText" x="600" y="100"></text>
+            </svg>
+        </div>
+        
+        <div class="explanation">
+            <h3>Understanding the Normal Distribution</h3>
+            <p>The normal distribution is one of the most important probability distributions in statistics and machine learning. It's characterized by its bell-shaped curve and is defined by two parameters:</p>
+            <ul>
+                <li><strong>Mean (μ):</strong> The center of the distribution - where the peak occurs</li>
+                <li><strong>Standard Deviation (σ):</strong> How spread out the data is - larger values create wider curves</li>
+            </ul>
+            <p>The shaded area represents the probability that a randomly selected value will be greater than the threshold. This is a fundamental concept in hypothesis testing and decision-making.</p>
+        </div>
+        
+        <div class="business-example">
+            <h3>Business Application: Customer Response Time</h3>
+            <p><strong>Scenario:</strong> Your customer service team's response times follow a normal distribution. By adjusting the parameters above, you can model different scenarios:</p>
+            <ul>
+                <li><strong>Mean:</strong> Average response time (e.g., 2 hours)</li>
+                <li><strong>Standard Deviation:</strong> Consistency of service (lower = more consistent)</li>
+                <li><strong>Threshold:</strong> Your service level agreement (e.g., 3 hours)</li>
+            </ul>
+            <p>The shaded area shows the probability of missing your SLA target - a critical business metric!</p>
+        </div>
+    </div>
+
+    <script>
+        // Mathematical functions
+        function normalPDF(x, mean, stddev) {
+            const coefficient = 1 / (stddev * Math.sqrt(2 * Math.PI));
+            const exponent = -0.5 * Math.pow((x - mean) / stddev, 2);
+            return coefficient * Math.exp(exponent);
+        }
+        
+        function normalCDF(x, mean, stddev) {
+            return 0.5 * (1 + erf((x - mean) / (stddev * Math.sqrt(2))));
+        }
+        
+        function erf(x) {
+            // Approximation of error function
+            const a1 =  0.254829592;
+            const a2 = -0.284496736;
+            const a3 =  1.421413741;
+            const a4 = -1.453152027;
+            const a5 =  1.061405429;
+            const p  =  0.3275911;
+            
+            const sign = x >= 0 ? 1 : -1;
+            x = Math.abs(x);
+            
+            const t = 1.0 / (1.0 + p * x);
+            const y = 1.0 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
+            
+            return sign * y;
+        }
+        
+        // Chart dimensions
+        const chartWidth = 700;
+        const chartHeight = 300;
+        const xMin = -5;
+        const xMax = 5;
+        const yMax = 0.5;
+        
+        // Scale functions
+        function xScale(x) {
+            return 50 + (x - xMin) / (xMax - xMin) * chartWidth;
+        }
+        
+        function yScale(y) {
+            return 350 - (y / yMax) * chartHeight;
+        }
+        
+        // Update visualization
+        function updateVisualization() {
+            const mean = parseFloat(document.getElementById('mean').value);
+            const stddev = parseFloat(document.getElementById('stddev').value);
+            const threshold = parseFloat(document.getElementById('threshold').value);
+            
+            // Update value displays
+            document.getElementById('meanValue').textContent = mean.toFixed(1);
+            document.getElementById('stddevValue').textContent = stddev.toFixed(1);
+            document.getElementById('thresholdValue').textContent = threshold.toFixed(1);
+            
+            // Generate curve points
+            const points = [];
+            const areaPoints = [];
+            
+            for (let x = xMin; x <= xMax; x += 0.1) {
+                const y = normalPDF(x, mean, stddev);
+                points.push(`${xScale(x)},${yScale(y)}`);
+                
+                if (x >= threshold) {
+                    areaPoints.push(`${xScale(x)},${yScale(y)}`);
+                }
+            }
+            
+            // Update curve
+            document.getElementById('distributionCurve').setAttribute('d', `M ${points.join(' L ')}`);
+            
+            // Update shaded area
+            if (areaPoints.length > 0) {
+                const areaPath = `M ${xScale(threshold)},${yScale(0)} L ${areaPoints.join(' L ')} L ${xScale(xMax)},${yScale(0)} Z`;
+                document.getElementById('shadedArea').setAttribute('d', areaPath);
+            }
+            
+            // Update threshold line
+            const thresholdX = xScale(threshold);
+            document.getElementById('thresholdLine').setAttribute('x1', thresholdX);
+            document.getElementById('thresholdLine').setAttribute('x2', thresholdX);
+            document.getElementById('thresholdLine').setAttribute('y1', 50);
+            document.getElementById('thresholdLine').setAttribute('y2', 350);
+            
+            // Calculate and display probability
+            const probability = 1 - normalCDF(threshold, mean, stddev);
+            document.getElementById('probabilityText').textContent = `P(X > ${threshold.toFixed(1)}) = ${(probability * 100).toFixed(1)}%`;
+            
+            // Update grid lines
+            updateGridLines();
+        }
+        
+        function updateGridLines() {
+            const gridContainer = document.getElementById('gridLines');
+            gridContainer.innerHTML = '';
+            
+            // Vertical grid lines
+            for (let x = -4; x <= 4; x++) {
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('class', 'grid-line');
+                line.setAttribute('x1', xScale(x));
+                line.setAttribute('x2', xScale(x));
+                line.setAttribute('y1', 50);
+                line.setAttribute('y2', 350);
+                gridContainer.appendChild(line);
+            }
+            
+            // Horizontal grid lines
+            for (let y = 0; y <= 0.4; y += 0.1) {
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('class', 'grid-line');
+                line.setAttribute('x1', 50);
+                line.setAttribute('x2', 750);
+                line.setAttribute('y1', yScale(y));
+                line.setAttribute('y2', yScale(y));
+                gridContainer.appendChild(line);
+            }
+        }
+        
+        // Event listeners
+        document.getElementById('mean').addEventListener('input', updateVisualization);
+        document.getElementById('stddev').addEventListener('input', updateVisualization);
+        document.getElementById('threshold').addEventListener('input', updateVisualization);
+        
+        // Initial render
+        updateVisualization();
+    </script>
+</body>
+</html>
+

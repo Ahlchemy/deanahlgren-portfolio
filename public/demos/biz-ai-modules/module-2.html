@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 2: Machine Learning Basics | Ahlgren Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body data-module="2">
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="course-title">Business AI Application</h1>
+                <div class="nav-container">
+                    <div class="nav-buttons">
+                        <a href="module-1.html" class="nav-button" data-module="1" data-title="Intro to AI">1</a>
+                        <a href="module-2.html" class="nav-button active" data-module="2" data-title="ML Basics">2</a>
+                        <a href="module-3.html" class="nav-button" data-module="3" data-title="Neural Networks">3</a>
+                        <a href="module-4.html" class="nav-button" data-module="4" data-title="Vision & Language">4</a>
+                        <a href="module-5.html" class="nav-button" data-module="5" data-title="Robotics">5</a>
+                        <a href="module-6.html" class="nav-button" data-module="6" data-title="AI Strategy">6</a>
+                        <a href="module-7.html" class="nav-button" data-module="7" data-title="Change Management">7</a>
+                        <a href="module-8.html" class="nav-button" data-module="8" data-title="Responsible AI">8</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="module-header">
+            <h2 class="module-title">Module 2: Machine Learning Basics</h2>
+            <p class="module-subtitle">Understanding the core mechanisms that power AI systems</p>
+        </div>
+
+        <section class="exec-summary fade-in">
+            <h3>Executive Summary</h3>
+            <ul>
+                <li>Machine learning (ML) is the engine of AI—algorithms learn patterns from data to make predictions.</li>
+                <li>Three core ML paradigms: supervised, unsupervised, and reinforcement learning.</li>
+                <li>Data quality and quantity directly impact model performance; prioritize clean, relevant datasets.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Key Concepts</h3>
+            <p>If AI is the broader concept, then Machine Learning (ML) is the engine that powers it. ML involves algorithms learning from data to make predictions or identify patterns without being explicitly programmed. There are three main types:</p>
+            
+            <ul>
+                <li><strong>Supervised learning</strong> (learning from labeled data)</li>
+                <li><strong>Unsupervised learning</strong> (finding structure in unlabeled data)</li>
+                <li><strong>Reinforcement learning</strong> (learning through feedback and iteration)</li>
+            </ul>
+            
+            <p>Executives should understand that ML thrives on data quality and quantity. The better your data, the better your model.</p>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Interactive Charts</h3>
+            <div class="interactive-chart">
+                <canvas id="supervised-learning-chart"></canvas>
+            </div>
+            <div class="chart-controls">
+                <button id="trend-line-toggle" class="cta-button">Show Trend Line</button>
+            </div>
+            <p class="chart-description">This scatterplot illustrates how supervised models work. Toggle the trend line to see how a machine learning model would fit the data.</p>
+            
+            <div class="interactive-chart">
+                <canvas id="unsupervised-learning-chart"></canvas>
+            </div>
+            <p class="chart-description">This visualization demonstrates unsupervised clustering with dynamic color-coded customer segments based on spending behavior and engagement.</p>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Real-World Examples</h3>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <h4 class="example-title">Email Spam Filters</h4>
+                    <p>ML models train on labeled examples of spam emails to identify and filter out new spam messages.</p>
+                </div>
+                <div class="example-card">
+                    <h4 class="example-title">Fraud Detection</h4>
+                    <p>Banks use ML to detect anomalies in transaction patterns that might indicate fraudulent activity.</p>
+                </div>
+                <div class="example-card">
+                    <h4 class="example-title">Predictive Maintenance</h4>
+                    <p>Manufacturers use sensor data to predict equipment failure before it happens, reducing downtime.</p>
+                </div>
+                <div class="example-card">
+                    <h4 class="example-title">Customer Segmentation</h4>
+                    <p>E-commerce platforms group shoppers based on behavior patterns for targeted marketing campaigns.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Discussion Prompts</h3>
+            <ul class="prompts-list">
+                <li class="prompt-item">
+                    <p>What data sources do you already collect? Are they being used to their full potential?</p>
+                </li>
+                <li class="prompt-item">
+                    <p>Which business question could ML help answer in your organization?</p>
+                </li>
+                <li class="prompt-item">
+                    <p>Where would you need human oversight to ensure the reliability of an ML model?</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Knowledge Check: True or False</h3>
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    <p><strong>Question 1:</strong> In supervised learning, the algorithm learns from labeled training data to make predictions or decisions.</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q1" value="true"> True</label>
+                        <label class="quiz-option"><input type="radio" name="q1" value="false"> False</label>
+                    </div>
+                    <div class="quiz-answer" style="display: none;">
+                        <p><strong>Answer:</strong> True. Supervised learning algorithms are trained using labeled examples, where the input data comes with the desired output. The algorithm learns the mapping function from the input to the output.</p>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <p><strong>Question 2:</strong> Feature engineering is unnecessary when using deep learning models.</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q2" value="true"> True</label>
+                        <label class="quiz-option"><input type="radio" name="q2" value="false"> False</label>
+                    </div>
+                    <div class="quiz-answer" style="display: none;">
+                        <p><strong>Answer:</strong> False. While deep learning can automatically learn some features, feature engineering is still important for many applications. Good feature engineering can improve model performance, reduce training time, and make models more interpretable.</p>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <p><strong>Question 3:</strong> Overfitting occurs when a model performs well on training data but poorly on unseen data.</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q3" value="true"> True</label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="false"> False</label>
+                    </div>
+                    <div class="quiz-answer" style="display: none;">
+                        <p><strong>Answer:</strong> True. Overfitting happens when a model learns the training data too well, including its noise and outliers. This leads to excellent performance on training data but poor generalization to new, unseen data.</p>
+                    </div>
+                </div>
+                
+                <button id="checkAnswers" class="quiz-button">Check Answers</button>
+            </div>
+        </section>
+
+        <div class="cta-container">
+            <h3 class="cta-title">Call to Action</h3>
+            <p class="cta-text">Pick one dataset in your business and brainstorm with a data-savvy colleague how ML might unlock value from it.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <a href="module-1.html" class="cta-button">Previous Module</a>
+                <a href="module-3.html" class="cta-button">Continue to Module 3: Neural Networks & Deep Learning</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Business AI Application. All rights reserved. Developed by Dean Ahlgren.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Supervised Learning Scatterplot
+            const supervisedCtx = document.getElementById('supervised-learning-chart').getContext('2d');
+            
+            // Generate some random data points that roughly follow a linear trend
+            const generateData = () => {
+                const points = [];
+                for (let i = 0; i < 50; i++) {
+                    // Create a point with some random noise around a line
+                    const x = Math.random() * 100;
+                    // y = 0.5x + 10 + noise
+                    const y = 0.5 * x + 10 + (Math.random() * 20 - 10);
+                    points.push({x, y});
+                }
+                return points;
+            };
+            
+            const scatterData = generateData();
+            
+            // Calculate linear regression
+            const calculateRegression = (data) => {
+                let sumX = 0;
+                let sumY = 0;
+                let sumXY = 0;
+                let sumXX = 0;
+                const n = data.length;
+                
+                for (let i = 0; i < n; i++) {
+                    sumX += data[i].x;
+                    sumY += data[i].y;
+                    sumXY += data[i].x * data[i].y;
+                    sumXX += data[i].x * data[i].x;
+                }
+                
+                const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
+                const intercept = (sumY - slope * sumX) / n;
+                
+                return { slope, intercept };
+            };
+            
+            const regression = calculateRegression(scatterData);
+            
+            // Create regression line data
+            const regressionLine = [];
+            for (let x = 0; x <= 100; x += 10) {
+                regressionLine.push({
+                    x: x,
+                    y: regression.slope * x + regression.intercept
+                });
+            }
+            
+            const supervisedChart = new Chart(supervisedCtx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Data Points',
+                        data: scatterData,
+                        backgroundColor: 'rgba(30, 64, 175, 0.7)',
+                        pointRadius: 6,
+                        pointHoverRadius: 8
+                    }, {
+                        label: 'Trend Line (ML Model)',
+                        data: regressionLine,
+                        type: 'line',
+                        borderColor: 'rgba(220, 38, 38, 0.8)',
+                        borderWidth: 3,
+                        pointRadius: 0,
+                        fill: false,
+                        hidden: true // Initially hidden
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom',
+                            title: {
+                                display: true,
+                                text: 'Feature X (e.g., Marketing Spend)'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Target Y (e.g., Revenue)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `X: ${context.parsed.x.toFixed(1)}, Y: ${context.parsed.y.toFixed(1)}`;
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Supervised Learning: Predicting Y from X',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Toggle trend line visibility
+            document.getElementById('trend-line-toggle').addEventListener('click', function() {
+                const trendLineVisible = !supervisedChart.data.datasets[1].hidden;
+                supervisedChart.data.datasets[1].hidden = trendLineVisible;
+                this.textContent = trendLineVisible ? 'Show Trend Line' : 'Hide Trend Line';
+                supervisedChart.update();
+            });
+            
+            // Unsupervised Learning Clustering Visualization
+            const unsupervisedCtx = document.getElementById('unsupervised-learning-chart').getContext('2d');
+            
+            // Generate cluster data
+            const generateClusters = () => {
+                const clusters = [
+                    // Cluster 1: High Spend, High Engagement
+                    Array.from({length: 20}, () => ({
+                        x: 70 + Math.random() * 25,
+                        y: 70 + Math.random() * 25
+                    })),
+                    // Cluster 2: Low Spend, High Engagement
+                    Array.from({length: 15}, () => ({
+                        x: 20 + Math.random() * 25,
+                        y: 70 + Math.random() * 25
+                    })),
+                    // Cluster 3: Medium Spend, Medium Engagement
+                    Array.from({length: 25}, () => ({
+                        x: 40 + Math.random() * 30,
+                        y: 40 + Math.random() * 30
+                    })),
+                    // Cluster 4: Low Spend, Low Engagement
+                    Array.from({length: 15}, () => ({
+                        x: 10 + Math.random() * 20,
+                        y: 10 + Math.random() * 20
+                    }))
+                ];
+                
+                return clusters;
+            };
+            
+            const clusters = generateClusters();
+            
+            const unsupervisedChart = new Chart(unsupervisedCtx, {
+                type: 'scatter',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Premium Customers',
+                            data: clusters[0],
+                            backgroundColor: 'rgba(16, 185, 129, 0.7)',
+                            pointRadius: 8,
+                            pointHoverRadius: 10
+                        },
+                        {
+                            label: 'Engaged Budget Customers',
+                            data: clusters[1],
+                            backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                            pointRadius: 8,
+                            pointHoverRadius: 10
+                        },
+                        {
+                            label: 'Average Customers',
+                            data: clusters[2],
+                            backgroundColor: 'rgba(245, 158, 11, 0.7)',
+                            pointRadius: 8,
+                            pointHoverRadius: 10
+                        },
+                        {
+                            label: 'At-Risk Customers',
+                            data: clusters[3],
+                            backgroundColor: 'rgba(239, 68, 68, 0.7)',
+                            pointRadius: 8,
+                            pointHoverRadius: 10
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom',
+                            min: 0,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Customer Spending'
+                            }
+                        },
+                        y: {
+                            min: 0,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Customer Engagement'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const labels = {
+                                        0: 'Premium Customer',
+                                        1: 'Engaged Budget Customer',
+                                        2: 'Average Customer',
+                                        3: 'At-Risk Customer'
+                                    };
+                                    return `${labels[context.datasetIndex]}: Spending ${context.parsed.x.toFixed(0)}, Engagement ${context.parsed.y.toFixed(0)}`;
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Unsupervised Learning: Customer Segmentation',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

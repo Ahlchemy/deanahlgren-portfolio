@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+
+  <title>Labeled Graphic Component</title>
+
+  <!-- Base styles -->
+  <link type="text/css" rel="stylesheet" href="../../lib/icomoon.css">
+  
+  <!-- Required scripts -->
+  <script type="text/javascript" src="../../lib/player-0.0.11.min.js"></script>
+  <script type="text/javascript" src="../../lib/lzwcompress.js"></script>
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="../../lib/sandbox/4adfab46.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      color: #ff631e;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .instructions {
+      margin-bottom: 30px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-left: 4px solid #ff631e;
+    }
+
+    .labeled-graphic {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+
+    .main-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .hotspot {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: rgba(255, 99, 30, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      z-index: 2;
+    }
+
+    .hotspot:hover {
+      transform: scale(1.1);
+      background-color: rgba(255, 99, 30, 1);
+    }
+
+    .hotspot.active {
+      background-color: #3e8ed0;
+    }
+
+    .tooltip {
+      position: absolute;
+      background-color: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      width: 250px;
+      display: none;
+      z-index: 3;
+    }
+
+    .tooltip.visible {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .tooltip h3 {
+      margin-top: 0;
+      color: #ff631e;
+      font-size: 18px;
+    }
+
+    .tooltip p {
+      margin-bottom: 0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .tooltip-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      color: #888;
+    }
+
+    .tooltip-close:hover {
+      color: #333;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: #ff631e;
+      text-decoration: none;
+    }
+    
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile responsive styles */
+    @media (max-width: 768px) {
+      .tooltip {
+        width: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Labeled Graphic Component</h1>
+    
+    <div class="instructions">
+      <p>Click on the numbered hotspots to view additional information about each part of the image.</p>
+    </div>
+    
+    <div class="labeled-graphic">
+      <!-- Main image -->
+      <img src="images/laptop-work.jpg" class="main-image" alt="Workspace with laptop">
+      
+      <!-- Hotspots -->
+      <div class="hotspot" style="top: 35%; left: 15%;" data-tooltip="tooltip1">1</div>
+      <div class="hotspot" style="top: 50%; left: 50%;" data-tooltip="tooltip2">2</div>
+      <div class="hotspot" style="top: 70%; left: 75%;" data-tooltip="tooltip3">3</div>
+      
+      <!-- Tooltips -->
+      <div id="tooltip1" class="tooltip">
+        <span class="tooltip-close">&times;</span>
+        <h3>Modern Workspace</h3>
+        <p>A clean, organized workspace promotes productivity and clear thinking. Natural light improves mood and energy levels, while plants can reduce stress and improve air quality.</p>
+      </div>
+      
+      <div id="tooltip2" class="tooltip">
+        <span class="tooltip-close">&times;</span>
+        <h3>High-Performance Tools</h3>
+        <p>Using the right hardware and software can dramatically increase your efficiency. Regular updates and maintenance ensure your digital tools perform at their best.</p>
+      </div>
+      
+      <div id="tooltip3" class="tooltip">
+        <span class="tooltip-close">&times;</span>
+        <h3>Task Management</h3>
+        <p>Effective task management systems help prioritize work, set deadlines, and track progress. Digital tools like calendars and project management software can be synchronized across devices.</p>
+      </div>
+    </div>
+    
+    <a href="../index.html" class="back-link">← Back to Components List</a>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const hotspots = document.querySelectorAll('.hotspot');
+      const tooltips = document.querySelectorAll('.tooltip');
+      const closeButtons = document.querySelectorAll('.tooltip-close');
+      
+      // Function to position tooltip based on hotspot position
+      function positionTooltip(hotspot, tooltip) {
+        const hotspotRect = hotspot.getBoundingClientRect();
+        const tooltipWidth = tooltip.offsetWidth;
+        const tooltipHeight = tooltip.offsetHeight;
+        const viewportWidth = window.innerWidth;
+        
+        // Calculate base position (centered below hotspot)
+        let left = hotspotRect.left + (hotspotRect.width / 2) - (tooltipWidth / 2);
+        let top = hotspotRect.top + hotspotRect.height + 10;
+        
+        // Adjust if tooltip goes off-screen
+        if (left < 10) left = 10;
+        if (left + tooltipWidth > viewportWidth - 10) left = viewportWidth - tooltipWidth - 10;
+        
+        // Convert to position relative to the graphic container
+        const graphicRect = document.querySelector('.labeled-graphic').getBoundingClientRect();
+        let relativeLeft = left - graphicRect.left;
+        let relativeTop = top - graphicRect.top;
+        
+        // Apply position
+        tooltip.style.left = relativeLeft + 'px';
+        tooltip.style.top = relativeTop + 'px';
+      }
+      
+      // Click event for hotspots
+      hotspots.forEach(hotspot => {
+        hotspot.addEventListener('click', function() {
+          // Hide all tooltips
+          tooltips.forEach(t => t.classList.remove('visible'));
+          
+          // Remove active class from all hotspots
+          hotspots.forEach(h => h.classList.remove('active'));
+          
+          // Get tooltip id from data attribute
+          const tooltipId = this.getAttribute('data-tooltip');
+          const tooltip = document.getElementById(tooltipId);
+          
+          if (tooltip) {
+            // Position and show tooltip
+            positionTooltip(this, tooltip);
+            tooltip.classList.add('visible');
+            this.classList.add('active');
+          }
+        });
+      });
+      
+      // Close button functionality
+      closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          this.parentNode.classList.remove('visible');
+          hotspots.forEach(h => h.classList.remove('active'));
+        });
+      });
+      
+      // Click outside to close
+      document.addEventListener('click', function(event) {
+        if (!event.target.closest('.hotspot') && !event.target.closest('.tooltip')) {
+          tooltips.forEach(tooltip => tooltip.classList.remove('visible'));
+          hotspots.forEach(hotspot => hotspot.classList.remove('active'));
+        }
+      });
+      
+      // Reposition tooltips on window resize
+      window.addEventListener('resize', function() {
+        const visibleTooltip = document.querySelector('.tooltip.visible');
+        if (visibleTooltip) {
+          const activeHotspot = document.querySelector('.hotspot.active');
+          if (activeHotspot) {
+            positionTooltip(activeHotspot, visibleTooltip);
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

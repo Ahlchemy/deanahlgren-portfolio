@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 6: AI Strategy | Ahlgren Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body data-module="6">
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="course-title">Business AI Application</h1>
+                <div class="nav-container">
+                    <div class="nav-buttons">
+                        <a href="module-1.html" class="nav-button" data-module="1" data-title="Intro to AI">1</a>
+                        <a href="module-2.html" class="nav-button" data-module="2" data-title="ML Basics">2</a>
+                        <a href="module-3.html" class="nav-button" data-module="3" data-title="Neural Networks">3</a>
+                        <a href="module-4.html" class="nav-button" data-module="4" data-title="Vision & Language">4</a>
+                        <a href="module-5.html" class="nav-button" data-module="5" data-title="Robotics">5</a>
+                        <a href="module-6.html" class="nav-button active" data-module="6" data-title="AI Strategy">6</a>
+                        <a href="module-7.html" class="nav-button" data-module="7" data-title="Change Management">7</a>
+                        <a href="module-8.html" class="nav-button" data-module="8" data-title="Responsible AI">8</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="module-header">
+            <h2 class="module-title">Module 6: AI Strategy</h2>
+            <p class="module-subtitle">Developing a comprehensive roadmap for AI implementation in your organization</p>
+        </div>
+
+        <section class="exec-summary fade-in">
+            <h3>Executive Summary</h3>
+            <ul>
+                <li>An AI strategy aligns technical capabilities with business outcomes through a clear roadmap and prioritized use-case portfolio.</li>
+                <li>Critical pillars: data infrastructure, talent development, governance & ethics, change management, and build/buy/partner decisions.</li>
+                <li>Start with quick wins to demonstrate value while laying foundations for long-term transformative initiatives.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Key Concepts</h3>
+            <p>AI strategy is a roadmap aligning AI with your business objectives. A comprehensive AI strategy includes:</p>
+            
+            <ul>
+                <li><strong>Use case portfolio:</strong> Prioritized AI applications across your organization</li>
+                <li><strong>Roadmap by maturity level:</strong> Staged implementation based on complexity and readiness</li>
+                <li><strong>Infrastructure readiness:</strong> Data, compute, and technical capabilities assessment</li>
+                <li><strong>Build/buy/partner decisions:</strong> Strategic choices about implementation approach</li>
+                <li><strong>Governance frameworks:</strong> Policies for responsible AI development and use</li>
+                <li><strong>Talent and change management:</strong> People strategies for AI adoption</li>
+            </ul>
+            
+            <p>An effective AI strategy connects technology capabilities to business outcomes while addressing organizational readiness.</p>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Interactive Charts</h3>
+            <div class="interactive-chart">
+                <canvas id="strategic-roadmap"></canvas>
+            </div>
+            <p class="chart-description">This strategic roadmap shows year-by-year AI implementation milestones across different business functions.</p>
+            
+            <div class="interactive-chart">
+                <canvas id="feasibility-matrix"></canvas>
+                <div style="margin-top: 1rem; text-align: center;">
+                    <button id="add-use-case" class="cta-button">Add Use Case</button>
+                    <button id="reset-matrix" class="cta-button">Reset Matrix</button>
+                </div>
+            </div>
+            <p class="chart-description">This matrix helps prioritize AI use cases based on implementation feasibility and business value.</p>
+            
+            <div class="interactive-chart">
+                <canvas id="strategy-pillars"></canvas>
+                <div style="margin-top: 1rem; text-align: center;">
+                    <select id="pillar-selector" style="width: 80%; padding: 0.5rem; border-radius: 0.25rem; border: 1px solid #ccc;">
+                        <option value="all">All Pillars</option>
+                        <option value="data">Data & Infrastructure</option>
+                        <option value="talent">Talent & Capabilities</option>
+                        <option value="use-cases">Use Case Portfolio</option>
+                        <option value="governance">Governance & Ethics</option>
+                        <option value="change">Change Management</option>
+                    </select>
+                </div>
+            </div>
+            <p class="chart-description">This diagram shows the key pillars of a comprehensive AI strategy. Select a pillar to see details.</p>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Real-World Examples</h3>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <h4 class="example-title">Financial Services</h4>
+                    <p>Banks using NLP to review contracts and automate compliance checks, reducing review time by 60% while improving accuracy.</p>
+                </div>
+                <div class="example-card">
+                    <h4 class="example-title">Retail</h4>
+                    <p>Retailers optimizing logistics and inventory with AI-powered demand forecasting, reducing stockouts by 30% and carrying costs by 25%.</p>
+                </div>
+                <div class="example-card">
+                    <h4 class="example-title">Manufacturing</h4>
+                    <p>Manufacturers building AI platforms for predictive maintenance, reducing unplanned downtime by 45% and extending equipment life.</p>
+                </div>
+                <div class="example-card">
+                    <h4 class="example-title">Organizational Structure</h4>
+                    <p>Companies creating AI Centers of Excellence and governance committees to standardize approaches and share best practices.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Discussion Prompts</h3>
+            <ul class="prompts-list">
+                <li class="prompt-item">
+                    <p>Where is your organization on the AI maturity curve? What are the gaps to address?</p>
+                </li>
+                <li class="prompt-item">
+                    <p>What initiatives would you classify as quick wins versus long-term strategic bets?</p>
+                </li>
+                <li class="prompt-item">
+                    <p>What risks need to be governed and by whom in your AI implementation?</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Prompts for Real-World Use</h3>
+            <ul class="prompts-list">
+                <li class="prompt-item">
+                    <p><strong>Current State Assessment:</strong> Conduct an internal survey: "Where are we using AI today and what's the impact?"</p>
+                </li>
+                <li class="prompt-item">
+                    <p><strong>Strategy Workshop:</strong> Hold a strategy workshop with stakeholders from data, IT, and operations teams.</p>
+                </li>
+                <li class="prompt-item">
+                    <p><strong>Prioritization Exercise:</strong> Prioritize potential use cases in a 2x2 matrix with your leadership team.</p>
+                </li>
+            </ul>
+        </section>
+
+        <div class="cta-container">
+            <h3 class="cta-title">Call to Action</h3>
+            <p class="cta-text">Commit to building your AI strategy deck. Include use case candidates, team readiness, and a 12-month action roadmap. Present it to your leadership or board as a strategic initiative.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <a href="module-5.html" class="cta-button">Previous Module</a>
+                <a href="module-7.html" class="cta-button">Continue to Module 7: Change Management for AI</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Business AI Application. All rights reserved. Developed by Dean Ahlgren.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Strategic Roadmap Chart
+            const roadmapCtx = document.getElementById('strategic-roadmap').getContext('2d');
+            
+            const roadmapData = {
+                labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
+                datasets: [
+                    {
+                        label: 'Data Infrastructure',
+                        data: [30, 60, 80, 90, 95],
+                        backgroundColor: 'rgba(59, 130, 246, 0.6)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'AI Applications',
+                        data: [10, 40, 70, 85, 90],
+                        backgroundColor: 'rgba(16, 185, 129, 0.6)',
+                        borderColor: 'rgba(16, 185, 129, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Talent & Capabilities',
+                        data: [20, 50, 75, 85, 90],
+                        backgroundColor: 'rgba(245, 158, 11, 0.6)',
+                        borderColor: 'rgba(245, 158, 11, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Governance',
+                        data: [40, 65, 80, 90, 95],
+                        backgroundColor: 'rgba(139, 92, 246, 0.6)',
+                        borderColor: 'rgba(139, 92, 246, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
+            
+            const roadmapChart = new Chart(roadmapCtx, {
+                type: 'line',
+                data: roadmapData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Maturity Level (%)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Implementation Timeline'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                afterLabel: function(context) {
+                                    const milestones = {
+                                        'Data Infrastructure': [
+                                            'Data lake implementation',
+                                            'Real-time analytics platform',
+                                            'Enterprise data mesh',
+                                            'Advanced data quality framework',
+                                            'Fully integrated data ecosystem'
+                                        ],
+                                        'AI Applications': [
+                                            'Pilot projects in 2-3 areas',
+                                            'Production deployment in key functions',
+                                            'Cross-functional AI solutions',
+                                            'Enterprise-wide AI platform',
+                                            'Self-optimizing AI systems'
+                                        ],
+                                        'Talent & Capabilities': [
+                                            'Initial AI team formation',
+                                            'Center of Excellence established',
+                                            'Distributed AI expertise model',
+                                            'Advanced AI skills across organization',
+                                            'Self-sustaining AI talent pipeline'
+                                        ],
+                                        'Governance': [
+                                            'Basic AI policies defined',
+                                            'Governance committee established',
+                                            'Comprehensive AI risk framework',
+                                            'Automated compliance monitoring',
+                                            'Industry-leading AI governance'
+                                        ]
+                                    };
+                                    
+                                    const label = context.dataset.label;
+                                    const index = context.dataIndex;
+                                    
+                                    return `Milestone: ${milestones[label][index]}`;
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'AI Strategy Implementation Roadmap',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Feasibility Matrix Chart
+            const matrixCtx = document.getElementById('feasibility-matrix').getContext('2d');
+            
+            // Initial use cases for the matrix
+            const useCases = [
+                { name: 'Customer Churn Prediction', feasibility: 85, value: 75, size: 15 },
+                { name: 'Predictive Maintenance', feasibility: 70, value: 90, size: 18 },
+                { name: 'Document Processing', feasibility: 90, value: 60, size: 12 },
+                { name: 'Supply Chain Optimization', feasibility: 60, value: 85, size: 16 },
+                { name: 'Fraud Detection', feasibility: 75, value: 95, size: 20 },
+                { name: 'HR Talent Analytics', feasibility: 80, value: 50, size: 10 }
+            ];
+            
+            // Prepare data for scatter plot
+            const matrixData = {
+                datasets: [{
+                    label: 'AI Use Cases',
+                    data: useCases.map(useCase => ({
+                        x: useCase.feasibility,
+                        y: useCase.value,
+                        r: useCase.size / 2 // Bubble size
+                    })),
+                    backgroundColor: useCases.map((_, index) => {
+                        // Generate different colors for each use case
+                        const colors = [
+                            'rgba(59, 130, 246, 0.7)',
+                            'rgba(16, 185, 129, 0.7)',
+                            'rgba(245, 158, 11, 0.7)',
+                            'rgba(239, 68, 68, 0.7)',
+                            'rgba(139, 92, 246, 0.7)',
+                            'rgba(14, 165, 233, 0.7)'
+                        ];
+                        return colors[index % colors.length];
+                    }),
+                    borderColor: 'rgba(30, 58, 138, 0.8)',
+                    borderWidth: 1
+                }]
+            };
+            
+            const matrixChart = new Chart(matrixCtx, {
+                type: 'bubble',
+                data: matrixData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            min: 0,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Implementation Feasibility'
+                            }
+                        },
+                        y: {
+                            min: 0,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Business Value'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const index = context.dataIndex;
+                                    const useCase = useCases[index];
+                                    return [
+                                        `Use Case: ${useCase.name}`,
+                                        `Feasibility: ${useCase.feasibility}%`,
+                                        `Business Value: ${useCase.value}%`,
+                                        `Relative Complexity: ${useCase.size}`
+                                    ];
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'AI Use Case Prioritization Matrix',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Add new use case button
+            document.getElementById('add-use-case').addEventListener('click', function() {
+                // Predefined new use cases to add
+                const newUseCases = [
+                    { name: 'Customer Sentiment Analysis', feasibility: 75, value: 65, size: 14 },
+                    { name: 'Inventory Optimization', feasibility: 85, value: 80, size: 17 },
+                    { name: 'Sales Forecasting', feasibility: 90, value: 85, size: 16 },
+                    { name: 'Personalized Marketing', feasibility: 65, value: 90, size: 19 }
+                ];
+                
+                // Add a random use case if we haven't exceeded our limit
+                if (useCases.length < 10) {
+                    const newUseCase = newUseCases[useCases.length - 6]; // Pick based on current length
+                    useCases.push(newUseCase);
+                    
+                    // Update chart data
+                    matrixChart.data.datasets[0].data.push({
+                        x: newUseCase.feasibility,
+                        y: newUseCase.value,
+                        r: newUseCase.size / 2
+                    });
+                    
+                    // Add a new color
+                    const colors = [
+                        'rgba(59, 130, 246, 0.7)',
+                        'rgba(16, 185, 129, 0.7)',
+                        'rgba(245, 158, 11, 0.7)',
+                        'rgba(239, 68, 68, 0.7)',
+                        'rgba(139, 92, 246, 0.7)',
+                        'rgba(14, 165, 233, 0.7)',
+                        'rgba(236, 72, 153, 0.7)',
+                        'rgba(168, 85, 247, 0.7)',
+                        'rgba(251, 146, 60, 0.7)',
+                        'rgba(34, 211, 238, 0.7)'
+                    ];
+                    matrixChart.data.datasets[0].backgroundColor.push(colors[(useCases.length - 1) % colors.length]);
+                    
+                    matrixChart.update();
+                    
+                    if (useCases.length >= 10) {
+                        this.disabled = true;
+                        this.textContent = 'Maximum Use Cases Added';
+                    }
+                }
+            });
+            
+            // Reset matrix button
+            document.getElementById('reset-matrix').addEventListener('click', function() {
+                // Reset to original use cases
+                useCases.length = 6; // Keep only the first 6
+                
+                // Update chart data
+                matrixChart.data.datasets[0].data = useCases.map(useCase => ({
+                    x: useCase.feasibility,
+                    y: useCase.value,
+                    r: useCase.size / 2
+                }));
+                
+                matrixChart.data.datasets[0].backgroundColor = useCases.map((_, index) => {
+                    const colors = [
+                        'rgba(59, 130, 246, 0.7)',
+                        'rgba(16, 185, 129, 0.7)',
+                        'rgba(245, 158, 11, 0.7)',
+                        'rgba(239, 68, 68, 0.7)',
+                        'rgba(139, 92, 246, 0.7)',
+                        'rgba(14, 165, 233, 0.7)'
+                    ];
+                    return colors[index % colors.length];
+                });
+                
+                matrixChart.update();
+                
+                // Re-enable add button
+                document.getElementById('add-use-case').disabled = false;
+                document.getElementById('add-use-case').textContent = 'Add Use Case';
+            });
+            
+            // Strategy Pillars Chart
+            const pillarsCtx = document.getElementById('strategy-pillars').getContext('2d');
+            
+            // Strategy pillars data
+            const pillarsData = {
+                labels: ['Data & Infrastructure', 'Talent & Capabilities', 'Use Case Portfolio', 'Governance & Ethics', 'Change Management'],
+                datasets: [{
+                    label: 'Importance',
+                    data: [90, 85, 95, 80, 75],
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.7)',
+                        'rgba(16, 185, 129, 0.7)',
+                        'rgba(245, 158, 11, 0.7)',
+                        'rgba(139, 92, 246, 0.7)',
+                        'rgba(239, 68, 68, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(59, 130, 246, 1)',
+                        'rgba(16, 185, 129, 1)',
+                        'rgba(245, 158, 11, 1)',
+                        'rgba(139, 92, 246, 1)',
+                        'rgba(239, 68, 68, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+            
+            // Detailed data for each pillar
+            const pillarDetails = {
+                'data': {
+                    label: 'Data & Infrastructure',
+                    data: [85, 70, 90, 75, 80],
+                    labels: ['Data Quality', 'Data Governance', 'Cloud Infrastructure', 'Data Integration', 'Security & Privacy']
+                },
+                'talent': {
+                    label: 'Talent & Capabilities',
+                    data: [65, 80, 75, 90, 70],
+                    labels: ['AI Specialists', 'Data Scientists', 'Domain Experts', 'Training Programs', 'Partnership Ecosystem']
+                },
+                'use-cases': {
+                    label: 'Use Case Portfolio',
+                    data: [95, 85, 75, 80, 90],
+                    labels: ['Strategic Alignment', 'ROI Potential', 'Implementation Feasibility', 'Scalability', 'Innovation Value']
+                },
+                'governance': {
+                    label: 'Governance & Ethics',
+                    data: [90, 85, 80, 75, 95],
+                    labels: ['Ethical Guidelines', 'Risk Management', 'Compliance Framework', 'Transparency', 'Accountability']
+                },
+                'change': {
+                    label: 'Change Management',
+                    data: [80, 85, 90, 70, 75],
+                    labels: ['Leadership Buy-in', 'Communication Plan', 'Training Strategy', 'Adoption Metrics', 'Feedback Loops']
+                },
+                'all': {
+                    label: 'All Pillars',
+                    data: [90, 85, 95, 80, 75],
+                    labels: ['Data & Infrastructure', 'Talent & Capabilities', 'Use Case Portfolio', 'Governance & Ethics', 'Change Management']
+                }
+            };
+            
+            const pillarsChart = new Chart(pillarsCtx, {
+                type: 'radar',
+                data: pillarsData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                stepSize: 20
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `Importance: ${context.raw}%`;
+                                },
+                                afterLabel: function(context) {
+                                    const descriptions = {
+                                        'Data & Infrastructure': 'Foundation for all AI initiatives',
+                                        'Talent & Capabilities': 'Skills needed to execute AI strategy',
+                                        'Use Case Portfolio': 'Prioritized AI applications',
+                                        'Governance & Ethics': 'Responsible AI framework',
+                                        'Change Management': 'Organizational adoption plan'
+                                    };
+                                    
+                                    const label = context.chart.data.labels[context.dataIndex];
+                                    return descriptions[label];
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'AI Strategy Pillars',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Pillar selector event listener
+            document.getElementById('pillar-selector').addEventListener('change', function() {
+                const selectedPillar = this.value;
+                const details = pillarDetails[selectedPillar];
+                
+                // Update chart data
+                pillarsChart.data.labels = details.labels;
+                pillarsChart.data.datasets[0].data = details.data;
+                pillarsChart.data.datasets[0].label = details.label;
+                
+                // Update chart title
+                if (selectedPillar === 'all') {
+                    pillarsChart.options.plugins.title.text = 'AI Strategy Pillars';
+                } else {
+                    pillarsChart.options.plugins.title.text = `${details.label} Details`;
+                }
+                
+                pillarsChart.update();
+            });
+        });
+    </script>
+</body>
+</html>

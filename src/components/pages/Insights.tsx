@@ -5,7 +5,7 @@ import { articles, presentations, getFeaturedArticles } from '@/data/articles'
 
 const categoryColors: Record<string, string> = {
   research: 'bg-ocean-100 text-ocean-800 dark:bg-ocean-900/30 dark:text-ocean-300',
-  whitepaper: 'bg-coral-100 text-coral-800 dark:bg-coral-900/30 dark:text-coral-300',
+  whitepaper: 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300',
   analysis: 'bg-dawn-100 text-dawn-800 dark:bg-dawn-900/30 dark:text-dawn-700',
   'thought-leadership': 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300',
 }
@@ -52,7 +52,7 @@ export function Insights() {
             >
               <div className="grid md:grid-cols-2">
                 {/* Image Placeholder */}
-                <div className="aspect-video md:aspect-auto bg-gradient-to-br from-ocean-100 to-coral-100 dark:from-ocean-900 dark:to-coral-900 flex items-center justify-center min-h-[300px]">
+                <div className="aspect-video md:aspect-auto bg-gradient-to-br from-ocean-100 to-amber-100 dark:from-ocean-900 dark:to-amber-900 flex items-center justify-center min-h-[300px]">
                   <FileText className="w-16 h-16 text-ocean-400" />
                   {/* ASSET NEEDED: Featured article image */}
                 </div>

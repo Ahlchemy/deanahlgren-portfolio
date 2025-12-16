@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science Evolution: From Ancient Decisions to Generative AI</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/modules.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2>Loading Course...</h2>
+            <p>Preparing your interactive learning experience</p>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav" id="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-brain"></i>
+                <span>Data Science Evolution</span>
+            </div>
+            <div class="nav-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="overall-progress"></div>
+                </div>
+                <span class="progress-text" id="progress-text">0% Complete</span>
+            </div>
+            <div class="nav-controls">
+                <button class="nav-btn" id="notes-btn" title="Notes">
+                    <i class="fas fa-sticky-note"></i>
+                </button>
+                <button class="nav-btn" id="bookmarks-btn" title="Bookmarks">
+                    <i class="fas fa-bookmark"></i>
+                </button>
+                <button class="nav-btn" id="search-btn" title="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="nav-btn" id="settings-btn" title="Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Course Modules</h3>
+            <button class="sidebar-toggle" id="sidebar-toggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        <div class="module-list">
+            <div class="module-item" data-module="1">
+                <div class="module-icon">
+                    <i class="fas fa-history"></i>
+                </div>
+                <div class="module-content">
+                    <h4>Foundation of Data-Driven Decisions</h4>
+                    <p>Ancient to modern decision-making</p>
+                    <div class="module-progress">
+                        <div class="progress-bar small">
+                            <div class="progress-fill" data-progress="0"></div>
+                        </div>
+                        <span>0/4 sections</span>
+                    </div>
+                </div>
+                <div class="module-status">
+                    <i class="fas fa-lock"></i>
+                </div>
+            </div>
+
+            <div class="module-item" data-module="2">
+                <div class="module-icon">
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+                <div class="module-content">
+                    <h4>Two Paradigms of Data Science</h4>
+                    <p>Inferential vs Computational approaches</p>
+                    <div class="module-progress">
+                        <div class="progress-bar small">
+                            <div class="progress-fill" data-progress="0"></div>
+                        </div>
+                        <span>0/3 sections</span>
+                    </div>
+                </div>
+                <div class="module-status">
+                    <i class="fas fa-lock"></i>
+                </div>
+            </div>
+
+            <div class="module-item" data-module="3">
+                <div class="module-icon">
+                    <i class="fas fa-sitemap"></i>
+                </div>
+                <div class="module-content">
+                    <h4>AI Fundamentals and Relationships</h4>
+                    <p>Understanding AI, ML, DL connections</p>
+                    <div class="module-progress">
+                        <div class="progress-bar small">
+                            <div class="progress-fill" data-progress="0"></div>
+                        </div>
+                        <span>0/3 sections</span>
+                    </div>
+                </div>
+                <div class="module-status">
+                    <i class="fas fa-lock"></i>
+                </div>
+            </div>
+
+            <div class="module-item" data-module="4">
+                <div class="module-icon">
+                    <i class="fas fa-timeline"></i>
+                </div>
+                <div class="module-content">
+                    <h4>Evolution Timeline (1940s-Present)</h4>
+                    <p>Historical progression and innovations</p>
+                    <div class="module-progress">
+                        <div class="progress-bar small">
+                            <div class="progress-fill" data-progress="0"></div>
+                        </div>
+                        <span>0/3 sections</span>
+                    </div>
+                </div>
+                <div class="module-status">
+                    <i class="fas fa-lock"></i>
+                </div>
+            </div>
+
+            <div class="module-item" data-module="5">
+                <div class="module-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="module-content">
+                    <h4>Large Language Models Deep Dive</h4>
+                    <p>LLM behavior and capabilities</p>
+                    <div class="module-progress">
+                        <div class="progress-bar small">
+                            <div class="progress-fill" data-progress="0"></div>
+                        </div>
+                        <span>0/3 sections</span>
+                    </div>
+                </div>
+                <div class="module-status">
+                    <i class="fas fa-lock"></i>
+                </div>
+            </div>
+
+            <div class="module-item" data-module="6">
+                <div class="module-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="module-content">
+                    <h4>Real-World Applications and Future</h4>
+                    <p>Industry applications and implications</p>
+                    <div class="module-progress">
+                        <div class="progress-bar small">
+                            <div class="progress-fill" data-progress="0"></div>
+                        </div>
+                        <span>0/3 sections</span>
+                    </div>
+                </div>
+                <div class="module-status">
+                    <i class="fas fa-lock"></i>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content" id="main-content">
+        <!-- Welcome Screen -->
+        <div class="welcome-screen active" id="welcome-screen">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">Data Science Evolution</h1>
+                    <h2 class="hero-subtitle">From Ancient Decisions to Generative AI</h2>
+                    <p class="hero-description">
+                        Embark on an interactive journey through the fascinating history of data science, 
+                        from ancient civilizations to cutting-edge AI. Discover how decision-making has 
+                        evolved and understand the paradigms that shape modern data science.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">6</span>
+                            <span class="stat-label">Interactive Modules</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">3-4</span>
+                            <span class="stat-label">Hours Duration</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">∞</span>
+                            <span class="stat-label">Learning Opportunities</span>
+                        </div>
+                    </div>
+                    <button class="cta-button" id="start-course-btn">
+                        <i class="fas fa-play"></i>
+                        Start Your Journey
+                    </button>
+                </div>
+                <div class="hero-visual">
+                    <img src="assets/images/course_hero.png" alt="Data Science Evolution" class="hero-image">
+                </div>
+            </div>
+        </div>
+
+        <!-- Module Content Container -->
+        <div class="module-container" id="module-container">
+            <!-- Module content will be dynamically loaded here -->
+        </div>
+    </main>
+
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <button class="fab" id="help-fab" title="Help">
+            <i class="fas fa-question"></i>
+        </button>
+        <button class="fab" id="feedback-fab" title="Feedback">
+            <i class="fas fa-comment"></i>
+        </button>
+    </div>
+
+    <!-- Modal Overlays -->
+    <div class="modal-overlay" id="notes-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Your Notes</h3>
+                <button class="modal-close" data-modal="notes-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="notes-container">
+                    <textarea id="notes-textarea" placeholder="Take notes as you learn..."></textarea>
+                    <div class="notes-actions">
+                        <button class="btn secondary" id="save-notes">Save Notes</button>
+                        <button class="btn secondary" id="export-notes">Export</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="search-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Search Course Content</h3>
+                <button class="modal-close" data-modal="search-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search for topics, concepts, or keywords...">
+                    <div class="search-results" id="search-results">
+                        <!-- Search results will appear here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/core.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/interactions.js"></script>
+    <script src="js/progress.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/modules.js"></script>
+</body>
+</html>
+

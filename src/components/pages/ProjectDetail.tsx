@@ -1,5 +1,6 @@
+import { useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   ArrowLeft,
   ExternalLink,
@@ -9,12 +10,16 @@ import {
   Tag,
   BarChart3,
   ArrowRight,
+  Play,
+  X,
 } from 'lucide-react'
 import { getProjectBySlug, projects } from '@/data/projects'
 
 export function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>()
   const navigate = useNavigate()
+  const [videoModalOpen, setVideoModalOpen] = useState(false)
+  const [demoModalOpen, setDemoModalOpen] = useState(false)
 
   const project = slug ? getProjectBySlug(slug) : null
 
@@ -90,15 +95,13 @@ export function ProjectDetail() {
               {/* Links */}
               <div className="flex flex-wrap gap-4">
                 {project.links.demo && (
-                  <a
-                    href={project.links.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    onClick={() => setDemoModalOpen(true)}
                     className="btn bg-white text-ocean-600 hover:bg-neutral-100 btn-md"
                   >
-                    <ExternalLink className="w-4 h-4" />
+                    <Play className="w-4 h-4" />
                     Live Demo
-                  </a>
+                  </button>
                 )}
                 {project.links.live && (
                   <a
@@ -122,6 +125,15 @@ export function ProjectDetail() {
                     View Code
                   </a>
                 )}
+                {project.links.video && (
+                  <button
+                    onClick={() => setVideoModalOpen(true)}
+                    className="btn bg-amber-500 text-white hover:bg-amber-600 btn-md"
+                  >
+                    <Play className="w-4 h-4" />
+                    Watch Demo
+                  </button>
+                )}
               </div>
             </motion.div>
 
@@ -130,10 +142,17 @@ export function ProjectDetail() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="aspect-video bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm"
+              className="aspect-video bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm overflow-hidden"
             >
-              <Code2 className="w-20 h-20 text-white/50" />
-              {/* ASSET NEEDED: project.images.hero */}
+              {project.images?.thumbnail || project.images?.hero ? (
+                <img
+                  src={project.images.thumbnail || project.images.hero}
+                  alt={project.title}
+                  className="w-full h-full object-cover object-top"
+                />
+              ) : (
+                <Code2 className="w-20 h-20 text-white/50" />
+              )}
             </motion.div>
           </div>
         </div>
@@ -204,9 +223,9 @@ export function ProjectDetail() {
               <h2 className="font-display text-2xl font-bold text-neutral-900 dark:text-white mb-6">
                 About This Project
               </h2>
-              <div className="prose prose-lg dark:prose-invert max-w-none">
+              <div className="prose-content">
                 {project.description.split('\n\n').map((paragraph, i) => (
-                  <p key={i} className="text-neutral-600 dark:text-neutral-400 mb-4">
+                  <p key={i}>
                     {paragraph}
                   </p>
                 ))}
@@ -242,15 +261,13 @@ export function ProjectDetail() {
                 </h3>
                 <div className="space-y-3">
                   {project.links.demo && (
-                    <a
-                      href={project.links.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-3 rounded-lg bg-neutral-50 dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+                    <button
+                      onClick={() => setDemoModalOpen(true)}
+                      className="w-full flex items-center gap-3 p-3 rounded-lg bg-ocean-50 dark:bg-ocean-900/20 hover:bg-ocean-100 dark:hover:bg-ocean-900/30 transition-colors"
                     >
-                      <ExternalLink className="w-5 h-5 text-ocean-500" />
-                      <span className="text-sm font-medium">View Demo</span>
-                    </a>
+                      <Play className="w-5 h-5 text-ocean-500" />
+                      <span className="text-sm font-medium text-ocean-700 dark:text-ocean-300">View Demo</span>
+                    </button>
                   )}
                   {project.links.live && (
                     <a
@@ -381,6 +398,104 @@ export function ProjectDetail() {
           </Link>
         </div>
       </section>
+
+      {/* Video Modal */}
+      <AnimatePresence>
+        {videoModalOpen && project.links.video && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            onClick={() => setVideoModalOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative w-full max-w-4xl bg-neutral-900 rounded-xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setVideoModalOpen(false)}
+                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Video */}
+              <div className="aspect-[9/16] max-h-[80vh] mx-auto bg-black">
+                <video
+                  src={project.links.video}
+                  controls
+                  autoPlay
+                  className="w-full h-full object-contain"
+                >
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Demo Modal */}
+      <AnimatePresence>
+        {demoModalOpen && project.links.demo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+            onClick={() => setDemoModalOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="relative w-full h-full flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Top Close Bar */}
+              <div className="flex items-center justify-between px-6 py-4 bg-neutral-900/95 border-b border-neutral-700">
+                <div className="flex items-center gap-3">
+                  <Code2 className="w-5 h-5 text-ocean-400" />
+                  <span className="text-white font-medium">{project.title} - Live Demo</span>
+                </div>
+                <button
+                  onClick={() => setDemoModalOpen(false)}
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-neutral-800 text-neutral-300 hover:bg-neutral-700 hover:text-white transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                  Close Preview
+                </button>
+              </div>
+
+              {/* Demo Content Iframe */}
+              <div className="flex-1 bg-white">
+                <iframe
+                  src={project.links.demo}
+                  title={`${project.title} Demo`}
+                  className="w-full h-full border-0"
+                  allow="fullscreen"
+                />
+              </div>
+
+              {/* Bottom Close Bar */}
+              <div className="flex items-center justify-center px-6 py-4 bg-neutral-900/95 border-t border-neutral-700">
+                <button
+                  onClick={() => setDemoModalOpen(false)}
+                  className="flex items-center gap-2 px-6 py-3 rounded-lg bg-ocean-500 text-white hover:bg-ocean-600 transition-colors font-medium"
+                >
+                  <X className="w-4 h-4" />
+                  Close and Return to Project
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

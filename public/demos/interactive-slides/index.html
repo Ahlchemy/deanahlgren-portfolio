@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Learning Template</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Learning Module Template</h2>
+            </div>
+            <nav class="module-navigation">
+                <ul id="module-list">
+                    <!-- Modules will be populated by JS -->
+                </ul>
+            </nav>
+            <div class="progress-section">
+                <p>Course Progress</p>
+                <div class="progress-bar-container">
+                    <div id="progress-bar" style="width: 0%;"></div>
+                </div>
+                <p id="progress-text">0% Complete</p>
+            </div>
+        </aside>
+
+        <main class="content-area">
+            <header class="content-header">
+                <h1 id="page-title">Welcome</h1>
+            </header>
+            <article id="page-content">
+                <p>Please select a module to begin.</p>
+            </article>
+            <footer class="content-footer">
+                <button id="prev-btn" disabled>Previous</button>
+                <button id="next-btn" disabled>Next</button>
+            </footer>
+        </main>
+    </div>
+
+    <script src="courseData.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

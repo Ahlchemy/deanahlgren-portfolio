@@ -15,15 +15,13 @@ The system leverages machine learning models to isolate vocals from mixed audio,
     shortDescription: 'AI-powered audio analysis tool synchronizing lyrics with music timestamps using machine learning',
     technologies: ['Python', 'Demucs', 'SOFA', 'Machine Learning', 'Audio Processing'],
     links: {
-      github: 'https://github.com/deanahlgren/beatloom-lyric-sync',
+      github: 'https://github.com/Ahlchemy/beatloom-lyric-sync',
+      video: '/videos/beatloom-demo.mp4',
     },
     images: {
-      thumbnail: '/images/projects/beatloom-thumb.jpg',
-      hero: '/images/projects/beatloom-hero.jpg',
-      screenshots: [
-        '/images/projects/beatloom-1.jpg',
-        '/images/projects/beatloom-2.jpg',
-      ],
+      thumbnail: '/images/projects/beatloom-thumb.png',
+      hero: '/images/projects/beatloom-thumb.png',
+      screenshots: [],
     },
     metrics: [
       { label: 'Accuracy', value: '95%+' },
@@ -46,11 +44,11 @@ The application provides hands-on exploration of computer vision techniques incl
     shortDescription: 'Real-time computer vision application demonstrating AI visual interpretation',
     technologies: ['Node.js', 'JavaScript', 'Tailwind CSS', 'Computer Vision', 'TensorFlow.js'],
     links: {
-      demo: '/demos/computer-vision',
+      demo: '/demos/computer-vision/index.html',
     },
     images: {
-      thumbnail: '/images/projects/cv-thumb.jpg',
-      hero: '/images/projects/cv-hero.jpg',
+      thumbnail: '/images/projects/cv-thumb.png',
+      hero: '/images/projects/cv-thumb.png',
     },
     status: 'published',
     featured: false,
@@ -72,7 +70,7 @@ The project analyzes booking patterns, seasonal trends, and customer behavior to
       github: 'https://github.com/deanahlgren/hotel-cancellation-prediction',
     },
     images: {
-      thumbnail: '/images/projects/hotel-thumb.jpg',
+      thumbnail: '/images/projects/hotel-thumb.png',
       hero: '/images/projects/hotel-hero.jpg',
       screenshots: [
         '/images/projects/hotel-viz-1.jpg',
@@ -127,7 +125,7 @@ This public safety tool helps users identify tsunami risk zones and find evacuat
     shortDescription: 'Life-saving public safety PWA combining geolocation and offline-first design for emergency response',
     technologies: ['PWA', 'JavaScript', 'Service Workers', 'Geolocation API', 'Offline-First'],
     links: {
-      demo: '/demos/tsunami-escape',
+      demo: '/demos/tsunami-escape/index.html',
       live: 'https://tsunami-escape.deanahlgren.com',
     },
     images: {

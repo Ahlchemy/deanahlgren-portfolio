@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 5: Robotics | Ahlgren Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body data-module="5">
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="course-title">Business AI Application</h1>
+                <div class="nav-container">
+                    <div class="nav-buttons">
+                        <a href="module-1.html" class="nav-button" data-module="1" data-title="Intro to AI">1</a>
+                        <a href="module-2.html" class="nav-button" data-module="2" data-title="ML Basics">2</a>
+                        <a href="module-3.html" class="nav-button" data-module="3" data-title="Neural Networks">3</a>
+                        <a href="module-4.html" class="nav-button" data-module="4" data-title="Vision & Language">4</a>
+                        <a href="module-5.html" class="nav-button active" data-module="5" data-title="Robotics">5</a>
+                        <a href="module-6.html" class="nav-button" data-module="6" data-title="AI Strategy">6</a>
+                        <a href="module-7.html" class="nav-button" data-module="7" data-title="Change Management">7</a>
+                        <a href="module-8.html" class="nav-button" data-module="8" data-title="Responsible AI">8</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="module-header">
+            <h2 class="module-title">Module 5: Robotics</h2>
+            <p class="module-subtitle">Understanding the integration of AI with physical automation</p>
+        </div>
+
+        <section class="exec-summary fade-in">
+            <h3>Executive Summary</h3>
+            <ul>
+                <li>Robotics fuses AI with physical automation—from warehouse bots to surgical systems.</li>
+                <li>Key capabilities: perception, planning, and control across varying levels of autonomy.</li>
+                <li>ROI stems from safety, precision, and round-the-clock productivity but requires change management for human–robot collaboration.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Key Concepts</h3>
+            <p>Robotics combines physical automation with AI decision-making. Types include autonomous mobile robots, robotic arms, drones, and collaborative robots (cobots).</p>
+            
+            <p>Key capabilities include:</p>
+            <ul>
+                <li><strong>Perception:</strong> Using sensors to understand the environment</li>
+                <li><strong>Planning:</strong> Determining optimal actions and paths</li>
+                <li><strong>Control:</strong> Executing movements with precision</li>
+            </ul>
+            
+            <p>Levels of autonomy range from remote-operated to fully autonomous systems, with many business applications falling somewhere in between with human oversight.</p>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Interactive Charts</h3>
+            <div class="interactive-chart">
+                <canvas id="robotics-timeline"></canvas>
+            </div>
+            <p class="chart-description">This timeline shows the evolution of robotics in business from industrial robots to collaborative systems.</p>
+            
+            <div class="interactive-chart">
+                <canvas id="path-planning-demo"></canvas>
+                <div style="margin-top: 1rem; text-align: center;">
+                    <button id="start-simulation" class="cta-button">Start Simulation</button>
+                    <button id="reset-simulation" class="cta-button">Reset Simulation</button>
+                </div>
+            </div>
+            <p class="chart-description">This simulation demonstrates how robots plan optimal paths to navigate around obstacles.</p>
+            
+            <div class="interactive-chart">
+                <canvas id="robotic-arm-demo"></canvas>
+                <div style="margin-top: 1rem; text-align: center;">
+                    <div style="margin-bottom: 10px;">
+                        <label for="joint1">Joint 1 Angle: <span id="joint1-value">90°</span></label>
+                        <input type="range" id="joint1" min="0" max="180" value="90" style="width: 80%;">
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <label for="joint2">Joint 2 Angle: <span id="joint2-value">45°</span></label>
+                        <input type="range" id="joint2" min="0" max="180" value="45" style="width: 80%;">
+                    </div>
+                </div>
+            </div>
+            <p class="chart-description">Control a simulated robotic arm by adjusting the joint angles to see how it moves.</p>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Real-World Examples</h3>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <h4 class="example-title">Manufacturing</h4>
+                    <ul>
+                        <li>Robotic welding and assembly in automotive production</li>
+                        <li>Collaborative robots working alongside humans for precision tasks</li>
+                        <li>Quality control using vision-enabled robots</li>
+                    </ul>
+                </div>
+                <div class="example-card">
+                    <h4 class="example-title">Logistics</h4>
+                    <ul>
+                        <li>Autonomous warehouse robots for inventory management</li>
+                        <li>Automated guided vehicles for material transport</li>
+                        <li>Last-mile delivery drones and robots</li>
+                    </ul>
+                </div>
+                <div class="example-card">
+                    <h4 class="example-title">Healthcare</h4>
+                    <ul>
+                        <li>Surgical robots for minimally invasive procedures</li>
+                        <li>Medication delivery robots in hospitals</li>
+                        <li>Rehabilitation robots for physical therapy</li>
+                    </ul>
+                </div>
+                <div class="example-card">
+                    <h4 class="example-title">Agriculture</h4>
+                    <ul>
+                        <li>Precision sprayers for targeted application of fertilizers</li>
+                        <li>Autonomous harvesters for crop collection</li>
+                        <li>Drones for field monitoring and crop analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Discussion Prompts</h3>
+            <ul class="prompts-list">
+                <li class="prompt-item">
+                    <p>What physical task in your organization could be automated with robotics?</p>
+                </li>
+                <li class="prompt-item">
+                    <p>How would your team adapt to working alongside robots? What training would be needed?</p>
+                </li>
+                <li class="prompt-item">
+                    <p>How would you calculate ROI for robotic implementation in your business context?</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Prompts for Real-World Use</h3>
+            <ul class="prompts-list">
+                <li class="prompt-item">
+                    <p><strong>Robotics Exploration:</strong> Visit a robotic lab or take a virtual tour to see automation in action.</p>
+                </li>
+                <li class="prompt-item">
+                    <p><strong>Hands-on Experience:</strong> Try a robotics kit or drone to simulate automation principles.</p>
+                </li>
+                <li class="prompt-item">
+                    <p><strong>Process Audit:</strong> Create a task audit and identify automation opportunities in your workflow.</p>
+                </li>
+            </ul>
+        </section>
+
+        <div class="cta-container">
+            <h3 class="cta-title">Call to Action</h3>
+            <p class="cta-text">Select a single process to explore for robotic automation. Form a working group to research feasibility and outline next steps.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <a href="module-4.html" class="cta-button">Previous Module</a>
+                <a href="module-6.html" class="cta-button">Continue to Module 6: AI Strategy</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Business AI Application. All rights reserved. Developed by Dean Ahlgren.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Robotics Timeline Chart
+            const timelineCtx = document.getElementById('robotics-timeline').getContext('2d');
+            
+            const timelineData = {
+                labels: ['1960s', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'],
+                datasets: [{
+                    type: 'line',
+                    label: 'Robotics Adoption Index',
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    borderWidth: 3,
+                    pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+                    pointRadius: 6,
+                    pointHoverRadius: 8,
+                    data: [5, 15, 30, 45, 60, 80, 95],
+                    fill: false,
+                    tension: 0.3
+                }, {
+                    type: 'bar',
+                    label: 'Key Innovations',
+                    backgroundColor: 'rgba(16, 185, 129, 0.6)',
+                    borderColor: 'rgba(16, 185, 129, 1)',
+                    borderWidth: 1,
+                    data: [10, 25, 40, 30, 50, 70, 90]
+                }]
+            };
+            
+            const timelineChart = new Chart(timelineCtx, {
+                type: 'scatter',
+                data: timelineData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Adoption & Innovation Index'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Decade'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const milestones = [
+                                        'First industrial robots (Unimate)',
+                                        'Microprocessor-controlled robots',
+                                        'Vision-guided robots in manufacturing',
+                                        'Mobile robots & surgical systems',
+                                        'Collaborative robots (cobots)',
+                                        'AI-powered autonomous robots',
+                                        'Advanced humanoid & specialized robots'
+                                    ];
+                                    
+                                    if (context.datasetIndex === 0) {
+                                        return `Adoption: ${context.raw}%`;
+                                    } else {
+                                        return `${milestones[context.dataIndex]}`;
+                                    }
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Evolution of Robotics in Business',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Path Planning Simulation
+            const pathPlanningCtx = document.getElementById('path-planning-demo').getContext('2d');
+            
+            // Grid dimensions
+            const gridSize = 10;
+            const grid = Array(gridSize).fill().map(() => Array(gridSize).fill(0)); // 0 = empty, 1 = obstacle, 2 = path
+            
+            // Set start and goal positions
+            const start = { x: 1, y: 1 };
+            const goal = { x: 8, y: 8 };
+            
+            // Add some obstacles
+            const obstacles = [
+                { x: 3, y: 2 }, { x: 3, y: 3 }, { x: 3, y: 4 }, { x: 3, y: 5 },
+                { x: 6, y: 4 }, { x: 6, y: 5 }, { x: 6, y: 6 }, { x: 6, y: 7 },
+                { x: 2, y: 7 }, { x: 3, y: 7 }, { x: 4, y: 7 }
+            ];
+            
+            obstacles.forEach(obs => {
+                grid[obs.y][obs.x] = 1;
+            });
+            
+            // Path planning simulation
+            let path = [];
+            let simulationRunning = false;
+            
+            // Function to find path (simplified A* algorithm simulation)
+            function findPath() {
+                // Clear previous path
+                path = [];
+                
+                // Simplified path for demonstration
+                // In a real implementation, this would be an A* or similar algorithm
+                let current = { ...start };
+                path.push({ ...current });
+                
+                // Predefined waypoints to avoid obstacles
+                const waypoints = [
+                    { x: 1, y: 5 },
+                    { x: 5, y: 5 },
+                    { x: 5, y: 2 },
+                    { x: 8, y: 2 },
+                    { x: 8, y: 8 }
+                ];
+                
+                waypoints.forEach(point => {
+                    path.push({ ...point });
+                });
+            }
+            
+            // Draw the grid and path
+            function drawGrid() {
+                const cellSize = Math.min(pathPlanningCtx.canvas.width, pathPlanningCtx.canvas.height) / gridSize;
+                
+                // Clear canvas
+                pathPlanningCtx.clearRect(0, 0, pathPlanningCtx.canvas.width, pathPlanningCtx.canvas.height);
+                
+                // Draw grid
+                for (let y = 0; y < gridSize; y++) {
+                    for (let x = 0; x < gridSize; x++) {
+                        const cellX = x * cellSize;
+                        const cellY = y * cellSize;
+                        
+                        // Draw cell background
+                        if (grid[y][x] === 1) { // Obstacle
+                            pathPlanningCtx.fillStyle = 'rgba(239, 68, 68, 0.7)'; // Red
+                        } else {
+                            pathPlanningCtx.fillStyle = 'rgba(255, 255, 255, 0.9)'; // White
+                        }
+                        
+                        pathPlanningCtx.fillRect(cellX, cellY, cellSize, cellSize);
+                        pathPlanningCtx.strokeStyle = 'rgba(30, 64, 175, 0.3)';
+                        pathPlanningCtx.strokeRect(cellX, cellY, cellSize, cellSize);
+                    }
+                }
+                
+                // Draw path
+                if (path.length > 0) {
+                    pathPlanningCtx.strokeStyle = 'rgba(16, 185, 129, 1)';
+                    pathPlanningCtx.lineWidth = 3;
+                    pathPlanningCtx.beginPath();
+                    
+                    const firstPoint = path[0];
+                    pathPlanningCtx.moveTo(
+                        firstPoint.x * cellSize + cellSize/2,
+                        firstPoint.y * cellSize + cellSize/2
+                    );
+                    
+                    for (let i = 1; i < path.length; i++) {
+                        const point = path[i];
+                        pathPlanningCtx.lineTo(
+                            point.x * cellSize + cellSize/2,
+                            point.y * cellSize + cellSize/2
+                        );
+                    }
+                    
+                    pathPlanningCtx.stroke();
+                }
+                
+                // Draw start and goal
+                pathPlanningCtx.fillStyle = 'rgba(16, 185, 129, 1)'; // Green
+                pathPlanningCtx.beginPath();
+                pathPlanningCtx.arc(
+                    start.x * cellSize + cellSize/2,
+                    start.y * cellSize + cellSize/2,
+                    cellSize/3,
+                    0,
+                    Math.PI * 2
+                );
+                pathPlanningCtx.fill();
+                
+                pathPlanningCtx.fillStyle = 'rgba(59, 130, 246, 1)'; // Blue
+                pathPlanningCtx.beginPath();
+                pathPlanningCtx.arc(
+                    goal.x * cellSize + cellSize/2,
+                    goal.y * cellSize + cellSize/2,
+                    cellSize/3,
+                    0,
+                    Math.PI * 2
+                );
+                pathPlanningCtx.fill();
+                
+                // Draw robot if simulation is running
+                if (simulationRunning && path.length > 0) {
+                    const robotPosition = path[currentPathIndex];
+                    pathPlanningCtx.fillStyle = 'rgba(245, 158, 11, 1)'; // Orange
+                    pathPlanningCtx.beginPath();
+                    pathPlanningCtx.arc(
+                        robotPosition.x * cellSize + cellSize/2,
+                        robotPosition.y * cellSize + cellSize/2,
+                        cellSize/2.5,
+                        0,
+                        Math.PI * 2
+                    );
+                    pathPlanningCtx.fill();
+                }
+            }
+            
+            // Initialize the grid
+            drawGrid();
+            
+            // Simulation variables
+            let currentPathIndex = 0;
+            let animationId;
+            
+            // Start simulation button
+            document.getElementById('start-simulation').addEventListener('click', function() {
+                if (!simulationRunning) {
+                    simulationRunning = true;
+                    this.textContent = 'Pause Simulation';
+                    findPath();
+                    currentPathIndex = 0;
+                    runSimulation();
+                } else {
+                    simulationRunning = false;
+                    this.textContent = 'Resume Simulation';
+                    cancelAnimationFrame(animationId);
+                }
+            });
+            
+            // Reset simulation button
+            document.getElementById('reset-simulation').addEventListener('click', function() {
+                simulationRunning = false;
+                document.getElementById('start-simulation').textContent = 'Start Simulation';
+                cancelAnimationFrame(animationId);
+                path = [];
+                currentPathIndex = 0;
+                drawGrid();
+            });
+            
+            // Run the simulation
+            function runSimulation() {
+                drawGrid();
+                
+                if (simulationRunning && path.length > 0) {
+                    // Move robot along the path
+                    if (currentPathIndex < path.length - 1) {
+                        currentPathIndex++;
+                    } else {
+                        currentPathIndex = 0; // Loop back to start
+                    }
+                    
+                    animationId = requestAnimationFrame(() => {
+                        setTimeout(runSimulation, 500); // Update every 500ms
+                    });
+                }
+            }
+            
+            // Robotic Arm Visualization
+            const armCtx = document.getElementById('robotic-arm-demo').getContext('2d');
+            const joint1Slider = document.getElementById('joint1');
+            const joint2Slider = document.getElementById('joint2');
+            const joint1Value = document.getElementById('joint1-value');
+            const joint2Value = document.getElementById('joint2-value');
+            
+            // Arm dimensions
+            const baseX = 200;
+            const baseY = 250;
+            const arm1Length = 100;
+            const arm2Length = 80;
+            
+            // Draw the robotic arm
+            function drawArm(joint1Angle, joint2Angle) {
+                // Clear canvas
+                armCtx.clearRect(0, 0, armCtx.canvas.width, armCtx.canvas.height);
+                
+                // Convert angles to radians
+                const angle1 = joint1Angle * Math.PI / 180;
+                const angle2 = joint2Angle * Math.PI / 180;
+                
+                // Calculate joint positions
+                const joint1X = baseX + arm1Length * Math.cos(angle1);
+                const joint1Y = baseY - arm1Length * Math.sin(angle1);
+                
+                const joint2X = joint1X + arm2Length * Math.cos(angle1 + angle2);
+                const joint2Y = joint1Y - arm2Length * Math.sin(angle1 + angle2);
+                
+                // Draw base
+                armCtx.fillStyle = '#1e3a8a';
+                armCtx.beginPath();
+                armCtx.arc(baseX, baseY, 20, 0, Math.PI * 2);
+                armCtx.fill();
+                
+                // Draw arm segments
+                armCtx.lineWidth = 15;
+                armCtx.lineCap = 'round';
+                
+                // First arm segment
+                armCtx.strokeStyle = '#3b82f6';
+                armCtx.beginPath();
+                armCtx.moveTo(baseX, baseY);
+                armCtx.lineTo(joint1X, joint1Y);
+                armCtx.stroke();
+                
+                // Joint 1
+                armCtx.fillStyle = '#60a5fa';
+                armCtx.beginPath();
+                armCtx.arc(joint1X, joint1Y, 10, 0, Math.PI * 2);
+                armCtx.fill();
+                
+                // Second arm segment
+                armCtx.strokeStyle = '#93c5fd';
+                armCtx.beginPath();
+                armCtx.moveTo(joint1X, joint1Y);
+                armCtx.lineTo(joint2X, joint2Y);
+                armCtx.stroke();
+                
+                // End effector
+                armCtx.fillStyle = '#10b981';
+                armCtx.beginPath();
+                armCtx.arc(joint2X, joint2Y, 8, 0, Math.PI * 2);
+                armCtx.fill();
+                
+                // Draw angle indicators
+                armCtx.font = '14px Arial';
+                armCtx.fillStyle = '#1e293b';
+                armCtx.fillText(`Joint 1: ${joint1Angle}°`, 20, 30);
+                armCtx.fillText(`Joint 2: ${joint2Angle}°`, 20, 50);
+                armCtx.fillText(`End Effector Position: (${Math.round(joint2X-baseX)}, ${Math.round(baseY-joint2Y)})`, 20, 70);
+            }
+            
+            // Initialize the arm
+            drawArm(90, 45);
+            
+            // Update arm when sliders change
+            joint1Slider.addEventListener('input', function() {
+                const angle = parseInt(this.value);
+                joint1Value.textContent = `${angle}°`;
+                drawArm(angle, parseInt(joint2Slider.value));
+            });
+            
+            joint2Slider.addEventListener('input', function() {
+                const angle = parseInt(this.value);
+                joint2Value.textContent = `${angle}°`;
+                drawArm(parseInt(joint1Slider.value), angle);
+            });
+        });
+    </script>
+</body>
+</html>

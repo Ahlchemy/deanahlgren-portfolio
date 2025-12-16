@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+
+  <title>Tabs Component</title>
+
+  <!-- Base styles -->
+  <link type="text/css" rel="stylesheet" href="../../lib/icomoon.css">
+  
+  <!-- Required scripts -->
+  <script type="text/javascript" src="../../lib/player-0.0.11.min.js"></script>
+  <script type="text/javascript" src="../../lib/lzwcompress.js"></script>
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="../../lib/sandbox/4adfab46.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      color: #ff631e;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .instructions {
+      margin-bottom: 30px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-left: 4px solid #ff631e;
+    }
+
+    .tabs-container {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    .tab-nav {
+      display: flex;
+      border-bottom: 1px solid #e0e0e0;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      margin-bottom: 20px;
+    }
+
+    .tab-nav button {
+      padding: 15px 20px;
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      color: #757575;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+
+    .tab-nav button:hover {
+      color: #ff631e;
+    }
+
+    .tab-nav button.active {
+      color: #ff631e;
+      border-bottom: 3px solid #ff631e;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .tab-content img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: #ff631e;
+      text-decoration: none;
+    }
+    
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Tabs Component</h1>
+    
+    <div class="instructions">
+      <p>Click on any tab to display its corresponding content panel.</p>
+    </div>
+    
+    <div class="tabs-container">
+      <div class="tab-nav">
+        <button class="tab-button active" data-tab="tab1">Embracing Discovery</button>
+        <button class="tab-button" data-tab="tab2">Gaining Insight</button>
+        <button class="tab-button" data-tab="tab3">Making It Real</button>
+      </div>
+      
+      <!-- Tab Content -->
+      <div id="tab1" class="tab-content active">
+        <img src="images/paraglide.jpg" alt="Paraglide">
+        <p>Every creative endeavor requires that you take risks. If you try and don't succeed, you've still learned something. It took Thomas Edison more than 10,000 tries to invent a viable lightbulb. You're not failing. You're discovering what doesn't work.</p>
+      </div>
+      
+      <div id="tab2" class="tab-content">
+        <img src="images/paraglide.jpg" alt="Paraglide">
+        <p>To spark creativity, feed your brain material like you're cramming for a tough test. Then stop thinking about the problem you want to solve. Go surfing or take a leisurely walk. Research shows that letting your mind wander fosters creativity.</p>
+        <p>It's also found that meditation helps you spot and solve problems in creative ways. It promotes divergent thinking that gets novel ideas flowing. According to these studies, meditation also makes you more open to considering new solutions. Time to breathe.</p>
+      </div>
+      
+      <div id="tab3" class="tab-content">
+        <img src="images/paraglide.jpg" alt="Paraglide">
+        <p>No creative process is truly complete until it manifests a tangible reality. Whether your idea is an action or a physical creation, bringing it to life will likely involve the hard work of iteration, testing, and refinement.</p>
+        <p>Just be wary of perfectionism. Push yourself to share your creations with others. By maintaining an open stance, you'll be able to learn from their feedback. Consider their responses new material that you can draw from the next time you're embarking on a creative endeavor.</p>
+      </div>
+    </div>
+    
+    <a href="../index.html" class="back-link">← Back to Components List</a>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabButtons = document.querySelectorAll('.tab-button');
+      const tabContents = document.querySelectorAll('.tab-content');
+      
+      tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // Remove active class from all tab buttons
+          tabButtons.forEach(btn => {
+            btn.classList.remove('active');
+          });
+          
+          // Add active class to clicked tab button
+          this.classList.add('active');
+          
+          // Hide all tab contents
+          tabContents.forEach(content => {
+            content.classList.remove('active');
+          });
+          
+          // Show the selected tab content
+          const tabId = this.getAttribute('data-tab');
+          document.getElementById(tabId).classList.add('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

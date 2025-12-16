@@ -45,10 +45,10 @@ export function Header() {
               to={item.href}
               className={({ isActive }) =>
                 clsx(
-                  'px-4 py-2 rounded-lg text-sm font-medium transition-colors',
+                  'px-4 py-2 rounded-lg text-base font-semibold transition-colors',
                   isActive
                     ? 'text-ocean-600 bg-ocean-50 dark:bg-ocean-900/20 dark:text-ocean-400'
-                    : 'text-neutral-600 dark:text-neutral-400 hover:text-ocean-600 dark:hover:text-ocean-400 hover:bg-neutral-100 dark:hover:bg-neutral-800'
+                    : 'text-neutral-700 dark:text-neutral-300 hover:text-ocean-600 dark:hover:text-ocean-400 hover:bg-neutral-100 dark:hover:bg-neutral-800'
                 )
               }
             >

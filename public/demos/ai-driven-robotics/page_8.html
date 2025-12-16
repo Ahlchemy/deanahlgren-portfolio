@@ -1,0 +1,159 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Locomotion Breakthroughs</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+        body, html {width: 1280px; height: 853px; margin: 0;
+            padding: 0;}
+        .slide {
+            width: 1280px;
+            min-height: 853px;
+            position: relative;
+            
+        }
+        .circuit-line {
+            position: absolute;
+            background: rgba(192, 192, 192, 0.1);
+            z-index: 1;
+        }
+        .feature-card {
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .gradient-border {
+            background: linear-gradient(45deg, #0066CC, #FF6600);
+            padding: 2px;
+            border-radius: 8px;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #FFFFFF, #0066CC);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .robot-img {
+            transition: transform 0.5s ease;
+            border: 2px solid transparent;
+        }
+        .robot-img:hover {
+            transform: scale(1.03);
+            border-color: #0066CC;
+        }
+    </style>
+</head>
+<body>
+<div class="slide bg-gradient-to-br from-gray-900 to-blue-900 p-10 relative">
+<!-- Background circuit elements -->
+<div class="circuit-line w-full h-0.5 top-1/4 left-0"></div>
+<div class="circuit-line w-0.5 h-full top-0 left-1/4"></div>
+<div class="circuit-line w-full h-0.5 bottom-1/3 left-0"></div>
+<div class="circuit-line w-0.5 h-full top-0 right-1/4"></div>
+<!-- Header -->
+<div class="relative z-10 mb-6">
+<h1 class="text-4xl font-bold text-white mb-3 flex items-center">
+<i class="fas fa-running text-blue-400 mr-4"></i>
+                Locomotion Breakthroughs
+            </h1>
+<div class="w-24 h-1 bg-orange-500 rounded"></div>
+</div>
+<!-- Main Content -->
+<div class="grid grid-cols-2 gap-6 relative z-10">
+<!-- Left Column - Content -->
+<div class="space-y-6">
+<!-- Introduction -->
+<div class="bg-gray-800 bg-opacity-75 rounded-lg p-4 border-l-4 border-blue-500">
+<p class="text-blue-100">
+                        Reinforcement learning has revolutionized how robots learn to walk, enabling adaptive gaits that can navigate diverse terrains and obstacles without explicit programming.
+                    </p>
+</div>
+<!-- Boston Dynamics Spot -->
+<div class="gradient-border feature-card">
+<div class="bg-gray-900 bg-opacity-90 p-4 rounded-lg">
+<h3 class="text-2xl font-bold text-white mb-3 flex items-center">
+<i class="fas fa-dog text-yellow-500 mr-2"></i>
+                            Boston Dynamics&#39; Spot
+                        </h3>
+<ul class="text-blue-200 space-y-2 ml-6 list-disc">
+<li>RL integrated into locomotion control system</li>
+<li>Adaptive gait for various terrains and obstacles</li>
+<li>Real-time response to environmental changes</li>
+</ul>
+<div class="mt-4">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="rounded-lg border border-gray-700" frameborder="0" height="157" src="https://www.youtube.com/embed/wlkCQXHEgjA" width="280"></iframe>
+</div>
+</div>
+</div>
+<!-- Figure AI -->
+<div class="gradient-border feature-card">
+<div class="bg-gray-900 bg-opacity-90 p-4 rounded-lg">
+<h3 class="text-2xl font-bold text-white mb-3 flex items-center">
+<i class="fas fa-user-robot text-blue-400 mr-2"></i>
+                            Figure AI&#39;s Humanoid Locomotion
+                        </h3>
+<ul class="text-blue-200 space-y-2 ml-6 list-disc">
+<li>End-to-end reinforcement learning approach</li>
+<li>Trained purely in simulation environments</li>
+<li>Develops natural walking controllers for bipedal robots</li>
+<li>Enables rapid engineering iteration cycles</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Right Column - Images -->
+<div class="space-y-6 flex flex-col justify-between">
+<!-- Spot Robot Image -->
+<div class="mb-4">
+<div class="relative">
+<img alt="Boston Dynamics Spot Robot" class="w-full h-auto rounded-lg shadow-lg robot-img object-cover" src="https://picture-search.skywork.ai/aippt/image/sheet/8227f22d7d959eadfe8df1356f89befe.jpg" style="max-height: 250px;"/>
+<div class="absolute bottom-0 left-0 bg-gray-900 bg-opacity-80 px-3 py-1 rounded-tr-lg rounded-bl-lg">
+<span class="text-xs text-gray-300">Boston Dynamics&#39; Spot in motion</span>
+</div>
+</div>
+</div>
+<!-- Key RL Benefits -->
+<div class="bg-blue-900 bg-opacity-40 p-4 rounded-lg border border-blue-700 mb-4">
+<h4 class="text-xl font-semibold text-white mb-2 flex items-center">
+<i class="fas fa-star text-yellow-500 mr-2"></i>
+                        Key Benefits of RL in Locomotion
+                    </h4>
+<div class="grid grid-cols-2 gap-3">
+<div class="flex items-start">
+<i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+<span class="text-sm text-blue-100">Quick adaptation to terrain changes</span>
+</div>
+<div class="flex items-start">
+<i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+<span class="text-sm text-blue-100">Robust to unexpected obstacles</span>
+</div>
+<div class="flex items-start">
+<i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+<span class="text-sm text-blue-100">Reduced engineering time</span>
+</div>
+<div class="flex items-start">
+<i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+<span class="text-sm text-blue-100">Natural movement patterns</span>
+</div>
+</div>
+</div>
+<!-- Humanoid Robot Image -->
+<div>
+<div class="relative">
+<img alt="Humanoid Robot" class="w-full h-auto rounded-lg shadow-lg robot-img object-cover" src="https://picture-search.skywork.ai/aippt/image/sheet/28da323f1f56b24e81069f1325e0f892.jpg" style="max-height: 220px;"/>
+<div class="absolute bottom-0 left-0 bg-gray-900 bg-opacity-80 px-3 py-1 rounded-tr-lg rounded-bl-lg">
+<span class="text-xs text-gray-300">Bipedal humanoid robot</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Page indicator -->
+<div class="absolute bottom-4 right-6 text-blue-300 text-sm">
+            Page 8 of 15
+        </div>
+</div>
+
+</body></html>

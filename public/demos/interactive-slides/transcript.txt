@@ -1,0 +1,206 @@
+Now, the big AlexNet / ImageNet breakthrough happened in 2012. A very big deal in putting deep
+learning on the scene. But, actually, people had been working on deep learning for a long time.
+Admittedly, generally with less success. But there is a predecessor to AlexNet, called LeNet,
+named after Yann LeCun. Yann LeCun and collaborators established state-of-the-art digit
+recognition in 1989. The dataset is known as MNIST and often still used when wanting to run a
+very small, quick experiment on image recognition.
+Here is the LeNet architecture. Just like AlexNet, LeNet already had multiple convolutional layers
+followed by fully connected layers. So, how come it took another 20 years before a similar
+architecture was successful on a more complex task like ImageNet recognition?
+First, deep neural nets tend to excel in the regime where lots of data is available. ImageNet was
+the first such large-scale image recognition data set. Second, this took six days of training the
+neural network on two state-of-the-art GPUs at that time, so an experiment that would have been
+very time-consuming to run even just a few years earlier.
+Alright, so we had our big Deep Learning breakthrough in 2012. What happened after? In 2013,
+Zeiler and Fergus won the competition with a neural network much like AlexNet, but they adjusted
+some of the hyperparameters. They made the convolutional filters smaller and also added more
+filters in each layer, which resulted in a 5% error reduction! In 2012 and 2013, the winning
+networks had eight layers. But the more layers, the more capacity the neural network has. So, in
+principle, the better it should be able to classify images.
+
+P a g e 3 | 23
+
+In 2014, Simonyan and Zisserman achieved another significant reduction in error rate, now down
+to 7.3%, by introducing VGG Net. VGG Net was still a convolutional network, but now, 19 layers.
+One of the tricky things about VGG net was the number of parameters. 140 million parameters in
+the network had to be trained. One might wonder, is it possible to reduce the number of
+parameters while the network remains expressive enough?
+Szegedy and collaborators from Google showed this is possible. In fact, they won the 2014
+competition with a network with 22 layers but only 3 million parameters. How was this possible to
+have more layers, yet less parameters? They got rid of the fully connected layers, going
+convolutional all the way. And they also had some clever refactoring of the convolutional layers
+themselves.
+Now, given that more layers seems to do better, what if we build even deeper networks? Turns
+out people at the time didn’t have much luck training deeper networks. The issue was that the
+optimization problem that underlies neural network training would become very poorly conditioned
+when having deeper networks, and deeper networks would actually do worse. This was until the
+next breakthrough happened.
+ResNets! Kaiming He and collaborators at Microsoft brought the error rate down to 3.6% with a
+152-layer network. Much much deeper than any previous network.
+This 3.6%, by the way, is better than human-level performance on this benchmark! Humans
+achieve about 5% error rate. The key problem ResNets addressed was that, in principle, deeper
+models should be able to perform at least as well as shallower networks, but they didn’t due to
+vanishing gradient signals. The solution they proposed, add the option in the network to simply
+skip layers. This way, it’s very easy for the deeper network to propagate signals. Even more
+precisely, every residual block consists of two convolutional layers, which are additive to an
+identity layer. This way, an extra residual block in the network doesn’t have to learn the identity
+anymore but simply has to learn what’s needed in addition to what the previous layers already
+achieved.
+From there, a few more architecture improvements were made, and error was driven down to
+2.3% in 2017, at which point the official competition was retired, but the dataset itself remains an
+important, widely studied benchmark. Before moving on from this graph and the ImageNet
+competition, let’s zoom out for a moment. This graph shows some very important trends.
+First, deep learning blew right past the performance of classical computer vision approaches. In
+fact, within a few years, achieved human-level error rates on this benchmark, something people
+absolutely didn’t expect would happen anytime soon, when asked back in 2010 or 2011. That’s
+when traditional computer vision methods were the mainstay and very limited progress was
+achieved.
+Second, the deeper the network, the more expressive. Of course, the network must remain
+trainable. Key for this are the residual blocks, which consist of the identity plus a learned delta to
+the identity. These residual blocks remain the staple of most architectures today. And, related,
+deep remains key to learning powerful representations.
+
+P a g e 4 | 23
+
+Third, quite a bit of human ingenuity went into designing these neural net architectures.
+Sometimes, they were fundamental changes, such as residual blocks. Sometimes, more
+hyperparameter tuning. Especially for the latter, one might wonder, couldn’t we just write a
+program that searches over a range of architectures and see which one does best, then tries
+variations on that one, and repeat?
+Such automation is actually what Google’s AutoML tries to achieve. It’s not fully there yet, and it’s
+definitely fairly restricted as humans define the neural net architecture space for the AutoML to
+work with, but it’s starting to become surprisingly competitive, as was showcased in a recent suite
+of ML competitions organized by Kaggle, where AutoML was able to do really well on a very large
+fraction of the competitions in that suite.
+Video 3: Classification: Data Set Augmentation, Speed and Cost
+So far, we’ve been talking about progress made by improving the neural net architectures.
+Another way to make progress, of course, is to get more labeled data. However, unfortunately,
+labeling data tends to be tedious, hence, costly. So, you might ask yourself the question. if we
+have a small pool of labeled data, can we use it to automatically generate a larger pool of labeled
+data? That’s exactly what data set augmentation looks at.
+For example, let’s say you have this one labeled image that’s a six. If we rotate the image a bit
+or, slant it, or make it narrower or wider, or make the pen stroke thicker or thinner, it’ll still be a
+six!
+Here is a table showing that very good automatic augmentation leads to outperforming state-ofthe-art across many image recognition benchmarks. This particular AutoAugment algorithm was
+invented by Google and required an inordinate amount of compute. But since then, our research
+at Berkeley has made this a factor 1,000 less compute-intensive while matching the same
+performance.
+Now that we understand that rapid progress that was made through deep neural net architectures
+and the importance of data augmentation, let’s think about what other axes we might care about
+in image classification.
+Imagine you or your team are tasked with setting up an image recognition system to solve a
+problem at your company. Certainly, you’ll care a lot about accuracy, but likely, just as important
+will be the speed with which it operates and the cost associated with operating it. So, let’s now
+take a look at those.
+How to find how well various systems perform? There is this nice benchmark called DAWNBench,
+which considers all these axes other than accuracy. For example, you might be curious how long
+would it take to train a certain neural network and what kind of compute might I consider for
+training the network. This specific benchmark also considers ImageNet, and it shows that today,
+it’s possible to train to 93% accuracy in less than three minutes. That’s just phenomenal!
+Remember, AlexNet in 2012 took six days to train.
+
+P a g e 5 | 23
+
+How about the training cost? It’s now possible to train on ImageNet to 93% accuracy for just a
+little over $12 of cloud compute cost. How about inference latency? This refers to how long it
+takes from sending an image to the computer to getting back out the decision from the neural
+network as to what’s in the image. We see the best systems can now do this in less than one
+millisecond. In this case, this is a 50-layer network, and everything gets computed through all 50
+layers in less than one millisecond. How about inference cost? Well, rounded to the nearest cent,
+it’s actually zero at this point!
+Video 4: How to Run Image Recognition
+Now that we’ve seen how well image recognition systems can work, you might wonder, where do
+people start, how do they run these? It turns out that, assuming your categories are fairly common
+use case. There are cloud services to which you can send an image, and you’ll receive back an
+attempted classification of what’s in the image.
+However, it’s good to keep in mind that none of these systems are anywhere near perfect. And,
+perhaps even more importantly, it’s important to understand what these systems were trained on.
+Neural nets will do pretty well when the types of images they are trained on are the same as the
+types of images they get tested on. But if there is a mismatch between train and test, all bets are
+off!
+What would be an example of a train-test mismatch? Let’s say the system was trained to
+recognize cats versus dogs. But all images in the training data were taken indoors. Then, when
+presented with outdoor test images, it’s quite likely the system won’t perform all that well.
+While image recognition of a service might be okay for some people’s needs, it’s probably much
+more common these days to still rely on training your own models on your own data to make sure
+you get the best possible performance for your problem.
+Where to get started for that? Often, it’s possible to just download open-source models from
+GitHub and then fine-tune them on your own data. You’ll see that the frameworks used to train
+these models are mostly PyTorch (which is built by Facebook) and TensorFlow (which is built by
+Google).
+Now, one question that will quickly come up when you have your own data: how to get it
+annotated? Since deep learning requires such a vast amount of annotated data to be successful,
+it’s actually become a huge business in itself to provide data annotation services. Some examples
+of companies operating in this space are Scale.ai, who recently became the latest Silicon Valley
+unicorn; Figure Eight, which was acquired by Appen for use across many of their businesses;
+Mighty.ai, which was recently acquired by Uber so Uber could fully utilize their data annotation
+bandwidth; SuperAnnotate.ai, a more recent player, which I have personally been advising;
+Google Cloud AutoML, Amazon, and so forth. For all of these, essentially, you send off your
+images and a prescription on how they should be annotated, and they’ll get them back to you
+annotated as you asked for.
+
+P a g e 6 | 23
+
+Before wrapping up our discussion of image classification, I’d also like to call your attention to the
+medical domain, which has very different images, but the exact same ideas have been very
+powerful there, too.
+For example, this Nature paper shows that a deep neural network can achieve dermatologistlevel classification of skin cancer. And this paper shows that deep neural networks can achieve
+radiologist-level classification of whether or not a patient has pneumonia from the X-ray scan.
+Video 5: Detection and Segmentation
+Alright. We did our deep dive into classification. For the other four main thrusts in computer vision,
+we’ll stay a little more at the surface, but under the hood, in fact, much the same is going on
+anyway. And with that, I mean iterating over fairly similar neural net architecture designs, being
+smart about data augmentation, and making decisions on how important accuracy is versus
+energy consumption, versus latency, and so forth.
+Now, let’s take a look at detection and segmentation. In classification, when given this image, a
+good answer could be sheep, or dirt road, or grass. In localization, it’s not enough to just say
+what’s in the image, but you also need to put a bounding box around where in the image.
+In object detection, you can’t just put a single bounding box around all the sheep. You need to
+put a separate bounding box around each individual sheep.
+In semantic segmentation, bounding boxes aren’t enough anymore. Now you are expected to
+annotate each pixel in the image with what’s in it. So, in this case, road, sheep, and grass.
+In Instance Segmentation, if there are multiple instances of an object, you need to individually
+annotate them.
+Just like for classification, we can go to papers with code to see how well object detection systems
+work. Just like in classification, we see significant progress over the last few years, and we see
+that a 101-layer ResNext architecture comes in first. Similarly, for instance segmentation, there
+has been significant progress over the last few years, and we see that also here, a 101-layer
+ResNext architecture comes in first.
+Neural net architectures for segmentation are a bit different than for classification. In classification,
+we are trying to bring all information from the image together, gradually extracting local information
+until finally, we know what’s in the image as a whole and have just a classification output at the
+end.
+But in segmentation, we need each pixel annotated with what’s in that pixel. At the same time, we
+do want to use full image context similar to what’s done in classification. So, here is an example
+of what this looks like the first half of the network looks a lot like a classification network, but then
+there is a whole second half, re-expanding to full image size. In this architecture here from 2015,
+the re-expansion is done simply by un-pooling operations.
+
+P a g e 7 | 23
+
+These days, often people use what’s called a “U-net” architecture, where a skip connection is
+introduced from the mirrored layer on the other side. Intuitively, as the network processes the
+image starting on the top left here, working its way to the right and down, it’s building up more and
+more global understanding of what’s in the image, but at the expense of losing details. Then, when
+working back up to the top right, through the skip connections, it gets access again to the detailed
+information, which it can now fuse with the higher level understanding it’s built up coming from the
+bottom.
+Video 6: 3-D Reconstruction: LiDAR
+As humans, we don’t just semantically analyze what we see around us, we are also able to extract
+3-D information, which allows us to much more fully understand the structure of the world around
+us, which, of course, is intrinsically 3D, even if images are 2-D. And this helps us to function in
+the world. So, how can we have a computer understand the 3-D structure of the world?
+There are three main technology thrusts for 3-D reconstruction, often also referred to as depth
+perception: LiDAR, Stereo, and Monocular.
+So how does LiDAR work? First, it sends a laser pulse, in this figure, down to earth. Then, it
+measures how long it takes for the laser pulse to come back after reflection of the surface. From
+this, we can compute how far away the surface is from the lidar unit. We simply need to calculate
+the product of the speed of light with how long it took, divided by two, because it had to go down
+and then also back up. This gives us one LiDAR measurement. Most LiDAR can send pulses in
+multiple directions and, in doing so, build up a depth map in all directions. And, of course, we can
+move the LiDAR unit around to map out other areas.
+So, this all sounds great. Might it have any limitations? First, since measurements are done by
+multiplying, return time with speed of light, this requires a very precise clock to get precise
+readings, in practice, often can get around 2cm precision. Since LiDAR depends on sending light
+out and getting
+(Content truncated due to size limit. Use line ranges to read in chunks)

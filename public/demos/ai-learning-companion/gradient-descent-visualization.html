@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Gradient Descent</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7fafc;
+            margin: 0;
+            padding: 20px;
+            color: #1a365d;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        h1 {
+            color: #1a365d;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .controls-section {
+            background: #edf2f7;
+            padding: 25px;
+            border-radius: 8px;
+        }
+        
+        .control-group {
+            margin-bottom: 20px;
+        }
+        
+        .control-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        
+        label {
+            font-weight: 600;
+            color: #4a5568;
+            min-width: 120px;
+        }
+        
+        input[type="range"] {
+            flex: 1;
+            height: 6px;
+            border-radius: 3px;
+            background: #e2e8f0;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #ed8936;
+            cursor: pointer;
+        }
+        
+        .value-display {
+            font-weight: bold;
+            color: #ed8936;
+            min-width: 60px;
+            text-align: right;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .control-btn {
+            background: #3182ce;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+        
+        .control-btn:hover {
+            background: #2c5aa0;
+        }
+        
+        .control-btn:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+        }
+        
+        .reset-btn {
+            background: #38a169;
+        }
+        
+        .reset-btn:hover {
+            background: #2f855a;
+        }
+        
+        .stats-display {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 2px solid #ed8936;
+            margin-top: 15px;
+        }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-weight: 600;
+            color: #4a5568;
+        }
+        
+        .stat-value {
+            font-weight: bold;
+            color: #ed8936;
+        }
+        
+        .visualization-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .function-curve {
+            fill: none;
+            stroke: #4299e1;
+            stroke-width: 3;
+        }
+        
+        .path-line {
+            fill: none;
+            stroke: #ed8936;
+            stroke-width: 2;
+            stroke-dasharray: 3,3;
+        }
+        
+        .current-point {
+            fill: #e53e3e;
+            stroke: white;
+            stroke-width: 2;
+        }
+        
+        .minimum-point {
+            fill: #38a169;
+            stroke: white;
+            stroke-width: 2;
+        }
+        
+        .gradient-arrow {
+            stroke: #e53e3e;
+            stroke-width: 2;
+            marker-end: url(#arrowhead-red);
+        }
+        
+        .axis {
+            stroke: #4a5568;
+            stroke-width: 2;
+        }
+        
+        .grid-line {
+            stroke: #e2e8f0;
+            stroke-width: 1;
+        }
+        
+        .axis-label {
+            font-size: 14px;
+            fill: #4a5568;
+            text-anchor: middle;
+        }
+        
+        .point-label {
+            font-size: 12px;
+            font-weight: bold;
+            text-anchor: middle;
+        }
+        
+        .explanation {
+            background: #edf2f7;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #ed8936;
+            margin-top: 20px;
+        }
+        
+        .business-example {
+            background: #f0fff4;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #38a169;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Interactive Gradient Descent Optimization</h1>
+        
+        <div class="main-content">
+            <div class="controls-section">
+                <h3>Algorithm Parameters</h3>
+                
+                <div class="control-group">
+                    <div class="control-row">
+                        <label>Learning Rate:</label>
+                        <input type="range" id="learningRate" min="0.01" max="0.5" step="0.01" value="0.1">
+                        <span class="value-display" id="learningRateValue">0.10</span>
+                    </div>
+                    <div class="control-row">
+                        <label>Starting Position:</label>
+                        <input type="range" id="startPosition" min="-4" max="4" step="0.1" value="3">
+                        <span class="value-display" id="startPositionValue">3.0</span>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="control-btn" id="stepBtn" onclick="stepGradientDescent()">Single Step</button>
+                    <button class="control-btn" id="runBtn" onclick="toggleAnimation()">Run</button>
+                    <button class="control-btn reset-btn" onclick="resetOptimization()">Reset</button>
+                </div>
+                
+                <div class="stats-display">
+                    <h4>Optimization Progress</h4>
+                    <div class="stat-row">
+                        <span class="stat-label">Current Position:</span>
+                        <span class="stat-value" id="currentPos">3.0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Current Cost:</span>
+                        <span class="stat-value" id="currentCost">9.00</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Gradient:</span>
+                        <span class="stat-value" id="currentGradient">6.00</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Step Count:</span>
+                        <span class="stat-value" id="stepCount">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Distance to Minimum:</span>
+                        <span class="stat-value" id="distanceToMin">3.00</span>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px;">
+                    <h4>Function: f(x) = x² + 1</h4>
+                    <p style="margin: 5px 0; color: #4a5568;">Gradient: f'(x) = 2x</p>
+                    <p style="margin: 5px 0; color: #4a5568;">Global Minimum: x = 0, f(0) = 1</p>
+                </div>
+            </div>
+            
+            <div class="visualization-section">
+                <svg width="700" height="500" id="optimizationChart">
+                    <!-- Define arrowheads -->
+                    <defs>
+                        <marker id="arrowhead-red" markerWidth="10" markerHeight="7" 
+                                refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#e53e3e" />
+                        </marker>
+                    </defs>
+                    
+                    <!-- Grid lines -->
+                    <g id="gridLines"></g>
+                    
+                    <!-- Axes -->
+                    <line class="axis" x1="50" y1="450" x2="650" y2="450"></line>
+                    <line class="axis" x1="350" y1="50" x2="350" y2="450"></line>
+                    
+                    <!-- Function curve -->
+                    <path class="function-curve" id="functionCurve"></path>
+                    
+                    <!-- Optimization path -->
+                    <path class="path-line" id="optimizationPath"></path>
+                    
+                    <!-- Global minimum point -->
+                    <circle class="minimum-point" cx="350" cy="400" r="6"></circle>
+                    
+                    <!-- Current position -->
+                    <circle class="current-point" id="currentPoint" r="8"></circle>
+                    
+                    <!-- Gradient arrow -->
+                    <line class="gradient-arrow" id="gradientArrow"></line>
+                    
+                    <!-- Labels -->
+                    <text class="axis-label" x="350" y="485">x</text>
+                    <text class="axis-label" x="25" y="250" transform="rotate(-90, 25, 250)">f(x)</text>
+                    <text class="point-label" x="350" y="420" fill="#38a169">Global Min</text>
+                    <text class="point-label" id="currentLabel" fill="#e53e3e">Current</text>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="explanation">
+            <h3>Understanding Gradient Descent</h3>
+            <p>Gradient descent is the fundamental optimization algorithm used to train machine learning models. It works by:</p>
+            <ol>
+                <li><strong>Computing the gradient:</strong> The slope of the function at the current point</li>
+                <li><strong>Taking a step:</strong> Moving in the opposite direction of the gradient (downhill)</li>
+                <li><strong>Repeating:</strong> Until we reach the minimum (or close enough)</li>
+            </ol>
+            <p>The <strong>learning rate</strong> controls how big steps we take. Too small = slow convergence. Too large = might overshoot the minimum!</p>
+            <p><strong>Red dot:</strong> Current position | <strong>Green dot:</strong> Global minimum | <strong>Red arrow:</strong> Gradient direction</p>
+        </div>
+        
+        <div class="business-example">
+            <h3>Business Application: Model Training</h3>
+            <p><strong>Scenario:</strong> Training a machine learning model to predict customer lifetime value. The "cost function" represents how wrong our predictions are:</p>
+            <ul>
+                <li><strong>X-axis:</strong> Model parameter (e.g., weight for "purchase frequency" feature)</li>
+                <li><strong>Y-axis:</strong> Prediction error (cost) - we want to minimize this!</li>
+                <li><strong>Gradient descent:</strong> Automatically adjusts parameters to reduce prediction errors</li>
+                <li><strong>Learning rate:</strong> How aggressively we update our model (business risk vs. speed trade-off)</li>
+            </ul>
+            <p>This same process happens with thousands of parameters in real ML models!</p>
+        </div>
+    </div>
+
+    <script>
+        // Optimization state
+        let currentX = 3.0;
+        let path = [];
+        let stepCounter = 0;
+        let isAnimating = false;
+        let animationId = null;
+        
+        // Chart dimensions
+        const chartWidth = 600;
+        const chartHeight = 400;
+        const xMin = -5;
+        const xMax = 5;
+        const yMin = 0;
+        const yMax = 20;
+        
+        // Scale functions
+        function xScale(x) {
+            return 50 + (x - xMin) / (xMax - xMin) * chartWidth;
+        }
+        
+        function yScale(y) {
+            return 450 - (y - yMin) / (yMax - yMin) * chartHeight;
+        }
+        
+        // Cost function: f(x) = x^2 + 1
+        function costFunction(x) {
+            return x * x + 1;
+        }
+        
+        // Gradient: f'(x) = 2x
+        function gradient(x) {
+            return 2 * x;
+        }
+        
+        function updateVisualization() {
+            const learningRate = parseFloat(document.getElementById('learningRate').value);
+            const startPosition = parseFloat(document.getElementById('startPosition').value);
+            
+            // Update value displays
+            document.getElementById('learningRateValue').textContent = learningRate.toFixed(2);
+            document.getElementById('startPositionValue').textContent = startPosition.toFixed(1);
+            
+            // Update function curve
+            updateFunctionCurve();
+            
+            // Update current position if not animating
+            if (!isAnimating) {
+                currentX = startPosition;
+                path = [{x: currentX, y: costFunction(currentX)}];
+                stepCounter = 0;
+                updateCurrentPosition();
+                updatePath();
+                updateStats();
+            }
+            
+            updateGrid();
+        }
+        
+        function updateFunctionCurve() {
+            const points = [];
+            for (let x = xMin; x <= xMax; x += 0.1) {
+                const y = costFunction(x);
+                points.push(`${xScale(x)},${yScale(y)}`);
+            }
+            document.getElementById('functionCurve').setAttribute('d', `M ${points.join(' L ')}`);
+        }
+        
+        function updateCurrentPosition() {
+            const currentY = costFunction(currentX);
+            const point = document.getElementById('currentPoint');
+            point.setAttribute('cx', xScale(currentX));
+            point.setAttribute('cy', yScale(currentY));
+            
+            // Update gradient arrow
+            const grad = gradient(currentX);
+            const arrowLength = 50;
+            const arrowEndX = xScale(currentX) + (grad > 0 ? arrowLength : -arrowLength);
+            const arrowEndY = yScale(currentY) - Math.abs(grad) * 10;
+            
+            const arrow = document.getElementById('gradientArrow');
+            arrow.setAttribute('x1', xScale(currentX));
+            arrow.setAttribute('y1', yScale(currentY));
+            arrow.setAttribute('x2', arrowEndX);
+            arrow.setAttribute('y2', arrowEndY);
+            
+            // Update current label
+            const label = document.getElementById('currentLabel');
+            label.setAttribute('x', xScale(currentX));
+            label.setAttribute('y', yScale(currentY) - 15);
+        }
+        
+        function updatePath() {
+            if (path.length < 2) {
+                document.getElementById('optimizationPath').setAttribute('d', '');
+                return;
+            }
+            
+            const pathPoints = path.map(p => `${xScale(p.x)},${yScale(p.y)}`);
+            document.getElementById('optimizationPath').setAttribute('d', `M ${pathPoints.join(' L ')}`);
+        }
+        
+        function updateStats() {
+            const currentY = costFunction(currentX);
+            const grad = gradient(currentX);
+            const distanceToMin = Math.abs(currentX - 0);
+            
+            document.getElementById('currentPos').textContent = currentX.toFixed(2);
+            document.getElementById('currentCost').textContent = currentY.toFixed(2);
+            document.getElementById('currentGradient').textContent = grad.toFixed(2);
+            document.getElementById('stepCount').textContent = stepCounter;
+            document.getElementById('distanceToMin').textContent = distanceToMin.toFixed(2);
+        }
+        
+        function updateGrid() {
+            const gridContainer = document.getElementById('gridLines');
+            gridContainer.innerHTML = '';
+            
+            // Vertical grid lines
+            for (let x = -4; x <= 4; x++) {
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('class', 'grid-line');
+                line.setAttribute('x1', xScale(x));
+                line.setAttribute('x2', xScale(x));
+                line.setAttribute('y1', 50);
+                line.setAttribute('y2', 450);
+                gridContainer.appendChild(line);
+            }
+            
+            // Horizontal grid lines
+            for (let y = 0; y <= 20; y += 5) {
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('class', 'grid-line');
+                line.setAttribute('x1', 50);
+                line.setAttribute('x2', 650);
+                line.setAttribute('y1', yScale(y));
+                line.setAttribute('y2', yScale(y));
+                gridContainer.appendChild(line);
+            }
+        }
+        
+        function stepGradientDescent() {
+            const learningRate = parseFloat(document.getElementById('learningRate').value);
+            const grad = gradient(currentX);
+            
+            // Update position: x = x - learning_rate * gradient
+            currentX = currentX - learningRate * grad;
+            stepCounter++;
+            
+            // Add to path
+            path.push({x: currentX, y: costFunction(currentX)});
+            
+            // Update visualization
+            updateCurrentPosition();
+            updatePath();
+            updateStats();
+            
+            // Check convergence
+            if (Math.abs(grad) < 0.01) {
+                if (isAnimating) {
+                    toggleAnimation();
+                }
+                alert('Converged! Gradient is very small.');
+            }
+        }
+        
+        function toggleAnimation() {
+            const runBtn = document.getElementById('runBtn');
+            const stepBtn = document.getElementById('stepBtn');
+            
+            if (isAnimating) {
+                // Stop animation
+                isAnimating = false;
+                clearInterval(animationId);
+                runBtn.textContent = 'Run';
+                stepBtn.disabled = false;
+            } else {
+                // Start animation
+                isAnimating = true;
+                runBtn.textContent = 'Stop';
+                stepBtn.disabled = true;
+                
+                animationId = setInterval(() => {
+                    stepGradientDescent();
+                    
+                    // Stop if converged or too many steps
+                    if (Math.abs(gradient(currentX)) < 0.01 || stepCounter > 1000) {
+                        toggleAnimation();
+                    }
+                }, 200);
+            }
+        }
+        
+        function resetOptimization() {
+            if (isAnimating) {
+                toggleAnimation();
+            }
+            
+            const startPosition = parseFloat(document.getElementById('startPosition').value);
+            currentX = startPosition;
+            path = [{x: currentX, y: costFunction(currentX)}];
+            stepCounter = 0;
+            
+            updateCurrentPosition();
+            updatePath();
+            updateStats();
+        }
+        
+        // Event listeners
+        document.getElementById('learningRate').addEventListener('input', updateVisualization);
+        document.getElementById('startPosition').addEventListener('input', updateVisualization);
+        
+        // Initial render
+        updateVisualization();
+    </script>
+</body>
+</html>
+

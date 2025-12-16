@@ -25,6 +25,7 @@ export interface Project {
     github?: string;
     live?: string;
     download?: string;
+    video?: string;
   };
   images: {
     thumbnail: string;

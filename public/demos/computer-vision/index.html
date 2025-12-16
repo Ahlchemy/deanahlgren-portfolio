@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Vision and Natural Language Processing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="course-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="menu-icons">
+                    <button class="icon-btn" aria-label="Search">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                    <button class="icon-btn menu-toggle" aria-label="Menu">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                <h1 class="course-title">Computer Vision & Natural Language Processing</h1>
+                <div class="progress-container">
+                    <span class="progress-text">0% COMPLETE</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <!-- Section 1: Introduction -->
+                <div class="nav-section">
+                    <div class="section-header" data-section="intro">
+                        <span class="section-icon">&#9662;</span>
+                        <span class="section-title">INTRODUCTION</span>
+                    </div>
+                    <ul class="section-items">
+                        <li class="nav-item active" data-slide="0">
+                            <span class="item-status"></span>
+                            <span class="item-text">Welcome</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Section 2: Computer Vision -->
+                <div class="nav-section">
+                    <div class="section-header" data-section="cv">
+                        <span class="section-icon">&#9662;</span>
+                        <span class="section-title">COMPUTER VISION</span>
+                    </div>
+                    <ul class="section-items">
+                        <li class="nav-item" data-slide="1">
+                            <span class="item-status"></span>
+                            <span class="item-text">CV Fundamentals</span>
+                        </li>
+                        <li class="nav-item" data-slide="2">
+                            <span class="item-status"></span>
+                            <span class="item-text">CV Applications</span>
+                        </li>
+                        <li class="nav-item" data-slide="3">
+                            <span class="item-status"></span>
+                            <span class="item-text">3D Reconstruction</span>
+                        </li>
+                        <li class="nav-item" data-slide="4">
+                            <span class="item-status"></span>
+                            <span class="item-text">Image Generation</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Section 3: NLP -->
+                <div class="nav-section">
+                    <div class="section-header" data-section="nlp">
+                        <span class="section-icon">&#9662;</span>
+                        <span class="section-title">NATURAL LANGUAGE PROCESSING</span>
+                    </div>
+                    <ul class="section-items">
+                        <li class="nav-item" data-slide="5">
+                            <span class="item-status"></span>
+                            <span class="item-text">NLP Applications</span>
+                        </li>
+                        <li class="nav-item" data-slide="6">
+                            <span class="item-status"></span>
+                            <span class="item-text">Multimodal AI Systems</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Section 4: Assessment -->
+                <div class="nav-section">
+                    <div class="section-header" data-section="assessment">
+                        <span class="section-icon">&#9662;</span>
+                        <span class="section-title">KNOWLEDGE CHECK</span>
+                    </div>
+                    <ul class="section-items">
+                        <li class="nav-item" data-slide="7">
+                            <span class="item-status"></span>
+                            <span class="item-text">Module Summary</span>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Floating Menu Button (visible when sidebar collapsed) -->
+        <button class="floating-menu-btn" aria-label="Open Menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+        <!-- Main Content Area -->
+        <main class="content-area">
+            <!-- Slide 0: Welcome -->
+            <article class="slide active" data-slide="0">
+                <div class="slide-hero" style="background-image: url('images/img-000.jpg')">
+                    <div class="hero-overlay">
+                        <blockquote class="hero-quote">
+                            "Teaching machines to see and understand language is the next frontier of intelligence."
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="slide-content">
+                    <h2 class="content-title">Welcome to Computer Vision and Natural Language Processing</h2>
+                    <p class="content-lead">This module explores key AI applications in <strong>computer vision</strong> and <strong>natural language processing</strong>. You'll learn about breakthrough technologies transforming how machines see, interpret, and understand the world around us.</p>
+
+                    <div class="learning-objectives">
+                        <h3>Learning Objectives</h3>
+                        <ul>
+                            <li>Understand core computer vision techniques: classification, detection, and segmentation</li>
+                            <li>Explore real-world applications from autonomous vehicles to medical imaging</li>
+                            <li>Learn how NLP enables machines to process and generate human language</li>
+                            <li>Discover multimodal AI systems that combine vision and language</li>
+                        </ul>
+                    </div>
+
+                    <div class="author-info">
+                        <img src="images/img-001.jpg" alt="Course Author" class="author-avatar">
+                        <div class="author-details">
+                            <span class="author-label">Created by</span>
+                            <span class="author-name">Dean</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Slide 1: CV Fundamentals -->
+            <article class="slide" data-slide="1">
+                <div class="slide-hero" style="background-image: url('images/img-004.jpg')">
+                    <div class="hero-overlay">
+                        <blockquote class="hero-quote">
+                            "Computer vision teaches machines to derive meaning from visual inputs."
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="slide-content">
+                    <h2 class="content-title">Computer Vision Fundamentals</h2>
+                    <p class="content-lead">Computer vision enables machines to interpret and understand visual information from the world. These core techniques form the foundation for all visual AI applications.</p>
+
+                    <div class="concept-cards">
+                        <div class="concept-card">
+                            <div class="card-number">01</div>
+                            <h4>Classification</h4>
+                            <p>Recognizing and categorizing what objects appear in images. The system assigns labels like "cat," "car," or "building" to entire images.</p>
+                        </div>
+                        <div class="concept-card">
+                            <div class="card-number">02</div>
+                            <h4>Object Detection</h4>
+                            <p>Locating objects within images by placing bounding boxes around them. This identifies both what objects are present and where they are located.</p>
+                        </div>
+                        <div class="concept-card">
+                            <div class="card-number">03</div>
+                            <h4>Segmentation</h4>
+                            <p>Identifying the exact pixels belonging to each object. Semantic segmentation labels every pixel, while instance segmentation distinguishes individual objects.</p>
+                        </div>
+                        <div class="concept-card">
+                            <div class="card-number">04</div>
+                            <h4>Feature Extraction</h4>
+                            <p>Detecting key points, edges, textures, and patterns that help identify and match objects across different images and conditions.</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Slide 2: CV Applications -->
+            <article class="slide" data-slide="2">
+                <div class="slide-hero" style="background-image: url('images/img-011.jpg')">
+                    <div class="hero-overlay">
+                        <blockquote class="hero-quote">
+                            "From healthcare to transportation, computer vision is reshaping industries."
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="slide-content">
+                    <h2 class="content-title">Computer Vision Applications</h2>
+                    <p class="content-lead">Computer vision has moved from research labs into everyday applications that impact millions of lives. Here are some of the most significant use cases.</p>
+
+                    <div class="application-grid">
+                        <div class="application-card">
+                            <div class="app-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </div>
+                            <h4>Facial Recognition</h4>
+                            <p>Identifying and verifying individuals from facial features. Used in security systems, photo organization, and device authentication.</p>
+                        </div>
+                        <div class="application-card">
+                            <div class="app-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+                                    <circle cx="12" cy="16" r="2"></circle>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                            </div>
+                            <h4>Autonomous Vehicles</h4>
+                            <p>Enabling self-driving cars to perceive roads, detect obstacles, recognize signs, and navigate complex environments safely.</p>
+                        </div>
+                        <div class="application-card">
+                            <div class="app-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                                </svg>
+                            </div>
+                            <h4>Medical Imaging</h4>
+                            <p>Detecting tumors, analyzing X-rays, identifying abnormalities in CT scans, and assisting radiologists with faster, more accurate diagnoses.</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Slide 3: 3D Reconstruction -->
+            <article class="slide" data-slide="3">
+                <div class="slide-hero" style="background-image: url('images/img-017.jpg')">
+                    <div class="hero-overlay">
+                        <blockquote class="hero-quote">
+                            "Transforming flat images into rich three-dimensional understanding."
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="slide-content">
+                    <h2 class="content-title">3D Reconstruction Techniques</h2>
+                    <p class="content-lead">Moving beyond 2D image analysis, these techniques enable machines to understand and recreate the three-dimensional structure of the world.</p>
+
+                    <div class="technique-list">
+                        <div class="technique-item">
+                            <div class="technique-header">
+                                <span class="technique-badge">SfM</span>
+                                <h4>Structure from Motion</h4>
+                            </div>
+                            <p>Reconstructing 3D scenes by analyzing how objects move across multiple 2D images taken from different viewpoints. Used in mapping, archaeology, and VR content creation.</p>
+                        </div>
+                        <div class="technique-item">
+                            <div class="technique-header">
+                                <span class="technique-badge">DE</span>
+                                <h4>Depth Estimation</h4>
+                            </div>
+                            <p>Calculating the distance from the camera to each point in a scene. Can be done with stereo cameras, structured light, or even single images using deep learning.</p>
+                        </div>
+                        <div class="technique-item">
+                            <div class="technique-header">
+                                <span class="technique-badge">PCP</span>
+                                <h4>Point Cloud Processing</h4>
+                            </div>
+                            <p>Working with 3D point data captured from LiDAR sensors or depth cameras. Essential for autonomous vehicles, robotics, and industrial inspection.</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Slide 4: Image Generation -->
+            <article class="slide" data-slide="4">
+                <div class="slide-hero" style="background-image: url('images/img-011.jpg')">
+                    <div class="hero-overlay">
+                        <blockquote class="hero-quote">
+                            "AI can now create images that never existed before."
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="slide-content">
+                    <h2 class="content-title">Image Generation Methods</h2>
+                    <p class="content-lead">Beyond analyzing images, AI can now create entirely new visual content. These generative techniques are revolutionizing art, design, and content creation.</p>
+
+                    <div class="generation-methods">
+                        <div class="method-card">
+                            <h4>Generative Adversarial Networks (GANs)</h4>
+                            <p>Two neural networks compete: a generator creates images while a discriminator tries to detect fakes. This adversarial process produces increasingly realistic outputs.</p>
+                            <div class="method-uses">
+                                <span>Face generation</span>
+                                <span>Image editing</span>
+                                <span>Super resolution</span>
+                            </div>
+                        </div>
+                        <div class="method-card">
+                            <h4>Diffusion Models</h4>
+                            <p>Starting from random noise, these models gradually remove noise step by step to reveal a coherent image. Powers tools like DALL-E, Midjourney, and Stable Diffusion.</p>
+                            <div class="method-uses">
+                                <span>Text-to-image</span>
+                                <span>Inpainting</span>
+                                <span>Variations</span>
+                            </div>
+                        </div>
+                        <div class="method-card">
+                            <h4>Style Transfer</h4>
+                            <p>Applying the artistic style of one image to the content of another. Separates content from style to create unique artistic transformations.</p>
+                            <div class="method-uses">
+                                <span>Artistic filters</span>
+                                <span>Video stylization</span>
+                                <span>Design tools</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Slide 5: NLP Applications -->
+            <article class="slide" data-slide="5">
+                <div class="slide-hero" style="background-image: url('images/img-014.jpg')">
+                    <div class="hero-overlay">
+                        <blockquote class="hero-quote">
+                            "Bridging the gap between human language and machine understanding."
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="slide-content">
+                    <h2 class="content-title">Natural Language Processing Applications</h2>
+                    <p class="content-lead">NLP enables computers to understand, interpret, and generate human language in meaningful ways. These capabilities power many everyday applications.</p>
+
+                    <div class="nlp-applications">
+                        <div class="nlp-card">
+                            <div class="nlp-icon">TC</div>
+                            <div class="nlp-content">
+                                <h4>Text Classification</h4>
+                                <p>Automatically categorizing documents by topic, sentiment, or intent. Powers spam filters, content moderation, and customer feedback analysis.</p>
+                            </div>
+                        </div>
+                        <div class="nlp-card">
+                            <div class="nlp-icon">NER</div>
+                            <div class="nlp-content">
+                                <h4>Named Entity Recognition</h4>
+                                <p>Identifying and classifying named entities like people, organizations, locations, and dates within unstructured text.</p>
+                            </div>
+                        </div>
+                        <div class="nlp-card">
+                            <div class="nlp-icon">MT</div>
+                            <div class="nlp-content">
+                                <h4>Machine Translation</h4>
+                                <p>Converting text between languages while preserving meaning, context, and nuance. Modern systems handle over 100 languages.</p>
+                            </div>
+                        </div>
+                        <div class="nlp-card">
+                            <div class="nlp-icon">QA</div>
+                            <div class="nlp-content">
+                                <h4>Question Answering</h4>
+                                <p>Providing relevant, accurate answers to natural language questions by understanding context and retrieving information.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Slide 6: Multimodal AI -->
+            <article class="slide" data-slide="6">
+                <div class="slide-hero" style="background-image: url('images/img-017.jpg')">
+                    <div class="hero-overlay">
+                        <blockquote class="hero-quote">
+                            "When vision meets language, new possibilities emerge."
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="slide-content">
+                    <h2 class="content-title">Multimodal AI Systems</h2>
+                    <p class="content-lead">The most powerful AI systems combine multiple modalities—vision, language, and more—to understand and generate content in ways that mirror human cognition.</p>
+
+                    <div class="multimodal-showcase">
+                        <div class="modal-item">
+                            <div class="modal-visual">
+                                <span class="modal-arrow">Image &rarr; Text</span>
+                            </div>
+                            <h4>Image Captioning</h4>
+                            <p>Automatically generating natural language descriptions of image content. AI analyzes visual elements and produces coherent, contextual text descriptions.</p>
+                        </div>
+                        <div class="modal-item">
+                            <div class="modal-visual">
+                                <span class="modal-arrow">Image + Question &rarr; Answer</span>
+                            </div>
+                            <h4>Visual Question Answering</h4>
+                            <p>Answering questions about image contents requires understanding both the visual scene and the natural language query to provide accurate responses.</p>
+                        </div>
+                        <div class="modal-item">
+                            <div class="modal-visual">
+                                <span class="modal-arrow">Text &rarr; Image</span>
+                            </div>
+                            <h4>Text-to-Image Generation</h4>
+                            <p>Creating images from textual descriptions. Systems like DALL-E and Midjourney can generate photorealistic or artistic images from detailed prompts.</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Slide 7: Summary -->
+            <article class="slide" data-slide="7">
+                <div class="slide-hero summary-hero" style="background-image: url('images/img-000.jpg')">
+                    <div class="hero-overlay">
+                        <blockquote class="hero-quote">
+                            "You've completed Module 4. Let's review what you've learned."
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="slide-content">
+                    <h2 class="content-title">Module Summary</h2>
+                    <p class="content-lead">Congratulations on completing this module. Here's a recap of the key concepts covered.</p>
+
+                    <div class="summary-grid">
+                        <div class="summary-section">
+                            <h4>Computer Vision</h4>
+                            <ul>
+                                <li>Classification, detection, and segmentation fundamentals</li>
+                                <li>Real-world applications in healthcare, security, and transportation</li>
+                                <li>3D reconstruction and spatial understanding</li>
+                                <li>Generative models for image creation</li>
+                            </ul>
+                        </div>
+                        <div class="summary-section">
+                            <h4>Natural Language Processing</h4>
+                            <ul>
+                                <li>Text classification and entity recognition</li>
+                                <li>Machine translation across languages</li>
+                                <li>Question answering systems</li>
+                                <li>Integration with visual understanding</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="completion-badge">
+                        <div class="badge-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div class="badge-text">
+                            <span class="badge-title">Module Complete</span>
+                            <span class="badge-subtitle">Computer Vision & NLP</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Navigation Controls -->
+            <nav class="slide-navigation">
+                <button class="nav-btn prev-btn" disabled>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                    <span>Previous</span>
+                </button>
+                <div class="slide-indicator">
+                    <span class="current-slide">1</span> / <span class="total-slides">8</span>
+                </div>
+                <button class="nav-btn next-btn">
+                    <span>Next</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </nav>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

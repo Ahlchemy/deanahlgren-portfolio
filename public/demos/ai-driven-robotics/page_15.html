@@ -1,0 +1,200 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Industry Applications and Opportunities</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+        body, html {width: 1280px; height: 834px; margin: 0;
+            padding: 0;}
+        .slide {
+            width: 1280px;
+            min-height: 834px;
+            position: relative;
+            
+        }
+        .circuit-line {
+            position: absolute;
+            background: rgba(192, 192, 192, 0.1);
+            z-index: 1;
+        }
+        .industry-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .industry-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.3);
+        }
+        .gradient-border {
+            position: relative;
+        }
+        .gradient-border::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 10px;
+            padding: 2px;
+            background: linear-gradient(45deg, #0066CC, #FF6600);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+        .hexagon-bg {
+            background-image: radial-gradient(#0066CC 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body>
+<div class="slide bg-gradient-to-br from-gray-900 to-blue-900 p-10 relative">
+<!-- Background patterns -->
+<div class="absolute inset-0 hexagon-bg z-0"></div>
+<div class="circuit-line w-full h-0.5 top-1/4 left-0"></div>
+<div class="circuit-line w-0.5 h-full top-0 right-1/4"></div>
+<div class="circuit-line w-full h-0.5 bottom-1/4 left-0"></div>
+<!-- Header -->
+<div class="relative z-10 mb-8">
+<h1 class="text-4xl font-bold text-white mb-3 flex items-center">
+<i class="fas fa-industry text-blue-400 mr-4"></i>
+                Industry Applications and Opportunities
+            </h1>
+<div class="w-32 h-1 bg-orange-500 rounded"></div>
+</div>
+<!-- Main Content -->
+<div class="relative z-10 grid grid-cols-12 gap-6">
+<!-- Left Column - Industries -->
+<div class="col-span-7 space-y-4">
+<!-- Manufacturing -->
+<div class="bg-gray-800 bg-opacity-80 p-5 rounded-lg gradient-border industry-card">
+<div class="flex items-center mb-2">
+<div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+<i class="fas fa-robot text-white"></i>
+</div>
+<h3 class="text-xl font-bold text-white">Manufacturing &amp; Assembly</h3>
+</div>
+<div class="pl-13">
+<p class="text-blue-200 text-sm mb-2">
+                            RL enables robots to learn complex manipulation tasks without human demonstrations
+                        </p>
+<div class="flex items-start space-x-2 text-sm">
+<i class="fas fa-check-circle text-green-400 mt-1"></i>
+<p class="text-gray-300">Assembly tasks like pancake flipping demonstrate adaptive manipulation skills</p>
+</div>
+<div class="flex items-start space-x-2 text-sm mt-1">
+<i class="fas fa-check-circle text-green-400 mt-1"></i>
+<p class="text-gray-300">Simulated locomotion demonstrations improve policy development and sample efficiency</p>
+</div>
+</div>
+</div>
+<!-- Warehouse/Logistics -->
+<div class="bg-gray-800 bg-opacity-80 p-5 rounded-lg gradient-border industry-card">
+<div class="flex items-center mb-2">
+<div class="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center mr-3">
+<i class="fas fa-warehouse text-white"></i>
+</div>
+<h3 class="text-xl font-bold text-white">Warehouse &amp; Logistics</h3>
+</div>
+<div class="pl-13">
+<p class="text-blue-200 text-sm mb-2">
+                            RL optimizes navigation and task planning in dynamic environments
+                        </p>
+<div class="flex items-start space-x-2 text-sm">
+<i class="fas fa-check-circle text-green-400 mt-1"></i>
+<p class="text-gray-300">Fetch Robotics uses RL for path optimization in changing warehouse layouts</p>
+</div>
+<div class="flex items-start space-x-2 text-sm mt-1">
+<i class="fas fa-check-circle text-green-400 mt-1"></i>
+<p class="text-gray-300">Adaptive obstacle avoidance while efficiently completing tasks</p>
+</div>
+</div>
+</div>
+<!-- Autonomous Navigation -->
+<div class="bg-gray-800 bg-opacity-80 p-5 rounded-lg gradient-border industry-card">
+<div class="flex items-center mb-2">
+<div class="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center mr-3">
+<i class="fas fa-car text-white"></i>
+</div>
+<h3 class="text-xl font-bold text-white">Autonomous Navigation</h3>
+</div>
+<div class="pl-13">
+<p class="text-blue-200 text-sm mb-2">
+                            RL algorithms power trajectory optimization and motion planning
+                        </p>
+<div class="flex items-start space-x-2 text-sm">
+<i class="fas fa-check-circle text-green-400 mt-1"></i>
+<p class="text-gray-300">Self-driving vehicles learn optimal policies for lane changing and traffic navigation</p>
+</div>
+<div class="flex items-start space-x-2 text-sm mt-1">
+<i class="fas fa-check-circle text-green-400 mt-1"></i>
+<p class="text-gray-300">Dynamic pathing capabilities adapt to changing environments</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column - Image and Implementation -->
+<div class="col-span-5">
+<!-- Image Section -->
+<div class="mb-4">
+<img alt="Boston Dynamics Spot Robot" class="rounded-lg w-full object-cover h-44 shadow-lg border border-gray-700" src="https://picture-search.skywork.ai/aippt/image/sheet/92d9b48971c48e7b1852ae3e1e76d7a6.jpg"/>
+<p class="text-gray-400 text-xs mt-1 italic text-center">Boston Dynamics&#39; Spot robot using RL for adaptive locomotion on uneven terrain</p>
+</div>
+<!-- Implementation Considerations -->
+<div class="bg-gray-800 bg-opacity-80 p-5 rounded-lg gradient-border">
+<h3 class="text-lg font-bold text-white mb-3 flex items-center">
+<i class="fas fa-cogs text-blue-400 mr-2"></i>
+                        Implementation Considerations
+                    </h3>
+<ul class="space-y-2 text-sm">
+<li class="flex items-start">
+<i class="fas fa-angle-right text-orange-500 mt-1 mr-2"></i>
+<span class="text-gray-300">Address sample efficiency to reduce costly real-world interactions</span>
+</li>
+<li class="flex items-start">
+<i class="fas fa-angle-right text-orange-500 mt-1 mr-2"></i>
+<span class="text-gray-300">Improve sim-to-real transfer using domain randomization</span>
+</li>
+<li class="flex items-start">
+<i class="fas fa-angle-right text-orange-500 mt-1 mr-2"></i>
+<span class="text-gray-300">Develop safe RL methods to ensure constraint satisfaction</span>
+</li>
+<li class="flex items-start">
+<i class="fas fa-angle-right text-orange-500 mt-1 mr-2"></i>
+<span class="text-gray-300">Handle partial observability in complex environments</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Future Opportunities Section -->
+<div class="relative z-10 mt-6">
+<div class="bg-blue-900 bg-opacity-50 p-4 rounded-lg border border-blue-700">
+<h3 class="text-lg font-bold text-white mb-2 flex items-center">
+<i class="fas fa-lightbulb text-yellow-400 mr-2"></i>
+                    Future Opportunities
+                </h3>
+<div class="grid grid-cols-3 gap-3">
+<div class="flex items-start">
+<i class="fas fa-arrow-circle-right text-blue-400 mt-1 mr-2"></i>
+<p class="text-blue-100 text-sm">Integration with natural language processing for enhanced human-robot interaction</p>
+</div>
+<div class="flex items-start">
+<i class="fas fa-arrow-circle-right text-blue-400 mt-1 mr-2"></i>
+<p class="text-blue-100 text-sm">Hybrid approaches combining model-based and model-free RL methods</p>
+</div>
+<div class="flex items-start">
+<i class="fas fa-arrow-circle-right text-blue-400 mt-1 mr-2"></i>
+<p class="text-blue-100 text-sm">Long-horizon planning and reasoning for complex sequential tasks</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Page indicator -->
+<div class="absolute bottom-4 right-6 text-blue-300 text-sm">
+            Page 15 of 15
+        </div>
+</div>
+
+</body></html>

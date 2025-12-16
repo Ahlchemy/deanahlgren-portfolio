@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+
+  <title>Process Component</title>
+
+  <!-- Base styles -->
+  <link type="text/css" rel="stylesheet" href="../../lib/icomoon.css">
+  
+  <!-- Required scripts -->
+  <script type="text/javascript" src="../../lib/player-0.0.11.min.js"></script>
+  <script type="text/javascript" src="../../lib/lzwcompress.js"></script>
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="../../lib/sandbox/4adfab46.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      color: #ff631e;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .instructions {
+      margin-bottom: 30px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-left: 4px solid #ff631e;
+    }
+
+    .process-container {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .process-step {
+      display: flex;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .process-step:last-child {
+      margin-bottom: 0;
+    }
+
+    .process-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      width: 3px;
+      background-color: #ff631e;
+      top: 80px;
+      bottom: -30px;
+      left: 38px;
+    }
+
+    .step-number {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: #ff631e;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: bold;
+      flex-shrink: 0;
+      margin-right: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 2;
+    }
+
+    .step-content {
+      flex-grow: 1;
+      padding-top: 10px;
+    }
+
+    .step-content h3 {
+      color: #ff631e;
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+
+    .step-content p {
+      margin-top: 0;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .step-image {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: #ff631e;
+      text-decoration: none;
+    }
+    
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile responsive styles */
+    @media (max-width: 768px) {
+      .step-number {
+        width: 60px;
+        height: 60px;
+        font-size: 22px;
+      }
+
+      .process-step:not(:last-child)::after {
+        left: 28px;
+        top: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Process Component</h1>
+    
+    <div class="instructions">
+      <p>This component shows a sequential process with numbered steps, descriptions, and images.</p>
+    </div>
+    
+    <div class="process-container">
+      <div class="process-steps">
+        <!-- Step 1 -->
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Research Phase</h3>
+            <img src="images/laptop-work.jpg" alt="Research Phase" class="step-image">
+            <p>Begin by researching the topic thoroughly. Gather data from reliable sources, conduct interviews if needed, and organize your findings. This foundational step ensures that your project is built on solid information.</p>
+          </div>
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Planning & Strategy</h3>
+            <img src="images/desk-notebook.jpg" alt="Planning Stage" class="step-image">
+            <p>Develop a comprehensive strategy based on your research. Set clear objectives, define key milestones, and create a timeline for implementation. A well-structured plan serves as your roadmap throughout the project.</p>
+          </div>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Implementation</h3>
+            <img src="images/chalkboard.jpg" alt="Implementation" class="step-image">
+            <p>Execute your plan methodically. Break down large tasks into manageable components and track progress regularly. Be prepared to adapt your approach as new information emerges during this phase.</p>
+          </div>
+        </div>
+        
+        <!-- Step 4 -->
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Review & Refinement</h3>
+            <img src="images/paraglide.jpg" alt="Review Process" class="step-image">
+            <p>Analyze the outcomes of your implementation. Gather feedback from stakeholders, assess what worked well, and identify areas for improvement. Use these insights to refine your process for future iterations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <a href="../index.html" class="back-link">← Back to Components List</a>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Animation on scroll could be added here if desired
+      // This is a simple example that adds a visible class to steps as they come into view
+      
+      function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+          rect.top >= 0 &&
+          rect.left >= 0 &&
+          rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+          rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+      }
+      
+      const steps = document.querySelectorAll('.process-step');
+      
+      function checkVisibility() {
+        steps.forEach(step => {
+          if (isInViewport(step)) {
+            step.classList.add('visible');
+          }
+        });
+      }
+      
+      // Initial check
+      checkVisibility();
+      
+      // Check on scroll
+      window.addEventListener('scroll', checkVisibility);
+    });
+  </script>
+</body>
+</html>

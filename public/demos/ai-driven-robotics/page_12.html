@@ -1,0 +1,165 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Transfer Learning: From Simulation to Reality</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>
+        body, html {width: 1280px; height: 766px; margin: 0;
+            padding: 0;}
+        .slide {
+            width: 1280px;
+            min-height: 766px;
+            position: relative;
+            
+        }
+        .circuit-line {
+            position: absolute;
+            background: rgba(192, 192, 192, 0.1);
+            z-index: 1;
+        }
+        .technique-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .technique-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.3);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #FFFFFF, #0066CC);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .arrow-path {
+            position: relative;
+        }
+        .arrow-path::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -30px;
+            width: 30px;
+            height: 2px;
+            background-color: #FF6600;
+            transform: translateY(-50%);
+        }
+        .arrow-path::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -30px;
+            width: 10px;
+            height: 10px;
+            border-top: 2px solid #FF6600;
+            border-right: 2px solid #FF6600;
+            transform: translateY(-50%) rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+<div class="slide bg-gradient-to-br from-gray-900 to-blue-900 p-12 relative">
+<!-- Background circuit elements -->
+<div class="circuit-line w-full h-0.5 top-1/4 left-0"></div>
+<div class="circuit-line w-0.5 h-full top-0 right-1/4"></div>
+<div class="circuit-line w-full h-0.5 bottom-1/4 left-0"></div>
+<div class="circuit-line w-0.5 h-full top-0 left-1/4"></div>
+<!-- Header -->
+<div class="relative z-10 mb-8">
+<h1 class="text-4xl font-bold text-white mb-4 flex items-center">
+<i class="fas fa-exchange-alt text-blue-400 mr-4 text-4xl"></i>
+                Transfer Learning: <span class="gradient-text ml-2">From Simulation to Reality</span>
+</h1>
+<div class="w-24 h-1 bg-orange-500 rounded"></div>
+</div>
+<!-- Brief Introduction -->
+<div class="relative z-10 mb-8">
+<p class="text-blue-200 text-lg max-w-4xl">
+                Transfer learning in robotics bridges the gap between simulated environments and real-world deployment, enabling robots to apply knowledge across different tasks and scenarios.
+            </p>
+</div>
+<!-- Main Content Grid -->
+<div class="relative z-10 grid grid-cols-3 gap-6 mb-6">
+<!-- Domain Randomization -->
+<div class="bg-gray-800 bg-opacity-80 rounded-lg p-5 border-l-4 border-blue-500 technique-card">
+<div class="flex items-center mb-3">
+<div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+<i class="fas fa-random text-white"></i>
+</div>
+<h3 class="text-xl font-bold text-white">Domain Randomization</h3>
+</div>
+<p class="text-blue-200 text-sm">
+                    Training in randomized simulated environments to make policies robust against variations. Creates resilience to differences between simulation and reality.
+                </p>
+<div class="mt-3 text-xs text-gray-400">
+<i class="fas fa-check-circle text-green-400 mr-1"></i> Improves real-world performance
+                </div>
+</div>
+<!-- Meta-Learning -->
+<div class="bg-gray-800 bg-opacity-80 rounded-lg p-5 border-l-4 border-purple-500 technique-card">
+<div class="flex items-center mb-3">
+<div class="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center mr-3">
+<i class="fas fa-brain text-white"></i>
+</div>
+<h3 class="text-xl font-bold text-white">Meta-Learning</h3>
+</div>
+<p class="text-blue-200 text-sm">
+                    Algorithms like MAML (Model-Agnostic Meta-Learning) enable robots to quickly adapt to new tasks with minimal data through &#34;learning to learn&#34;.
+                </p>
+<div class="mt-3 text-xs text-gray-400">
+<i class="fas fa-check-circle text-green-400 mr-1"></i> Fast adaptation to new scenarios
+                </div>
+</div>
+<!-- Curriculum Learning -->
+<div class="bg-gray-800 bg-opacity-80 rounded-lg p-5 border-l-4 border-orange-500 technique-card">
+<div class="flex items-center mb-3">
+<div class="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center mr-3">
+<i class="fas fa-graduation-cap text-white"></i>
+</div>
+<h3 class="text-xl font-bold text-white">Curriculum Learning</h3>
+</div>
+<p class="text-blue-200 text-sm">
+                    Gradually increasing task complexity during training, allowing robots to develop more generalizable skills that transfer well to new scenarios.
+                </p>
+<div class="mt-3 text-xs text-gray-400">
+<i class="fas fa-check-circle text-green-400 mr-1"></i> Builds transferable skill foundations
+                </div>
+</div>
+</div>
+<!-- Sim-to-Real Visualization -->
+<div class="relative z-10 flex bg-gray-800 bg-opacity-50 rounded-lg p-4 border border-blue-400">
+<div class="w-1/2 pr-4">
+<h4 class="text-lg font-semibold text-white mb-3 flex items-center">
+<i class="fas fa-project-diagram text-blue-400 mr-2"></i>
+                    Sim-to-Real Transfer Process
+                </h4>
+<div class="flex flex-col space-y-4">
+<div class="flex items-center">
+<div class="w-8 h-8 bg-blue-900 rounded-full flex items-center justify-center text-blue-300 text-sm font-bold mr-3">1</div>
+<p class="text-blue-200 text-sm">Train policy in simulation with domain randomization</p>
+</div>
+<div class="flex items-center">
+<div class="w-8 h-8 bg-blue-900 rounded-full flex items-center justify-center text-blue-300 text-sm font-bold mr-3">2</div>
+<p class="text-blue-200 text-sm">Apply domain adaptation techniques to bridge reality gap</p>
+</div>
+<div class="flex items-center">
+<div class="w-8 h-8 bg-blue-900 rounded-full flex items-center justify-center text-blue-300 text-sm font-bold mr-3">3</div>
+<p class="text-blue-200 text-sm">Use progressive neural networks to prevent forgetting</p>
+</div>
+<div class="flex items-center">
+<div class="w-8 h-8 bg-blue-900 rounded-full flex items-center justify-center text-blue-300 text-sm font-bold mr-3">4</div>
+<p class="text-blue-200 text-sm">Fine-tune with minimal real-world data for optimal performance</p>
+</div>
+</div>
+</div>
+<div class="w-1/2 flex items-center justify-center">
+<img alt="Simulation to reality transfer with robot arm" class="max-h-52 rounded-lg shadow-lg border border-gray-600" src="https://picture-search.skywork.ai/aippt/image/sheet/b756fedfbed5b541f5139eaa5e1de05c.jpg"/>
+</div>
+</div>
+<!-- Page indicator -->
+<div class="absolute bottom-6 right-6 text-blue-300 text-sm">
+            Page 12 of 15
+        </div>
+</div>
+
+</body></html>

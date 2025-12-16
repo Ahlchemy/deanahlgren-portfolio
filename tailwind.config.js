@@ -8,44 +8,49 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Primary - Deep Ocean Blue
+        // Primary - Deep Ocean Teal (refined: leans more blue, controlled range)
         ocean: {
-          50: '#e6f0f5',
-          100: '#cce1eb',
-          200: '#99c3d7',
-          300: '#66a5c3',
-          400: '#3387af',
-          500: '#0A4C6A', // Primary
-          600: '#083d55',
-          700: '#062e40',
-          800: '#041f2b',
-          900: '#021016',
+          50: '#e8f2f7',
+          100: '#d1e5ef',
+          200: '#a3cbdf',
+          300: '#75b1cf',
+          400: '#4797bf',
+          500: '#0B5570', // Primary - slightly more blue
+          600: '#094560',
+          700: '#073550',
+          800: '#052540',
+          900: '#031530',
         },
-        // Accent - AI Coral
-        coral: {
-          50: '#fff0f0',
-          100: '#ffe1e1',
-          200: '#ffc3c3',
-          300: '#ffa5a5',
-          400: '#ff8787',
-          500: '#FF6B6B', // Accent
-          600: '#cc5656',
-          700: '#994040',
-          800: '#662b2b',
-          900: '#331515',
+        // Primary Accent - Burnt Orange/Amber (refined: darker, less saturated, mature)
+        amber: {
+          50: '#fdf8f3',
+          100: '#faeee0',
+          200: '#f5dcc1',
+          300: '#efc9a2',
+          400: '#e4b07a',
+          500: '#C87A1A', // Primary - darker, burnt orange
+          600: '#A86515',
+          700: '#885010',
+          800: '#683C0B',
+          900: '#482806',
         },
-        // Secondary - Dawn Sky
+        // Supporting - Dawn (warm neutral, used sparingly)
         dawn: {
           50: '#fef7f0',
           100: '#fdefe1',
           200: '#fbdfc3',
           300: '#f9cfa5',
           400: '#f7bf87',
-          500: '#F4A460', // Secondary
-          600: '#c3834d',
-          700: '#92623a',
-          800: '#624126',
-          900: '#312113',
+          500: '#D4915A', // Slightly muted
+          600: '#b07a4d',
+          700: '#8c6340',
+          800: '#684c33',
+          900: '#443526',
+        },
+        // Warm backgrounds
+        warm: {
+          50: '#FAFAF9',  // Warm off-white
+          100: '#F5F5F4', // Slightly darker warm
         },
         // Neutrals
         neutral: {
@@ -63,8 +68,8 @@ export default {
         },
       },
       fontFamily: {
-        display: ['Space Grotesk', 'system-ui', 'sans-serif'],
-        body: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Raleway', 'system-ui', 'sans-serif'],
+        body: ['Roboto', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       fontSize: {
@@ -100,8 +105,8 @@ export default {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'hero-gradient': 'linear-gradient(135deg, #0A4C6A 0%, #083d55 50%, #041f2b 100%)',
-        'accent-gradient': 'linear-gradient(135deg, #0A4C6A 0%, #FF6B6B 100%)',
+        'hero-gradient': 'linear-gradient(135deg, #0B5570 0%, #094560 50%, #052540 100%)',
+        'accent-gradient': 'linear-gradient(135deg, #0B5570 0%, #C87A1A 100%)',
       },
     },
   },

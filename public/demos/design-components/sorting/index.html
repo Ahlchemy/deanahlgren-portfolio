@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+
+  <title>Sorting Activity Component</title>
+
+  <!-- Base styles -->
+  <link type="text/css" rel="stylesheet" href="../../lib/icomoon.css">
+  
+  <!-- Required scripts -->
+  <script type="text/javascript" src="../../lib/player-0.0.11.min.js"></script>
+  <script type="text/javascript" src="../../lib/lzwcompress.js"></script>
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="../../lib/sandbox/4adfab46.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      color: #ff631e;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .instructions {
+      margin-bottom: 30px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-left: 4px solid #ff631e;
+    }
+
+    .sorting-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+
+    .sorting-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      min-height: 100px;
+      padding: 15px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      border: 2px dashed #ccc;
+    }
+
+    .sorting-categories {
+      display: flex;
+      gap: 20px;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 768px) {
+      .sorting-categories {
+        flex-direction: column;
+      }
+    }
+
+    .sorting-category {
+      flex: 1;
+      min-height: 200px;
+      padding: 15px;
+      border-radius: 8px;
+      border: 2px solid;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .category-title {
+      font-weight: bold;
+      margin-bottom: 15px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .category-items {
+      width: 100%;
+      min-height: 150px;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 6px;
+      padding: 10px;
+      flex-grow: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      gap: 10px;
+    }
+
+    /* Category colors */
+    .category-hardware {
+      border-color: #3e8ed0;
+      background-color: #eef6fd;
+    }
+    
+    .category-hardware .category-title {
+      color: #3e8ed0;
+    }
+    
+    .category-software {
+      border-color: #48c78e;
+      background-color: #effaf5;
+    }
+    
+    .category-software .category-title {
+      color: #48c78e;
+    }
+
+    /* Sortable item styles */
+    .sorting-item {
+      padding: 12px;
+      background: white;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      cursor: grab;
+      user-select: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .sorting-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .sorting-item.dragging {
+      opacity: 0.8;
+      cursor: grabbing;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    /* Feedback and actions */
+    .sorting-feedback {
+      display: none;
+      padding: 15px;
+      border-radius: 6px;
+      margin-top: 20px;
+      background-color: #f8f8f8;
+      border-left: 4px solid #ff631e;
+    }
+
+    .sorting-feedback.visible {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .sorting-actions {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .sorting-button {
+      background-color: #ff631e;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .sorting-button:hover {
+      background-color: #e05718;
+    }
+
+    .sorting-button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: #ff631e;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Correct/incorrect item indicators */
+    .sorting-item.correct {
+      border: 2px solid #48c78e;
+    }
+
+    .sorting-item.incorrect {
+      border: 2px solid #f14668;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sorting Activity Component</h1>
+    
+    <div class="instructions">
+      <p>Drag and drop the items below into the correct category: Hardware or Software.</p>
+    </div>
+    
+    <div class="sorting-container">
+      <!-- Unsorted items container -->
+      <div class="sorting-items" id="unsorted-items">
+        <div class="sorting-item" draggable="true" data-correct-category="hardware">Monitor</div>
+        <div class="sorting-item" draggable="true" data-correct-category="software">Photoshop</div>
+        <div class="sorting-item" draggable="true" data-correct-category="hardware">Printer</div>
+        <div class="sorting-item" draggable="true" data-correct-category="software">Spreadsheet</div>
+        <div class="sorting-item" draggable="true" data-correct-category="hardware">Keyboard</div>
+        <div class="sorting-item" draggable="true" data-correct-category="software">Web Browser</div>
+        <div class="sorting-item" draggable="true" data-correct-category="hardware">Router</div>
+        <div class="sorting-item" draggable="true" data-correct-category="software">Operating System</div>
+      </div>
+      
+      <!-- Categories for sorting -->
+      <div class="sorting-categories">
+        <!-- Hardware category -->
+        <div class="sorting-category category-hardware" data-category="hardware">
+          <div class="category-title">Hardware</div>
+          <div class="category-items" id="hardware-items"></div>
+        </div>
+        
+        <!-- Software category -->
+        <div class="sorting-category category-software" data-category="software">
+          <div class="category-title">Software</div>
+          <div class="category-items" id="software-items"></div>
+        </div>
+      </div>
+      
+      <!-- Feedback area -->
+      <div id="sorting-feedback" class="sorting-feedback">
+        <h3>Great job!</h3>
+        <p>You've correctly categorized all the items. Hardware refers to the physical components of a computer system that you can touch, while software consists of the programs and applications that run on the hardware.</p>
+      </div>
+      
+      <!-- Action buttons -->
+      <div class="sorting-actions">
+        <button id="check-button" class="sorting-button">Check Answers</button>
+        <button id="reset-button" class="sorting-button">Reset Activity</button>
+      </div>
+    </div>
+    
+    <a href="../index.html" class="back-link">← Back to Components List</a>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get DOM elements
+      const unsortedContainer = document.getElementById('unsorted-items');
+      const hardwareContainer = document.getElementById('hardware-items');
+      const softwareContainer = document.getElementById('software-items');
+      const sortingItems = document.querySelectorAll('.sorting-item');
+      const checkButton = document.getElementById('check-button');
+      const resetButton = document.getElementById('reset-button');
+      const feedback = document.getElementById('sorting-feedback');
+      
+      let draggedItem = null;
+      
+      // Initialize drag and drop functionality
+      function initDragAndDrop() {
+        sortingItems.forEach(item => {
+          // Make items draggable
+          item.addEventListener('dragstart', handleDragStart);
+          item.addEventListener('dragend', handleDragEnd);
+        });
+        
+        // Set up drop targets
+        const dropTargets = document.querySelectorAll('.category-items, #unsorted-items');
+        dropTargets.forEach(target => {
+          target.addEventListener('dragover', handleDragOver);
+          target.addEventListener('dragenter', handleDragEnter);
+          target.addEventListener('dragleave', handleDragLeave);
+          target.addEventListener('drop', handleDrop);
+        });
+      }
+      
+      // Drag and drop event handlers
+      function handleDragStart(e) {
+        draggedItem = this;
+        setTimeout(() => {
+          this.classList.add('dragging');
+        }, 0);
+        
+        // Remove any previous correct/incorrect indications
+        this.classList.remove('correct', 'incorrect');
+      }
+      
+      function handleDragEnd(e) {
+        this.classList.remove('dragging');
+        draggedItem = null;
+      }
+      
+      function handleDragOver(e) {
+        e.preventDefault(); // Allow drop
+      }
+      
+      function handleDragEnter(e) {
+        e.preventDefault();
+        this.classList.add('drag-over');
+      }
+      
+      function handleDragLeave(e) {
+        this.classList.remove('drag-over');
+      }
+      
+      function handleDrop(e) {
+        e.preventDefault();
+        this.classList.remove('drag-over');
+        
+        if (draggedItem) {
+          this.appendChild(draggedItem);
+        }
+        
+        // Hide feedback when items are moved
+        feedback.classList.remove('visible');
+      }
+      
+      // Check if all items are correctly categorized
+      function checkAnswers() {
+        let allCorrect = true;
+        
+        // Check hardware items
+        const hardwareItems = hardwareContainer.querySelectorAll('.sorting-item');
+        hardwareItems.forEach(item => {
+          const correctCategory = item.getAttribute('data-correct-category');
+          if (correctCategory === 'hardware') {
+            item.classList.add('correct');
+            item.classList.remove('incorrect');
+          } else {
+            item.classList.add('incorrect');
+            item.classList.remove('correct');
+            allCorrect = false;
+          }
+        });
+        
+        // Check software items
+        const softwareItems = softwareContainer.querySelectorAll('.sorting-item');
+        softwareItems.forEach(item => {
+          const correctCategory = item.getAttribute('data-correct-category');
+          if (correctCategory === 'software') {
+            item.classList.add('correct');
+            item.classList.remove('incorrect');
+          } else {
+            item.classList.add('incorrect');
+            item.classList.remove('correct');
+            allCorrect = false;
+          }
+        });
+        
+        // Check if items remain unsorted
+        const unsortedItems = unsortedContainer.querySelectorAll('.sorting-item');
+        if (unsortedItems.length > 0) {
+          allCorrect = false;
+        }
+        
+        // Show feedback if all correct
+        if (allCorrect) {
+          feedback.classList.add('visible');
+        }
+        
+        return allCorrect;
+      }
+      
+      // Reset the activity
+      function resetActivity() {
+        // Move all items back to unsorted container
+        sortingItems.forEach(item => {
+          unsortedContainer.appendChild(item);
+          item.classList.remove('correct', 'incorrect');
+        });
+        
+        // Hide feedback
+        feedback.classList.remove('visible');
+      }
+      
+      // Add event listeners to buttons
+      checkButton.addEventListener('click', checkAnswers);
+      resetButton.addEventListener('click', resetActivity);
+      
+      // Initialize the sorting activity
+      initDragAndDrop();
+    });
+  </script>
+</body>
+</html>

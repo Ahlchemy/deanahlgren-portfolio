@@ -1,5 +1,6 @@
+import { useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   ArrowLeft,
   ExternalLink,
@@ -10,12 +11,14 @@ import {
   ArrowRight,
   Play,
   CheckCircle,
+  X,
 } from 'lucide-react'
 import { getCourseBySlug, courses } from '@/data/courses'
 
 export function CourseDetail() {
   const { slug } = useParams<{ slug: string }>()
   const navigate = useNavigate()
+  const [demoModalOpen, setDemoModalOpen] = useState(false)
 
   const course = slug ? getCourseBySlug(slug) : null
 
@@ -46,7 +49,7 @@ export function CourseDetail() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-coral-500 to-coral-600 dark:from-coral-600 dark:to-coral-700 text-white">
+      <section className="bg-gradient-to-br from-amber-500 to-amber-600 dark:from-amber-600 dark:to-amber-700 text-white">
         <div className="container-wide py-12 md:py-20">
           {/* Back Link */}
           <motion.div
@@ -55,7 +58,7 @@ export function CourseDetail() {
           >
             <button
               onClick={() => navigate(-1)}
-              className="inline-flex items-center gap-2 text-coral-100 hover:text-white mb-8 transition-colors"
+              className="inline-flex items-center gap-2 text-amber-100 hover:text-white mb-8 transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               Back
@@ -76,22 +79,20 @@ export function CourseDetail() {
                 {course.title}
               </h1>
 
-              <p className="text-xl text-coral-100 mb-8">
+              <p className="text-xl text-amber-100 mb-8">
                 {course.shortDescription}
               </p>
 
               {/* Links */}
               <div className="flex flex-wrap gap-4">
                 {course.demoUrl && (
-                  <a
-                    href={course.demoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn bg-white text-coral-600 hover:bg-neutral-100 btn-md"
+                  <button
+                    onClick={() => setDemoModalOpen(true)}
+                    className="btn bg-white text-amber-600 hover:bg-neutral-100 btn-md"
                   >
                     <Play className="w-4 h-4" />
                     Try Demo
-                  </a>
+                  </button>
                 )}
                 <Link
                   to="/contact"
@@ -108,10 +109,17 @@ export function CourseDetail() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="aspect-video bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm"
+              className="aspect-video bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm overflow-hidden"
             >
-              <BookOpen className="w-20 h-20 text-white/50" />
-              {/* ASSET NEEDED: course.images.hero */}
+              {course.images?.thumbnail || course.images?.hero ? (
+                <img
+                  src={course.images.thumbnail || course.images.hero}
+                  alt={course.title}
+                  className="w-full h-full object-cover object-top"
+                />
+              ) : (
+                <BookOpen className="w-20 h-20 text-white/50" />
+              )}
             </motion.div>
           </div>
         </div>
@@ -123,7 +131,7 @@ export function CourseDetail() {
           <div className="flex flex-wrap gap-8">
             {/* Modules Count */}
             <div className="flex items-center gap-3">
-              <Layers className="w-5 h-5 text-coral-500" />
+              <Layers className="w-5 h-5 text-amber-500" />
               <div>
                 <p className="text-xs text-neutral-500 uppercase tracking-wide">Modules</p>
                 <p className="text-sm font-semibold text-neutral-900 dark:text-white mt-1">
@@ -134,7 +142,7 @@ export function CourseDetail() {
 
             {/* Objectives Count */}
             <div className="flex items-center gap-3">
-              <Target className="w-5 h-5 text-coral-500" />
+              <Target className="w-5 h-5 text-amber-500" />
               <div>
                 <p className="text-xs text-neutral-500 uppercase tracking-wide">Learning Objectives</p>
                 <p className="text-sm font-semibold text-neutral-900 dark:text-white mt-1">
@@ -145,7 +153,7 @@ export function CourseDetail() {
 
             {/* Technologies */}
             <div className="flex items-center gap-3">
-              <Tag className="w-5 h-5 text-coral-500" />
+              <Tag className="w-5 h-5 text-amber-500" />
               <div>
                 <p className="text-xs text-neutral-500 uppercase tracking-wide">Built With</p>
                 <div className="flex flex-wrap gap-2 mt-1">
@@ -161,7 +169,7 @@ export function CourseDetail() {
             {/* Demo Available */}
             {course.hasInteractiveDemo && (
               <div className="flex items-center gap-3">
-                <Play className="w-5 h-5 text-coral-500" />
+                <Play className="w-5 h-5 text-amber-500" />
                 <div>
                   <p className="text-xs text-neutral-500 uppercase tracking-wide">Demo</p>
                   <p className="text-sm font-semibold text-green-600 dark:text-green-400 mt-1">
@@ -183,9 +191,9 @@ export function CourseDetail() {
               <h2 className="font-display text-2xl font-bold text-neutral-900 dark:text-white mb-6">
                 About This Course
               </h2>
-              <div className="prose prose-lg dark:prose-invert max-w-none">
+              <div className="prose-content">
                 {course.description.split('\n\n').map((paragraph, i) => (
-                  <p key={i} className="text-neutral-600 dark:text-neutral-400 mb-4">
+                  <p key={i}>
                     {paragraph}
                   </p>
                 ))}
@@ -206,8 +214,8 @@ export function CourseDetail() {
                       transition={{ delay: i * 0.05 }}
                       className="flex items-start gap-4 p-4 rounded-lg bg-neutral-50 dark:bg-neutral-800/50"
                     >
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-coral-100 dark:bg-coral-900/30 flex items-center justify-center">
-                        <span className="text-sm font-semibold text-coral-600 dark:text-coral-400">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
+                        <span className="text-sm font-semibold text-amber-600 dark:text-amber-400">
                           {i + 1}
                         </span>
                       </div>
@@ -239,7 +247,7 @@ export function CourseDetail() {
                       transition={{ delay: i * 0.05 }}
                       className="flex items-start gap-3"
                     >
-                      <CheckCircle className="w-5 h-5 text-coral-500 flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
                       <span className="text-neutral-700 dark:text-neutral-300">{objective}</span>
                     </motion.div>
                   ))}
@@ -256,17 +264,15 @@ export function CourseDetail() {
                 </h3>
                 <div className="space-y-3">
                   {course.demoUrl && (
-                    <a
-                      href={course.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-3 rounded-lg bg-coral-50 dark:bg-coral-900/20 hover:bg-coral-100 dark:hover:bg-coral-900/30 transition-colors"
+                    <button
+                      onClick={() => setDemoModalOpen(true)}
+                      className="w-full flex items-center gap-3 p-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 hover:bg-amber-100 dark:hover:bg-amber-900/30 transition-colors"
                     >
-                      <Play className="w-5 h-5 text-coral-500" />
-                      <span className="text-sm font-medium text-coral-700 dark:text-coral-300">
+                      <Play className="w-5 h-5 text-amber-500" />
+                      <span className="text-sm font-medium text-amber-700 dark:text-amber-300">
                         Launch Interactive Demo
                       </span>
-                    </a>
+                    </button>
                   )}
                   <Link
                     to="/contact"
@@ -341,7 +347,7 @@ export function CourseDetail() {
               </h2>
               <Link
                 to="/work"
-                className="text-coral-600 dark:text-coral-400 hover:text-coral-700 font-medium flex items-center gap-2"
+                className="text-amber-600 dark:text-amber-400 hover:text-amber-700 font-medium flex items-center gap-2"
               >
                 View All
                 <ArrowRight className="w-4 h-4" />
@@ -358,11 +364,11 @@ export function CourseDetail() {
                   transition={{ delay: index * 0.1 }}
                   className="card card-hover overflow-hidden group"
                 >
-                  <div className="aspect-video bg-gradient-to-br from-coral-100 to-coral-200 dark:from-coral-900/50 dark:to-coral-800/50 flex items-center justify-center">
-                    <BookOpen className="w-10 h-10 text-coral-400" />
+                  <div className="aspect-video bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900/50 dark:to-amber-800/50 flex items-center justify-center">
+                    <BookOpen className="w-10 h-10 text-amber-400" />
                   </div>
                   <div className="p-5">
-                    <h3 className="font-semibold text-neutral-900 dark:text-white group-hover:text-coral-600 transition-colors">
+                    <h3 className="font-semibold text-neutral-900 dark:text-white group-hover:text-amber-600 transition-colors">
                       {related.title}
                     </h3>
                     <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2">
@@ -370,7 +376,7 @@ export function CourseDetail() {
                     </p>
                     <Link
                       to={`/work/${related.slug}`}
-                      className="inline-flex items-center gap-1 mt-3 text-sm text-coral-600 dark:text-coral-400 font-medium"
+                      className="inline-flex items-center gap-1 mt-3 text-sm text-amber-600 dark:text-amber-400 font-medium"
                     >
                       View Course
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -384,20 +390,77 @@ export function CourseDetail() {
       )}
 
       {/* CTA Section */}
-      <section className="section bg-coral-500 dark:bg-coral-600">
+      <section className="section bg-amber-500 dark:bg-amber-600">
         <div className="container-narrow text-center">
           <h2 className="font-display text-3xl font-bold text-white mb-4">
             Need Custom Training Content?
           </h2>
-          <p className="text-xl text-coral-100 mb-8">
+          <p className="text-xl text-amber-100 mb-8">
             Let's discuss how I can create engaging learning experiences for your team.
           </p>
-          <Link to="/contact" className="btn bg-white text-coral-600 hover:bg-neutral-100 btn-lg">
+          <Link to="/contact" className="btn bg-white text-amber-600 hover:bg-neutral-100 btn-lg">
             Start a Conversation
             <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
       </section>
+
+      {/* Demo Modal */}
+      <AnimatePresence>
+        {demoModalOpen && course?.demoUrl && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+            onClick={() => setDemoModalOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="relative w-full h-full flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Top Close Bar */}
+              <div className="flex items-center justify-between px-6 py-4 bg-neutral-900/95 border-b border-neutral-700">
+                <div className="flex items-center gap-3">
+                  <BookOpen className="w-5 h-5 text-amber-400" />
+                  <span className="text-white font-medium">{course.title} - Demo Preview</span>
+                </div>
+                <button
+                  onClick={() => setDemoModalOpen(false)}
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-neutral-800 text-neutral-300 hover:bg-neutral-700 hover:text-white transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                  Close Preview
+                </button>
+              </div>
+
+              {/* Demo Content Iframe */}
+              <div className="flex-1 bg-white">
+                <iframe
+                  src={course.demoUrl}
+                  title={`${course.title} Demo`}
+                  className="w-full h-full border-0"
+                  allow="fullscreen"
+                />
+              </div>
+
+              {/* Bottom Close Bar */}
+              <div className="flex items-center justify-center px-6 py-4 bg-neutral-900/95 border-t border-neutral-700">
+                <button
+                  onClick={() => setDemoModalOpen(false)}
+                  className="flex items-center gap-2 px-6 py-3 rounded-lg bg-amber-500 text-white hover:bg-amber-600 transition-colors font-medium"
+                >
+                  <X className="w-4 h-4" />
+                  Close and Return to Course
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

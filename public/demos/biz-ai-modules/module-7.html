@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 7: Change Management for AI Initiatives | Ahlgren Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body data-module="7">
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="course-title">Business AI Application</h1>
+                <div class="nav-container">
+                    <div class="nav-buttons">
+                        <a href="module-1.html" class="nav-button" data-module="1" data-title="Intro to AI">1</a>
+                        <a href="module-2.html" class="nav-button" data-module="2" data-title="ML Basics">2</a>
+                        <a href="module-3.html" class="nav-button" data-module="3" data-title="Neural Networks">3</a>
+                        <a href="module-4.html" class="nav-button" data-module="4" data-title="Vision & Language">4</a>
+                        <a href="module-5.html" class="nav-button" data-module="5" data-title="Robotics">5</a>
+                        <a href="module-6.html" class="nav-button" data-module="6" data-title="AI Strategy">6</a>
+                        <a href="module-7.html" class="nav-button active" data-module="7" data-title="Change Management">7</a>
+                        <a href="module-8.html" class="nav-button" data-module="8" data-title="Responsible AI">8</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="module-header">
+            <h2 class="module-title">Module 7: Change Management for AI Initiatives</h2>
+            <p class="module-subtitle">Preparing your organization for successful AI adoption</p>
+        </div>
+
+        <section class="exec-summary fade-in">
+            <h3>Executive Summary</h3>
+            <ul>
+                <li>Change management bridges the gap between AI technology and human adoption.</li>
+                <li>Successful programs communicate the AI vision, involve employees early, and provide upskilling to build trust.</li>
+                <li>Proactive management of fear and resistance prevents underutilized systems and maximizes return on AI investments.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Key Concepts</h3>
+            <p>Introducing AI into an organization is not just a technical shift—it's a cultural one. Change management involves preparing teams, adjusting workflows, and building trust around new tools and systems. Key components include:</p>
+            
+            <ul>
+                <li><strong>Communicating the purpose and vision</strong> behind AI initiatives</li>
+                <li><strong>Involving employees early</strong> to foster ownership and reduce resistance</li>
+                <li><strong>Upskilling and reskilling</strong> to align talent with emerging roles</li>
+                <li><strong>Managing fear and resistance</strong> with transparency and empathy</li>
+                <li><strong>Establishing clear feedback loops</strong> during pilot phases</li>
+            </ul>
+            
+            <p>Adopting AI without change management often leads to underutilized systems or outright rejection by staff, wasting technical investments.</p>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Interactive Charts</h3>
+            <div class="interactive-chart">
+                <canvas id="adoption-funnel"></canvas>
+            </div>
+            <p class="chart-description">This funnel chart shows the typical phases of AI adoption and the percentage of employees at each stage.</p>
+            
+            <div class="interactive-chart">
+                <canvas id="readiness-assessment"></canvas>
+                <div style="margin-top: 1rem; text-align: center;">
+                    <button id="assess-readiness" class="cta-button">Run Assessment</button>
+                    <button id="reset-assessment" class="cta-button">Reset Assessment</button>
+                </div>
+            </div>
+            <p class="chart-description">This radar chart assesses organizational readiness for AI adoption across key dimensions.</p>
+            
+            <div class="interactive-chart">
+                <canvas id="resistance-factors"></canvas>
+                <div style="margin-top: 1rem; text-align: center;">
+                    <select id="department-selector" style="width: 80%; padding: 0.5rem; border-radius: 0.25rem; border: 1px solid #ccc;">
+                        <option value="all">All Departments</option>
+                        <option value="executive">Executive Leadership</option>
+                        <option value="middle">Middle Management</option>
+                        <option value="frontline">Frontline Staff</option>
+                        <option value="it">IT Department</option>
+                        <option value="business">Business Units</option>
+                    </select>
+                </div>
+            </div>
+            <p class="chart-description">This chart shows common resistance factors to AI adoption across different departments. Select a department to see specific factors.</p>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Real-World Examples</h3>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <h4 class="example-title">Telecom Company</h4>
+                    <p>A telecom company rolled out a chatbot to support customer service, but after complaints, re-trained staff as bot coaches—retaining their value while improving the AI system.</p>
+                </div>
+                <div class="example-card">
+                    <h4 class="example-title">Logistics Firm</h4>
+                    <p>A logistics firm used internal hackathons to empower frontline staff to propose AI pilots, increasing buy-in and identifying practical use cases overlooked by management.</p>
+                </div>
+                <div class="example-card">
+                    <h4 class="example-title">Regional Bank</h4>
+                    <p>A regional bank upskilled hundreds of operations staff using short-format, AI-focused microlearning, reducing resistance and creating internal champions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Discussion Prompts</h3>
+            <ul class="prompts-list">
+                <li class="prompt-item">
+                    <p>How would you communicate the business case for AI to employees who fear job loss?</p>
+                </li>
+                <li class="prompt-item">
+                    <p>Where might pilot testing help reduce resistance and improve outcomes in your organization?</p>
+                </li>
+                <li class="prompt-item">
+                    <p>What cultural norms in your organization could block or enable AI transformation?</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3 class="section-title">Prompts for Real-World Use</h3>
+            <ul class="prompts-list">
+                <li class="prompt-item">
+                    <p><strong>Readiness Assessment:</strong> Run a 10-question pulse survey to assess change readiness around AI in your team.</p>
+                </li>
+                <li class="prompt-item">
+                    <p><strong>Open Communication:</strong> Host an informal Q&A with leadership to address AI myths and concerns.</p>
+                </li>
+                <li class="prompt-item">
+                    <p><strong>Learning Community:</strong> Start a peer learning group to share resources and lessons learned about AI implementation.</p>
+                </li>
+            </ul>
+        </section>
+
+        <div class="cta-container">
+            <h3 class="cta-title">Call to Action</h3>
+            <p class="cta-text">Identify one AI-related change initiative. Draft a brief communication plan and schedule one stakeholder listening session to gather feedback.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <a href="module-6.html" class="cta-button">Previous Module</a>
+                <a href="module-8.html" class="cta-button">Continue to Module 8: Responsible AI</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Business AI Application. All rights reserved. Developed by Dean Ahlgren.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Adoption Funnel Chart
+            const funnelCtx = document.getElementById('adoption-funnel').getContext('2d');
+            
+            const funnelData = {
+                labels: ['Awareness', 'Interest', 'Evaluation', 'Trial', 'Adoption', 'Advocacy'],
+                datasets: [{
+                    label: 'Employees (%)',
+                    data: [100, 75, 50, 35, 25, 15],
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.7)',
+                        'rgba(16, 185, 129, 0.7)',
+                        'rgba(245, 158, 11, 0.7)',
+                        'rgba(139, 92, 246, 0.7)',
+                        'rgba(239, 68, 68, 0.7)',
+                        'rgba(14, 165, 233, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(59, 130, 246, 1)',
+                        'rgba(16, 185, 129, 1)',
+                        'rgba(245, 158, 11, 1)',
+                        'rgba(139, 92, 246, 1)',
+                        'rgba(239, 68, 68, 1)',
+                        'rgba(14, 165, 233, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+            
+            const funnelChart = new Chart(funnelCtx, {
+                type: 'bar',
+                data: funnelData,
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Percentage of Employees'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Adoption Phase'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                afterLabel: function(context) {
+                                    const descriptions = {
+                                        'Awareness': 'Employees are aware that AI initiatives are being introduced',
+                                        'Interest': 'Employees show interest in learning more about AI',
+                                        'Evaluation': 'Employees are evaluating how AI will impact their work',
+                                        'Trial': 'Employees are actively trying AI tools in their work',
+                                        'Adoption': 'Employees have integrated AI into their regular workflow',
+                                        'Advocacy': 'Employees are promoting AI use to colleagues'
+                                    };
+                                    
+                                    const label = context.chart.data.labels[context.dataIndex];
+                                    return descriptions[label];
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'AI Adoption Funnel',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Readiness Assessment Chart
+            const assessmentCtx = document.getElementById('readiness-assessment').getContext('2d');
+            
+            // Initial assessment data (before assessment)
+            const initialAssessmentData = {
+                labels: ['Leadership Support', 'Technical Infrastructure', 'Data Readiness', 'Skills & Capabilities', 'Cultural Openness', 'Process Maturity'],
+                datasets: [{
+                    label: 'Current State',
+                    data: [30, 40, 35, 25, 45, 30],
+                    backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(59, 130, 246, 1)'
+                }]
+            };
+            
+            // Assessment results (after running assessment)
+            const assessmentResults = {
+                labels: ['Leadership Support', 'Technical Infrastructure', 'Data Readiness', 'Skills & Capabilities', 'Cultural Openness', 'Process Maturity'],
+                datasets: [
+                    {
+                        label: 'Current State',
+                        data: [30, 40, 35, 25, 45, 30],
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(59, 130, 246, 1)'
+                    },
+                    {
+                        label: 'Target State',
+                        data: [80, 75, 85, 70, 80, 75],
+                        backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                        borderColor: 'rgba(16, 185, 129, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(16, 185, 129, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(16, 185, 129, 1)'
+                    }
+                ]
+            };
+            
+            const assessmentChart = new Chart(assessmentCtx, {
+                type: 'radar',
+                data: initialAssessmentData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                stepSize: 20
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.raw}%`;
+                                },
+                                afterLabel: function(context) {
+                                    const recommendations = {
+                                        'Leadership Support': 'Engage executives in AI education and showcase early wins',
+                                        'Technical Infrastructure': 'Invest in cloud computing and data processing capabilities',
+                                        'Data Readiness': 'Implement data governance and quality improvement initiatives',
+                                        'Skills & Capabilities': 'Develop training programs and consider strategic hiring',
+                                        'Cultural Openness': 'Foster innovation culture and celebrate experimentation',
+                                        'Process Maturity': 'Document and standardize processes before automation'
+                                    };
+                                    
+                                    const label = context.chart.data.labels[context.dataIndex];
+                                    if (context.dataset.label === 'Current State') {
+                                        return `Recommendation: ${recommendations[label]}`;
+                                    }
+                                    return '';
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'AI Readiness Assessment',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Run Assessment button
+            document.getElementById('assess-readiness').addEventListener('click', function() {
+                // Update chart with assessment results
+                assessmentChart.data = assessmentResults;
+                assessmentChart.update();
+                
+                // Change button text
+                this.textContent = 'Assessment Complete';
+                this.disabled = true;
+            });
+            
+            // Reset Assessment button
+            document.getElementById('reset-assessment').addEventListener('click', function() {
+                // Reset chart to initial state
+                assessmentChart.data = initialAssessmentData;
+                assessmentChart.update();
+                
+                // Reset run assessment button
+                const assessButton = document.getElementById('assess-readiness');
+                assessButton.textContent = 'Run Assessment';
+                assessButton.disabled = false;
+            });
+            
+            // Resistance Factors Chart
+            const resistanceCtx = document.getElementById('resistance-factors').getContext('2d');
+            
+            // Resistance factors data by department
+            const resistanceData = {
+                'all': {
+                    label: 'All Departments',
+                    data: [75, 65, 80, 55, 70, 60],
+                    labels: ['Fear of Job Loss', 'Lack of Understanding', 'Mistrust of AI', 'Workflow Disruption', 'Skill Gap Concerns', 'Past Initiative Failures']
+                },
+                'executive': {
+                    label: 'Executive Leadership',
+                    data: [45, 40, 65, 35, 30, 80],
+                    labels: ['ROI Uncertainty', 'Governance Concerns', 'Regulatory Risks', 'Competitive Pressure', 'Budget Constraints', 'Past Initiative Failures']
+                },
+                'middle': {
+                    label: 'Middle Management',
+                    data: [60, 55, 75, 85, 50, 65],
+                    labels: ['Loss of Control', 'Performance Metrics Changes', 'Team Resistance', 'Workflow Disruption', 'Skill Gap Concerns', 'Implementation Complexity']
+                },
+                'frontline': {
+                    label: 'Frontline Staff',
+                    data: [90, 75, 80, 65, 85, 45],
+                    labels: ['Fear of Job Loss', 'Lack of Understanding', 'Mistrust of AI', 'Learning Curve', 'Skill Gap Concerns', 'Workflow Changes']
+                },
+                'it': {
+                    label: 'IT Department',
+                    data: [40, 35, 65, 75, 55, 80],
+                    labels: ['Integration Complexity', 'Security Concerns', 'Legacy System Compatibility', 'Maintenance Burden', 'Talent Shortage', 'Technical Debt']
+                },
+                'business': {
+                    label: 'Business Units',
+                    data: [65, 80, 70, 75, 60, 55],
+                    labels: ['ROI Concerns', 'Process Disruption', 'Data Quality Issues', 'Ownership Questions', 'Budget Allocation', 'Competing Priorities']
+                }
+            };
+            
+            // Initial resistance data (all departments)
+            const resistanceFactorsData = {
+                labels: resistanceData['all'].labels,
+                datasets: [{
+                    label: resistanceData['all'].label,
+                    data: resistanceData['all'].data,
+                    backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    borderWidth: 1
+                }]
+            };
+            
+            const resistanceChart = new Chart(resistanceCtx, {
+                type: 'bar',
+                data: resistanceFactorsData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Resistance Level (%)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Resistance Factors'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                afterLabel: function(context) {
+                                    const mitigationStrategies = {
+                                        'Fear of Job Loss': 'Emphasize AI as augmentation, not replacement; showcase new roles created',
+                                        'Lack of Understanding': 'Provide education and simple demonstrations of AI capabilities',
+                                        'Mistrust of AI': 'Build transparency into AI systems and explain decision-making',
+                                        'Workflow Disruption': 'Implement changes gradually and involve users in redesign',
+                                        'Skill Gap Concerns': 'Offer training programs and create learning paths',
+                                        'Past Initiative Failures': 'Acknowledge past issues and explain new approach',
+                                        'ROI Uncertainty': 'Develop clear metrics and showcase early wins',
+                                        'Governance Concerns': 'Establish robust governance framework and policies',
+                                        'Regulatory Risks': 'Involve legal/compliance teams early in the process',
+                                        'Competitive Pressure': 'Share market analysis and competitive intelligence',
+                                        'Budget Constraints': 'Start with high-ROI projects and phase implementation',
+                                        'Loss of Control': 'Involve managers in design and maintain oversight capabilities',
+                                        'Performance Metrics Changes': 'Collaboratively develop new performance frameworks',
+                                        'Team Resistance': 'Identify and empower champions within teams',
+                                        'Implementation Complexity': 'Break down into manageable phases with clear milestones',
+                                        'Learning Curve': 'Provide hands-on training and ongoing support',
+                                        'Workflow Changes': 'Involve users in workflow redesign and testing',
+                                        'Integration Complexity': 'Develop clear architecture and integration strategy',
+                                        'Security Concerns': 'Conduct thorough security assessments and implement safeguards',
+                                        'Legacy System Compatibility': 'Create middleware solutions or phase modernization',
+                                        'Maintenance Burden': 'Design for maintainability and document thoroughly',
+                                        'Talent Shortage': 'Develop training programs and consider strategic hiring',
+                                        'Technical Debt': 'Allocate resources for technical debt reduction',
+                                        'ROI Concerns': 'Develop business case with clear metrics and milestones',
+                                        'Process Disruption': 'Map processes and plan for smooth transitions',
+                                        'Data Quality Issues': 'Implement data governance and quality initiatives',
+                                        'Ownership Questions': 'Define clear roles and responsibilities',
+                                        'Budget Allocation': 'Develop phased approach with clear value milestones',
+                                        'Competing Priorities': 'Align AI initiatives with strategic business goals'
+                                    };
+                                    
+                                    const label = context.chart.data.labels[context.dataIndex];
+                                    return `Mitigation: ${mitigationStrategies[label]}`;
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'AI Adoption Resistance Factors',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Department selector event listener
+            document.getElementById('department-selector').addEventListener('change', function() {
+                const selectedDepartment = this.value;
+                const departmentData = resistanceData[selectedDepartment];
+                
+                // Update chart data
+                resistanceChart.data.labels = departmentData.labels;
+                resistanceChart.data.datasets[0].data = departmentData.data;
+                resistanceChart.data.datasets[0].label = departmentData.label;
+                
+                // Update chart title
+                resistanceChart.options.plugins.title.text = `AI Adoption Resistance Factors: ${departmentData.label}`;
+                
+                resistanceChart.update();
+            });
+        });
+    </script>
+</body>
+</html>

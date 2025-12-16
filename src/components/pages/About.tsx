@@ -55,9 +55,9 @@ export function About() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="prose prose-lg dark:prose-invert max-w-none"
+            className="prose-content"
           >
-            <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            <p className="text-lg">
               Not just designing courses, but building them — LMS architecture,
               analytics systems, video production, hundreds of pages of interactive
               content. At Academy of Art University, I created {stats.coursesDesigned}+ online courses
@@ -65,12 +65,12 @@ export function About() {
               enrollment growth, contributing to a {stats.dropoutReduction} reduction in first-term
               dropouts.
             </p>
-            <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            <p className="text-lg">
               For {stats.yearsRemote} of those years, I did this work remotely — from San Francisco
               to Seoul to Hawaiʻi. Collaborating across cultures shaped how I think
               about learning itself. It also taught me the rhythm of distributed work.
             </p>
-            <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            <p className="text-lg">
               Today, I'm an Instructional Design Advisor at Manati.ai, helping
               integrate large language models into higher education systems. The
               tools are changing fast. The goal hasn't:{' '}
@@ -143,7 +143,7 @@ export function About() {
                   {/* Timeline Dot */}
                   <div className={`absolute left-6 top-2 w-4 h-4 rounded-full border-4 border-white dark:border-neutral-950 hidden md:block ${
                     item.type === 'certification'
-                      ? 'bg-coral-500'
+                      ? 'bg-amber-500'
                       : item.type === 'education'
                       ? 'bg-dawn-500'
                       : 'bg-ocean-500'
@@ -155,7 +155,7 @@ export function About() {
                         {item.year}
                       </span>
                       {item.type === 'certification' && (
-                        <span className="tag bg-coral-100 text-coral-800 dark:bg-coral-900/30 dark:text-coral-300">
+                        <span className="tag bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">
                           Certification
                         </span>
                       )}

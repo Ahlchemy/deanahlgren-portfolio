@@ -1,0 +1,159 @@
+{
+  "meta": {
+    "source": "Emergency Management Agencies",
+    "updated": "2024-01-01T00:00:00Z",
+    "version": "1.0.0",
+    "description": "Emergency shelters and safe zones for tsunami evacuation"
+  },
+  "shelters": [
+    {
+      "id": "hi-hon-shelter-01",
+      "name": "Honolulu Community College",
+      "type": "evacuation_center",
+      "location": {
+        "lat": 21.3099,
+        "lng": -157.8581,
+        "elevation": 45,
+        "address": "874 Dillingham Blvd, Honolulu, HI 96817"
+      },
+      "capacity": 500,
+      "amenities": ["restrooms", "food", "water", "medical"],
+      "accessibility": true,
+      "operatingHours": "24/7 during emergencies",
+      "contact": "(808) 845-9129"
+    },
+    {
+      "id": "ca-sf-shelter-01", 
+      "name": "Golden Gate Park - Polo Field",
+      "type": "safe_zone",
+      "location": {
+        "lat": 37.7694,
+        "lng": -122.4862,
+        "elevation": 85,
+        "address": "Golden Gate Park, San Francisco, CA"
+      },
+      "capacity": 1000,
+      "amenities": ["open_space", "restrooms"],
+      "accessibility": true,
+      "operatingHours": "Always open",
+      "contact": "311"
+    },
+    {
+      "id": "ca-la-shelter-01",
+      "name": "Griffith Observatory",
+      "type": "safe_zone",
+      "location": {
+        "lat": 34.1184,
+        "lng": -118.3004,
+        "elevation": 346,
+        "address": "2800 E Observatory Rd, Los Angeles, CA 90027"
+      },
+      "capacity": 800,
+      "amenities": ["restrooms", "parking", "views"],
+      "accessibility": true,
+      "operatingHours": "Daily 10am-10pm, extended during emergencies",
+      "contact": "(213) 473-0800"
+    },
+    {
+      "id": "or-cla-shelter-01",
+      "name": "Warrenton Grade School",
+      "type": "evacuation_center", 
+      "location": {
+        "lat": 46.1651,
+        "lng": -123.9351,
+        "elevation": 65,
+        "address": "820 SW Cedar Ave, Warrenton, OR 97146"
+      },
+      "capacity": 300,
+      "amenities": ["restrooms", "food", "water", "medical", "generator"],
+      "accessibility": true,
+      "operatingHours": "24/7 during emergencies",
+      "contact": "(503) 861-3233"
+    },
+    {
+      "id": "wa-pac-shelter-01",
+      "name": "Ocosta Elementary School",
+      "type": "evacuation_center",
+      "location": {
+        "lat": 47.0379,
+        "lng": -124.1040,
+        "elevation": 78,
+        "address": "2682 Emerson Ave, Westport, WA 98595"
+      },
+      "capacity": 250,
+      "amenities": ["restrooms", "food", "water", "medical", "generator"],
+      "accessibility": true,
+      "operatingHours": "24/7 during emergencies", 
+      "contact": "(360) 268-9393"
+    }
+  ],
+  "evacuationRoutes": [
+    {
+      "id": "hi-hon-route-01",
+      "name": "Waikiki to Tantalus",
+      "startZone": "Waikiki Beach",
+      "endShelter": "hi-hon-shelter-01",
+      "distance": 8.5,
+      "estimatedTime": 25,
+      "difficulty": "moderate",
+      "instructions": [
+        "Head northwest on Kalakaua Ave",
+        "Turn right on Kapiolani Blvd", 
+        "Follow signs to Tantalus Drive",
+        "Continue uphill to evacuation center"
+      ],
+      "waypoints": [
+        {"lat": 21.2767, "lng": -157.8250, "instruction": "Start at Waikiki Beach"},
+        {"lat": 21.2978, "lng": -157.8503, "instruction": "Turn on Kapiolani Blvd"},
+        {"lat": 21.3099, "lng": -157.8581, "instruction": "Arrive at Honolulu Community College"}
+      ]
+    },
+    {
+      "id": "ca-sf-route-01",
+      "name": "Ocean Beach to Golden Gate Park",
+      "startZone": "Ocean Beach",
+      "endShelter": "ca-sf-shelter-01",
+      "distance": 2.1,
+      "estimatedTime": 8,
+      "difficulty": "easy",
+      "instructions": [
+        "Head east on Lincoln Way",
+        "Enter Golden Gate Park",
+        "Follow park roads to Polo Field"
+      ],
+      "waypoints": [
+        {"lat": 37.7648, "lng": -122.5107, "instruction": "Start at Ocean Beach"},
+        {"lat": 37.7694, "lng": -122.4862, "instruction": "Arrive at Polo Field"}
+      ]
+    }
+  ],
+  "shelterTypes": {
+    "evacuation_center": {
+      "description": "Fully equipped emergency shelter with supplies",
+      "amenities": ["food", "water", "medical", "restrooms", "communications"],
+      "duration": "Extended stay capable"
+    },
+    "safe_zone": {
+      "description": "High ground safe from tsunami waves",
+      "amenities": ["elevated_location", "open_space"],
+      "duration": "Temporary refuge"
+    },
+    "high_ground": {
+      "description": "Natural elevated areas above tsunami reach", 
+      "amenities": ["elevation"],
+      "duration": "Temporary refuge"
+    }
+  },
+  "amenityTypes": {
+    "restrooms": "Bathroom facilities available",
+    "food": "Emergency food supplies",
+    "water": "Potable water available", 
+    "medical": "First aid and medical support",
+    "generator": "Backup power available",
+    "communications": "Phone/internet access",
+    "parking": "Vehicle parking available",
+    "accessibility": "ADA compliant facilities",
+    "open_space": "Large outdoor areas",
+    "views": "Elevated views of surroundings"
+  }
+}
