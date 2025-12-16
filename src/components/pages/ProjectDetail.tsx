@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   ArrowLeft,
@@ -17,11 +17,15 @@ import { getProjectBySlug, projects } from '@/data/projects'
 
 export function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>()
-  const navigate = useNavigate()
   const [videoModalOpen, setVideoModalOpen] = useState(false)
   const [demoModalOpen, setDemoModalOpen] = useState(false)
 
   const project = slug ? getProjectBySlug(slug) : null
+
+  // Get current project index and next project
+  const currentIndex = project ? projects.findIndex((p) => p.id === project.id) : -1
+  const nextProject = currentIndex >= 0 ? projects[(currentIndex + 1) % projects.length] : null
+  const prevProject = currentIndex >= 0 ? projects[(currentIndex - 1 + projects.length) % projects.length] : null
 
   // Get related projects (same category, excluding current)
   const relatedProjects = project
@@ -60,18 +64,28 @@ export function ProjectDetail() {
       {/* Hero Section */}
       <section className="bg-hero-gradient text-white">
         <div className="container-wide py-12 md:py-20">
-          {/* Back Link */}
+          {/* Navigation */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center justify-between mb-8"
           >
-            <button
-              onClick={() => navigate(-1)}
-              className="inline-flex items-center gap-2 text-neutral-300 hover:text-white mb-8 transition-colors"
+            <Link
+              to={prevProject ? `/work/${prevProject.slug}` : '/work'}
+              className="inline-flex items-center gap-2 text-neutral-300 hover:text-white transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               Back
-            </button>
+            </Link>
+            {nextProject && (
+              <Link
+                to={`/work/${nextProject.slug}`}
+                className="inline-flex items-center gap-2 text-neutral-300 hover:text-white transition-colors"
+              >
+                Next
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            )}
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
