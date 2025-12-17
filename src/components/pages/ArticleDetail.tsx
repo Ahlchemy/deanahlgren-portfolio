@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
@@ -11,6 +12,7 @@ import {
   Share2,
 } from 'lucide-react'
 import { getArticleBySlug, getArticlesByCategory } from '@/data/articles'
+import { ShareModal } from '@/components/ShareModal'
 
 const categoryColors: Record<string, string> = {
   research: 'bg-ocean-100 text-ocean-800 dark:bg-ocean-900/30 dark:text-ocean-300',
@@ -36,6 +38,7 @@ const categoryGradients: Record<string, string> = {
 export function ArticleDetail() {
   const { slug } = useParams<{ slug: string }>()
   const navigate = useNavigate()
+  const [shareModalOpen, setShareModalOpen] = useState(false)
 
   const article = slug ? getArticleBySlug(slug) : null
 
@@ -71,18 +74,7 @@ export function ArticleDetail() {
     day: 'numeric',
   })
 
-  const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: article.title,
-        text: article.excerpt,
-        url: window.location.href,
-      })
-    } else {
-      navigator.clipboard.writeText(window.location.href)
-      // Could add a toast notification here
-    }
-  }
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : ''
 
   return (
     <div className="min-h-screen">
@@ -147,7 +139,7 @@ export function ArticleDetail() {
                   </a>
                 )}
                 <button
-                  onClick={handleShare}
+                  onClick={() => setShareModalOpen(true)}
                   className="btn border-2 border-white text-white hover:bg-white/10 btn-md"
                 >
                   <Share2 className="w-4 h-4" />
@@ -303,7 +295,7 @@ export function ArticleDetail() {
                     </a>
                   )}
                   <button
-                    onClick={handleShare}
+                    onClick={() => setShareModalOpen(true)}
                     className="w-full flex items-center gap-3 p-3 rounded-lg bg-neutral-50 dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
                   >
                     <Share2 className="w-5 h-5 text-neutral-500" />
@@ -445,6 +437,15 @@ export function ArticleDetail() {
           </div>
         </div>
       </section>
+
+      {/* Share Modal */}
+      <ShareModal
+        isOpen={shareModalOpen}
+        onClose={() => setShareModalOpen(false)}
+        title={article.title}
+        url={currentUrl}
+        description={article.excerpt}
+      />
     </div>
   )
 }
