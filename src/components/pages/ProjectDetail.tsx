@@ -14,6 +14,7 @@ import {
   X,
 } from 'lucide-react'
 import { getProjectBySlug, projects } from '@/data/projects'
+import { getWorkItemNavigation } from '@/data'
 
 export function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>()
@@ -22,10 +23,8 @@ export function ProjectDetail() {
 
   const project = slug ? getProjectBySlug(slug) : null
 
-  // Get current project index and next project
-  const currentIndex = project ? projects.findIndex((p) => p.id === project.id) : -1
-  const nextProject = currentIndex >= 0 ? projects[(currentIndex + 1) % projects.length] : null
-  const prevProject = currentIndex >= 0 ? projects[(currentIndex - 1 + projects.length) % projects.length] : null
+  // Get navigation to prev/next work items (projects + courses)
+  const { prev, next } = slug ? getWorkItemNavigation(slug) : { prev: null, next: null }
 
   // Get related projects (same category, excluding current)
   const relatedProjects = project
@@ -71,15 +70,15 @@ export function ProjectDetail() {
             className="flex items-center justify-between mb-8"
           >
             <Link
-              to={prevProject ? `/work/${prevProject.slug}` : '/work'}
+              to={prev ? `/work/${prev.slug}` : '/work'}
               className="inline-flex items-center gap-2 text-neutral-300 hover:text-white transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               Back
             </Link>
-            {nextProject && (
+            {next && (
               <Link
-                to={`/work/${nextProject.slug}`}
+                to={`/work/${next.slug}`}
                 className="inline-flex items-center gap-2 text-neutral-300 hover:text-white transition-colors"
               >
                 Next

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   ArrowLeft,
@@ -14,13 +14,16 @@ import {
   X,
 } from 'lucide-react'
 import { getCourseBySlug, courses } from '@/data/courses'
+import { getWorkItemNavigation } from '@/data'
 
 export function CourseDetail() {
   const { slug } = useParams<{ slug: string }>()
-  const navigate = useNavigate()
   const [demoModalOpen, setDemoModalOpen] = useState(false)
 
   const course = slug ? getCourseBySlug(slug) : null
+
+  // Get navigation to prev/next work items (projects + courses)
+  const { prev, next } = slug ? getWorkItemNavigation(slug) : { prev: null, next: null }
 
   // Get related courses (excluding current)
   const relatedCourses = course
@@ -51,18 +54,28 @@ export function CourseDetail() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-amber-500 to-amber-600 dark:from-amber-600 dark:to-amber-700 text-white">
         <div className="container-wide py-12 md:py-20">
-          {/* Back Link */}
+          {/* Navigation */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center justify-between mb-8"
           >
-            <button
-              onClick={() => navigate(-1)}
-              className="inline-flex items-center gap-2 text-amber-100 hover:text-white mb-8 transition-colors"
+            <Link
+              to={prev ? `/work/${prev.slug}` : '/work'}
+              className="inline-flex items-center gap-2 text-amber-100 hover:text-white transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               Back
-            </button>
+            </Link>
+            {next && (
+              <Link
+                to={`/work/${next.slug}`}
+                className="inline-flex items-center gap-2 text-amber-100 hover:text-white transition-colors"
+              >
+                Next
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            )}
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">

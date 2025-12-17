@@ -99,3 +99,41 @@ export const categoryLabels: Record<string, string> = {
 
 // Stats for display
 export { stats } from './timeline'
+
+// Combined work items for navigation (projects + courses)
+export interface WorkItem {
+  slug: string
+  title: string
+  type: 'project' | 'course'
+}
+
+export const getAllWorkItems = (): WorkItem[] => {
+  const projectItems: WorkItem[] = projects.map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    type: 'project' as const,
+  }))
+
+  const courseItems: WorkItem[] = courses.map((c) => ({
+    slug: c.slug,
+    title: c.title,
+    type: 'course' as const,
+  }))
+
+  return [...projectItems, ...courseItems]
+}
+
+export const getWorkItemNavigation = (currentSlug: string) => {
+  const allItems = getAllWorkItems()
+  const currentIndex = allItems.findIndex((item) => item.slug === currentSlug)
+
+  if (currentIndex === -1) return { prev: null, next: null }
+
+  const prevIndex = (currentIndex - 1 + allItems.length) % allItems.length
+  const nextIndex = (currentIndex + 1) % allItems.length
+
+  return {
+    prev: allItems[prevIndex],
+    next: allItems[nextIndex],
+  }
+}
