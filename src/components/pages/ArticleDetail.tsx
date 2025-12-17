@@ -138,6 +138,8 @@ export function ArticleDetail() {
                 {article.downloadUrl && (
                   <a
                     href={article.downloadUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="btn bg-white text-neutral-900 hover:bg-neutral-100 btn-md"
                   >
                     <Download className="w-4 h-4" />
@@ -290,6 +292,8 @@ export function ArticleDetail() {
                   {article.downloadUrl && (
                     <a
                       href={article.downloadUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="flex items-center gap-3 p-3 rounded-lg bg-ocean-50 dark:bg-ocean-900/20 hover:bg-ocean-100 dark:hover:bg-ocean-900/30 transition-colors"
                     >
                       <Download className="w-5 h-5 text-ocean-500" />
