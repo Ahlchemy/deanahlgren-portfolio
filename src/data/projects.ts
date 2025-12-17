@@ -126,7 +126,7 @@ This public safety tool helps users identify tsunami risk zones and find evacuat
     technologies: ['PWA', 'JavaScript', 'Service Workers', 'Geolocation API', 'Offline-First'],
     links: {
       demo: '/demos/tsunami-escape/index.html',
-      live: 'https://tsunami-escape.deanahlgren.com',
+      live: 'https://github.com/Ahlchemy/tsunami-escape-app',
     },
     images: {
       thumbnail: '/images/projects/tsunami-thumb.png',
