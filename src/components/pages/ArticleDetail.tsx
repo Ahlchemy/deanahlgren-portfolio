@@ -191,25 +191,49 @@ export function ArticleDetail() {
             {/* Article Content */}
             <div className="lg:col-span-2">
               <article className="prose-content">
-                {/* Placeholder for actual article content */}
-                <div className="bg-neutral-50 dark:bg-neutral-800/50 rounded-lg p-8 text-center mb-8">
-                  <FileText className="w-16 h-16 mx-auto text-neutral-300 dark:text-neutral-600 mb-4" />
-                  <h3 className="text-lg font-semibold text-neutral-700 dark:text-neutral-300 mb-2">
-                    Full Article Content
-                  </h3>
-                  <p className="text-neutral-500 dark:text-neutral-400 mb-6 max-w-md mx-auto">
-                    The full article content would be rendered here from MDX or a CMS.
-                  </p>
-                  {article.downloadUrl && (
-                    <a
-                      href={article.downloadUrl}
-                      className="btn-primary btn-md inline-flex"
-                    >
-                      <Download className="w-4 h-4" />
-                      Download Full PDF
-                    </a>
-                  )}
-                </div>
+                {/* Embedded PDF or placeholder */}
+                {article.embedPdf && article.downloadUrl ? (
+                  <div className="mb-8">
+                    <div className="bg-white dark:bg-neutral-800 rounded-lg overflow-hidden shadow-lg">
+                      <iframe
+                        src={article.downloadUrl}
+                        title={article.title}
+                        className="w-full border-0"
+                        style={{ height: '800px' }}
+                      />
+                    </div>
+                    <div className="mt-4 text-center">
+                      <a
+                        href={article.downloadUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-primary btn-md inline-flex"
+                      >
+                        <Download className="w-4 h-4" />
+                        Open PDF in New Tab
+                      </a>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="bg-neutral-50 dark:bg-neutral-800/50 rounded-lg p-8 text-center mb-8">
+                    <FileText className="w-16 h-16 mx-auto text-neutral-300 dark:text-neutral-600 mb-4" />
+                    <h3 className="text-lg font-semibold text-neutral-700 dark:text-neutral-300 mb-2">
+                      Full Article Content
+                    </h3>
+                    <p className="text-neutral-500 dark:text-neutral-400 mb-6 max-w-md mx-auto">
+                      The full article content would be rendered here from MDX or a CMS.
+                    </p>
+                    {article.downloadUrl && (
+                      <a
+                        href={article.downloadUrl}
+                        className="btn-primary btn-md inline-flex"
+                      >
+                        <Download className="w-4 h-4" />
+                        Download Full PDF
+                      </a>
+                    )}
+                  </div>
+                )}
 
                 {/* Abstract/Summary section */}
                 <div className="mt-8">

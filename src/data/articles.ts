@@ -5,57 +5,6 @@ export const articles: Article[] = [
   // RESEARCH REPORTS
   // ============================================
   {
-    id: 'genai-sentiment-analysis',
-    title: 'GenAI Sentiment Analysis Report',
-    slug: 'genai-sentiment-analysis',
-    excerpt: 'Comparative analysis of generative AI tools for sentiment analysis in educational feedback systems. Exploring how AI can transform learner feedback into actionable insights.',
-    content: '', // Content loaded separately or from MDX
-    tags: ['GenAI', 'Sentiment Analysis', 'NLP', 'Education', 'Research'],
-    category: 'research',
-    readingTime: 12,
-    publishedAt: '2024-01-15',
-    images: {
-      featured: '/images/articles/genai-sentiment-featured.jpg',
-      thumbnail: '/images/articles/genai-sentiment-thumb.jpg',
-    },
-    downloadUrl: '/downloads/genai-sentiment-analysis-report.pdf',
-    featured: true,
-  },
-  {
-    id: 'loan-default-neural-networks',
-    title: 'Loan Default Prediction with Neural Networks',
-    slug: 'loan-default-neural-networks',
-    excerpt: 'Deep learning approach to credit risk assessment using neural network architecture. Research on predicting loan defaults using advanced machine learning models.',
-    content: '',
-    tags: ['Neural Networks', 'Deep Learning', 'Finance', 'Risk Assessment', 'Python'],
-    category: 'research',
-    readingTime: 15,
-    publishedAt: '2024-02-20',
-    images: {
-      featured: '/images/articles/loan-default-featured.jpg',
-      thumbnail: '/images/articles/loan-default-thumb.jpg',
-    },
-    downloadUrl: '/downloads/loan-default-prediction-neural-networks.pdf',
-    featured: true,
-  },
-  {
-    id: 'hotel-booking-analysis',
-    title: 'Hotel Booking Cancellation Prediction',
-    slug: 'hotel-booking-analysis',
-    excerpt: 'Comprehensive analysis of hotel booking cancellation patterns using advanced statistical modeling and machine learning techniques. Companion research to the Hotel Cancellation Prediction app.',
-    content: '',
-    tags: ['Machine Learning', 'Hospitality', 'Predictive Analytics', 'Data Science'],
-    category: 'research',
-    readingTime: 10,
-    publishedAt: '2024-03-10',
-    images: {
-      featured: '/images/articles/hotel-analysis-featured.jpg',
-      thumbnail: '/images/articles/hotel-analysis-thumb.jpg',
-    },
-    downloadUrl: '/downloads/hotel-booking-cancellation-prediction.pdf',
-    featured: false,
-  },
-  {
     id: 'philadelphia-crime-analysis',
     title: 'Philadelphia Crime Analysis',
     slug: 'philadelphia-crime-analysis',

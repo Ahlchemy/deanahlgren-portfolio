@@ -86,6 +86,7 @@ export interface Article {
   };
   externalUrl?: string;
   downloadUrl?: string;
+  embedPdf?: boolean;
   featured: boolean;
 }
 
