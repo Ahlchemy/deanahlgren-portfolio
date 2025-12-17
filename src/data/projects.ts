@@ -129,7 +129,7 @@ This public safety tool helps users identify tsunami risk zones and find evacuat
       live: 'https://tsunami-escape.deanahlgren.com',
     },
     images: {
-      thumbnail: '/images/projects/tsunami-thumb.jpg',
+      thumbnail: '/images/projects/tsunami-thumb.png',
       hero: '/images/projects/tsunami-hero.jpg',
       screenshots: [
         '/images/projects/tsunami-mobile-1.jpg',
