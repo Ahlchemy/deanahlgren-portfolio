@@ -203,7 +203,7 @@ export function ArticleDetail() {
                   <div className="mb-8">
                     <div className="bg-white dark:bg-neutral-800 rounded-lg overflow-hidden shadow-lg">
                       <iframe
-                        src={article.downloadUrl}
+                        src={`${article.downloadUrl}#pagemode=none&view=FitH&scrollbar=1`}
                         title={article.title}
                         className="w-full border-0"
                         style={{ height: '800px' }}
