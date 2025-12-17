@@ -24,7 +24,7 @@ export function Insights() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <section className="bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800">
+      <section className="bg-gradient-to-br from-amber-100 via-amber-50 to-white dark:from-amber-900/30 dark:via-amber-800/10 dark:to-neutral-900 border-b border-amber-200/50 dark:border-amber-800/20">
         <div className="container-wide py-16 md:py-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -33,7 +33,7 @@ export function Insights() {
             <h1 className="font-display text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">
               Insights
             </h1>
-            <p className="mt-4 text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl">
+            <p className="mt-4 text-xl text-neutral-700 dark:text-neutral-300 max-w-2xl">
               Research reports, whitepapers, and thought leadership on AI in learning,
               instructional design, and educational technology. {articles.length} articles and resources.
             </p>
@@ -51,10 +51,17 @@ export function Insights() {
               className="card overflow-hidden"
             >
               <div className="grid md:grid-cols-2">
-                {/* Image Placeholder */}
-                <div className="aspect-video md:aspect-auto bg-gradient-to-br from-ocean-100 to-amber-100 dark:from-ocean-900 dark:to-amber-900 flex items-center justify-center min-h-[300px]">
-                  <FileText className="w-16 h-16 text-ocean-400" />
-                  {/* ASSET NEEDED: Featured article image */}
+                {/* Image */}
+                <div className="aspect-video md:aspect-auto bg-gradient-to-br from-ocean-100 to-amber-100 dark:from-ocean-900 dark:to-amber-900 flex items-center justify-center min-h-[300px] overflow-hidden">
+                  {featuredArticle.images?.thumbnail || featuredArticle.images?.featured ? (
+                    <img
+                      src={featuredArticle.images.thumbnail || featuredArticle.images.featured}
+                      alt={featuredArticle.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <FileText className="w-16 h-16 text-ocean-400" />
+                  )}
                 </div>
                 <div className="p-8 flex flex-col justify-center">
                   <span className={`tag w-fit ${categoryColors[featuredArticle.category]}`}>
@@ -79,7 +86,12 @@ export function Insights() {
                       <ArrowRight className="w-4 h-4" />
                     </Link>
                     {featuredArticle.downloadUrl && (
-                      <a href={featuredArticle.downloadUrl} className="btn-ghost btn-md">
+                      <a
+                        href={featuredArticle.downloadUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-ghost btn-md"
+                      >
                         <Download className="w-4 h-4" />
                         Download PDF
                       </a>
@@ -141,6 +153,8 @@ export function Insights() {
                   {article.downloadUrl && (
                     <a
                       href={article.downloadUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-sm text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 flex items-center gap-1"
                     >
                       <Download className="w-3.5 h-3.5" />
@@ -181,6 +195,8 @@ export function Insights() {
                 </p>
                 <a
                   href={pres.downloadUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="mt-4 text-sm font-medium text-ocean-600 dark:text-ocean-400 flex items-center gap-1"
                 >
                   <Download className="w-4 h-4" />

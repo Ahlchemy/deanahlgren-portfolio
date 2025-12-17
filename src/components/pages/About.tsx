@@ -8,7 +8,7 @@ export function About() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800">
+      <section className="bg-gradient-to-br from-amber-100 via-amber-50 to-white dark:from-amber-900/30 dark:via-amber-800/10 dark:to-neutral-900 border-b border-amber-200/50 dark:border-amber-800/20">
         <div className="container-wide py-16 md:py-24">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -18,11 +18,11 @@ export function About() {
               <h1 className="font-display text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-6">
                 About Dean
               </h1>
-              <p className="text-xl text-neutral-600 dark:text-neutral-400 mb-6">
+              <p className="text-xl text-neutral-700 dark:text-neutral-300 mb-6">
                 The key to learning wasn't handed to me. So I built my own — and
                 spent {stats.yearsExperience} years learning how to help others build theirs.
               </p>
-              <div className="flex items-center gap-4 text-neutral-600 dark:text-neutral-400">
+              <div className="flex items-center gap-4 text-neutral-700 dark:text-neutral-300">
                 <div className="flex items-center gap-2">
                   <MapPin className="w-4 h-4 text-ocean-500" />
                   <span>Honolulu, Hawaii</span>
@@ -34,15 +34,18 @@ export function About() {
               </div>
             </motion.div>
 
-            {/* Photo Placeholder */}
+            {/* Professional Headshot */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="aspect-square bg-gradient-to-br from-ocean-100 to-ocean-200 dark:from-ocean-900 dark:to-ocean-800 rounded-2xl flex items-center justify-center"
+              className="aspect-square rounded-2xl overflow-hidden"
             >
-              {/* ASSET NEEDED: Professional headshot */}
-              <span className="text-ocean-400 text-lg">Photo Placeholder</span>
+              <img
+                src="/images/dean_headshot.jpg"
+                alt="Dean Ahlgren"
+                className="w-full h-full object-cover"
+              />
             </motion.div>
           </div>
         </div>

@@ -94,16 +94,16 @@ export function Work() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <section className="bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800">
+      <section className="bg-hero-gradient text-white">
         <div className="container-wide py-16 md:py-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">
+            <h1 className="font-display text-4xl md:text-5xl font-bold">
               Work
             </h1>
-            <p className="mt-4 text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl">
+            <p className="mt-4 text-xl text-neutral-300 max-w-2xl">
               {allWork.length}+ portfolio items showcasing instructional design and technical expertise.
               Interactive courses, AI applications, data science projects, and research.
             </p>
