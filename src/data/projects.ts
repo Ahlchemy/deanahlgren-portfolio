@@ -130,11 +130,6 @@ This public safety tool helps users identify tsunami risk zones and find evacuat
     },
     images: {
       thumbnail: '/images/projects/tsunami-thumb.png',
-      hero: '/images/projects/tsunami-hero.jpg',
-      screenshots: [
-        '/images/projects/tsunami-mobile-1.jpg',
-        '/images/projects/tsunami-mobile-2.jpg',
-      ],
     },
     metrics: [
       { label: 'Offline Ready', value: '100%' },

@@ -244,20 +244,28 @@ export function ProjectDetail() {
                 ))}
               </div>
 
-              {/* Screenshots */}
-              {project.images.screenshots && project.images.screenshots.length > 0 && (
+              {/* Screenshots - only show if we have actual image files */}
+              {project.images.screenshots && project.images.screenshots.length > 0 &&
+               project.images.screenshots.some(src => !src.includes('-thumb') && !src.includes('placeholder')) && (
                 <div className="mt-12">
                   <h3 className="font-display text-xl font-bold text-neutral-900 dark:text-white mb-6">
                     Screenshots
                   </h3>
                   <div className="grid md:grid-cols-2 gap-6">
-                    {project.images.screenshots.map((_, i) => (
+                    {project.images.screenshots.map((src, i) => (
                       <div
                         key={i}
-                        className="aspect-video bg-neutral-100 dark:bg-neutral-800 rounded-lg flex items-center justify-center"
+                        className="aspect-video bg-neutral-100 dark:bg-neutral-800 rounded-lg flex items-center justify-center overflow-hidden"
                       >
-                        <Code2 className="w-10 h-10 text-neutral-400" />
-                        {/* ASSET NEEDED: screenshot images */}
+                        <img
+                          src={src}
+                          alt={`${project.title} screenshot ${i + 1}`}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            // Hide broken images
+                            (e.target as HTMLImageElement).style.display = 'none'
+                          }}
+                        />
                       </div>
                     ))}
                   </div>
@@ -371,8 +379,16 @@ export function ProjectDetail() {
                   transition={{ delay: index * 0.1 }}
                   className="card card-hover overflow-hidden group"
                 >
-                  <div className="aspect-video bg-gradient-to-br from-ocean-100 to-ocean-200 dark:from-ocean-900 dark:to-ocean-800 flex items-center justify-center">
-                    <Code2 className="w-10 h-10 text-ocean-400" />
+                  <div className="aspect-video bg-gradient-to-br from-ocean-100 to-ocean-200 dark:from-ocean-900 dark:to-ocean-800 flex items-center justify-center overflow-hidden">
+                    {related.images?.thumbnail ? (
+                      <img
+                        src={related.images.thumbnail}
+                        alt={related.title}
+                        className="w-full h-full object-cover object-top"
+                      />
+                    ) : (
+                      <Code2 className="w-10 h-10 text-ocean-400" />
+                    )}
                   </div>
                   <div className="p-5">
                     <h3 className="font-semibold text-neutral-900 dark:text-white group-hover:text-ocean-600 transition-colors">
