@@ -188,6 +188,37 @@ All route changes scroll to top via `ScrollToTop` component in `main.tsx`:
 </BrowserRouter>
 ```
 
+### Share Modal
+Use the custom `ShareModal` component instead of native OS share (which opens Mac's personal sharing).
+
+**File:** `src/components/ShareModal.tsx`
+
+```tsx
+import { ShareModal } from '@/components/ShareModal'
+
+const [shareModalOpen, setShareModalOpen] = useState(false)
+
+// Button to open
+<button onClick={() => setShareModalOpen(true)}>
+  <Share2 /> Share
+</button>
+
+// Modal component
+<ShareModal
+  isOpen={shareModalOpen}
+  onClose={() => setShareModalOpen(false)}
+  title={article.title}
+  url={window.location.href}
+  description={article.excerpt}
+/>
+```
+
+**Features:**
+- **Copy Link** - Copies URL to clipboard with "Copied!" confirmation
+- **LinkedIn** - Opens LinkedIn share dialog in popup
+- **Twitter/X** - Opens tweet composer with title and link
+- **Email** - Opens mailto: with pre-filled subject and body
+
 ### Image Paths
 - Project thumbnails: `/images/projects/{name}-thumb.png`
 - Article thumbnails: `/images/articles/{name}-thumb.png`
