@@ -159,10 +159,17 @@ export function ArticleDetail() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="aspect-video bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm"
+              className="aspect-video bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm overflow-hidden"
             >
-              <FileText className="w-20 h-20 text-white/50" />
-              {/* ASSET NEEDED: article.images.featured */}
+              {article.images?.thumbnail || article.images?.featured ? (
+                <img
+                  src={article.images.thumbnail || article.images.featured}
+                  alt={article.title}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <FileText className="w-20 h-20 text-white/50" />
+              )}
             </motion.div>
           </div>
         </div>
@@ -240,9 +247,19 @@ export function ArticleDetail() {
                   <h2 className="font-display text-2xl font-bold text-neutral-900 dark:text-white mb-4">
                     Summary
                   </h2>
-                  <p>
-                    {article.excerpt}
-                  </p>
+                  {article.content ? (
+                    <div className="space-y-4">
+                      {article.content.split('\n\n').map((paragraph, i) => (
+                        <p key={i} dangerouslySetInnerHTML={{
+                          __html: paragraph
+                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                            .replace(/\n/g, '<br />')
+                        }} />
+                      ))}
+                    </div>
+                  ) : (
+                    <p>{article.excerpt}</p>
+                  )}
                 </div>
 
                 {/* Key Topics */}

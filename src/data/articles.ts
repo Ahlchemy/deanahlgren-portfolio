@@ -77,19 +77,30 @@ export const articles: Article[] = [
   },
   {
     id: 'ai-personalization-learning',
-    title: 'AI Personalization in Corporate Learning',
+    title: 'The Rise of "Enterique": AI-Powered Scale + Personalization',
     slug: 'ai-personalization-learning',
-    excerpt: 'Strategic framework for implementing AI-driven personalization in enterprise learning systems. How AI solves the scale vs. personalization paradox in corporate L&D.',
-    content: '',
-    tags: ['AI', 'Personalization', 'Corporate Learning', 'L&D Strategy'],
+    excerpt: 'Introducing "Enterique" - a new paradigm for corporate learning that fuses enterprise scale with boutique-level personalization. This whitepaper explores how AI is solving the traditional trade-off between reaching thousands of employees and delivering customized, engaging training experiences. Drawing from UC Berkeley AI Business Strategies insights.',
+    content: `For decades, corporate learning has been trapped in a false choice: hire a boutique firm for beautiful, personalized content that can't scale, or go enterprise for massive reach with the engagement level of a tax document.
+
+AI is changing everything through three breakthrough areas:
+
+**Intelligent Content Migration**: NLP systems that read existing training materials and automatically structure them for digital delivery while preserving learning objectives.
+
+**Dynamic Personalization at Scale**: ML algorithms that adapt content based on learner role, experience level, location, and preferences - without human intervention for each variation.
+
+**Automated Quality Assurance**: AI systems ensuring consistency, accuracy, and compliance across thousands of content variations.
+
+The result? Enterprise-scale rollouts to 25,000+ employees across 15 countries, with each learner receiving content that feels specifically created for their role and region - delivered in weeks, not years.`,
+    tags: ['AI', 'Enterique', 'Corporate Learning', 'Personalization at Scale', 'L&D Strategy', 'NLP', 'Machine Learning'],
     category: 'whitepaper',
     readingTime: 12,
     publishedAt: '2024-08-15',
     images: {
-      featured: '/images/articles/ai-personalization-featured.jpg',
-      thumbnail: '/images/articles/ai-personalization-thumb.jpg',
+      featured: '/images/articles/ai-personalization-thumb.png',
+      thumbnail: '/images/articles/ai-personalization-thumb.png',
     },
     downloadUrl: '/downloads/enterique-ai-personalization-learning.pdf',
+    embedPdf: true,
     featured: true,
   },
   {
