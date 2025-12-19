@@ -10,6 +10,7 @@ import {
   MessageSquare,
 } from 'lucide-react'
 import { services, engagementModels } from '@/data/services'
+import { SEO } from '@/components/SEO'
 
 const iconMap: Record<string, typeof Brain> = {
   Brain,
@@ -21,6 +22,13 @@ const iconMap: Record<string, typeof Brain> = {
 export function Consulting() {
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Consulting Services"
+        description="Expert instructional design consulting and AI-powered learning solutions. 25 years of experience helping organizations build effective, scalable training programs."
+        keywords="instructional design consulting, e-learning consulting, AI learning solutions, corporate training, learning strategy"
+        url="/#/consulting"
+      />
+
       {/* Hero */}
       <section className="bg-hero-gradient text-white">
         <div className="container-wide py-20 md:py-28">

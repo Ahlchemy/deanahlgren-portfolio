@@ -100,10 +100,7 @@ This desktop application captures screenshots and processes them with AI vision 
     links: {
       github: 'https://github.com/deanahlgren/screenshot-llm-tool',
     },
-    images: {
-      thumbnail: '/images/projects/screenshot-thumb.jpg',
-      hero: '/images/projects/screenshot-hero.jpg',
-    },
+    images: {},
     metrics: [
       { label: 'Response Time', value: '<3s' },
       { label: 'Vision Model', value: 'GPT-4V' },

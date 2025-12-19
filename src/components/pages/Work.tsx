@@ -7,6 +7,7 @@ import { projects } from '@/data/projects'
 import { courses } from '@/data/courses'
 import { articles } from '@/data/articles'
 import { categoryLabels } from '@/data'
+import { SEO } from '@/components/SEO'
 
 const categories = [
   { id: 'all', label: 'All Work' },
@@ -93,6 +94,13 @@ export function Work() {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Work & Portfolio"
+        description="Explore Dean Ahlgren's portfolio of instructional design projects, AI applications, interactive courses, and data science work. 25+ years of learning experience design."
+        keywords="portfolio, instructional design projects, e-learning courses, AI applications, data science, interactive learning"
+        url="/#/work"
+      />
+
       {/* Header */}
       <section className="bg-hero-gradient text-white">
         <div className="container-wide py-16 md:py-24">
@@ -239,13 +247,22 @@ export function Work() {
                           className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
                         />
                       ) : (
-                        <Icon className={`w-12 h-12 ${
-                          item.type === 'project'
-                            ? 'text-ocean-400'
-                            : item.type === 'course'
-                            ? 'text-amber-400'
-                            : 'text-dawn-500'
-                        }`} />
+                        <div className="flex flex-col items-center justify-center gap-2">
+                          <Icon className={`w-12 h-12 ${
+                            item.type === 'project'
+                              ? 'text-ocean-400'
+                              : item.type === 'course'
+                              ? 'text-amber-400'
+                              : 'text-dawn-500'
+                          }`} />
+                          <span className={`text-xs font-medium uppercase tracking-wider ${
+                            item.type === 'project'
+                              ? 'text-ocean-400/60'
+                              : item.type === 'course'
+                              ? 'text-amber-400/60'
+                              : 'text-dawn-500/60'
+                          }`}>Under Construction</span>
+                        </div>
                       )}
                     </Link>
 

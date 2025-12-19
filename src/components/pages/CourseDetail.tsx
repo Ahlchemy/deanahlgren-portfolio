@@ -377,8 +377,19 @@ export function CourseDetail() {
                   transition={{ delay: index * 0.1 }}
                   className="card card-hover overflow-hidden group"
                 >
-                  <div className="aspect-video bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900/50 dark:to-amber-800/50 flex items-center justify-center">
-                    <BookOpen className="w-10 h-10 text-amber-400" />
+                  <div className="aspect-video bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900/50 dark:to-amber-800/50 flex items-center justify-center overflow-hidden">
+                    {related.images?.thumbnail ? (
+                      <img
+                        src={related.images.thumbnail}
+                        alt={related.title}
+                        className="w-full h-full object-cover object-top"
+                      />
+                    ) : (
+                      <div className="flex flex-col items-center justify-center gap-2">
+                        <BookOpen className="w-10 h-10 text-amber-400" />
+                        <span className="text-xs font-medium uppercase tracking-wider text-amber-400/60">Under Construction</span>
+                      </div>
+                    )}
                   </div>
                   <div className="p-5">
                     <h3 className="font-semibold text-neutral-900 dark:text-white group-hover:text-amber-600 transition-colors">

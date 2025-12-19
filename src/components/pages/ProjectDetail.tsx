@@ -387,7 +387,10 @@ export function ProjectDetail() {
                         className="w-full h-full object-cover object-top"
                       />
                     ) : (
-                      <Code2 className="w-10 h-10 text-ocean-400" />
+                      <div className="flex flex-col items-center justify-center gap-2">
+                        <Code2 className="w-10 h-10 text-ocean-400" />
+                        <span className="text-xs font-medium uppercase tracking-wider text-ocean-400/60">Under Construction</span>
+                      </div>
                     )}
                   </div>
                   <div className="p-5">

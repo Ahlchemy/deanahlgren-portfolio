@@ -1,12 +1,21 @@
 import { motion } from 'framer-motion'
 import { MapPin, Calendar, Award, GraduationCap, ExternalLink } from 'lucide-react'
 import { timeline, credentials, stats, getEducation } from '@/data/timeline'
+import { SEO } from '@/components/SEO'
 
 export function About() {
   const education = getEducation()
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="About Dean Ahlgren"
+        description="25+ years of instructional design excellence. MIT-certified AI specialist based in Honolulu, Hawaii. Learn about Dean's background, credentials, and journey in learning design."
+        keywords="Dean Ahlgren, instructional designer, AI specialist, MIT certification, Hawaii, learning experience designer"
+        url="/#/about"
+        image="/images/dean_headshot.jpg"
+      />
+
       {/* Hero */}
       <section className="bg-gradient-to-br from-amber-100 via-amber-50 to-white dark:from-amber-900/30 dark:via-amber-800/10 dark:to-neutral-900 border-b border-amber-200/50 dark:border-amber-800/20">
         <div className="container-wide py-16 md:py-24">

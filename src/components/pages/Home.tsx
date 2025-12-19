@@ -4,6 +4,7 @@ import { ArrowRight, BookOpen, Code2, Lightbulb, GraduationCap, TrendingUp } fro
 import { getFeaturedProjects } from '@/data/projects'
 import { getFeaturedCourses } from '@/data/courses'
 import { stats } from '@/data/timeline'
+import { SEO } from '@/components/SEO'
 
 const statsDisplay = [
   { label: 'Years Experience', value: `${stats.yearsExperience}+` },
@@ -47,6 +48,13 @@ export function Home() {
 
   return (
     <>
+      <SEO
+        title="Home"
+        description="25 years of instructional design excellence meets MIT-certified AI expertise. Building learning experiences that engage minds, drive results, and scale impact."
+        keywords="instructional design, AI learning, machine learning, e-learning development, corporate training, MIT AI certification"
+        url="/"
+      />
+
       {/* Hero Section - Refined layout with integrated metrics */}
       <section className="relative min-h-[90vh] flex flex-col bg-hero-gradient overflow-hidden">
         {/* Low-poly geometric background - positioned on left */}
@@ -217,7 +225,10 @@ export function Home() {
                       className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
                     />
                   ) : (
-                    <Code2 className="w-12 h-12 text-ocean-400" />
+                    <div className="flex flex-col items-center justify-center gap-2">
+                      <Code2 className="w-12 h-12 text-ocean-400" />
+                      <span className="text-xs font-medium uppercase tracking-wider text-ocean-400/60">Under Construction</span>
+                    </div>
                   )}
                 </Link>
 

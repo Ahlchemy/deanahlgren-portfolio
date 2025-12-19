@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { FileText, Download, Clock, ArrowRight } from 'lucide-react'
 import { articles, presentations, getFeaturedArticles } from '@/data/articles'
+import { SEO } from '@/components/SEO'
 
 const categoryColors: Record<string, string> = {
   research: 'bg-ocean-100 text-ocean-800 dark:bg-ocean-900/30 dark:text-ocean-300',
@@ -23,6 +24,13 @@ export function Insights() {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Insights & Research"
+        description="Research reports, whitepapers, and thought leadership on AI in learning, instructional design, and educational technology from Dean Ahlgren."
+        keywords="instructional design research, AI learning whitepapers, educational technology, L&D thought leadership, e-learning research"
+        url="/#/insights"
+      />
+
       {/* Header */}
       <section className="bg-gradient-to-br from-amber-100 via-amber-50 to-white dark:from-amber-900/30 dark:via-amber-800/10 dark:to-neutral-900 border-b border-amber-200/50 dark:border-amber-800/20">
         <div className="container-wide py-16 md:py-24">
@@ -60,7 +68,10 @@ export function Insights() {
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <FileText className="w-16 h-16 text-ocean-400" />
+                    <div className="flex flex-col items-center justify-center gap-2">
+                      <FileText className="w-16 h-16 text-ocean-400" />
+                      <span className="text-sm font-medium uppercase tracking-wider text-ocean-400/60">Under Construction</span>
+                    </div>
                   )}
                 </div>
                 <div className="p-8 flex flex-col justify-center">

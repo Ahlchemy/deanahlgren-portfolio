@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 import { getArticleBySlug, getArticlesByCategory } from '@/data/articles'
 import { ShareModal } from '@/components/ShareModal'
+import { SEO } from '@/components/SEO'
 
 const categoryColors: Record<string, string> = {
   research: 'bg-ocean-100 text-ocean-800 dark:bg-ocean-900/30 dark:text-ocean-300',
@@ -78,6 +79,20 @@ export function ArticleDetail() {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title={article.title}
+        description={article.excerpt}
+        keywords={article.tags.join(', ')}
+        url={`/#/insights/${article.slug}`}
+        image={article.images?.thumbnail || article.images?.featured}
+        type="article"
+        article={{
+          publishedTime: article.publishedAt,
+          author: 'Dean Ahlgren',
+          tags: article.tags,
+        }}
+      />
+
       {/* Hero Section */}
       <section className={`bg-gradient-to-br ${categoryGradients[article.category] || categoryGradients.research} text-white`}>
         <div className="container-wide py-12 md:py-20">
@@ -162,7 +177,10 @@ export function ArticleDetail() {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <FileText className="w-20 h-20 text-white/50" />
+                <div className="flex flex-col items-center justify-center gap-2">
+                  <FileText className="w-20 h-20 text-white/50" />
+                  <span className="text-sm font-medium uppercase tracking-wider text-white/30">Under Construction</span>
+                </div>
               )}
             </motion.div>
           </div>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Driven Robotics: Reinforcement Learning</title>
+    <link rel="stylesheet" href="css/course.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Course Header -->
+    <header class="course-header">
+        <div class="header-left">
+            <button id="menu-toggle" class="menu-btn"><i class="fas fa-bars"></i></button>
+            <h1 class="course-title">AI-Driven Robotics: Reinforcement Learning</h1>
+        </div>
+        <div class="header-right">
+            <div class="progress-container">
+                <span class="progress-text">Progress: <span id="progress-percent">0</span>%</span>
+                <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+            </div>
+            <div class="font-size-controls">
+                <button id="font-decrease" class="font-btn" title="Decrease font size"><i class="fas fa-minus"></i></button>
+                <span class="font-label">A</span>
+                <button id="font-increase" class="font-btn" title="Increase font size"><i class="fas fa-plus"></i></button>
+            </div>
+            <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+            <button id="resources-btn" class="icon-btn" title="Resources"><i class="fas fa-book"></i></button>
+        </div>
+    </header>
+
+    <div class="course-container">
+        <!-- Sidebar Navigation -->
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-content">
+                <!-- Module 0: Welcome -->
+                <div class="module" data-module="0">
+                    <div class="module-header">
+                        <i class="fas fa-home"></i>
+                        <span>Welcome</span>
+                        <i class="fas fa-check-circle module-complete-icon hidden"></i>
+                    </div>
+                </div>
+
+                <!-- Module 1 -->
+                <div class="module" data-module="1">
+                    <div class="module-header">
+                        <i class="fas fa-cube"></i>
+                        <span>Module 1: Foundations</span>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="module-lessons">
+                        <div class="lesson" data-lesson="1-1">1.1 What is Reinforcement Learning?</div>
+                        <div class="lesson" data-lesson="1-2">1.2 Core Components</div>
+                        <div class="lesson" data-lesson="1-3">1.3 Knowledge Check</div>
+                    </div>
+                </div>
+
+                <!-- Module 2 -->
+                <div class="module" data-module="2">
+                    <div class="module-header">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Module 2: How Robots Learn</span>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="module-lessons">
+                        <div class="lesson" data-lesson="2-1">2.1 The RL Process</div>
+                        <div class="lesson" data-lesson="2-2">2.2 Core Algorithms</div>
+                        <div class="lesson" data-lesson="2-3">2.3 Knowledge Check</div>
+                    </div>
+                </div>
+
+                <!-- Module 3 -->
+                <div class="module" data-module="3">
+                    <div class="module-header">
+                        <i class="fas fa-tools"></i>
+                        <span>Module 3: Challenges & Design</span>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="module-lessons">
+                        <div class="lesson" data-lesson="3-1">3.1 Real-World Challenges</div>
+                        <div class="lesson" data-lesson="3-2">3.2 Activity: Design Rewards</div>
+                        <div class="lesson" data-lesson="3-3">3.3 Knowledge Check</div>
+                    </div>
+                </div>
+
+                <!-- Module 4 -->
+                <div class="module" data-module="4">
+                    <div class="module-header">
+                        <i class="fas fa-robot"></i>
+                        <span>Module 4: Applications</span>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="module-lessons">
+                        <div class="lesson" data-lesson="4-1">4.1 Robotic Manipulation</div>
+                        <div class="lesson" data-lesson="4-2">4.2 Locomotion</div>
+                        <div class="lesson" data-lesson="4-3">4.3 Activity: Navigation</div>
+                        <div class="lesson" data-lesson="4-4">4.4 Knowledge Check</div>
+                    </div>
+                </div>
+
+                <!-- Module 5 -->
+                <div class="module" data-module="5">
+                    <div class="module-header">
+                        <i class="fas fa-brain"></i>
+                        <span>Module 5: Advanced Techniques</span>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="module-lessons">
+                        <div class="lesson" data-lesson="5-1">5.1 Deep RL</div>
+                        <div class="lesson" data-lesson="5-2">5.2 Multi-Agent RL</div>
+                        <div class="lesson" data-lesson="5-3">5.3 Transfer Learning</div>
+                        <div class="lesson" data-lesson="5-4">5.4 Activity: Sim-to-Real</div>
+                        <div class="lesson" data-lesson="5-5">5.5 Knowledge Check</div>
+                    </div>
+                </div>
+
+                <!-- Module 6 -->
+                <div class="module" data-module="6">
+                    <div class="module-header">
+                        <i class="fas fa-rocket"></i>
+                        <span>Module 6: Future & Industry</span>
+                        <i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="module-lessons">
+                        <div class="lesson" data-lesson="6-1">6.1 Future Trends</div>
+                        <div class="lesson" data-lesson="6-2">6.2 Industry Applications</div>
+                        <div class="lesson" data-lesson="6-3">6.3 Knowledge Check</div>
+                    </div>
+                </div>
+
+                <!-- Final Assessment -->
+                <div class="module" data-module="7">
+                    <div class="module-header">
+                        <i class="fas fa-award"></i>
+                        <span>Final Assessment</span>
+                        <i class="fas fa-check-circle module-complete-icon hidden"></i>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main id="content" class="content">
+            <!-- Content loaded dynamically -->
+        </main>
+    </div>
+
+    <!-- Navigation Footer -->
+    <footer class="course-footer">
+        <button id="prev-btn" class="nav-btn" disabled><i class="fas fa-chevron-left"></i> Previous</button>
+        <span id="page-indicator" class="page-indicator">1 of 20</span>
+        <button id="next-btn" class="nav-btn">Next <i class="fas fa-chevron-right"></i></button>
+    </footer>
+
+    <!-- Resources Panel -->
+    <div id="resources-panel" class="resources-panel hidden">
+        <div class="resources-header">
+            <h3>Resources & Glossary</h3>
+            <button id="close-resources" class="close-btn"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="resources-content">
+            <h4>Key Terms</h4>
+            <dl class="glossary">
+                <dt>Reinforcement Learning (RL)</dt>
+                <dd>A type of machine learning where agents learn to make decisions by interacting with an environment and receiving rewards.</dd>
+                <dt>State</dt>
+                <dd>The current situation or configuration of the environment.</dd>
+                <dt>Action</dt>
+                <dd>A decision or move that an agent can make.</dd>
+                <dt>Reward</dt>
+                <dd>Numerical feedback signal indicating the desirability of an action.</dd>
+                <dt>Policy</dt>
+                <dd>A strategy that maps states to actions.</dd>
+                <dt>Sim-to-Real Transfer</dt>
+                <dd>The process of transferring policies learned in simulation to real-world robots.</dd>
+            </dl>
+            <h4>References</h4>
+            <ul class="references">
+                <li>Kilinc & Montana (2021) - Autonomous Grasping Research</li>
+                <li>Kormushev et al. (2013) - Dynamic Task Learning</li>
+                <li>Boston Dynamics - Spot Robot Locomotion</li>
+                <li>Figure AI - Humanoid Walking Research</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="js/course.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# robots.txt for deanahlgren.com
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://deanahlgren.com/sitemap.xml
+
+# Allow all crawlers to index the site
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

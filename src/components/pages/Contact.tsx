@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, MapPin, Linkedin, Send, CheckCircle } from 'lucide-react'
+import { SEO } from '@/components/SEO'
 
 export function Contact() {
   const [formState, setFormState] = useState({
@@ -20,6 +21,13 @@ export function Contact() {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Contact"
+        description="Get in touch with Dean Ahlgren for instructional design consulting, job opportunities, or collaboration. Based in Honolulu, Hawaii, available worldwide."
+        keywords="contact, hire instructional designer, consulting inquiry, collaboration"
+        url="/#/contact"
+      />
+
       {/* Header */}
       <section className="bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800">
         <div className="container-wide py-16 md:py-24">
