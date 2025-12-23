@@ -188,7 +188,7 @@ export function ArticleDetail() {
       </section>
 
       {/* Tags Bar */}
-      <section className="bg-white dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800">
+      <section className="bg-white dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-600">
         <div className="container-wide py-4">
           <div className="flex items-center gap-3">
             <Tag className="w-5 h-5 text-neutral-400" />
@@ -381,7 +381,7 @@ export function ArticleDetail() {
 
       {/* Related Articles */}
       {relatedArticles.length > 0 && (
-        <section className="section bg-neutral-50 dark:bg-neutral-900">
+        <section className="section bg-neutral-50 dark:bg-neutral-700">
           <div className="container-wide">
             <div className="flex items-end justify-between mb-8">
               <h2 className="font-display text-2xl font-bold text-neutral-900 dark:text-white">

@@ -120,7 +120,7 @@ export function Work() {
       </section>
 
       {/* Filters */}
-      <section className="sticky top-16 z-40 bg-white dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800">
+      <section className="sticky top-16 z-40 bg-white dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-600">
         <div className="container-wide py-4">
           <div className="flex flex-col md:flex-row gap-4">
             {/* Search */}
@@ -131,7 +131,7 @@ export function Work() {
                 placeholder="Search projects, technologies..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-ocean-500"
+                className="w-full pl-10 pr-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-ocean-500"
               />
             </div>
 

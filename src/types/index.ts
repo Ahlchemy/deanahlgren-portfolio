@@ -28,7 +28,7 @@ export interface Project {
     video?: string;
   };
   images: {
-    thumbnail: string;
+    thumbnail?: string;
     hero?: string;
     screenshots?: string[];
   };
@@ -58,7 +58,7 @@ export interface Course {
   objectives: string[];
   technologies: string[];
   images: {
-    thumbnail: string;
+    thumbnail?: string;
     hero?: string;
     screenshots?: string[];
   };

@@ -42,12 +42,12 @@
     --radius-full: 9999px;
   }
 
-  /* Dark mode */
+  /* Dark mode - lighter, more refined */
   .dark {
-    --color-bg: #0f172a;
-    --color-bg-secondary: #1e293b;
+    --color-bg: #1e293b;
+    --color-bg-secondary: #334155;
     --color-text: #f8fafc;
-    --color-text-secondary: #94a3b8;
+    --color-text-secondary: #cbd5e1;
   }
 
   /* Light mode */
@@ -65,7 +65,7 @@
 
   body {
     @apply font-body font-normal text-neutral-900 bg-white antialiased;
-    @apply dark:bg-neutral-950 dark:text-neutral-50;
+    @apply dark:bg-neutral-800 dark:text-neutral-50;
     @apply text-base leading-relaxed;
   }
 
@@ -156,8 +156,8 @@
 
   /* Cards */
   .card {
-    @apply bg-white dark:bg-neutral-900 rounded-xl shadow-md
-           border border-neutral-200 dark:border-neutral-800
+    @apply bg-white dark:bg-neutral-700 rounded-xl shadow-md
+           border border-neutral-200 dark:border-neutral-600
            transition-all duration-300;
   }
 
@@ -230,7 +230,7 @@
   }
 
   .dark .bg-gradient-project-card {
-    background: linear-gradient(135deg, #031530 0%, #052540 100%);
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   }
 }
 

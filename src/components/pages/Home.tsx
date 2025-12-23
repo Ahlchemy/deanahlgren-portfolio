@@ -186,7 +186,7 @@ export function Home() {
       </section>
 
       {/* Featured Work Section - Warm off-white background */}
-      <section className="section bg-warm-50 dark:bg-neutral-900">
+      <section className="section bg-warm-50 dark:bg-neutral-700">
         <div className="container-wide">
           <div className="flex items-end justify-between mb-12">
             <div>

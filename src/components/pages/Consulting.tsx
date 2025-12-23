@@ -102,7 +102,7 @@ export function Consulting() {
                         ))}
                       </ul>
 
-                      <div className="mt-6 pt-4 border-t border-neutral-200 dark:border-neutral-800">
+                      <div className="mt-6 pt-4 border-t border-neutral-200 dark:border-neutral-600">
                         <p className="text-xs text-neutral-500 dark:text-neutral-500 mb-2">
                           Ideal for:
                         </p>
@@ -124,7 +124,7 @@ export function Consulting() {
       </section>
 
       {/* Engagement Models */}
-      <section className="section bg-neutral-50 dark:bg-neutral-900">
+      <section className="section bg-neutral-50 dark:bg-neutral-700">
         <div className="container-wide">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="font-display text-3xl font-bold text-neutral-900 dark:text-white">

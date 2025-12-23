@@ -11,7 +11,7 @@ interface ThemeState {
 export const useTheme = create<ThemeState>()(
   persist(
     (set) => ({
-      mode: 'system',
+      mode: 'light',
       setMode: (mode) => {
         set({ mode })
         applyTheme(mode)

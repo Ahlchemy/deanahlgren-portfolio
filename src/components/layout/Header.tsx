@@ -27,12 +27,12 @@ export function Header() {
   const ThemeIcon = mode === 'dark' ? Moon : mode === 'light' ? Sun : Monitor
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-neutral-800/90 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-700">
       <nav className="container-wide flex items-center justify-between h-16">
         {/* Logo */}
         <Link
           to="/"
-          className="font-display font-bold text-xl text-ocean-500 hover:text-ocean-600 transition-colors"
+          className="font-display font-bold text-xl text-ocean-500 dark:text-white hover:text-ocean-600 dark:hover:text-ocean-200 transition-colors"
         >
           Dean Ahlgren
         </Link>
@@ -92,7 +92,7 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950"
+            className="md:hidden border-t border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800"
           >
             <div className="container-wide py-4 space-y-1">
               {navigation.map((item) => (

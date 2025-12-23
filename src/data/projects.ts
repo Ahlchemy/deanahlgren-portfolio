@@ -2,6 +2,39 @@ import type { Project } from '@/types'
 
 export const projects: Project[] = [
   // ============================================
+  // DATA SCIENCE - FEATURED
+  // ============================================
+  {
+    id: 'hotel-cancellation-dashboard',
+    title: 'Hotel Cancellation Prediction Dashboard',
+    slug: 'hotel-cancellation-dashboard',
+    category: 'data-science',
+    description: `Interactive data science dashboard presenting a complete machine learning analysis for predicting hotel booking cancellations. This comprehensive project demonstrates the full data science workflow from problem definition through actionable business insights.
+
+The dashboard features exploratory data analysis visualizations, model comparison across 4 ML algorithms (Logistic Regression, Decision Tree, Random Forest, XGBoost), and key findings that enable proactive revenue management and optimized inventory control. Built with React, Recharts, and Framer Motion for smooth interactions.`,
+    shortDescription: 'Interactive ML dashboard predicting hotel cancellations with 87.9% accuracy across 9,069 bookings',
+    technologies: ['React', 'Vite', 'Recharts', 'Tailwind CSS', 'Framer Motion', 'Machine Learning'],
+    links: {
+      demo: '/demos/hotel-cancellation-dashboard/index.html',
+    },
+    images: {
+      thumbnail: '/images/projects/hotel-dashboard-thumb.png',
+      hero: '/images/projects/hotel-dashboard-thumb.png',
+    },
+    metrics: [
+      { label: 'Bookings Analyzed', value: '9,069' },
+      { label: 'Best Accuracy', value: '87.9%' },
+      { label: 'ROC AUC', value: '0.92' },
+      { label: 'Models Compared', value: '4' },
+    ],
+    status: 'published',
+    featured: true,
+    order: 0,
+    createdAt: '2024-12-22',
+    updatedAt: '2024-12-22',
+  },
+
+  // ============================================
   // APPLICATIONS
   // ============================================
   {
@@ -53,37 +86,6 @@ The application provides hands-on exploration of computer vision techniques incl
     status: 'published',
     featured: false,
     order: 2,
-    createdAt: '2024-01-01',
-    updatedAt: '2024-12-01',
-  },
-  {
-    id: 'hotel-cancellation-prediction',
-    title: 'Hotel Cancellation Prediction',
-    slug: 'hotel-cancellation-prediction',
-    category: 'data-science',
-    description: `Machine learning project for predicting hotel booking cancellations using data analysis and predictive modeling. This comprehensive data science project demonstrates skills including data exploration, feature engineering, and model building with Jupyter notebooks.
-
-The project analyzes booking patterns, seasonal trends, and customer behavior to build predictive models that help hotels optimize revenue management strategies. Includes detailed visualizations and model comparison analysis.`,
-    shortDescription: 'Machine learning model predicting booking cancellations to optimize hotel revenue management',
-    technologies: ['Python', 'Scikit-learn', 'Pandas', 'Jupyter', 'Data Visualization'],
-    links: {
-      github: 'https://github.com/deanahlgren/hotel-cancellation-prediction',
-    },
-    images: {
-      thumbnail: '/images/projects/hotel-thumb.png',
-      hero: '/images/projects/hotel-hero.jpg',
-      screenshots: [
-        '/images/projects/hotel-viz-1.jpg',
-        '/images/projects/hotel-viz-2.jpg',
-      ],
-    },
-    metrics: [
-      { label: 'Model Accuracy', value: '87%' },
-      { label: 'Features Analyzed', value: '32' },
-    ],
-    status: 'published',
-    featured: true,
-    order: 3,
     createdAt: '2024-01-01',
     updatedAt: '2024-12-01',
   },

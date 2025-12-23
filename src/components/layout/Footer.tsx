@@ -32,7 +32,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-neutral-50 dark:bg-neutral-900 border-t border-neutral-200 dark:border-neutral-800">
+    <footer className="bg-neutral-50 dark:bg-neutral-700 border-t border-neutral-200 dark:border-neutral-600">
       <div className="container-wide py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
           {/* Brand Column */}
@@ -96,7 +96,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-800">
+        <div className="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-600">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-neutral-500 dark:text-neutral-500">
               &copy; {currentYear} Dean Ahlgren. All rights reserved.

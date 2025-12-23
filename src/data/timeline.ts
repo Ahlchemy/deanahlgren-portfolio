@@ -16,8 +16,8 @@ export const timeline: TimelineItem[] = [
     type: 'role',
   },
   {
-    id: 'mit-2024',
-    year: '2024',
+    id: 'mit-2025',
+    year: '2025',
     title: 'No Code AI and Machine Learning Certificate',
     organization: 'MIT Professional Education',
     description: 'Building Data Science Solutions. Advanced certification in artificial intelligence and machine learning applications for business and education contexts.',
@@ -28,8 +28,8 @@ export const timeline: TimelineItem[] = [
     type: 'certification',
   },
   {
-    id: 'berkeley-2024',
-    year: '2024',
+    id: 'berkeley-2025',
+    year: '2025',
     title: 'AI: Business Strategies and Applications',
     organization: 'UC Berkeley Haas School of Business',
     description: 'Strategic applications of artificial intelligence in business contexts. Certificate program focused on AI implementation and business transformation.',
@@ -129,14 +129,14 @@ export const credentials: Credential[] = [
     id: 'mit-ai-ml',
     title: 'No Code AI and Machine Learning: Building Data Science Solutions',
     issuer: 'MIT Professional Education',
-    date: '2024',
+    date: '2025',
     description: 'Advanced certification in AI/ML applications for building data science solutions without extensive coding.',
   },
   {
     id: 'berkeley-ai',
     title: 'Artificial Intelligence: Business Strategies and Applications',
     issuer: 'UC Berkeley Haas School of Business',
-    date: '2024',
+    date: '2025',
     description: 'Strategic framework for implementing AI in business contexts.',
   },
 ]

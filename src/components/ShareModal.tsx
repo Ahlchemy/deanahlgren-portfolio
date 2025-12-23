@@ -67,9 +67,9 @@ export function ShareModal({ isOpen, onClose, title, url, description }: ShareMo
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-md"
           >
-            <div className="bg-white dark:bg-neutral-900 rounded-xl shadow-2xl overflow-hidden mx-4">
+            <div className="bg-white dark:bg-neutral-700 rounded-xl shadow-2xl overflow-hidden mx-4">
               {/* Header */}
-              <div className="flex items-center justify-between p-4 border-b border-neutral-200 dark:border-neutral-800">
+              <div className="flex items-center justify-between p-4 border-b border-neutral-200 dark:border-neutral-600">
                 <h3 className="font-display text-lg font-semibold text-neutral-900 dark:text-white">
                   Share
                 </h3>

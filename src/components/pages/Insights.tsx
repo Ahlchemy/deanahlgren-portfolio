@@ -51,7 +51,7 @@ export function Insights() {
 
       {/* Featured Article */}
       {featuredArticle && (
-        <section className="section border-b border-neutral-200 dark:border-neutral-800">
+        <section className="section border-b border-neutral-200 dark:border-neutral-600">
           <div className="container-wide">
             <motion.article
               initial={{ opacity: 0, y: 20 }}
@@ -180,7 +180,7 @@ export function Insights() {
       </section>
 
       {/* Presentations Section */}
-      <section className="section bg-neutral-50 dark:bg-neutral-900">
+      <section className="section bg-neutral-50 dark:bg-neutral-700">
         <div className="container-wide">
           <h2 className="font-display text-2xl font-bold text-neutral-900 dark:text-white mb-8">
             Presentations ({presentations.length})

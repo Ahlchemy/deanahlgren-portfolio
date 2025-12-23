@@ -95,7 +95,7 @@ export function About() {
       </section>
 
       {/* Credentials */}
-      <section className="section bg-neutral-50 dark:bg-neutral-900">
+      <section className="section bg-neutral-50 dark:bg-neutral-700">
         <div className="container-wide">
           <h2 className="font-display text-3xl font-bold text-neutral-900 dark:text-white mb-8">
             Credentials & Certifications
@@ -214,7 +214,7 @@ export function About() {
       </section>
 
       {/* Education */}
-      <section className="section bg-neutral-50 dark:bg-neutral-900">
+      <section className="section bg-neutral-50 dark:bg-neutral-700">
         <div className="container-wide">
           <h2 className="font-display text-3xl font-bold text-neutral-900 dark:text-white mb-8">
             Education

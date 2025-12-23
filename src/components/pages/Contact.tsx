@@ -29,7 +29,7 @@ export function Contact() {
       />
 
       {/* Header */}
-      <section className="bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800">
+      <section className="bg-neutral-50 dark:bg-neutral-700 border-b border-neutral-200 dark:border-neutral-600">
         <div className="container-wide py-16 md:py-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -174,7 +174,7 @@ export function Contact() {
                           onChange={(e) =>
                             setFormState({ ...formState, name: e.target.value })
                           }
-                          className="w-full px-4 py-3 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-ocean-500"
+                          className="w-full px-4 py-3 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-ocean-500"
                           placeholder="Your name"
                         />
                       </div>
@@ -194,7 +194,7 @@ export function Contact() {
                           onChange={(e) =>
                             setFormState({ ...formState, email: e.target.value })
                           }
-                          className="w-full px-4 py-3 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-ocean-500"
+                          className="w-full px-4 py-3 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-ocean-500"
                           placeholder="your@email.com"
                         />
                       </div>
@@ -213,7 +213,7 @@ export function Contact() {
                         onChange={(e) =>
                           setFormState({ ...formState, type: e.target.value })
                         }
-                        className="w-full px-4 py-3 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-ocean-500"
+                        className="w-full px-4 py-3 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-ocean-500"
                       >
                         <option value="general">General Inquiry</option>
                         <option value="consulting">Consulting Services</option>
@@ -238,7 +238,7 @@ export function Contact() {
                         onChange={(e) =>
                           setFormState({ ...formState, message: e.target.value })
                         }
-                        className="w-full px-4 py-3 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-ocean-500 resize-none"
+                        className="w-full px-4 py-3 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-ocean-500 resize-none"
                         placeholder="Tell me about your project or inquiry..."
                       />
                     </div>

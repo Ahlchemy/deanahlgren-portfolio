@@ -172,7 +172,7 @@ export function ProjectDetail() {
       </section>
 
       {/* Meta Info Bar */}
-      <section className="bg-white dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800">
+      <section className="bg-white dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-600">
         <div className="container-wide py-6">
           <div className="flex flex-wrap gap-8">
             {/* Technologies */}
@@ -354,7 +354,7 @@ export function ProjectDetail() {
 
       {/* Related Projects */}
       {relatedProjects.length > 0 && (
-        <section className="section bg-neutral-50 dark:bg-neutral-900">
+        <section className="section bg-neutral-50 dark:bg-neutral-700">
           <div className="container-wide">
             <div className="flex items-end justify-between mb-8">
               <h2 className="font-display text-2xl font-bold text-neutral-900 dark:text-white">

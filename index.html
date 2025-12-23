@@ -134,11 +134,14 @@
     <!-- Theme Script - Prevent flash -->
     <script>
       (function() {
-        const theme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (theme === 'dark' || (!theme && prefersDark)) {
-          document.documentElement.classList.add('dark');
-        }
+        try {
+          const stored = localStorage.getItem('theme-storage');
+          const parsed = stored ? JSON.parse(stored) : null;
+          const theme = parsed?.state?.mode;
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
       })();
     </script>
   </head>
