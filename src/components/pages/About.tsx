@@ -72,7 +72,9 @@ export function About() {
             <p className="text-lg">
               Not just designing courses, but building them — LMS architecture,
               analytics systems, video production, hundreds of pages of interactive
-              content. At Academy of Art University, I created {stats.coursesDesigned}+ online courses
+              content. My toolkit spans Articulate Storyline and Rise to custom-coded
+              React applications, choosing whatever best serves the learning
+              experience. At Academy of Art University, I created {stats.coursesDesigned}+ online courses
               across undergraduate and graduate programs during a period of {stats.enrollmentGrowth}
               enrollment growth, contributing to a {stats.dropoutReduction} reduction in first-term
               dropouts.

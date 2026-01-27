@@ -28,7 +28,7 @@ export function SEO({
   article,
 }: SEOProps) {
   const fullTitle = title === 'Home'
-    ? 'Dean Ahlgren | Instructional Design Mastery Meets AI Innovation'
+    ? 'Dean Ahlgren | Instructional Designer & AI Learning Specialist'
     : `${title} | Dean Ahlgren`
 
   const fullUrl = url ? `${BASE_URL}${url}` : BASE_URL

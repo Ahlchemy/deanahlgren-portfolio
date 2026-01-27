@@ -44,8 +44,7 @@ export function Footer() {
               Dean Ahlgren
             </Link>
             <p className="mt-4 text-neutral-600 dark:text-neutral-400 max-w-md">
-              Instructional Design Mastery Meets AI Innovation. 25 years building
-              learning experiences that engage minds, drive results, and scale impact.
+              Instructional designer. AI practitioner. 25 years making learning work.
             </p>
             <div className="flex items-center gap-2 mt-4 text-sm text-neutral-500 dark:text-neutral-500">
               <MapPin className="w-4 h-4" />

@@ -87,30 +87,30 @@ export function Home() {
             >
               {/* Tagline - Orange/gold accent with text shadow */}
               <p className="text-amber-400 font-medium tracking-widest text-sm mb-5 uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
-                Learning Design + AI
+                Instructional Design · AI-Enhanced Learning
               </p>
 
               {/* Main Headline */}
               <h1 className="font-display text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-white mb-6 leading-[1.15] tracking-tight">
-                Instructional Design Mastery
+                Learning Experiences
                 <br />
-                <span className="text-white/90">Meets AI Innovation</span>
+                <span className="text-white/90">That Actually Work</span>
               </h1>
 
               {/* Subheadline */}
               <p className="text-lg md:text-xl text-neutral-300 mb-8 leading-relaxed max-w-[540px]">
-                {stats.yearsExperience} years building learning that works—now enhanced with AI expertise
-                from MIT and Berkeley Haas. Experiences that engage, perform, and scale.
+                I've spent {stats.yearsExperience} years helping organizations create learning that sticks—courses
+                that people actually complete, remember, and use. Now I'm bringing AI into the mix to make that even better.
               </p>
 
               {/* CTAs */}
               <div className="flex flex-wrap gap-4">
                 <Link to="/work" className="btn-secondary btn-lg">
-                  Explore Portfolio
+                  See My Work
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link to="/contact" className="btn btn-lg border-2 border-white text-white hover:bg-white/10">
-                  Let's Talk
+                  Start a Conversation
                 </Link>
               </div>
 
@@ -181,6 +181,9 @@ export function Home() {
                 </motion.div>
               ))}
             </div>
+            <p className="text-center text-neutral-400 text-sm mt-4">
+              Across corporate, higher ed, and everything in between.
+            </p>
           </div>
         </div>
       </section>
@@ -191,10 +194,10 @@ export function Home() {
           <div className="flex items-end justify-between mb-12">
             <div>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white">
-                Featured Work
+                What I've Been Building
               </h2>
               <p className="mt-2 text-neutral-600 dark:text-neutral-400">
-                Interactive learning experiences, AI applications, and research
+                From interactive courses to AI-powered learning tools—here's a look at recent projects.
               </p>
             </div>
             <Link
@@ -269,8 +272,7 @@ export function Home() {
               Areas of Expertise
             </h2>
             <p className="mt-4 text-neutral-300">
-              {stats.yearsExperience} years of learning design evolution, from traditional instructional design
-              to AI-powered adaptive experiences
+              I bring together deep instructional design foundations with emerging AI capabilities. Here's where I can help:
             </p>
           </div>
 
@@ -280,19 +282,19 @@ export function Home() {
                 icon: BookOpen,
                 title: 'Instructional Design',
                 description:
-                  `${stats.coursesDesigned}+ courses designed across undergraduate and graduate programs. ADDIE, SAM, and agile methodologies.`,
+                  `Learner-centered course design that puts outcomes first. ${stats.coursesDesigned}+ courses across corporate training, higher ed, and professional development—using whatever methodology fits the context.`,
               },
               {
                 icon: Lightbulb,
                 title: 'AI/ML Integration',
                 description:
-                  'MIT-certified expertise in applying artificial intelligence to enhance learning outcomes and personalization.',
+                  'Practical AI applications for learning—from adaptive content delivery to intelligent feedback systems. MIT-trained, but more importantly: focused on what actually improves outcomes.',
               },
               {
                 icon: Code2,
                 title: 'Full-Stack Development',
                 description:
-                  'React, Python, and modern web technologies. Building the tools that power next-generation learning.',
+                  'I can build what I design. React, Python, and modern web tools—which means faster iteration, fewer handoff headaches, and learning experiences that work exactly as intended.',
               },
             ].map((item, index) => (
               <motion.div
@@ -326,15 +328,15 @@ export function Home() {
         </div>
         <div className="container-narrow text-center relative z-10">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Transform Your Learning Experience?
+            Let's Build Something That Works
           </h2>
           <p className="text-xl text-amber-100 mb-8 max-w-xl mx-auto">
-            Whether you're hiring or need consulting, let's discuss how I can help
-            bring AI-powered learning to your organization.
+            Looking for an instructional designer who gets AI? Need help modernizing your learning programs?
+            Or just want to talk shop? I'd love to hear what you're working on.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link to="/consulting" className="btn bg-white text-amber-600 hover:bg-neutral-100 btn-lg">
-              Consulting Services
+              Explore Services
             </Link>
             <Link to="/contact" className="btn border-2 border-white text-white hover:bg-white/10 btn-lg">
               Get in Touch

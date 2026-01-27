@@ -284,6 +284,41 @@ Structured around practical travel scenarios, the course prioritizes high-freque
     featured: false,
     order: 9,
   },
+  {
+    id: 'solar-explorer',
+    title: 'Solar Pioneer 360',
+    slug: 'solar-explorer',
+    description: `Interactive voyage through the solar system built as a gamified React learning experience. Learners choose a space navigator character, then explore all 8 planets from a central hub featuring NASA imagery and real planetary data.
+
+The course includes drag-and-drop challenges (ordering planets by orbital distance, matching planets to descriptions), a multiple-choice knowledge assessment, and an AI-powered chat companion for open-ended exploration. Designed to demonstrate modern web-based interactive learning with rich media, game mechanics, and accessibility.`,
+    shortDescription: 'Gamified solar system exploration with NASA imagery, drag-and-drop challenges, and AI-powered chat',
+    modules: [
+      { id: 'intro', title: 'Mission Launch', description: 'Welcome and mission briefing' },
+      { id: 'character-select', title: 'Navigator Selection', description: 'Choose your space navigator' },
+      { id: 'hub', title: 'Navigation Hub', description: 'Solar system overview with 8 planets' },
+      { id: 'planet-detail', title: 'Planet Exploration', description: 'Detailed planet surveys with NASA imagery' },
+      { id: 'drag-drop', title: 'Orbital Distance Challenge', description: 'Order inner planets by distance from the Sun' },
+      { id: 'matching-quiz', title: 'Planetary Matching', description: 'Match planets to their descriptions via drag-and-drop' },
+      { id: 'quiz', title: 'Knowledge Assessment', description: 'Multiple-choice certification exam' },
+      { id: 'results', title: 'Mission Results', description: 'Score summary and mission completion' },
+    ],
+    objectives: [
+      'Identify all 8 planets and their key characteristics',
+      'Order planets by orbital distance from the Sun',
+      'Match planets to distinguishing features',
+      'Demonstrate knowledge of planetary moons, distances, and fun facts',
+    ],
+    technologies: ['Articulate Storyline', 'React', 'TypeScript', 'Vite', 'Tailwind CSS'],
+    images: {
+      thumbnail: '/images/courses/solar-explorer-thumb.png',
+      hero: '/images/courses/solar-explorer-thumb.png',
+    },
+    demoUrl: '/demos/solar-explorer/index.html',
+    hasInteractiveDemo: true,
+    status: 'published',
+    featured: false,
+    order: 10,
+  },
 ]
 
 // Helper functions

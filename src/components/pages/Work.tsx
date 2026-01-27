@@ -55,10 +55,16 @@ const getAllWork = () => {
     type: 'article' as const,
     featured: a.featured,
     icon: FileText,
-    thumbnail: undefined,
+    thumbnail: a.images?.thumbnail,
   }))
 
-  return [...projectItems, ...courseItems, ...articleItems]
+  const all = [...projectItems, ...courseItems, ...articleItems]
+  const solarIdx = all.findIndex((i) => i.id === 'solar-explorer')
+  if (solarIdx > 0) {
+    const [solar] = all.splice(solarIdx, 1)
+    all.unshift(solar)
+  }
+  return all
 }
 
 export function Work() {
