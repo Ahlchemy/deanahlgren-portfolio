@@ -72,7 +72,7 @@ export function ChatPanel({ variant }: ChatPanelProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
       className={`flex flex-col bg-white/10 dark:bg-neutral-800/80 backdrop-blur-sm border border-white/15 rounded-2xl shadow-lg overflow-hidden ${
-        isDesktop ? 'w-full max-h-[380px]' : 'w-full max-h-[360px]'
+        isDesktop ? 'w-full max-h-[400px]' : 'w-full max-h-[378px]'
       }`}
     >
       {/* Header with integrated headshot */}
@@ -81,7 +81,7 @@ export function ChatPanel({ variant }: ChatPanelProps) {
           <img
             src="/images/dean_headshot.jpg"
             alt="Dean Ahlgren"
-            className="w-16 h-16 rounded-xl object-cover object-top ring-2 ring-amber-400/30 shadow-lg flex-shrink-0"
+            className="w-[67px] h-[67px] rounded-xl object-cover object-top ring-2 ring-amber-400/30 shadow-lg flex-shrink-0"
           />
           <div className="pt-0.5 flex-1">
             <div className="flex items-center justify-between">
