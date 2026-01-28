@@ -5,6 +5,7 @@ import { getFeaturedProjects } from '@/data/projects'
 import { getFeaturedCourses } from '@/data/courses'
 import { stats } from '@/data/timeline'
 import { SEO } from '@/components/SEO'
+import { ChatPanel } from '@/components/chat'
 
 const statsDisplay = [
   { label: 'Years Experience', value: `${stats.yearsExperience}+` },
@@ -131,33 +132,21 @@ export function Home() {
               </div>
             </motion.div>
 
-            {/* Right Column - Headshot Image */}
+            {/* Right Column - Chat Panel with integrated headshot */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="hidden lg:flex justify-center items-center"
+              className="hidden lg:flex flex-col justify-center max-w-[300px]"
             >
-              <div className="relative">
-                {/* Offset orange band - subtle left edge accent */}
-                <div
-                  className="absolute top-0 -left-[5px] w-full h-full rounded-2xl bg-amber-500"
-                  aria-hidden="true"
-                />
-
-                {/* Photo container */}
-                <div className="relative aspect-square w-full max-w-[280px] overflow-hidden rounded-2xl shadow-[0_4px_16px_-2px_rgba(0,0,0,0.2)]">
-                  <img
-                    src="/images/dean_headshot.jpg"
-                    alt="Dean Ahlgren - Instructional Designer & AI Specialist"
-                    className="w-full h-full object-cover object-top"
-                  />
-                  {/* Subtle inner border for definition */}
-                  <div className="absolute inset-0 rounded-2xl ring-1 ring-white/10 pointer-events-none" />
-                </div>
-              </div>
+              <ChatPanel variant="desktop" />
             </motion.div>
           </div>
+        </div>
+
+        {/* Mobile Chat - Below hero content, above metrics */}
+        <div className="block lg:hidden relative z-10 px-4 sm:px-6 pb-4">
+          <ChatPanel variant="mobile" />
         </div>
 
         {/* Metrics Band - Positioned at bottom of hero */}
