@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Send, MessageCircle, X, RotateCcw } from 'lucide-react'
 import { useChat } from '@/store/useChat'
@@ -32,13 +32,6 @@ export function ChatPanel({ variant }: ChatPanelProps) {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const isDesktop = variant === 'desktop'
-
-  // Auto-scroll within the chat container only (never scroll the page)
-  useEffect(() => {
-    if (messages.length > 0 && messagesContainerRef.current) {
-      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight
-    }
-  }, [messages, isLoading])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
